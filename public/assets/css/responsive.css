@@ -1,0 +1,400 @@
+/* RESPONSIVO */
+
+@media (max-width: 1230px) {
+  /* MODAL - BANK */
+  .modal.modal-bank .modal-content {
+    height: 100%;
+  }
+  .modal-body-bank {
+    overflow: auto;
+    height: 100%;
+  }
+  .modal-bank .modal-footer .buttons-footer {
+    display: flex;
+  }
+  .container-payment-deposit {
+    display: none;
+  }
+  .modal-bank .notice-deposit {
+    align-items: center;
+  }
+  .modal-bank .notice-deposit .title-notice>h1 {
+    line-height: 30px;
+  }
+  .modal-bank .notice-deposit .title-notice {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  /* Estilos para desktops - GAME */
+  /* HEADER - GAME */
+
+  /* GRUPOS - GAME */
+  .content-select-animal {
+    height: 80px;
+    width: calc(100% / 5 - 10px);
+    margin: 5px;
+  }
+
+  .img-select-animal p.title {
+    font-size: 14px;
+  }
+
+  .img-select-animal p.number {
+    font-size: 50px;
+    letter-spacing: -5px;
+    top: 0px;
+  }
+}
+
+@media (max-width: 1100px) {
+  /* BTN STEP - GAME */
+  .next-step-mobile {
+    display: block !important;
+  }
+
+  .next-step-mobile .next-step .btn-next {
+    margin: 5px !important;
+    padding: 12px 32px !important;
+    width: unset;
+  }
+
+  .next-step-desktop {
+    display: none !important;
+  }
+
+  /* Estilos para tablets - GAME */
+  .main-games {
+    width: 100%;
+  }
+
+  /* Sessões das etapas - GAME */
+  #stepsGames {
+    padding: 20px 35px 35px !important;
+  }
+
+  /* LATERAL MENU - GAME */
+  #sideMenu {
+    display: none;
+    transform: translateX(-300px);
+    position: fixed;
+    z-index: 13;
+    transition: transform 0.5s ease;
+    position: fixed !important;
+  }
+
+  #sideMenu.active {
+    transform: translateX(0);
+    display: block !important;
+  }
+
+  .logo-menu {
+    display: none;
+  }
+
+  .options-user.mobile {
+    justify-content: start;
+    padding: 40px 20px;
+  }
+
+  .bg-mobile {
+    background: #05051270;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+  }
+
+  /* HEADER STEPS - GAME */
+  .header-steps {
+    margin: 35px 0px 15px !important;
+  }
+
+  /* HEADER - GAME */
+  .header-user {
+    padding: 15px 30px;
+    margin-bottom: 0px;
+  }
+
+  .content-header {
+    display: none !important;
+  }
+
+  .content-header.mobile {
+    display: flex !important;
+  }
+
+  .options-user.mobile {
+    display: flex;
+  }
+
+  /* GRUPOS - GAME */
+  .content-select-animal {
+    height: 80px;
+    width: calc(100% / 5 - 10px);
+    margin: 5px;
+  }
+
+  .img-select-animal p.title {
+    font-size: 14px;
+  }
+
+  .img-select-animal p.number {
+    font-size: 50px;
+    letter-spacing: -5px;
+    left: -2.5px;
+  }
+
+  .img-select-animal p.sequencial {
+    font-size: 12px;
+  }
+
+  /* MODALIDADES - GAME */
+  .content-modalities {
+    overflow-x: auto;
+    padding: 15px 0;
+    flex-wrap: nowrap;
+  }
+
+  /* NAVEGADOR - GAME */
+  .container-list-items {
+    left: 0px;
+    border-radius: 0px;
+  }
+
+}
+
+@media (max-width: 830px) {
+    .modal-users .modal-content {
+      height: 100%;
+      width: 100%;
+    }
+    .modal-users .modal-content .modal-body {
+      overflow: auto;
+      height: 100%;
+      padding-right: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+  /* Estilos para dispositivos móveis - GAME */
+
+  /* LOGO - GAME */
+  .content-header .img-logo img[alt="JOGO DO BICHO ONLINE - APOSTAR"] {
+    width: 80px;
+  }
+
+  #menuBurguer {
+    width: 25px;
+  }
+
+  #menuBurguer .menu-burguer-lines {
+    height: 3px;
+    margin: 3px 0;
+  }
+
+  #verifyLinesBurguers.active ~ .menu-burguer-lines:nth-of-type(1) {
+    transform: rotatez(45deg) translate(6px, 0px);
+  }
+
+  #verifyLinesBurguers.active ~ .menu-burguer-lines:nth-of-type(3) {
+    transform: translate(12px, -6px) rotatez(45deg);
+  }
+
+
+  /* LATERAL MENU - GAME */
+  #sideMenu {
+    max-width: unset !important;
+  }
+
+  .container-menu {
+    max-width: unset !important;
+  }
+
+  /* HEADER */
+  .header-games {
+    margin: 25px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* GRUPOS - GAME */
+  .content-select-animal {
+    height: 80px;
+    width: calc(100% / 5 - 5px);
+    margin: 2px;
+  }
+
+  .img-select-animal p.title {
+    font-size: 12px;
+    top: 5px;
+  }
+
+  .img-select-animal p.number {
+    font-size: 50px;
+    letter-spacing: -5px;
+    left: -2.5px;
+    bottom: 15px;
+  }
+
+  .img-select-animal .content-sequencial {
+    display: none;
+  }
+
+  /* TECLADO - GAME */
+  .container-select-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+  }
+
+  .btn.btn-keyboard,.btn.btn-randomize,.btn.backspace {
+    width: 60px !important;
+    height: 60px !important;
+    padding: 10px !important;
+    font-size: 1.5rem !important;
+  }
+
+
+  /* LOTERIAS - GAME */
+  .container-lotteries-game {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-name-lotterie {
+    margin: 5px 0;
+  }
+
+  .item-checkbox {
+    margin: 20px 5px;
+  }
+
+  .content-available-times {
+    margin: 0px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  /* APOSTAR - GAME */
+  .content-purchase {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .content-final {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item-purchase.value-bet input {
+    width: 100%;
+  }
+
+  .item-purchase label[for='divideStakes'] {
+    font-size: 0.8rem;
+  }
+  /* NAVEGAÇÃO BETS - GAME */
+  #listItemsGame {
+    height: 150px;
+  }
+
+  .container-bets {
+    width: 100%;
+  }
+
+  .container-list-items {
+    flex-direction: column;
+    border-radius: 0px;
+    left: 0px;
+    border-top: 2px solid #fff;
+  }
+
+  .container-bets {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .content-amount {
+    border-top: 2px solid #302e50;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 0px;
+  }
+}
+
+/* SMALL MOBILE - GAME */
+
+@media (max-width: 490px) {
+  /* MODAL - LOGIN */
+  .modal-login {
+    padding: 10px 5px;
+  }
+  /* GAME - GAME */
+  #stepsGames {
+    padding: 20px 10px !important;
+  }
+
+  .main-games {
+    padding: 0px;
+  }
+
+  /* HEADER STEPS - GAME */
+  .header-steps {
+    margin: 0 10px 15px !important;
+  }
+  .name-progress {
+    /* font-size: 8px; - GAME */
+    display: none;
+  }
+
+  .btn.btn-keyboard,.btn.btn-randomize,.btn.backspace {
+    width: 55px !important;
+    height: 55px !important;
+    font-size: 1.3rem !important;
+  }
+
+  /* MODAL POULE - GAME */
+  .modal.modal-success {
+    padding: 5px;
+  }
+  .modal.modal-success .modal-content {
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .modal-body .container-info-purchase {
+    padding: 10px;
+  }
+  .container-list-purchase {
+    padding: 10px;
+  }
+
+  /* MODAL BANK */
+  .modal-bank .header-stages {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .modal-bank .header-stages span {
+    width: revert;
+    align-self: center;
+    border-bottom: none;
+  }
+  .modal-bank .modal-title .content-modal-title:first-child {
+    justify-content: flex-end;
+  }
+  .modal-bank .modal-title .title-modal {
+    display: none;
+  }
+  .modal-bank .modal-content {
+    padding: 10px 15px;
+  }
+}

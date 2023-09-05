@@ -1,0 +1,695 @@
+.my-extract {
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: 35px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.container-extract {
+  max-width: 900px;
+}
+
+.container-inputs-extract {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  /* max-width: 550px; */
+}
+
+.form-group {
+  position: relative;
+  flex: 1 0 160px;
+}
+
+#inputData {
+  background: var(--bg-secondary);
+  padding: 15px 10px 0px 15px;
+  font-size: 1rem;
+  height: 60px;
+  border: 2px solid rgb(255 255 255 / 20%);
+  border-radius: 5px;
+  color: #fff;
+  /* margin: 0px 10px; */
+  width: 100%;
+}
+
+#inputData::-webkit-calendar-picker-indicator {
+  background-color: rgb(255 255 255 / 50%);
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 0 0 0 10px;
+}
+
+.input-select {
+  background: var(--bg-secondary);
+  padding: 18px 10px 0px;
+  font-size: 1rem;
+  height: 60px;
+  border: 2px solid rgb(255 255 255 / 20%);
+  border-radius: 5px;
+  color: #fff;
+  /* margin: 0px 10px; */
+  min-width: 140px;
+  width: 100%;
+}
+
+label[for="inputData"],
+label[for="filterStatus"],
+label[for="filterLoterie"] {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  color: rgb(255 255 255 / 50%);
+  font-size: 0.8rem;
+}
+
+.summary-releases {
+  color: #fff;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  padding: 10px 10px;
+  list-style: none;
+}
+
+.summary-releases.remove {
+  background: linear-gradient(90deg, rgba(189, 43, 43, 0.34) 0%, var(--bg-secondary) 11.98%, var(--bg-secondary) 100%);
+  border-color: var(--danger);
+}
+
+.summary-releases.add {
+  background: linear-gradient(90deg, rgba(92, 207, 97, 0.34) 0%, var(--bg-secondary) 11.98%, var(--bg-secondary) 100%);
+  border-color: var(--success);
+}
+
+.summary-releases::-webkit-details-marker {
+  display: none;
+}
+
+.summary-releases:hover {
+  background-color: #161e25;
+}
+
+.summary-releases div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.summary-releases .realeses-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}
+
+.status-releases.remove {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5px;
+  background-color: #dc354561;
+  font-size: 1.2rem;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.status-releases.add {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5px;
+  background-color: #56ca986b;
+  font-size: 1.2rem;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.summary-releases h3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-releases small {
+  color: #999;
+  font-size: 0.7rem;
+}
+
+.summary-releases strong {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.value-release-total.remove {
+  color: var(--danger);
+}
+
+.value-release-total.add {
+  color: var(--primary);
+}
+
+/* .summary-releases span:first-child {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 10px;
+  background-color: #f3e1e1;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.25em;
+} */
+
+.summary-releases span:last-child {
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.summary-releases:focus {
+  outline: none;
+}
+
+.summary-releases .plus {
+  color: #289672;
+}
+
+/* .details-realeases {
+  border-bottom: 1px solid #b5bfd9;
+} */
+
+/* .details-realeases:first-of-type {
+  border-top: 1px solid #b5bfd9;
+} */
+
+.details-realeases {
+  margin: 15px 0;
+  transition: 1s all;
+}
+
+.details-realeases[open] .summary-releases {
+  border-radius: 10px 10px 0 0;
+}
+
+.details-realeases[open] .summary-releases.remove {
+  border-left: 4px solid var(--danger);
+  box-shadow: 0 10px 10px #00000042;
+}
+
+.details-realeases[open] .summary-releases.add {
+  border-left: 4px solid var(--success);
+  box-shadow: 0 10px 10px #00000042;
+}
+
+.details-realeases .summary-releases {
+  transition: .5s all;
+}
+
+.details-realeases[open] .summary-releases {
+  transition: .5s all;
+}
+
+.details-realeases[open] .realeses-arrow {
+  transform: rotate(-180deg);
+  transition: .5s all;
+}
+
+.details-realeases:not([open]) .realeses-arrow {
+  transform: rotate(0deg);
+  transition: .5s all;
+}
+
+.details-realeases[open] .status-releases {
+  transform: scale(.5);
+  transition: .1s all;
+}
+
+.details-realeases:not([open]) .status-releases {
+  transition: .2s all;
+}
+
+
+.details-realeases .container-info-releases {
+  padding: 1rem;
+  font-size: 0.875em;
+  background: var(--bg-secondary);
+  border-radius: 0 0 10px 10px;
+  color: #fff;
+}
+
+.container-info-releases {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.container-info-releases.add {}
+
+.content-info-releases {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 5px 0px;
+}
+
+.content-info-releases:nth-child(even) {
+  border-top: 2px solid var(--bg-primary);
+  border-bottom: 2px solid var(--bg-primary);
+  padding: 10px 0;
+}
+
+.content-info-releases div {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.content-info-releases div>span:first-child {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+.content-info-releases div>span:last-child {
+  text-align: center;
+  color: #999;
+  font-weight: 700;
+}
+
+
+table {
+  width: 100%;
+}
+
+tr {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HEADER - RELEASES */
+.header-releases {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  width: 100%;
+
+  padding: 20px 15px;
+  margin: 20px 0px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 5px 0px 10px #000;
+}
+
+/* PRIMEIRO CONTENT DO HEADER */
+.header-releases .content-header:first-child {}
+
+.sub-content-header .btn.btn-releases {
+  background-color: #1D2835;
+  color: var(--text-light);
+  border-radius: 15px;
+
+  padding: 10px 15px;
+  margin: 10px 5px;
+}
+
+.content-header-mobile {
+  display: none;
+}
+
+.drop-header .nav-item {
+  width: 100%;
+}
+
+.drop-header .nav-item .btn.btn-releases {
+  background-color: #121a21;
+  color: var(--text-light);
+  border-radius: 15px;
+
+  white-space: nowrap;
+  width: 100%;
+
+  padding: 10px 15px;
+  margin: 10px 0px;
+}
+
+/* BTNS - DROPDOWN */
+
+.btn.btn-releases.dropdown-toggle {
+  background-color: #1D2835;
+  color: var(--text-light);
+  border-radius: 15px;
+  padding: 10px 15px;
+  margin: 0px 5px;
+  border: 2px solid #fff;
+}
+
+.btn.btn-releases.dropdown-toggle:focus {
+  box-shadow: none
+}
+
+/*
+.dropdown__items::before {
+  content: "";
+  background-color: #1D2835;
+  position: absolute;
+  bottom: 88%;
+  right: 20%;
+  height: 40px;
+  width: 20px;
+  -webkit-clip-path: polygon(0 0, 100% 50%, 0 100%);
+  clip-path: polygon(0 0, 44% 36%, 0 70%);
+  transform: rotate(90deg);
+} */
+
+.dropdown-menu.show {
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate3d(0px, 58px, 0px) !important;
+  background: #1D2835;
+  padding: 14px;
+  border-radius: 20px;
+}
+
+.dropdown-menu.show li button {
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: #fff;
+  background-color: var(--bg-secondary);
+}
+
+/* DESABILITAR BUG DA NAVBAR */
+.dropdown .nav {
+  display: none;
+}
+
+/* REABILITAR BUG DA NAVBAR */
+.dropdown-menu.show {
+  display: flex;
+}
+
+.btn-releases.active,
+.btn-releases:hover {
+  color: var(--primary) !important;
+}
+
+.btn-releases:focus {
+  box-shadow: 0 0 1.25rem #2ac1b92b;
+}
+
+.btn.btn-releases i {
+  margin-right: 10px;
+}
+
+/* SEGUNDO CONTENT DO HEADER */
+.header-releases .content-header:last-child .input-date {
+  background-color: #1D2835;
+  color: #fff;
+  border-radius: 15px;
+  padding: 10px 15px;
+  margin: 0px 5px;
+  border: 2px solid #fff;
+}
+
+.header-releases .content-header:last-child .input-date::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
+
+/* CONTAINER - RELEASES */
+.container-releases {
+  width: 100%;
+  /* max-height: 500px; */
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.content-release>div {
+  width: 25%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.content-release>div:last-child {
+  place-content: end;
+}
+
+.content-release>div:first-child {
+  place-content: start;
+}
+
+/* SCROLL CONTAINER */
+
+.container-releases::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #0a0f13;
+}
+
+.container-releases::-webkit-scrollbar {
+  width: 10px;
+  background-color: #0a0f13;
+}
+
+.container-releases::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--bg-secondary);
+}
+
+/* INFOS - RELEASE */
+
+.content-release {
+  background-color: var(--bg-secondary);
+  color: #fff;
+
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin: 0 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+
+  box-shadow: 5px 0px 10px #000;
+}
+
+/* COLORS ALL - INFOS - RELEASE */
+.content-release .type-release,
+.status-release,
+.date-release,
+.value-release {
+  display: flex;
+  align-items: center;
+}
+
+/* MARGIN TEXT ICON */
+/* .content-release .type-release {
+  width: 100px;
+} */
+.content-release .type-release p {
+  margin: auto 5px;
+}
+
+/* SPAN ICON - RELEASE */
+/* DEPOSIT - DEPÓSITO */
+/* .content-release.deposit .status-release {
+  width: 50px;
+} */
+
+.content-release.deposit .status-release i {
+  border: 2px solid var(--primary);
+  background: #2ac1b945;
+  padding: 5px 5px;
+  border-radius: 6px;
+
+  width: 31px;
+  text-align: center;
+}
+
+/* BONUS  */
+
+/* .content-release.bonus .status-release {
+  width: 50px;
+} */
+
+.content-release.bonus .status-release i {
+  border: 2px solid var(--primary);
+  background: #2ac1b945;
+  padding: 5px 5px;
+  border-radius: 6px;
+
+  width: 31px;
+  text-align: center;
+}
+
+
+/* PRIZES - PRÊMIOS */
+/* .content-release.prize .status-release {
+  width: 50px;
+} */
+
+.content-release.prize .status-release i {
+  border: 2px solid var(--primary);
+  background: #2ac1b945;
+  padding: 5px 5px;
+  border-radius: 6px;
+
+  width: 31px;
+  text-align: center;
+}
+
+/* WITHDRAWN - SAQUE */
+/* .content-release.withdraw .status-release {
+  width: 50px;
+} */
+
+.content-release.withdraw .status-release i {
+  border: 2px solid var(--danger);
+  background-color: #ed334652;
+  padding: 5px 5px;
+  border-radius: 6px;
+
+  width: 30px;
+  text-align: center;
+}
+
+/* REVERSAL - ESTORNO */
+
+/* .content-release.reversal .status-release {
+  width: 50px;
+} */
+
+.content-release.reversal .status-release i {
+  border: 2px solid var(--primary);
+  background: #2ac1b945;
+  padding: 5px 5px;
+  border-radius: 6px;
+
+  width: 31px;
+  text-align: center;
+}
+
+/* BET - APOSTAS */
+/* .content-release.bet .status-release {
+  width: 50px;
+} */
+
+.content-release.bet .status-release i {
+  border: 2px solid var(--danger);
+  background-color: #ed334652;
+  padding: 5px 5px;
+  border-radius: 6px;
+
+  width: 30px;
+  text-align: center;
+}
+
+/* COLOR TEXT DEPOIST, REVERSAL, BONUS & WITHDRAW - INFOS - RELEASE */
+.content-release.prize,
+.deposit,
+.bonus,
+.reversal {
+  color: var(--primary);
+}
+
+.content-release.bet,
+.withdraw {
+  color: var(--danger);
+}
+
+/* COLOR INDIVIDUAL - INFOS - RELEASE */
+
+/* PRIZE - PRÊMIOS */
+.content-release.prize .type-release i {
+  color: var(--primary);
+}
+
+.content-release.prize .type-release,
+.date-release p {
+  /* color: #fff; */
+}
+
+/* BET - APOSTAS */
+
+.content-release.bet .type-release i {
+  color: var(--danger);
+}
+
+.content-release.bet .type-release,
+.date-release p {
+  /* color: #fff; */
+}
+
+/* DEPOSIT - DEPÓSTIO */
+
+.content-release.deposit .date-release p {
+  color: var(--primary);
+}
+
+/* WITHDRAW - SAQUE */
+
+.content-release.withdraw .date-release p {
+  color: var(--danger);
+}
+
+/* REVERSAL - ESTORNO */
+
+.content-release.reversal .date-release p {
+  color: var(--primary);
+}
+
+/* REPONSIVE - RESPONSIVO */
+
+@media only screen and (max-width: 1460px) {
+  .sub-content-header {
+    display: none;
+  }
+
+  .content-header-mobile {
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .header-releases {
+    padding: 35px 10px;
+  }
+}

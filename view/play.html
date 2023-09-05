@@ -1,0 +1,352 @@
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tradicional - Bicho Mania</title>
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/default.css">
+    <link rel="stylesheet" href="./assets/css/side_menu.css">
+    <link rel="stylesheet" href="./assets/css/modal.css">
+    <link rel="stylesheet" href="./assets/css/tradicional.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/font-awesome.css">
+</head>
+
+<body>
+
+  <div id="modalMania"></div>
+
+  <!-- MODAL SUCCESS BET -->
+  <div class="modal d-none modal-success">
+    <div class="modal-content">
+      <button class="btn btn-close-modal close-modal-success">
+        <i class="fas fa-times-circle"></i>
+      </button>
+      <div class="modal-title">
+        <img src="./assets/images/success.svg" alt="Aposta realizada com sucesso!">
+        <h1>Aposta concluída!</h1>
+        <h2 id="text-message-success">Jogos realizados com sucesso, você pode ver suas aposta na aba <span
+            class="hour-bet">Apostas</span>. Localizada no menu lateral.</h2>
+      </div>
+      <div class="modal-body">
+        <div class="container-info-purchase">
+          <div class="content-info-purchase">
+            <h1>BICHO MANIA</h1>
+            <h2>Corre em <span class="date-info-purchase"></span></h2>
+          </div>
+          <div class="content-info-history-purchase">
+            <h1 class="user-history">
+            </h1>
+            <h2 class="history-purchase">
+            </h2>
+          </div>
+        </div>
+        <div class="container-list-purchase">
+          <div class="header-list-purchase">
+            <div class="content-header-list">
+              <h1>Tipos de jogos: <span class="type-game"></span></h1>
+            </div>
+            <div class="content-header-list">
+              <button class="btn btn-showmore active">Ver menos <i class="fas fa-minus-circle"></i></button>
+            </div>
+          </div>
+          <div class="content-list-purchase">
+            <table id="injectGamesSuccess">
+
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="container-footer">
+          <h3>Fique atento ao resultado. Boa sorte!</h3>
+          <img src="./assets/images/clover.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-screen">
+    <div class="content-logo">
+      <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="tradicional">
+    <aside id="sideMenu" class="">
+      <!-- IMPORTAÇÃO LATERAL MENU -->
+    </aside>
+    <main class="main-games">
+      <header class="header-user">
+        <!-- IMPORT JS -->
+        <div class="content-header mobile">
+          <a href="/" class="img-logo">
+            <img src="./assets/images/logo.svg" alt="JOGO DO BICHO ONLINE - APOSTAR">
+          </a>
+          <div class="menu-burger">
+            <div id="menuBurguer">
+              <div id="verifyLinesBurguers"></div>
+              <span class="menu-burguer-lines"></span>
+              <span class="menu-burguer-lines"></span>
+              <span class="menu-burguer-lines"></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section id="stepsGames" class="effect-first-step">
+        <button class="btn-back" data-backStep="">
+          <span>
+            <i class="fas fa-chevron-left"></i>
+          </span>
+          Voltar
+        </button>
+        <div class="header-steps">
+          <div class="content-header-steps">
+            <div class="progress-bar-off"></div>
+            <div class="progress-bar">
+              <span class="contents-progress modalities active">
+                <div class="line-progress"></div>
+                <div class="name-progress">Modalidade</div>
+                <div class="content-circle-progress">
+                  <div class="item-progress">1</div>
+                </div>
+              </span>
+              <span class="contents-progress guess">
+                <div class="line-progress"></div>
+                <div class="name-progress">Palpite</div>
+                <div class="content-circle-progress">
+                  <div class="item-progress">2</div>
+                </div>
+              </span>
+              <span class="contents-progress lotteries">
+                <div class="line-progress"></div>
+                <div class="name-progress">Loterias</div>
+                <div class="content-circle-progress">
+                  <div class="item-progress">3</div>
+                </div>
+              </span>
+              <span class="contents-progress placements">
+                <div class="line-progress"></div>
+                <div class="name-progress">Colocações</div>
+                <div class="content-circle-progress">
+                  <div class="item-progress">4</div>
+                </div>
+              </span>
+              <span class="contents-progress bet">
+                <div class="line-progress"></div>
+                <div class="name-progress">Valor da aposta</div>
+                <div class="content-circle-progress">
+                  <div class="item-progress">5</div>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr class="separator-steps">
+        <article class="container-steps container-modalities">
+          <div class="header-modalities header-games">
+            <h1 class="title">Escolha uma <span>modalidade</span></h1>
+            <h2 class="subtitle">Selecione somente uma opção</h2>
+          </div>
+          <div class="content-modalities">
+            <!-- BOTÕES DAS MODALIDADES -->
+          </div>
+          <div class="next-step">
+            <button class="btn-next">Próximo</button>
+          </div>
+        </article>
+
+        <article class="container-steps container-groups">
+          <div class="header-groups header-games">
+            <h1 class="title">Escolha um <span>grupo</span></h1>
+            <h2 class="subtitle">Selecione um ou mais grupos</h2>
+          </div>
+          <div class="container-select-animal">
+
+          </div>
+          <div class="next-step-desktop">
+            <div class="next-step">
+              <button class="btn-next">Próximo</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="container-steps container-keyboard">
+          <div class="header-keyboard header-games">
+            <h1 class="title">Insira sua <span>aposta</span></h1>
+            <h2 class="subtitle">Utilize o teclado virtual</h2>
+          </div>
+          <div class="container-select-numbers">
+            <div class="content-select-numbers">
+              <!-- TECLADO DIGITAL -->
+            </div>
+            <div class="content-place-numbers">
+              <!-- INPUTS -->
+            </div>
+          </div>
+          <div class="next-step-desktop">
+            <div class="next-step">
+              <button class="btn-next">Próximo</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="container-steps container-lotteries">
+          <div class="header-lotteries header-games">
+            <h1 class="title">Escolha a <span>loteria</span></h1>
+            <h2 class="subtitle">Selecione uma opção</h2>
+          </div>
+          <div class="container-date-lot">
+            <button id="sub-date-lot">
+              <i class="fas fa-caret-left"></i>
+            </button>
+            <span id="date-lottery-selected" data-time="0" data-date="0000-00-00">00/00/0000</span>
+            <button id="sum-date-lot">
+              <i class="fas fa-caret-right"></i>
+            </button>
+          </div>
+          <div class="content-lotteries">
+            <!-- LOTERIAS -->
+          </div>
+          <div class="next-step-desktop">
+            <div class="next-step">
+              <button class="btn-next">Próximo</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="container-steps container-placements">
+          <div class="header-placements header-games">
+            <!-- TÍTULO E SUBTÍTULO -->
+          </div>
+          <div class="content-placements">
+            <!-- CHECKBOXS -->
+          </div>
+          <div class="next-step-desktop">
+            <div class="next-step">
+              <button class="btn-next">Próximo</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="container-steps container-purchase">
+          <div class="header-purchase header-games">
+            <h1 class="title">Escolha o <span>valor</span></h1>
+            <h2 class="subtitle">Insira o valor que você quer apostar</h2>
+          </div>
+          <div class="content-purchase">
+            <div class="item-purchase value-bet">
+              <label for="valueBet">R$</label>
+              <input type="tel" placeholder="00,00" id="valueBet" value="1,00">
+            </div>
+            <div class="item-purchase">
+              <input type="checkbox" name="Dividir valor aposta" id="divideStakes">
+              <label for="divideStakes">Dividir valor para todas as apostas</label>
+            </div>
+          </div>
+          <hr class="separator-steps">
+          <div class="step-final">
+            <div class="content-final">
+              <div class="content-amount-purchase">
+                <h2>TOTAL APOSTAS</h2>
+                <div class="value-bet-purchase">
+                  <span>R$</span>
+                  <span class="money-total">0,00</span>
+                </div>
+              </div>
+              <button id="sendGame" class="btn-final">Apostar</button>
+            </div>
+            <div id="error-text"></div>
+            <div class="footer-purchase">
+              <p>
+                <span><img src="./assets/images/protected-payment.svg" alt="Pagamento seguro - Bicho Mania"></span>
+                Todos os dados cadastrados em nossa plataforma está <strong>100% protegido</strong> com tecnologia de
+                ponta.
+                <br>
+                Processamos os pagamentos com <strong>segurança máxima</strong>, juntamente com o <strong>Mercado
+                  Pago</strong>.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <section id="listItemsGame">
+        <div class="container-list-items">
+          <div class="container-bets">
+            <div class="content-bets">
+              <!-- ITEMS PALIPITES -->
+            </div>
+            <button title="Ver outras apostas" class="btn btn-scroll-bets">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div class="content-amount">
+            <div class="amount">
+              <h2>TOTAL APOSTAS</h2>
+              <div class="value-bet">
+                <span>R$</span>
+                <span class="money-total">0,00</span>
+              </div>
+            </div>
+            <div class="next-step-mobile">
+              <div class="next-step">
+                <button class="btn-next">Próximo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+    integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js" integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="./assets/js/tradicional.js"></script>
+
+  <script type="text/javascript">
+    $("#sideMenu").load("./layout/side_menu.html");
+    $("header.header-user").load("./layout/header.html");
+    $("#modalMania").load("./layout/modal.html");
+
+      $(document).ready(function () {
+        $.getScript("./assets/js/menus.js");
+        $.getScript("./assets/js/modal.js");
+        $.getScript("./assets/js/bank.js");
+      });
+  </script>
+
+</body>
+
+</html>

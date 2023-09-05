@@ -1,0 +1,355 @@
+.wpp {
+  position: fixed;
+  bottom: 85px;
+  left: 300px;
+  height: 50px;
+  display: flex;
+}
+.wpp-float {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  background-color: #3ed54d !important;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 35px;
+  text-align: center;
+  box-shadow: var(--primary) 0px 0px 8px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease 0s;
+  text-decoration: none;
+}
+
+.wpp-float:hover {
+  box-shadow: var(--primary) 0px 2px 16px;
+  color: #fff;
+}
+
+.wpp-float-text {
+  transform: translateX(0px);
+  box-shadow: rgb(0 0 0 / 10%) 2px 2px 13px;
+  flex-shrink: 0;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  margin: auto 15px;
+  max-width: 172px;
+  max-height: 55px;
+  display: flex;
+  order: 1;
+  text-decoration: none !important;
+  color: rgb(0, 0, 0) !important;
+  bottom: 38px;
+}
+.wpp-float-text span {
+  text-align: center;
+  padding: 7px 10px;
+  line-height: 14px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+  margin: auto;
+}
+.wpp-float-text::before {
+  content: "";
+  position: absolute;
+  background: white;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  border-left: 1px solid rgb(226, 226, 226);
+  left: -5px;
+  top: 50%;
+  margin-top: -4px;
+  width: 8px;
+  height: 8px;
+  z-index: 1;
+  transform: rotate(-45deg);
+}
+.wpp-float-text::after {
+  content: "";
+  position: absolute;
+  background: white;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  border-left: 1px solid rgb(226, 226, 226);
+  left: -5px;
+  top: 50%;
+  margin-top: -4px;
+  width: 8px;
+  height: 8px;
+  z-index: 1;
+  transform: rotate(-45deg);
+}
+aside#sideMenu {
+  position: relative;
+
+  width: 100%;
+  max-width: 280px;
+  height: 100%;
+}
+
+.container-menu {
+  background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #201D47 0%, #17153A 100%);
+
+  position: fixed;
+
+  height: 100%;
+  width: 100%;
+  max-width: 280px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.content-menu {
+  height: max-content;
+}
+
+.logo-menu a img {
+  width: 110px;
+  margin: 35px 30px 25px 45px;
+}
+
+.balance-available {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+
+  background: var(--bg-primary);
+}
+
+.balance-available .coin img {
+  width: 32px;
+  height: 55px;
+}
+
+.user-balance {
+  margin: 10px;
+}
+
+#userBalance {
+  transition: .2s linear;
+}
+
+.user-balance h2 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #FFFFFF;
+  opacity: 0.7;
+}
+
+.user-balance h1 {
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+
+.toggle-money-visibility {
+  position: relative;
+  margin: 10px 20px 10px auto;
+  color: #fff;
+  padding: 10px;
+  transition: top 5s ease-in;
+}
+
+.toggle-money-visibility:hover {
+  bottom: 1px;
+  filter: drop-shadow(0 0 10px #000);
+}
+
+.blur-balance {
+  filter: blur(5px);
+  transition: .2s linear;
+}
+
+.side-menu {
+  padding: 10px 20px;
+  overflow-y: auto;
+}
+
+/* Firefox */
+.side-menu {
+  scrollbar-width: auto;
+  scrollbar-color: #208e88 #17153A;
+}
+
+/* Chrome, Edge, and Safari */
+.side-menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.side-menu::-webkit-scrollbar-track {
+  background: radial-gradient(123.22% 129.67% at 100.89% -5.6%, #201D47 0%, #17153A 100%);
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background: linear-gradient(91.26deg, #3ce1d9 19.13%, #208e88 65.96%);
+  border-radius: 10px;
+  border: 3px solid var(--bg-secondary);
+}
+
+.options-menu {
+  margin: 25px 5px;
+}
+
+.options-menu:first-child {
+  margin: 10px 5px 25px 5px;
+}
+
+.options-menu:last-child {
+  margin: 25px 5px 5px 5px;
+}
+
+.options-menu a {
+  font-weight: 400;
+  font-size: 16px;
+  color: #6F6C99;
+
+  letter-spacing: 0.5px;
+  text-decoration: none;
+
+  transition: color 0.3s linear;
+  cursor: pointer;
+}
+
+.options-menu a i {
+  margin: 10px;
+}
+
+.options-menu.active a {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.options-menu.active a i {
+  background-image: linear-gradient(91.26deg, #49FFF5 19.13%, #2AC1B9 65.96%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.options-menu a:hover i {
+  background-image: linear-gradient(91.26deg, #49FFF5 19.13%, #2AC1B9 65.96%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.options-menu a:hover {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* CABEÇALHO USUÁRIO */
+.header-user {
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin-bottom: 25px;
+  background-color: var(--bg-primary);
+  color: #fff;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-header .img-logo img[alt="JOGO DO BICHO ONLINE - APOSTAR"] {
+  width: 100px;
+}
+
+.content-header.mobile {
+  display: none !important;
+}
+
+.options-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.options-user.mobile {
+  display: none;
+}
+
+.icon-user {
+  border-radius: 100%;
+  background: #454287;
+  color: #bababd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  font-size: 0.8rem;
+  margin-right: 8px;
+}
+
+.name-user {
+  font-weight: 400;
+  color: #6f6c99;
+}
+
+/* MENU BURGUER */
+.menu-burger {
+  z-index: 13;
+}
+
+#menuBurguer {
+  display: flex;
+  flex-direction: column;
+  width: 35px;
+  cursor: pointer;
+}
+
+#menuBurguer .menu-burguer-lines {
+  background: #fff;
+  border-radius: 10px;
+  height: 4px;
+  margin: 4px 0;
+  transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.menu-burguer-lines:nth-of-type(1) {
+  width: 50%;
+}
+
+.menu-burguer-lines:nth-of-type(2) {
+  width: 100%;
+}
+
+.menu-burguer-lines:nth-of-type(3) {
+  width: 75%;
+}
+
+#verifyLinesBurguers.active~.menu-burguer-lines:nth-of-type(1) {
+  transform-origin: bottom;
+  transform: rotatez(45deg) translate(8px, 0px);
+}
+
+#verifyLinesBurguers.active~.menu-burguer-lines:nth-of-type(2) {
+  transform-origin: top;
+  transform: rotatez(-45deg);
+}
+
+#verifyLinesBurguers.active~.menu-burguer-lines:nth-of-type(3) {
+  transform-origin: bottom;
+  width: 50%;
+  transform: translate(17px, -7px) rotatez(45deg);
+}
+
+.bg-mobile.menu-open-only {
+  z-index: 12;
+}

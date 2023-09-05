@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Dashboard | Historico de usuários</title>
+  <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+
+  <!-- import style:js -->
+  <script src="/admin/static/js/styles.js"></script>
+
+  <style>
+    .swal2-content {
+      width: 100% !important;
+    }
+
+    .swal2-popup {
+      min-width: 60% !important;
+    }
+  </style>
+
+</head>
+
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <div id="navbar-content"></div>
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i> <strong>Historico</strong> de usuários</h4>
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light buscarDados" data-toggle="tooltip"
+                  title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <form id="pesquisa">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">User ID </label>
+                        <input id="campo_id" name="campo_id" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Username </label>
+                        <input id="campo_apelido" name="campo_apelido" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Nome </label>
+                        <input id="campo_nome" name="campo_nome" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Sobrenome </label>
+                        <input id="campo_sobrenome" name="campo_sobrenome" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Telefone</label>
+                        <input id="campo_telefone" name="campo_telefone" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input id="campo_email" name="campo_email" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">CPF</label>
+                        <input id="campo_cpf" name="campo_cpf" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div style="text-align:center" class="col-md-12">
+                        <button type="submit" id="buscarDados" name="pesquisar" value="pesquisar"
+                          class="btn btn-wide btn-success buscarDados">Pesquisar</button>
+                        <!-- <a href="/admin/users/campaign" target="_blank"><button type="button" class="btn btn-wide btn-warning">Campanha</button></a> -->
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+              <br>
+
+              <div class="row" id="rowUsers">
+                <div class="panel-content table-responsive">
+                  <table id="dtable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID/CAD/Atend.</th>
+                        <th>User/Tipo</th>
+                        <th>Nome/Saldo</th>
+                        <!-- <th>Telefone</th> -->
+                        <th>Contatos</th>
+                        <!-- <th>Visualizar Ind.</th> -->
+                        <th>Comissão</th>
+                        <th>Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+      <!-- plugins:js -->
+      <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+      <!-- import partials:js -->
+      <script src="/admin/static/js/partials.js"></script>
+      <script defer="defer" src="/admin/static/js/app.js"></script>
+
+      <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+      <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+      <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          $('[data-toggle="tooltip"]').tooltip();
+          const buscarDadosBtn = $('#buscarDados');
+          const atualizarListaBtn = $('#att_list');
+
+          // Datatable
+          const tabela = $('#dtable').DataTable({
+            "createdRow": function (row, data, dataIndex) {
+              if (data['campo_status'] === 0) {
+                $(row).css({ "background-color": "red", "color": "white" });
+              } 
+              else {
+                $(row).css("background-color", "none");
+              }
+            },
+            "drawCallback": function (settings) {
+              $('.phone').mask('(00) 00000-0000');
+              $('.money').mask('000.000.000.000.000,00', {
+                reverse: true
+              });
+            },
+            "columns": [{
+              "data": "campo_id",
+              "render": function (data, type, row) {
+                if (!data) {
+                  return '00-00-0000';
+                }
+
+                row['user_atendente'] = row['user_atendente'] == null ? '' : row['user_atendente'];
+
+                const Data = new Date(row['campo_creat']);
+                const formattedDate = Data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+                return `${row['campo_id']}<br>${formattedDate}<br>${row['user_atendente']}`;
+              }
+            },
+            {
+              "data": "campo_nome_usuario",
+              "render": function (data, type, row) {
+                if (!data) {
+                  return '0';
+                }
+
+                row['gerente_name'] = row['gerente_name'] == null ? '' : row['gerente_name'];
+
+                let type_user;
+                if (row['campo_base'] > 0) {
+                  if (row['campo_indicacao'] > 0) {
+                    type_user = 'AP IND';
+                  } else {
+                    type_user = 'AP WEB';
+                  }
+                } else {
+                  if (row['campo_indicacao'] > 0) {
+                    type_user = 'N CAD IND';
+                  } else {
+                    type_user = 'N CAD WEB';
+                  }
+                }
+
+                return `${data}<br>${type_user}<br>${row['gerente_name']}`;
+              }
+            },
+            {
+              "data": "campo_primeiro_nome",
+              "render": function (data, type, row) {
+                if (!data) {
+                  return 'Não encontrado';
+                }
+                return `${row['campo_primeiro_nome']}<br>SD: <span class="money">${row['campo_base']}</span> SP: <span class="money">${row['campo_premio']}</span>`;
+              }
+            },
+            {
+              "data": "campo_telefone",
+              "render": function (data, type, row) {
+                let cpTel = (data !== null) ? data : 'Não informado';
+                let cpEmail = (row['campo_email'] !== "") ? row['campo_email'] : 'Não informado';
+
+                return `Tel: <span class="phonee">${cpTel}</span><br>Email: ${cpEmail}`;
+              }
+            },
+            {
+              "data": "percent_ind",
+              "render": function (data, type, row) {
+                var formattedTotalValor = row['campo_base'].toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                });
+
+                let valor7dias;
+                if (formattedTotalValor == '') {
+                  let valor7dias = 0;
+                } else {
+                  valor7dias = formattedTotalValor;
+                }
+
+                return `R$ <span class="money">${valor7dias}</span>`;
+              }
+            },
+            {
+              "data": "campo_id",
+              "render": function (data, type, row) {
+                return `
+
+                <button id="edit-user" data-user="${row['campo_id']}" type="button" class="btn btn-sm btn-success" title="Editar usuário" data-toggle="tooltip"><i class="icon-pencil" style="color: #fff !important;" title="Editar usuário"></i></button>&nbsp;
+
+                <!--a class='btn btn-sm btn-success' id='edita_usuario' onclick="event.stopPropagation();edit_user(${row['campo_id']})"  data-id="${row['campo_id']}"  name='abremodal' data-target="#dados"  data-toggle="modal"   href="#"  title='Editar dados do usuário' onclick="return event.stopPropagation();"><i class='icon-pencil' title='Editar'></i></a-->
+
+                <a href="/admin/users/oldactivity/${row['campo_id']}" class='btn btn-sm btn-info' id='historico_antigo' name='antigo' data-target="#dados"  data-toggle="modal"   href="#"  title='Histórico antigo' onclick="return event.stopPropagation();"><i class='icon-doc' title='Histórico antigo'></i></a>`;
+
+              }
+            }],
+            'order': [
+              [0, 'asc']
+            ],
+            "responsive": true,
+            "pageLength": 25,
+            "oLanguage": {
+              "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+            }
+          });
+
+          function isFormEmpty(data) {
+            let isFormEmpty = true;
+            for (var key in data) {
+              if (data[key].trim() !== '') {
+                isFormEmpty = false;
+                break;
+              }
+            }
+            return isFormEmpty
+          }
+
+          function buscarDados() {
+            const myForm = document.getElementById('pesquisa');
+            const formData = new FormData(myForm);
+            const params = Object.fromEntries(formData.entries());
+            if (isFormEmpty(params)) {
+              Swal.fire({
+                toast: true,
+                type: 'warning',
+                showConfirmButton: false,
+                position: 'top-end',
+                timer: 1500,
+                title: "Nenhum campo foi preenchido.",
+              })
+              buscarDadosBtn.html('<i class="fa fa-search fa-2xl"></i>Pesquisar');
+              atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+              return;
+            }
+
+            fetch('/api_admin/users/historic_users?' + new URLSearchParams(params), {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+              .then(response => response.json())
+              .then(response => {
+                tabela.clear().draw();
+                if (!response.length) return
+                tabela.rows.add(response).draw();
+              })
+              .catch(error => {
+                console.log(error);
+              })
+              .finally(() => {
+                buscarDadosBtn.html('<i class="fa fa-search fa-2xl"></i>Pesquisar');
+                atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+              });
+          }
+
+          atualizarListaBtn.click(function (e) {
+            e.preventDefault();
+            $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+            buscarDados();
+          });
+
+          buscarDadosBtn.click(function (e) {
+            e.preventDefault();
+            $(this).html(`<div class="spinner-border text-primary" role="status"></div>`);
+            buscarDados();
+          });
+
+          $(document).on('click', '#edit-user', function(e) {
+            e.preventDefault();
+
+            const user_id = $(this).data('user');
+            console.log(user_id)
+
+            let modal = `
+              <h4 class="title-tabs">Editar usuário: "<span id="apelido"></span> - ID: <span id="userid"></span>"</h4>
+                <form id="editar-usuario">
+                  <div class="container-profile mb-1">
+                  
+                    <div class="row mt-5">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Primeiro nome</label>
+                          <input class="form-control" name="primeiro_nome" id="primeiro_nome" required>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Último nome</label>
+                          <input class="form-control" name="sobrenome" id="sobrenome" required>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                          <label class="form-label">Indicação</label>
+                          <input id="indicacao" name="indicacao" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form-label">CPF</label>
+                          <input type="text" class="form-control cpf" name="cpf" id="cpf" maxlength="14">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Gênero</label>
+                          <select id="genero" name="genero" class="form-control">
+                            <option value="">--</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Data de nascimento</label>
+                          <input class="form-control" name="datansc" id="datanasc" type="date">
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="form-label">Email</label>
+                          <input class="form-control" name="email" id="email" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form-label">Endereço</label>
+                          <input class="form-control" name="endereco" id="endereco">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Cidade</label>
+                          <input class="form-control" name="cidade" id="cidade">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                          <label class="form-label">UF</label>
+                          <select id="estado" name="estado" class="form-control">
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                            <option value="DF">DF</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Bairro</label>
+                          <input type="text" class="form-control" name="bairro" id="bairro">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">CEP</label>
+                          <input class="form-control cep" name="cep" id="cep">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form-label">Telefone</label>
+                          <input id="telefone" name="telefone" class="form-control phone" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tabs navs -->
+                  <div class="mb-3 d-flex justify-content-center">
+                    <ul class="align-items-center nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Configurações</a>
+                      </li>
+                      <!--li class="nav-item">
+                        <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Configurações</a-->
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Tabs navs -->
+
+                  <!-- Tabs content -->
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+
+                      <div class="row mt-5">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" name="status" id="status">
+                              <option value="1">Ativo</option>
+                              <option value="0">Banido</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6" id="banReasonContainer" style="display: none;">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label class="form-label">Motivo</label>
+                              <input class="form-control" name="motivo" id="motivo">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="form-label">Limite de saque</label>
+                            <select class="form-control" name="limite" id="limite">
+                              <option value="1">Sim</option>
+                              <option value="0">Não</option>
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          <!--/div>
+
+        </div-->
+
+        <!-- Tabs content -->`;
+    
+
+          Swal.fire({
+            confirmButtonText: 'Editar',
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            html: modal,
+
+          onOpen: () => {
+
+            if (user_id != null) {
+              // load data
+              fetch('/api_admin/users/'+user_id, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+                .then(response => response.json())
+                .then(response => {
+
+                console.log(response) 
+                console.log(response.campo_nome_usuario)
+
+                $('#userid').text(user_id);
+                $('#apelido').text(response.campo_nome_usuario);
+
+                $('#primeiro_nome').val(response.campo_primeiro_nome);
+                $('#sobrenome').val(response.campo_ultimo_nome);
+                $('#indicacao').val(response.campo_indicacao);
+                $('#cpf').val(response.campo_cpf).change();
+                $('#endereco').val(response.campo_endereco).change();
+                $('#cidade').val(response.campo_cidade).change();
+                $('#bairro').val(response.campo_bairro).change();
+                $('#estado').val(response.campo_estado).change();
+                $('#cep').val(response.campo_cep).change();
+                $('#email').val(response.campo_email).change();
+                $('#telefone').val(response.campo_telefone).change();
+                $('#genero').val(response.campo_genero).change();
+                $('#datanasc').val(response.campo_data_nascimento).change();
+                $('#status').val(response.campo_status);
+                $('#motivo').val(response.campo_motivo);
+                $('#limite').val(response.campo_limite);
+
+                $('.cpf').mask('000.000.000-00', { reverse: true });
+                $('.phone').mask('(00) 00000-0000');
+                $('.cep').mask('00000-000');
+
+                const statusSelect = document.getElementById('status');
+                const banReasonContainer = document.getElementById('banReasonContainer');
+                
+                if (statusSelect.value === '0') {
+                  banReasonContainer.style.display = 'block';
+                } else {
+                  banReasonContainer.style.display = 'none';
+                }
+                
+                statusSelect.addEventListener('change', function () {
+                  if (statusSelect.value === '0') {
+                    banReasonContainer.style.display = 'block';
+                  } else {
+                    banReasonContainer.style.display = 'none';
+                  }
+                });
+
+                $("#cep").blur(function() {
+                  let cepCode = $("#cep").val(),
+                    inputCep = document.getElementById('cep');
+
+                  var cep = this.value.replace(/[^0-9]/, "");
+                  if (cep.length != 8) {
+                    return false;
+                  }
+                  var url = "https://viacep.com.br/ws/" + cep + "/json/";
+                  $.getJSON(url, function(dadosRetorno) {
+                    try {
+                      $("#endereco").val(dadosRetorno.logradouro);
+                      $("#bairro").val(dadosRetorno.bairro);
+                      $("#cidade").val(dadosRetorno.localidade);
+                      $("#estado").val(dadosRetorno.uf);
+                    } catch (ex) {}
+                  });
+                });
+
+
+              })
+            }
+          },
+          preConfirm: () => {
+            // validação
+            return new Promise((resolve) => {
+              // Executar a validação
+              let erros = [];
+              let form = document.getElementById("editar-usuario");
+              let inputs = Array.from(form.querySelectorAll("[required]"));
+
+              inputs.forEach((validate) => {
+                if (!validate.value.trim()) {
+                  erros.push(validate);
+                  validate.classList.add("is-invalid");
+                } else {
+                  validate.classList.remove("is-invalid");
+                }
+              });
+              
+              if (erros.length === 0) {
+
+                const data = {
+                  user_id: user_id,
+                  first_name: form.querySelector('#primeiro_nome').value,
+                  last_name: form.querySelector('#sobrenome').value,
+
+                  indication: form.querySelector('#indicacao').value,
+                  document: form.querySelector('#cpf').value || null,
+                  address: form.querySelector('#endereco').value,
+                  city: form.querySelector('#cidade').value,
+                  neighborhood: form.querySelector('#bairro').value,
+                  uf: form.querySelector('#estado').value,
+
+                  zip: form.querySelector('#cep').value,
+                  email: form.querySelector('#email').value,
+                  phone: form.querySelector('#telefone').value,
+                  gender: form.querySelector('#genero').value,
+                  date_birth: form.querySelector('#datanasc').value || null,
+
+                  status: form.querySelector('#status').value,
+                  ban_reason: form.querySelector('#motivo').value,
+                  limit_withdraw: form.querySelector('#limite').value
+                };
+
+                console.log(data)
+
+                //salvar dados
+                fetch('/api_admin/users/', {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                  if (response.status == 200) {
+                    Swal.fire({
+                      type: "success",
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        buscarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+
+                resolve();
+              } else {
+                Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                resolve();
+              }
+            })
+          }
+        })
+      });
+    });
+      </script>
+
+      </body>
+
+</html>

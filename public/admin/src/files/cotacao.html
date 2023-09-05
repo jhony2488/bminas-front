@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WHPGFP9');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/website/assets/css/global.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/style.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/mobile.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?v=1">
+
+    <title>Cotação - Bicho Premiado</title>
+
+</head>
+
+
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHPGFP9" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div>
+    <div class="wrapper">
+        <aside class="d-flex">
+            <div id="lateral_menu"></div>
+            <div class="body-container noselect">
+                <div class="back-header" id="header"></div>
+
+                <div class="container-fluid no-gutters content-body">
+
+                    <main>
+                        <div class="text-content">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="page-title text-start">Cotações</div>
+                                    <div class="page-subtitle text-start">Confira as cotações dos jogos disponíveis
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class='col-lg-9'>
+                                    <div class='page-description-title text-start'>A cotação abaixo é referente a cada
+                                        R$ 1,00 jogado.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-cotacao">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tipo de jogo</th>
+                                                    <th>Cotação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                </div>
+
+
+                <div id="footer"></div>
+            </div>
+        </aside>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js "
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin=" anonymous "></script>
+    <script src="/assets/js/ajax.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js "
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin=" anonymous " referrerpolicy="no-referrer "></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js "></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11 "></script>
+    <script src="/website/assets/js/main.js "></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js "
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ "
+    crossorigin="anonymous "></script>
+    
+    <script src="/website/assets/js/quotation.js?v=1"></script>
+    <script>
+        $("#lateral_menu").load("/slim/src/files/lateral_menu.html?v=1");
+        $("#header").load("/slim/src/files/header.html?v=1");
+        $("#footer").load("/slim/src/files/footer.html?v=1");
+
+        $.getScript("/website/assets/js/side_menu.js?v=1");
+        $.getScript("/website/assets/js/header.js?v=1");
+    </script>
+</body>
+
+</html>

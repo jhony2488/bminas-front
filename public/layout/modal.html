@@ -1,0 +1,393 @@
+<!-- MODAL BANK -->
+<div class="modal modal-bank d-none">
+  <div class="modal-content">
+    <div class="modal-title">
+      <div class="container-title-modal">
+        <div class="content-modal-title">
+          <h1 class="title-modal">Escolha uma das opções abaixo</h1>
+          <button class="btn btn-close-modal">
+            <i class="fas fa-times-circle"></i>
+          </button>
+        </div>
+        <div class="content-modal-title">
+          <div class="select-options">
+            <button class="btn-deposit active">Depositar</button>
+            <button class="btn-withdraw">Sacar</button>
+          </div>
+          <div class="user-status deposit active">
+            <h1>Saldo: <span class="depositUser">R$&nbsp;160.133,27</span></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body modal-body-bank deposit">
+      <div class="container-payment-purchase stage-three">
+      </div>
+      <div class="container-bank-deposit">
+        <div class="stage-one deposit">
+          <div class="header-stages">
+            <h1>Qual a forma de pagamento?</h1>
+            <span>Etapa 01</span>
+          </div>
+          <div class="body-stages body-stage-one">
+            <h2 class="subtitle-stage-one">Selecione a forma de depósito</h2>
+            <div class="select-method-payments">
+              <!-- <button tabindex="0" type="button" class="btn-payment pb">
+                <img class="img-fluid" src="/website/assets/images/mercado-pago.svg" title="Selecionar a opção Paybrokers" alt="Selecionar a opção Paybrokers">
+              </button> -->
+            </div>
+          </div>
+        </div>
+        <div class="stage-two deposit">
+          <div class="header-stages">
+            <h1>Insira o valor e o cupom</h1>
+            <span>Etapa 02</span>
+          </div>
+          <div class="body-stages body-stage-two">
+            <div class="value-stage-two">
+              <div class="input-value-stage-two">
+                <h2>Qual valor você quer depositar?</h2>
+                <div class="input-value-group">
+                  <span>R$</span>
+                  <input type="tel" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required=""
+                    placeholder="00" name="inputValue" class="input-value" id="inputValue">
+                  <span>,00</span>
+                </div>
+              </div>
+            </div>
+            <div class="coupon-stage-two">
+              <h2>Possui cupom de desconto?</h2>
+              <div class="input-coupon-stage-two">
+                <input type="text" class="input-coupon" name="inputCoupon" placeholder="Insira o cupom"
+                  id="inputCoupon">
+                <button class="btn-stage-two validateCouponDeposit">validar cupom</button>
+              </div>
+              <div class="input-message">
+                <!-- MENSAGEM DE VERIFICAÇÃO DO CUPOM -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="notice-deposit deposit">
+          <div class="title-notice" style="display: flex;">
+            <h1>20%</h1>
+            <h2>de bônus no seu primeiro depósito</h2>
+          </div>
+          <div class="subtitle-notice">
+            <div class="adjectives">
+              <span>Confiável</span>
+              <span>Rápido</span>
+              <span>Seguro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-payment-deposit">
+        <div class="stage-three">
+          <div class="header-stages">
+            <h1>Informações de pagamento</h1>
+            <span>Etapa 03</span>
+          </div>
+          <div class="body-stages body-three" id="section-payment" style="">
+            <div class="body-pix">
+              <h2>Dados para prosseguir para o pagamento!</h2>
+              <div class="payment-data">
+                <h3>Valor total do depósito: <span class="valueDeposit">R$ 00,00</span></h3>
+                <h3 class="checkExistingCoupon"></h3>
+              </div>
+              <div class="container-select-deposit">
+                <button class="btn-deposit-request btn-next-payment">
+                  DEPOSITAR
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body modal-body-bank withdraw d-none">
+      <div class="container-info-whithdraw">
+        <div class="stage-one withdraw">
+          <div class="header-stages">
+            <h1>Qual a forma de retirada?</h1>
+            <span>Etapa 01</span>
+          </div>
+          <div class="body-stages body-stage-one">
+            <h2 class="subtitle-stage-one">Selecione a chave PIX</h2>
+            <div class="select-method-withdraw">
+              <button class="btn-method-withdraw cpf" data-type="buttonCpf">CPF</button>
+              <button class="btn-method-withdraw email" data-type="buttonEmail">E-mail</button>
+              <button class="btn-method-withdraw cell" data-type="buttonCell">Celular</button>
+              <button class="btn-method-withdraw random-key" data-type="buttonRandomKey">Chave aleatória</button>
+
+              <input data-type="buttonCpf" type="tel" name="pix" id="cpf" placeholder="Digite seu CPF." disabled=""
+                class="input-method-withdraw" autocomplete="off" style="display: none">
+
+              <input data-type="buttonEmail" type="text" name="pix" id="emailKey" placeholder="Digite seu E-mail."
+                disabled="" class="input-method-withdraw" style="display: none">
+
+              <input data-type="buttonCell" type="tel" name="pix" id="phoneKey" placeholder="Digite seu celular."
+                disabled="" class="input-method-withdraw" autocomplete="off" style="display: none">
+
+              <input data-type="buttonRandomKey" type="text" name="pix" id="randomKey"
+                placeholder="Digite sua chave PIX." disabled="" class="input-method-withdraw" style="display: none">
+            </div>
+          </div>
+        </div>
+        <div class="stage-two withdraw">
+          <div class="header-stages">
+            <h1>Insira o valor</h1>
+            <span>Etapa 02</span>
+          </div>
+          <div class="body-stages body-stage-two">
+            <div class="value-avaible-withdraw">
+              <div class="input-withdraw-stage-two">
+                <h2>Qual valor você quer sacar?</h2>
+                <div class="content-input-withdraw">
+                  <span>R$</span>
+                  <input type="tel" maxlength="10" value="0,00" required="" name="inputWithdraw" class="input-withdraw"
+                    id="inputWithdraw">
+                </div>
+              </div>
+              <div class="available-value">
+                <p class="text-available-value">Valor disponível para saque: <span
+                    class="valorSaque">R$&nbsp;0,00</span>.</p>
+              </div>
+            </div>
+            <div class="finish-withdraw">
+              <button id="enviar_withdraw" class="btn-finish-withdraw">Retirar pagamento</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-history-withdraw">
+        <div class="container-history">
+          <div class="content-history">
+            <div class="container-warn">
+              <h1>Atenção</h1>
+              <p><span>*</span> Saques de segunda à sexta, das <strong>07h às 18h</strong> serão realizados em até <strong>3
+                  horas</strong>. Demais dias em até <strong>48 horas</strong>.</p>
+              <p><span>*</span> Pedidos realizados aos <strong>sábados, domingos e feriados</strong> serão efetuados no
+                <strong>próximo dia útil</strong>.</p>
+              <p><span>*</span> Saque será realizado apenas na <strong>conta do titular</strong>, não sendo permitido contas
+                bancárias de terceiros.</p>
+              <p><span>*</span> Disponível somente <strong>1 saque</strong> por dia.</p>
+            </div>
+            <span class="content-span-history">
+              <i class="fas fa-wallet"></i>
+            </span>
+            <h2>Nenhum pedido de saque</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="message-error">
+        <!-- ERROR -->
+      </div>
+      <div class="container-select-deposit buttons-footer">
+        <button class="btn-deposit-request btn-next-payment">
+          DEPOSITAR
+        </button>
+        <button class="btn-deposit-cancel">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL BONUS -->
+<div class="modal modal-bonus d-none">
+  <div class="modal-content">
+    <div class="modal-title">
+      <h1><i class="fas fa-gift"></i> Bônus</h1>
+      <button class="btn btn-close-modal">
+        <i class="fas fa-times-circle"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="input-group">
+        <label for="inputBonus" class="label-text" id="labelTextInputBonus">Resgatar bônus</label>
+        <label for="inputBonus" class="label-icon">
+          <i class="fas fa-ticket-alt"></i>
+        </label>
+        <input type="text" autocomplete="off" id="inputBonus" class="input-login" placeholder="Insira aqui">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <!-- BUTTON SAVE -->
+      <div class="row">
+        <div class="message-error">
+          <!-- MESSAGE ERROR -->
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-reedem">RESGATAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL USERS -->
+<div class="modal modal-users d-none">
+  <div class="modal-content">
+    <div class="modal-title">
+      <h1><i class="fas fa-edit"></i> Dados cadastrais</h1>
+      <button class="btn btn-close-modal">
+        <i class="fas fa-times-circle"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form action="">
+        <!-- ROW NAME -->
+        <div class="row">
+          <!-- PRIMEIRO NOME -->
+          <div class="input-group">
+            <label for="firstName" class="label-text" id="labelTextFirstName">Primeiro nome</label>
+            <label for="firstName" class="label-icon">
+              <i class="fas fa-user"></i>
+            </label>
+            <input type="text" autocomplete="off" id="firstName" class="input-login" placeholder="Primeiro nome"
+              readonly disabled>
+          </div>
+          <!-- SEGUNDO NOME -->
+          <div class="input-group">
+            <label for="secondName" class="label-text" id="labelTextSecondName">Segundo nome</label>
+            <label for="secondName" class="label-icon">
+              <i class="fas fa-user"></i>
+            </label>
+            <input type="text" autocomplete="off" id="secondName" class="input-login" placeholder="Segundo nome"
+              readonly disabled>
+          </div>
+        </div>
+
+        <!-- ROW INFOS -->
+        <div class="row">
+          <!-- DATA DE NASCIMENTO -->
+          <div class="input-group">
+            <label for="dateOfBirth" class="label-text" id="labelTextBirth">Data de Nascimento</label>
+            <label for="dateOfBirth" class="label-icon">
+              <i class="fas fa-birthday-cake"></i>
+            </label>
+            <input type="text" autocomplete="off" id="dateOfBirth" class="input-login" placeholder="Data de nascimento"
+              readonly disabled>
+          </div>
+          <!-- CPF -->
+          <div class="input-group">
+            <label for="cpfUser" class="label-text" id="labelTextCpfUser">CPF</label>
+            <label for="cpfUser" class="label-icon">
+              <i class="fas fa-user-tag"></i>
+            </label>
+            <input type="text" autocomplete="off" id="cpfUser" class="input-login" placeholder="CPF">
+          </div>
+          <!-- TELEFONE -->
+          <div class="input-group">
+            <label for="cellUser" class="label-text" id="labelTextCellUser">Telefone</label>
+            <label for="cellUser" class="label-icon">
+              <i class="fas fa-phone-alt"></i>
+            </label>
+            <input type="text" autocomplete="off" id="cellUser" class="input-login" placeholder="Telefone" readonly
+              disabled>
+          </div>
+        </div>
+
+        <!-- ROW ADDRESS -->
+        <div class="row">
+          <!-- NEIGHBORHOOD -->
+          <div class="input-group">
+            <label for="neighborhoodUser" class="label-text" id="labelTextNeighborhoodUser">Bairro</label>
+            <label for="neighborhoodUser" class="label-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </label>
+            <input type="text" autocomplete="off" id="neighborhoodUser" class="input-login" placeholder="Bairro">
+          </div>
+          <!-- STREET -->
+          <div class="input-group">
+            <label for="streetUser" class="label-text" id="labelTextStreetUser">Rua</label>
+            <label for="streetUser" class="label-icon">
+              <i class="fas fa-road"></i>
+            </label>
+            <input type="text" autocomplete="off" id="streetUser" class="input-login" placeholder="Rua">
+          </div>
+        </div>
+
+        <!-- ROW ADDRESS 2 -->
+        <div class="row">
+          <!-- CEP -->
+          <div class="input-group">
+            <label for="cepUser" class="label-text" id="labelTextCepUser">CEP</label>
+            <label for="cepUser" class="label-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </label>
+            <input type="text" autocomplete="off" id="cepUser" class="input-login" placeholder="CEP">
+          </div>
+          <!-- CITY -->
+          <div class="input-group">
+            <label for="cityUser" class="label-text" id="labelTextCityUser">Cidade</label>
+            <label for="cityUser" class="label-icon">
+              <i class="fas fa-city"></i>
+            </label>
+            <input type="text" autocomplete="off" id="cityUser" class="input-login" placeholder="Cidade">
+          </div>
+          <!-- UF -->
+          <div class="input-group">
+            <label for="ufUser" class="label-text" id="labelTextUfUser">UF</label>
+            <label for="ufUser" class="label-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </label>
+            <input type="text" autocomplete="off" id="ufUser" class="input-login" placeholder="UF">
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="row">
+          <div class="input-group">
+            <label for="userEmail" class="label-text" id="labelTextEmail">E-mail</label>
+            <label for="userEmail" class="label-icon">
+              <i class="fas fa-envelope"></i>
+            </label>
+            <input type="text" autocomplete="off" id="userEmail" class="input-login" placeholder="E-mail">
+          </div>
+        </div>
+
+        <!-- ROW PASSWORD -->
+        <div class="row">
+          <!-- NOVA SENHA -->
+          <div class="input-group">
+            <label for="userPassword" class="label-text" id="labelTextPassword">Senha</label>
+            <label for="userPassword" class="label-icon">
+              <i class="fas fa-lock"></i>
+            </label>
+            <input type="text" autocomplete="off" id="userPassword" class="input-login" placeholder="Nova senha">
+          </div>
+          <!-- REPITA SENHA -->
+          <div class="input-group">
+            <label for="userRepeatPassword" class="label-text" id="labelTextRepeatPassword">Repita a senha</label>
+            <label for="userRepeatPassword" class="label-icon">
+              <i class="fas fa-lock"></i>
+            </label>
+            <input type="text" autocomplete="off" id="userRepeatPassword" class="input-login"
+              placeholder="Repita sua senha">
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <!-- BUTTON SAVE -->
+      <div class="row">
+        <div class="message-error">
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-save">SALVAR</button>
+      </div>
+    </div>
+  </div>
+</div>

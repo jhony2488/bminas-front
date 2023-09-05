@@ -1,0 +1,143 @@
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicho Mania ♣ A maior banca de jogo do bicho online no Brasil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/default.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/404.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+</head>
+
+<body>
+
+
+  <main class="container-home-404">
+    <div class="container-header">
+      <header class="home-header">
+        <a href="/" class="content-logo-home">
+          <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania">
+          <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania Mobile">
+        </a>
+      </header>
+    </div>
+
+    <div class="content-home">
+      <div class="img-home">
+        <span class="blur"></span>
+        <img src="./assets/images/maintenance.svg" alt="Jogo do Bicho Online - Imagem página não encontrada">
+        <span class="blur"></span>
+      </div>
+      <div class="container-text-404">
+        <h1>Manutenção...</h1>
+        <h3>Estamos trabalhando para melhorar sua experiência.</h3>
+        <h2>Previsão de conclusão da manutenção: <span>08:00</span> Hrs.</h2>
+        <h3 class="counter">
+          Faltam:
+          <span id="countdown"></span>
+          para acabar a nossa manutenção!
+        </h3>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="./assets/js/home.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      function updateCountdown() {
+          const now = new Date();
+          const target = new Date(now);
+          target.setDate(target.getDate());
+          target.setHours(8, 0, 0, 0);
+
+          const timeDiff = target - now;
+
+          const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+          document.getElementById('countdown').textContent = `${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      setInterval(updateCountdown, 1000);
+
+      updateCountdown();
+
+      ScrollReveal().reveal('.img-home>img', {
+        distance: '20px',
+        duration: 1000,
+        easing: 'ease-in-out',
+        origin: 'bottom',
+        opacity: 0.9,
+        rotate: { x: 0, y: 90, z: 0 },
+        scale: 0.1,
+      });
+
+      ScrollReveal().reveal('.blur', {
+        delay: 500,
+        distance: '50px',
+        duration: 250,
+        rotate: { x: 0, y: 40, z: 0 },
+        scale: 0.1,
+        easing: 'ease-in',
+        origin: 'top right',
+      });
+
+      ScrollReveal().reveal('.container-text-404>h1', {
+        delay: 500,
+        distance: '10px',
+        duration: 250,
+        easing: 'ease-in',
+        origin: 'bottom',
+      });
+
+      ScrollReveal().reveal('.container-text-404>h2', {
+        delay: 500,
+        distance: '5px',
+        duration: 250,
+        easing: 'ease-in',
+        origin: 'top',
+      });
+
+      ScrollReveal().reveal('.container-text-404>h3', {
+        delay: 500,
+        distance: '5px',
+        duration: 250,
+        easing: 'ease-in',
+        origin: 'top right',
+      });
+      ScrollReveal().reveal('.btn-back', {
+        delay: 200,
+        distance: '25px',
+        duration: 250,
+        easing: 'ease-in',
+        origin: 'right',
+      });
+    });
+  </script>
+
+</body>
+
+</html>

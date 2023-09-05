@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5LH2F99');
+    </script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/style.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/radio_card.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/deposit.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Retirada - Bicho Premiado</title>
+    <script>
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i)
+
+            if (texto.substring(0, 1) != saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+
+        function somenteNumeros(e) {
+            var charCode = e.charCode ? e.charCode : e.keyCode;
+            // charCode 8 = backspace   
+            // charCode 9 = tab
+            if (charCode != 8 && charCode != 9) {
+                // charCode 48 equivale a 0   
+                // charCode 57 equivale a 9
+                if (charCode < 48 || charCode > 57) {
+                    return false;
+                }
+            }
+        }
+    </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1034732420656918');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1034732420656918&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body style="overflow: hidden;">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LH2F99"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div>
+    <div id="whatsapp"></div>
+    <div class="wrapper">
+        <aside class="d-flex">
+            <div class="" id="lateral_menu"></div>
+            <div class="body-container noselect ">
+                <div class="back-header" id="header"></div>
+
+                <div class="container-fluid no-gutters content-body">
+                    <div class='col-lg-12'>
+                        <div class="container-header-page">
+                            <div class="content-header-page">
+                                <p class="title">Retirada</p>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <main>
+                        <form action="" method="post" accept-charset="utf-8" style="max-width: 100%;">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="form-group col-md-9 mb-3">
+                                            <label for="title"><span class="text-muted">Você pode sacar até: <strong><span
+                                                            id='valorSaque'></span></strong><span>
+                                            </label>
+                                            <input type="text" class="form-control  money" name="amount_withdraw" id='amount_withdraw' valor='mostraValor' onkeyup="this.value = this.value.replace (/^\.|[^\d\.]/g, '')" placeholder="0.00">
+                                        </div>
+
+                                        <div class="form-group col-md-3 mb-3">
+                                            <label><strong>Moeda</strong></label>
+                                            <select class="form-control" name="currency">
+                                                <option value="debit_base">BRL</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="title"><span class="text-muted">Selecione como sacar com <strong>PIX</strong>: <span></label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-select select-cash" aria-label="Default select example" id="TipoDocumento" name="TipoDocumento">
+                                                    
+                                                  <option class="option-cash" selected data-tipo="no_send">NÃO ENVIAR</option>
+                                                  <option class="option-cash" data-tipo="cpf">CPF</option>
+                                                  <option class="option-cash" data-tipo="email">E-MAIL</option>
+                                                  <option class="option-cash" data-tipo="phone">CELULAR</option>
+                                                  <option class="option-cash" data-tipo="random_key">CHAVE ALEATÓRIA</option>
+                                                   
+                                            </select>
+
+                                                <span id="InputsDocumento">
+                                                <input type="text" id="no_send" placeholder="Não desejo sacar com PIX." disabled class="form-control" aria-label="Text input with dropdown button">
+
+                                                <input type="hidden" name="pix" id="cpf" placeholder="Digite seu CPF." disabled class="form-control" aria-label="Text input with dropdown button" data-mask="000.000.000-00" maxlength="11"> 
+                                              
+                                                <input type="hidden" name="pix" id="email" placeholder="Digite seu E-mail." disabled class="form-control" aria-label="Text input with dropdown button">
+
+                                                <input type="hidden" name="pix" id="phone" placeholder="Digite seu celular." disabled class="form-control" aria-label="Text input with dropdown button" data-mask="(00) 0 0000-0000" maxlength="11" autocomplete="off">
+
+                                                <input type="hidden" name="pix" id="random_key" placeholder="Digite sua chave PIX." disabled class="form-control" aria-label="Text input with dropdown button">
+                                              
+                                              </span>
+
+                                                <!--   <input type="text" class="form-control" aria-label="Text input with dropdown button" style="width: 80%"> -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <div style="border: 1px solid #ced4da; padding: 10px; border-radius: 4px; padding: 10px" id="withdraws">
+                                            Nenhum pedido de saque.
+                                        </div>
+                                    </div>
+                                    <p style="font-size: 1.1em;color: #868e96;font-weight: bold;margin:10px auto;text-align:center">
+                                        Segunda a sábado das 08:00 horas até as 20:00 horas; <br>Não fazemos pagamentos aos domingo.
+                                    </p>
+                                    <!-- Container Cash Out - Start -->
+                                    <div class="col-md-12 container-cash-out">
+
+
+                                    </div>
+                                    <!-- Container Cash Out - End -->
+                                    <!-- Molda Footer - Start -->
+
+                                    <!-- Molda Footer - End -->
+
+                        </form>
+                    </main>
+                    </div>
+
+                    <div id="footer"></div>
+                    </div>
+        </aside>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+        <script src="assets/js/ajax.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/website/assets/js/main.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+        <!-- <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script> -->
+
+        <script>
+            $("#lateral_menu").load("/slim/src/files/lateral_menu.html");
+            $("#header").load("/slim/src/files/header.html");
+            $("#footer").load("/slim/src/files/footer.html");
+            $("#whatsapp").load("/slim/src/files/whatsapp.html");
+
+            $(window).on("load", function() {
+                $('.wrapper').css('display', 'block');
+                $(".loading-screen").fadeOut(100, function() {
+                    $('body').css('overflow', 'visible');
+                });
+
+            });
+
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+
+            function inverteData(data) {
+                let x = data.split(" ")
+                if (data.indexOf("-") > -1) {
+                    return x[0].split("-").reverse().join("/") + " " + x[1]
+                } else {
+                    return x[0].split("/").reverse().join("-") + " " + x[1]
+                }
+            }
+
+            function maiorIdade(data_nasc) {
+                // let data_nasc = "31/12/2019"
+                let nasc = data_nasc.split("/").map(Number);
+                if (nasc[0] > 0 && nasc[0] < 32 && nasc[1] > 0 && nasc[1] < 13 && nasc[2] >= 1930) {
+                    //construir data 18 anos a seguir a data dada pelo usuario
+                    let depois18Anos = new Date(nasc[2] + 18, nasc[1] - 1, nasc[0]);
+                    let agora = new Date();
+                    if (depois18Anos <= agora) {
+                        return false
+                    } else {
+                        return true
+                    }
+                } else {
+                    return true
+                }
+            }
+
+
+
+            // Input PIX - CPF - EMAIL - KEY
+
+
+            $('#TipoDocumento').change(function(e) {
+                let opcaoSelecionada = this.querySelector('option:checked');
+
+                //desabilita e esconde todos os inputs
+                let inputs = $('#InputsDocumento input');
+                inputs.attr('type', 'hidden');
+                inputs.attr('disabled', '');
+
+                //habilita e mostra o input relevante
+                let inputEscolhido = inputs.filter('#' + opcaoSelecionada.dataset.tipo);
+                inputEscolhido.attr('type', 'text');
+
+                /*    $('#Cellphone').attr('type', 'number');
+                   $('#CPF').attr('type', 'number'); */
+
+
+                if (opcaoSelecionada.dataset.tipo !== 'placeholder')
+                    inputEscolhido.removeAttr('disabled');
+            });
+
+
+
+            // Input PIX - CPF - EMAIL - KEY
+
+            function verifyPermissionWithdraw() {
+                var now = moment();
+                var extra = moment().format('YYYY-MM-DD') + ' ';
+                var seg = moment().day(1).startOf('day');
+                var sab = moment().day(6).endOf('day');
+                // var hour_limit = moment(extra + '12:00:00');
+                let row = ''
+                    // if (!now.isBetween(seg, sab) || now > hour_limit) {
+                if (!now.isBetween(seg, sab)) {
+                    row = `
+                <label for="full-marca-blanca2" id="radio-label5" style="display: flex; justify-content: center; flex-direction: column; align-items: center; padding: 40px 10px;">
+                    <p style="font-size: 1.4em;color: #dc3545;font-weight: bold;margin:0;text-align:center">Horário permitido para saque encerrado!</p>
+                    <img src="/website/assets/images/logo-header.png" alt="logo-header" style="margin: 20px 0px">
+                                                    </label>
+                `
+
+                } else {
+                    row = `
+                <div class="d-flex align-items-center justify-content-center">
+                                            <label class="card-checkbox transfer">
+                                                    <input class="card__input" type="radio" name="method_payment" />
+                                                    <div class="card__body content-info-bank">
+                                                        <div style="display: flex;width: 100%;padding: 20px;">
+    
+                                                            <i class="fad fa-sack-dollar card__body-cover-image"></i>
+    
+                                                            <div
+                                                                style="height: 100%;width: 100%;display: flex; flex-direction: column;justify-content: center;flex: 1;overflow: hidden;">
+                                                                <p>Cod: <strong><span id="codbanco"></span></strong></p>
+                                                                <p>Banco: <strong><span id="banco"></span></strong></p>
+    
+                                                                <p>Agencia: <strong><span id="agencia"></span></strong></p>
+                                                                <p>Conta: <strong><span id="conta"></span></strong></p>
+                                                                <p>Titular: <strong><span id="nome_titular"></span></strong>
+                                                                </p>
+                                                                <p>CPF: <strong><span id="company"></span></strong></p>
+                                                            </div>
+    
+    
+                                                        </div>
+                                                    </div>
+                                                    <span class="card__body-cover-checkbox">
+                                                        <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                        </svg>
+                                                    </span>
+                                                </label>
+                                            <button type="button" class="button-edit-account">
+                                                    <i class="far fa-edit" onclick="bank();"></i>
+                                                </button>
+                                        </div>
+                                        <p class="mt-4 text-center">
+                                            <strong>O saque <span style="color: #dc3545;">NÃO</span> será realizado para
+                                                    contas bancárias com CPF de terceiros.</strong>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class='modal-footer'>
+                                <button class="primary withdraw" anim="ripple" title="Retirar" type="submit" id="enviar_withdraw" onclick="withdraw()" value="Submit">
+                                    <p>Retirar</p>
+                                </button>
+                            </div>
+                `
+                }
+                $('.container-cash-out').html(row)
+            }
+            verifyPermissionWithdraw()
+
+
+
+
+            // FUNÇÕES SAQUE
+            /////////////////////////////////////
+            ///////////////////////////////////
+
+            function getWithdraw() {
+                ajaxControl({
+                    type: "GET",
+                    url: "bank/withdraw",
+                    success: (response) => {
+                        let data = JSON.parse(response)
+                        console.log(data)
+                        let rows = "Nenhum pedido de saque."
+                        if (data.length > 0) {
+                            rows = `<h5 style="text-align: center">Saques</h5>`
+                            let estorno = '';
+                            let text_estorno = ''
+                            data.forEach(element => {
+                                if (element.status == 1) {
+                                    estorno = 'waiting'
+                                    text_estorno = 'Aguardando'
+                                } else {
+                                    estorno = 'processing'
+                                    text_estorno = 'Processando'
+                                }
+                                rows += `
+              <div class="withdrawal-request ${estorno}">
+                <div style="display:flex; justify-content: space-between;align-items:center">
+                    <span style="font-size: 16px; font-weight: bold;">Pedido de saque</span>
+                    <span class="status-withdraw">${text_estorno}</span>
+                   
+                    </div>
+                    
+                  <br>
+                    <div  class="container-withdrawal-request"> 
+                        <div class="row-withdrawal-request">
+                            <div class="column-withdrawal-request">
+                                #${element.id}
+                            </div> 
+                            <div class="column-withdrawal-request">
+                                Valor: <br>${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.amount)}
+                            </div> 
+                            <div class="column-withdrawal-request">
+                                Data: <br>${inverteData(element.time).split(' ')[0]}
+                            </div> 
+                            <div class="column-withdrawal-request">
+                                Hora: <br>${element.time.split(' ')[1]}
+                            </div> 
+                        </div> 
+                       
+                  </div>
+              </div>
+              `
+                            });
+                        }
+                        $("#withdraws").html(rows)
+                    }
+                })
+            }
+
+            $(document).ready(() => {
+                getWithdraw()
+                msgbank()
+            })
+
+            function withdraw() {
+                msgbank()
+            }
+            //mostra dados
+            function msgbank() {
+                ajaxControl({
+                    type: "GET",
+                    url: "users/",
+                    success: (response) => {
+                        ajaxControl({
+                            type: "GET",
+                            url: "/bank/transfer",
+                            success: (response) => {
+                                let data = JSON.parse(response)
+                                $("#banco").html(data.name);
+                                $("#codbanco").html(data.cod);
+
+                            }
+                        });
+                        let data = JSON.parse(response)
+                        let msg_data = ""
+                        let msg = ""
+                        let row = ""
+                        if (data.date_birth == null) {
+                            msg_data = `<br><span style='color:red'>Clique em Dados Bancários para inserir data de nascimento!</span>`
+                        }
+                        if (data.bank == null) {
+                            msg = `<span style='color:red'>Dados Bancários não cadastrados!</span>${msg_data}`
+                            row = `<div style="display: flex;width: 100%;padding: 20px;"><p>Dados Bancários não cadastrados!</p></div>`
+
+                        } else {
+                            msg = `<span style='color:green'>Dados Bancários cadastrados!</span>${msg_data}`
+
+                            var type_acc = data.type_acc
+                            var bank = data.bank
+                            var agency = data.agency
+                            var acc = data.acc
+                            var cpf = data.company
+                            var titular = data.titular_bank
+                            var premio = data.debit_premio
+                            var date_birth = data.date_birth
+                            console.log(data)
+                                //modal bank
+                            $("#type_acc").val(type_acc)
+                            $("#bank").val(bank)
+                            $("#agency").val(agency)
+                            $("#acc").val(acc)
+                            if (cpf) {
+                                $("#cpf").val(cpf)
+                                $("#cpf").attr('readonly', true);
+                            }
+                            if (titular) {
+                                $("#titular").val(titular)
+                                $("#titular").attr('readonly', true);
+                            }
+                            if (date_birth) {
+                                $("#date_birth").val(date_birth.split("-").reverse().join("/")),
+                                    $("#date_birth").attr('readonly', true);
+                            }
+                            //mostra transferencia
+                            $("#company").html(cpf)
+                            $("#agencia").html(agency)
+                            $("#conta").html(acc)
+                            $("#nome_titular").html(titular)
+                            $("#tipo").html(type_acc)
+                            row = `<p>${msg_data}</p>
+                        <div style="display: flex;width: 100%;padding: 20px;">
+
+    <i class="fad fa-sack-dollar card__body-cover-image"></i>
+
+    <div
+        style="height: 100%;width: 100%;display: flex; flex-direction: column;justify-content: center;flex: 1;overflow: hidden;">
+        <p>Cod: <strong><span id="codbanco"></span></strong></p>
+        <p>Banco: <strong><span id="banco"></span></strong></p>
+
+        <p>Agencia: <strong><span id="agencia">${agency}</span></strong></p>
+        <p>Conta: <strong><span id="conta">${acc}</span></strong></p>
+        <p>Titular: <strong><span id="nome_titular">${titular}</span></strong>
+        </p>
+        <p>CPF: <strong><span id="company">${cpf}</span></strong></p>
+    </div>
+
+
+</div>`
+
+
+                        }
+                        $("#msg").html(msg)
+                        console.log("info bank", data.cod)
+                        $(".content-info-bank").html(row)
+
+                        //valor para saque
+                        $("#valorSaque").html(new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }).format(premio))
+                        $("#saldoSaque").html(new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }).format(premio))
+                    }
+                });
+            }
+
+            //modal banco
+            function bank() {
+
+                ajaxControl({
+                    type: "GET",
+                    url: "/bank/",
+                    success: (response) => {
+                        let rows = ""
+                        let newresult = JSON.parse(response)
+                        newresult.forEach(element => {
+                            rows += `<option value="${element.cod}">${element.cod} - ${element.name}</option>`
+                        });
+                        msgbank()
+                        Swal.fire({
+                            willOpen: () => {
+                                $('#date_birth').mask('99/99/9999')
+
+                                // $("#date_birth").focusout(function () {
+                                //   if (maiorIdade($("#date_birth").val()) == true) {
+                                //     Swal.showValidationMessage(
+                                //       `Proibido menor de 18 anos`
+                                //     )
+                                //   }
+                                // })
+                            },
+                            confirmButtonColor: '#56CA98',
+                            confirmButtonText: 'Confirma',
+                            showCloseButton: true,
+                            title: 'Cadastrar Conta',
+                            scrollbarPadding: false,
+                            customClass: {
+                                confirmButton: 'confirm-register',
+                                container: 'sombra-swal',
+                                popup: 'swal-register-bank',
+                            },
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown animate__faster',
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp animate__faster',
+                            },
+                            html: `
+                        <div class="container-bank">
+                        <form class="form-floating" autocomplete="off">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" name="type_acc" id="type_acc">
+                                    <option value=""></option>
+                                    <option value="CC">Conta Corrente</option>
+                                    <option value="CP">Conta Poupança</option>
+                                </select>
+                                <label for="type_acc">Tipo de Conta</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" name="bank" id="bank" data-search="true">
+                                    <option value=""></option>
+                                    ${rows}
+                                </select>
+                                <label for="bank">Selecione o Banco</label>
+                            </div>
+                            <div class="row g-4">
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" name="agency" id="agency" OnKeyPress="return somenteNumeros(event)" maxlength="15" placeholder="Agência" autocomplete="new-password">
+                                        <label for="agency">Agência</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" name="acc" id="acc" OnKeyPress="return somenteNumeros(event)" maxlength="15" placeholder="Conta" autocomplete="new-password">
+                                        <label for="acc">Conta</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" name="acop" id="acop" OnKeyPress="return somenteNumeros(event)" maxlength="3" placeholder="Operação/Complem" autocomplete="new-password">
+                                        <label for="acop">Operação/Complem</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="titular" id="titular" placeholder="Nome do Titular" autocomplete="new-password">
+                                <label for="titular">Nome do Titular</label>
+                            </div>
+
+                            <div class="row g-4">
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" name="date_birth" id="date_birth" maxlength="11" placeholder="Data de Nascimento" autocomplete="new-password" autocorrect="off">
+                                        <label for="date_birth">Data de Nascimento</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" name="cpf" id="cpf" placeholder="CPF" autocomplete="new-password" autocorrect="off" OnKeyPress="formatar('000.000.000-00', this);return somenteNumeros(event)" maxlength="14">
+                                        <label for="cpf">CPF</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>`,
+
+                        }).then((result) => {
+                            if (result.value) {
+                                if ($("#date_birth").val().length < 10) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        showConfirmButton: false,
+                                        title: `Favor inserir a data corretamente`,
+                                        timer: 3000,
+                                    })
+                                } else if (maiorIdade($("#date_birth").val()) == true) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        showConfirmButton: false,
+                                        title: `Proibido menor de 18 anos`,
+                                        timer: 3000,
+                                    })
+                                } else {
+                                    console.log($("#acc").val())
+                                    ajaxControl({
+                                        type: "PUT",
+                                        url: "bank/att",
+                                        data: {
+                                            'type_acc': $("#type_acc").val(),
+                                            'bank': $("#bank").val(),
+                                            'agency': $("#agency").val(),
+                                            'acc': $("#acc").val(),
+                                            'cpf': $("#cpf").val(),
+                                            'titular': $("#titular").val(),
+                                            'acop': $("#acop").val(),
+                                            'date_birth': $("#date_birth").val().split("/").reverse().join("-"),
+                                        },
+                                        success: function(response) {
+                                            let data = JSON.parse(response)
+                                            if (!data.error) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    showConfirmButton: false,
+                                                    title: 'Conta bancária atualizada!',
+                                                    timer: 3000
+                                                })
+                                                msgbank()
+                                            } else {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    showConfirmButton: false,
+                                                    title: data.message,
+                                                    timer: 4000,
+                                                })
+                                            }
+                                        }
+                                    })
+                                }
+
+                            }
+                        })
+                    }
+                })
+            }
+
+
+            //modal saque
+            function confirm_saq(money, codBank) {
+                if (money <= 49 && codBank == '237') {
+                    Swal.fire({
+                        icon: 'error',
+                        showConfirmButton: false,
+                        title: "Valor minimo 50 no Bradesco!",
+                        timer: 3000,
+                    })
+                } else if (money == '' || money <= 9) {
+                    Swal.fire({
+                        icon: 'error',
+                        showConfirmButton: false,
+                        title: "Valor minimo 10!",
+                        timer: 3000,
+                    })
+                } else {
+                    Swal.fire({
+                        confirmButtonText: 'Confirmar',
+                        showCancelButton: true,
+                        showCloseButton: true,
+                        confirmButtonColor: '#ff7f00',
+                        cancelButtonColor: 'red',
+                        title: 'Confirma o saque do seguinte valor?',
+                        html: `
+            <div class="col-md-12 ">
+                <form action="new_transfer" method="post" accept-charset="utf-8">
+                  <h3 class="form-control-static"><span id="mostraValor" name="mostraValor">${money}</span> BRL </h3>  
+                </form>					
+            </div>
+        `
+                    }).then((result) => {
+                        if (result.value) {
+                            ajaxControl({
+                                    type: "POST",
+                                    url: "/bank/",
+                                    data: {
+                                        'sum': money,
+                                        'pix': $('input[name=pix]:visible').val(),
+                                    },
+                                    success: function(response) {
+                                        let data = JSON.parse(response)
+                                        console.log('DATA', data)
+                                        if (!data.error) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                showConfirmButton: false,
+                                                title: 'Saque feito com sucesso!',
+                                                timer: 3000
+                                            })
+                                            msgbank()
+                                            getWithdraw()
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                showConfirmButton: false,
+                                                title: data.message,
+                                                timer: 3000,
+                                            })
+                                        }
+
+                                    },
+                                    error: function(xhr, status, error) {
+                                        var errorMessage = xhr.status + ': ' + xhr.statusText
+                                        console.log('Error - ' + errorMessage);
+                                    }
+                                })
+                                // Swal.fire({
+                                //   icon: 'success',
+                                //   showCloseButton: true,
+                                //   confirmButtonColor: '#ff7f00',
+                                //   title: 'A transferência de saldo foi concluída com sucesso!',
+                                //   //redirecionar para a tela de transferencia 
+
+                            // })
+                        }
+                    })
+                }
+            }
+
+            $("#enviar_withdraw").on('click', function(event) {
+                event.preventDefault();
+                var money = $("#amount_withdraw").val();
+                var codBank = $("#codbanco").html();
+                console.log(money)
+                Swal.fire({
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonText: 'Entendido',
+                    width: 600,
+                    title: "Regras para o pedido de SAQUE!",
+                    html: `
+          <div class="col-md-12 modal-info-saque" >
+            <div class="col-md-10">
+              <span> > O pedido de saque é creditado em até 2 dias úteis.</span>
+            </div>
+            <div class="col-md-10">
+              <span> > Cada usuário terá direito a <span class="vermelho">1(um) saque por dia. </span></span>
+            </div>
+            <div class="col-md-10">
+              <span> > O Prêmio não expira, Você pode <span class="vermelho">cancelar</span> o saque, <span class="vermelho">diminuir </span> caso precisar de crédito para apostar e <span class="vermelho"> aumentar </span> o valor se for premiado em mais de uma loteria. </span></span>
+            </div>            
+            <div class="col-md-10">
+              <span> > O pedido de saque deverá ser feito <span class="vermelho">até as 22 horas.</span></span>
+            </div>
+            <div class="col-md-10">
+              <span> > Pedidos realizados aos sábados, domingos e feriados serão creditados a conta do usuário no próximo dia útil.</span>
+            </div>	
+            <div class="col-md-10">
+              <span> > O saque só será realizado no CPF do usuário, não sendo permitido contas bancárias de terceiros.</span>
+            </div>			
+          </div>
+        `,
+                }).then((response) => {
+                    if (response.value) {
+                        confirm_saq(money, codBank)
+                    }
+                })
+            });
+        </script>
+</body>
+
+</html>

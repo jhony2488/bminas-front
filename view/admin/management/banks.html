@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Bancos</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+
+    <style>
+      .swal2-content {
+        width: 100% !important;
+      }
+
+      .swal2-popup {
+        width: 50% !important;
+      }
+
+      /*.width-form {
+        width: 100%;
+      }*/
+
+      @media (max-width: 1000px) {
+        .swal2-popup {
+          width: 80% !important;
+        }
+      }
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i> <strong>Bancos</strong></h4>
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <div id="tab" class="table-responsive">
+                  <table id="dttable" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">ID/Taxas</th>
+                        <th scope="col">Nome/Taxa Crédito</th>
+                        <th scope="col">Agência/Taxa Débito</th>
+                        <th scope="col">Conta/Taxa Boleto</th>
+                        <th scope="col">Depósito minimo</th>
+                        <th scope="col">Primeiro depósito</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Ação</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $('[data-toggle="tooltip"]').tooltip();
+      const atualizarListaBtn = $('#att_list');
+
+      const tabela = $('#dttable').DataTable({
+        initComplete: function () {
+          carregarDados();
+        },
+        "drawCallback": function (settings) {
+          // máscara de moeda
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+        },
+        "columnDefs": [
+          {
+            "targets": [0],
+            "visible": false,
+          }
+        ],
+        "columns": [{
+            "data": "bank_order",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '--';
+              }
+              return data;
+            }
+          },
+
+          {
+          //   "data": "bank_image",
+          //   "render": function(data, type, row) {
+          //     if (!data) {
+          //       return '--';
+          //     }
+
+          //     return `<img src="${row['bank_image']}" width="30px" />`;
+          //   }
+          // },
+          // {
+            "data": "bank_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "bank_name",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "bank_agency",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "bank_account",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "bank_minimum_deposit",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              let formattedMValor = data.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
+
+              return `R$ <span class="money">${formattedMValor}</span>`;
+            }
+          },
+          {
+            "data": "bank_minimum_first_deposit",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              let formattedMFPValor = data.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
+
+              return `R$ <span class="money">${formattedMFPValor}</span>`;
+            }
+          },
+          {
+            "data": "bank_status",
+            "render": function(data, type, row) {
+              /*if (!data) {
+                return "<label class='badge btn-secondary' style='color:white;'>Não encontrado</label>";
+              }*/
+
+               if (data == '1') {
+                data = "<label class='badge btn-success' style='color:white;'>Ativo</label>";
+              } else if (data == '2') {
+                data = "<label class='badge btn-danger' style='color:white;'>Inativo</label>";
+              } else if (data == '3') {
+                data = "<label class='badge btn-primary' style=''>Manutenção</label>";
+              } else if (data == '4') {
+                data = "<label class='badge btn-info' style='color:white;'>Em breve</label>";
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "bank_id",
+            "render": function(data, type, row) {
+              let btns = `
+                <button id="edit-bank" data-bank="${row['bank_id']}" type="button" class="btn btn-sm btn-success" title="Editar Banco" data-toggle="tooltip"><i class="icon-pencil" style="color: #fff !important;" title="Editar Banco"></i></button>&nbsp;`;
+
+              return btns;
+            }
+          }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      // get list
+      async function carregarDados() {
+        try {
+          const response = await fetch('/api_admin/banks/', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.status === 200) {
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+          } else if (response.status === 401) {
+
+            Swal.fire({
+              toast: true,
+              type: 'warning',
+              showConfirmButton: false,
+              position: 'top-end',
+              timer: 1300,
+              title: "Sessão de usuário expirada",
+            })
+
+            setTimeout(
+              function() {
+                location.reload();
+            },1400)
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+        }
+      }
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        recarregarDados();
+      });
+
+      function recarregarDados() {
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw();
+        carregarDados();
+      }
+
+      $(document).on('click', '#edit-bank', function(e) {
+        e.preventDefault();
+
+        const bank_id = $(this).data('bank');
+        // console.log(bank_id)
+
+        Swal.fire({
+          type: 'question',
+          title: 'Editar Banco ID: '+bank_id,
+          confirmButtonText: "Confirmar",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          reverseButtons: true,
+          html: `
+              <form id="editbank" class="width-form">
+                <div class="row mt-4">
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Nome do Banco</label>
+                      <input type="text" id="bank_name" name="bank_name" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Agencia</label>
+                      <input type="text" id="agency" name="agency" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Conta</label>
+                      <input type="text" id="account" name="account" class="form-control" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Depósito minino</label>
+                      <input type="text" id="mdeposito" name="mdeposito" class="form-control money" required>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Minimo para primeiro depósito</label>
+                      <input type="text" id="mpdeposito" name="mpdeposito" class="form-control money" required>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Status</label>
+                      <select name="status" id="status" class="form-control" required>
+                        <option value="1">Ativo</option>
+                        <option value="2">Inativo</option>
+                        <option value="3">Manutenção</option>
+                        <option value="4">Em breve</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label class="form-label">Ordem de prioridade</label>
+                      <select name="ordem" id="ordem" class="form-control" required>
+                        <option value="1">Alta</option>
+                        <option value="2">Media</option>
+                        <option value="3">Baixa</option>
+                        <option value="4">Muito baixa</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            `,
+          onOpen: () => {
+            if (bank_id != null) {
+              // load data
+              fetch('/api_admin/banks', {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+              .then(response => response.json())
+              .then(response => {
+
+                const data = response.find(obj => obj.bank_id == bank_id);
+
+                $('#bank_name').val(data.bank_name);
+                $('#agency').val(data.bank_agency).change();
+                $('#status').val(data.bank_status);
+                $('#account').val(data.bank_account).change();
+                $('#mdeposito').val(data.bank_minimum_deposit).change();
+                $('#mpdeposito').val(data.bank_minimum_first_deposit).change();
+                $('#ordem').val(data.bank_order).change();
+
+                $('.money').mask('000.000.000.000.000,00', {
+                  reverse: true
+                });
+              })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+              })
+            }
+          },
+          preConfirm: () => {
+            // validação
+            return new Promise((resolve) => {
+              // Executar a validação
+              let erros = [];
+              let form = document.getElementById("editbank");
+              let inputs = Array.from(form.querySelectorAll("[required]"));
+
+              inputs.forEach((validate) => {
+                if (!validate.value.trim()) {
+                  erros.push(validate);
+                  validate.classList.add("is-invalid");
+                } else {
+                  validate.classList.remove("is-invalid");
+                }
+              });
+
+              if (erros.length === 0) {
+
+                const mdepositInput = document.querySelector('#mdeposito');
+                const mdepositValue = mdepositInput.value.replace(',', '.');
+
+                const mpdepositInput = document.querySelector('#mdeposito');
+                const mpdepositValue = mpdepositInput.value.replace(',', '.');
+
+                // pegar valores
+                const data = {
+                  bank_id: `${bank_id}`,
+                  bank_name: form.querySelector('#bank_name').value,
+                  bank_agency: form.querySelector('#agency').value,
+                  bank_status: parseInt(form.querySelector('#status').value),
+                  bank_order: parseInt(form.querySelector('#ordem').value),
+                  bank_account: form.querySelector('#account').value,
+                  bank_minimum_deposit: mdepositValue,
+                  bank_minimum_first_deposit: mpdepositValue,
+                };
+
+                // salvar dados
+                fetch('/api_admin/banks', {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                    if (response.status == 200) {
+                    Swal.fire({
+                      type: "success",
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+
+                resolve();
+              } else {
+                Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                resolve();
+              }
+            })
+          }
+        })
+      })
+    });
+
+  </script>
+  </body>
+
+</html>

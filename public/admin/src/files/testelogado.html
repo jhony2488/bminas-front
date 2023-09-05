@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5LH2F99');
+    </script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.0">
+
+    <link rel="stylesheet" href="/website/assets/css/style.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/game.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/mobile.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?ver=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
+    <title>Bicho Premiado</title>
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1034732420656918');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1034732420656918&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body style="overflow: hidden;">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LH2F99" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div>
+    <aside class="d-flex">
+        <div class="" id="lateral_menu"></div>
+        <div class="body-container noselect ">
+            <div class="back-header" id="header"></div>
+            <div class="container-fluid no-gutters" style="margin-top: 90px;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="top-logado">
+                            <img src="/website/assets/images/icon-jogar.png" alt='Icone' height="50" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modal-notification" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header header-notification">
+                            <i class="fa fa-envelope icon-notification" style="color: gold;"></i>
+                            <h1 class="modal-title">Suas notificações!</h1>
+                            <h2 class="modal-subtitle">Confira abaixo os seus últimos recados.</h2>
+                        </div>
+                        <div class="modal-body container-notification">
+                            <!-- Caso tenha notificações-->
+                            <div class="content-notification">
+                                <i class="fa fa-check" style="color: #198754;"></i>
+                                <p>Pagamento realizado!</p>
+                            </div>
+                            <div class="content-notification">
+                                <i class="fa fa-times" style="color: red;"></i>
+                                <p>Pagamento recusado!</p>
+                            </div>
+                            <div class="content-notification">
+                                <i class="fa fa-check" style="color: #198754;"></i>
+                                <p>Pagamento realizado!</p>
+                            </div>
+                            <div class="content-notification">
+                                <i class="fa fa-check" style="color: #198754;"></i>
+                                <p>Pagamento realizado!</p>
+                            </div>
+                            <div class="content-notification">
+                                <i class="fa fa-times" style="color: red;"></i>
+                                <p>Pagamento recusado!</p>
+                            </div>
+                            <div class="content-notification">
+                                <i class="fa fa-check" style="color: #198754;"></i>
+                                <p>Pagamento realizado!</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex footer-notification">
+                            <button type="button" class="btn btn-secondary btn-notification-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary btn-notification-primary">Jogar</button>
+                            <!--Mostrar se tiver valores de notificação (pagamento realizado).-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Final - Modal -->
+            <div class="container-fluid no-gutters">
+                <div class="row">
+                    <div class='col-lg-12 '>
+
+                        <div class='item-jogar' style="padding: 20px 0px 0px 0px;;">
+
+                            <div class='title-jogar'><span class=''>1</span> Escolha o tipo de jogo</div>
+                            <div class="swiper mySwiper" style="padding: 20px 60px 60px 60px;position: relative;margin: 0;">
+                                <!-- Additional required wrapper -->
+
+                                <div class="swiper-wrapper">
+                                    <!-- Slides -->
+
+                                    <div class='swiper-slide item-jogar-list' data-type="m">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-1.jpg')">
+                                        </img>
+                                        <p class='item-nome'><span>M</span>Milhar </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="mc">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-2.jpg');">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>MC</span>Milhar Centena
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="c">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-3.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>C</span>Centena
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="dz">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-4.jpg');">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>D</span>Dezena
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="u">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-5.jpg');">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>U</span>Unidade
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="tdz">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-6.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>TDZ</span>Terno Dezena
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="ddz">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-1.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>DDZ</span>Duque de Dezena
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="mm">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-2.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>MM</span>Milhar Combinada
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="cc">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-3.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>CC</span>Centena Combinada
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="dzc">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-4.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>DZC</span>Dezena Combinada
+                                        </p>
+                                    </div>
+
+                                    <div class='swiper-slide item-jogar-list' data-type="g">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-5.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>G</span>Grupo
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="dg">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-6.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>DG</span>Dupla de Grupo
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="tg">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-1.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>TG</span>Terno de Grupo
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="qg">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-2.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>QG</span>Quadra de Grupo
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="qg5">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-3.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>QG5</span>Quina de Grupo
+                                        </p>
+                                    </div>
+                                    <div class='swiper-slide item-jogar-list' data-type="pas">
+                                        <img class='item-img' style="background-image: url('/website/assets/images/modalidades/img-list-aprenda-4.jpg')">
+                                        </img>
+                                        <p class='item-nome'>
+                                            <span>PAS</span>Passe
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <!-- If we need navigation buttons -->
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--JOGO DEZENA COMBINADA-->
+            <div class="container-fluid no-gutters">
+                <div class="row container-game">
+                    <div class='jogo col-lg-8'>
+
+
+
+                    </div>
+
+                    <div class='col-lg-4'>
+                        <div class='item-jogar'>
+                            <div class='title-jogar'><span class=''>3</span> Digite o valor da sua aposta</div>
+                            <div class="form-group mb-12 d-flex align-items-center mt-3">
+                                <div class="toggle-btn">
+                                    <input type="checkbox" class="cb-value" name='dividir' value="dividir" id="dividir" />
+                                    <span class="round-btn"></span>
+                                </div>
+                                <label class="form-check-label" for="dividir">
+                                    Dividir para todos Jogos
+                                </label>
+                            </div>
+                            <input type='tel' value='1,00' class='input-jogo input-valor-jogo' name='valor-jogo' autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false" />
+
+                            <div class='text-center'>
+
+                                <p class='aposta-total'>Total da aposta <span class="aposta-total"> R$ 0,00</span>
+                                </p>
+
+                                <p class='saldo-futuro'>
+                                    Saldo futuro: <span class="saldo-futuro">R$ 0,00</span>
+                                </p>
+
+                                <p class='aposta-minima'>*aposta miníma R$<span class="aposta-minima">1,00</span>
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid no-gutters">
+                <div class="row">
+                    <div class='col-lg-8'>
+                        <div class='item-jogar'>
+                            <div class='title-jogar'><span class=''>4</span> Escolha os horários e Sorteios da sua aposta
+                            </div>
+                            <div class='horario-title'>horários</div>
+                            <div class="form-inline content-horarios">
+                            </div>
+
+
+                            <div class="mostrar-sorteio">
+                                <div class='horario-title'>sorteios</div>
+                                <div class="form-inline row content-sorteios">
+                                </div>
+                            </div>
+
+
+                            <div class="mais-jogos">
+                                <div class='horario-title'>mais jogos</div>
+                                <div class="form-inline content-mais-jogos">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class='col-lg-4'>
+                        <div class='item-jogar'>
+                            <div class='title-jogar'><span class=''>5</span> finalizar sua aposta</div>
+
+
+                            <button class='btn btn-success btn-finalizar-jogo' id="btn-finalizar-jogo" type="button" onclick="realizar_jogo();">FINALIZAR</button>
+                            <div class="title-jogar text-center">confira sua aposta</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </aside>
+    </div>
+
+    <!--MODAL DO JOGO-->
+    <div class="modal fade" id="modal_jogo" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class='modal-header'>
+                    <h2 class='modal-title title-jogo' id="modalLabel">Jogo Realizado com Sucesso!</h2>
+                    <div class='description-jogo'>Jogo realizado para o sorteio do dia <span class="show-datajogo"></span> no horário
+                        <span class="show-horario"></span>. Fique atento ao resultado.
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                    <div class="d-flex justify-content-evenly">
+
+                        <div class='col-lg-6'>
+                            <div class='resumo-jogo'>RESUMO</div>
+                            <div class='description-jogo-jogado'>
+                                <b>Tipo de Jogo:</b><br />
+                                <span class="tipo-de-jogo"></span><br /><br />
+
+                                <b>Jogos:</b><br />
+                                <span class="jogos-apostados"></span><br /><br />
+
+                                <b>Horário:</b><br />
+                                <span class="horarios-selecionados"></span><br /><br />
+
+                                <b>Sorteios:</b><br />
+                                <span class="sorteios-selecionados"></span><br /><br />
+
+                                <b>Valor da aposta:</b><br /><span class="valor-aposta"></span>
+                            </div>
+
+                        </div>
+                        <div class='col-lg-6 d-flex justify-content-center align-items-center flex-column'>
+                            <div class='resumo-jogo'>POULE</div>
+                            <blockquote class="poule">
+                                <p>Bicho Premiado</p>
+                                <hr />
+                                <p class="corre-em"></p>
+                                <hr />
+                                <p class="usuario"></p>
+                                <p class="data-realizada-aposta"></p>
+                                <hr />
+                                <b>Tipo de Jogo:</b>
+                                <p class="tipo-de-jogo"></p>
+                                <b>Sorteios:</b>
+                                <p class="sorteios-selecionados"></p>
+                                <b>Jogos:</b>
+                                <p class="jogos-apostados"></p>
+                                <b>Loterias:</b>
+                                <p class="horarios-selecionados"></p>
+                                <hr />
+                                <p><b>TOTAL: </b><span class="valor-aposta"></span></p>
+                                <hr />
+                                <p>Boa sorte!</p>
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- <button type="button" class="btn btn-primary" style="margin: 20px 0 0 20px" id="imprimir-comprovante" onclick="imprimir_comprovante();">Imprimir
+                                comprovante</button>
+                            <input type="hidden" id="barcode_img" value="" />
+                            <input type="hidden" id="data_jogo" value="" />
+                            <input type="hidden" id="barcode" value="" /> -->
+
+                    <div class='modal-footer'>
+                        Boa Sorte!
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="assets/js/ajax.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/website/assets/js/main.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js" integrity="sha512-1IpxmBdyZx3okPiZ14mzw6+pOGa690uDmcdjqvT310Kwv3NRcjvL/aOtoSprEyvkDdAb7ZtM2um6KrLqLOY97w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // jQuery("#modal_jogo").modal("show");
+        $("#lateral_menu").load("/slim/src/files/lateral_menu.html");
+        $("#header").load("/slim/src/files/header-teste.html");
+        $("#footer").load("/slim/src/files/footer.html");
+        $(window).on("load", function() {
+            $('.wrapper').css('display', 'block');
+            $(".loading-screen").fadeOut(100, function() {
+                $('body').css('overflow', 'visible');
+            });
+        });
+
+        var pouleModal = new bootstrap.Modal(document.getElementById('modal_jogo'), {
+            keyboard: false,
+            backdrop: 'static'
+        })
+
+        var totalSelectAnimal = 0;
+        var numbersAnimals = [];
+        var typeModality = 0;
+        var numbers = [];
+        var total_bet = 0;
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        getLotteries()
+
+        function getLotteries() {
+            ajaxControl({
+                type: "GET",
+                url: "game/info/" + 'M',
+                success: function(response) {
+                    let data = JSON.parse(response)
+                    let horarios = ""
+
+                    let lotteries = data[0].reduce((r, a) => {
+                        r[a.grupo_desc] = [...r[a.grupo_desc] || [], a];
+                        return r;
+                    }, {})
+                    Object.keys(lotteries).map(function(elem, index) {
+
+                        let opt = ""
+                        lotteries[elem].forEach((element, index2) => {
+                            let first = index2 + index
+                            opt += `
+                            <div class="form-group mb-2 d-flex align-items-center col-6">
+                                        <div class="toggle-btn ${first ? '' : 'active'}">
+                                            <input type="checkbox" class="cb-value" data-grupo="${element.grupo}" name="horario[]" value="${element.sigla}" id="${element.loteria_id}"
+                                            ${first ? '' : 'checked'} />
+                                            <span class="round-btn"></span>
+                                        </div>
+                                        <label class="form-check-label" for="${element.loteria_id}">
+                                            ${element.descricao.replace('-', ' ')}
+                                        </label>
+                                    </div>
+
+                            `
+                        })
+
+                        horarios += `<div class="box-horario ${index ? '' : 'selected'}" data-grupo="${lotteries[elem][0].grupo}">
+                            <p class="title-lottery">${elem}</p>
+                                <div>
+                                    ${opt}
+                                </div> 
+                            </div> 
+                            
+                            `
+
+                    })
+                    $(".content-horarios").html(horarios)
+                }
+            })
+        }
+
+
+        var statesModality = {
+            'g': {
+                'name': 'Grupo',
+                'type': 'animal',
+                'min': 1,
+                'more': [],
+                'separator': [],
+                'sigla': 'g',
+                'placing': ['1', '1_5', '1_6', '1_7', '2', '3', '4', '5'],
+                'placingName': ['1º', '1º ao 5º', '1º ao 6º', '1º ao 7º', '2º', '3º', '4º', '5º']
+            },
+            'dg': {
+                'name': 'Dupla de Grupo',
+                'type': 'animal',
+                'min': 2,
+                'more': [],
+                'separator': [],
+                'sigla': 'dg',
+                'placing': ['1_5', '1_2', '2_3', '3_4', '4_5', ],
+                'placingName': ['1º ao 5º', '1º ao 2º', '2º ao 3º', '3º ao 4º', '4º ao 5º']
+            },
+            'pas': {
+                'name': 'Passe',
+                'type': 'animal',
+                'min': 2,
+                'more': [],
+                'separator': [],
+                'additional': 'pvv',
+                'sigla': 'pas',
+                'placing': ['1_5'],
+                'placingName': ['1º ao 5º']
+            },
+            'tg': {
+                'name': 'Terno de Grupo',
+                'type': 'animal',
+                'min': 3,
+                'more': [],
+                'separator': [],
+                'sigla': 'tg',
+                'placing': ['1_5', '1_3', '2_4', '3_5', ],
+                'placingName': ['1º ao 5º', '1º ao 3º', '2º ao 4º', '3º ao 5º']
+
+            },
+            'qg': {
+                'name': 'Quadra de Grupo',
+                'type': 'animal',
+                'min': 4,
+                'more': [],
+                'separator': [],
+                'sigla': 'qg',
+                'placing': ['1_4', '1_5'],
+                'placingName': ['1º ao 4º', '1º ao 5º']
+            },
+            'qg5': {
+                'name': 'Quina de Grupo',
+                'type': 'animal',
+                'min': 5,
+                'more': [],
+                'separator': [],
+                'sigla': 'qg5',
+                'placing': ['1_5'],
+                'placingName': ['1º ao 5º']
+            },
+            'dz': {
+                'name': 'Dezena',
+                'type': 'number',
+                'min': 2,
+                'more': [],
+                'separator': [],
+                'sigla': 'dz',
+                'placing': ['1', '1_5', '1_6', '1_7', '2', '3', '4', '5'],
+                'placingName': ['1º', '1º ao 5º', '1º ao 6º', '1º ao 7º', '2º', '3º', '4º', '5º']
+            },
+            'u': {
+                'name': 'Unidade',
+                'type': 'number',
+                'min': 1,
+                'more': [],
+                'separator': [],
+                'sigla': 'u',
+                'placing': ['1', '1_5', '1_6', '1_7', '2', '3', '4', '5'],
+                'placingName': ['1º', '1º ao 5º', '1º ao 6º', '1º ao 7º', '2º', '3º', '4º', '5º']
+            },
+            'ddz': {
+                'name': 'Duque de Dezena',
+                'type': 'number',
+                'min': 2,
+                'more': [],
+                'separator': [',', 2],
+                'sigla': 'ddz',
+                'placing': ['1_5'],
+                'placingName': ['1º ao 5º']
+            },
+            'tdz': {
+                'name': 'Terno de Dezena',
+                'type': 'number',
+                'min': 2,
+                'more': [],
+                'separator': [',', 3],
+                'sigla': 'tdz',
+                'placing': ['1_5'],
+                'placingName': ['1º ao 5º']
+            },
+            'c': {
+                'name': 'Centena',
+                'type': 'number',
+                'min': 3,
+                'more': ['dz'],
+                'separator': [],
+                'sigla': 'c',
+                'placing': ['1', '1_5', '1_6', '1_7', '2', '3', '4', '5'],
+                'placingName': ['1º', '1º ao 5º', '1º ao 6º', '1º ao 7º', '2º', '3º', '4º', '5º']
+            },
+            'm': {
+                'name': 'Milhar',
+                'type': 'number',
+                'min': 4,
+                'more': ['c', 'dz'],
+                'separator': [],
+                'sigla': 'm',
+                'placing': ['1', '1_5', '1_6', '2', '3', '4', '5'],
+                'placingName': ['1º', '1º ao 5º', '1º ao 6º', '', '2º', '3º', '4º', '5º']
+            },
+            'mc': {
+                'name': 'Milhar Centena',
+                'type': 'number',
+                'min': 4,
+                'more': [],
+                'separator': [],
+                'sigla': 'mc',
+                'placing': ['1', '1_5'],
+                'placingName': ['1º', '1º ao 5º']
+            },
+            'cc': {
+                'name': 'Centena Combinada',
+                'type': 'number',
+                'min': 3,
+                'more': [],
+                'separator': [],
+                'sigla': 'cc',
+                'placing': ['1', '1_5'],
+                'placingName': ['1º', '1º ao 5º']
+            },
+            'dzc': {
+                'name': 'Dezena Combinada',
+                'type': 'number',
+                'min': 2,
+                'more': [],
+                'separator': [],
+                'sigla': 'dzc',
+                'placing': ['1', '1_5'],
+                'placingName': ['1º', '1º ao 5º']
+            },
+            'mm': {
+                'name': 'Milhar Combinada',
+                'type': 'number',
+                'min': 4,
+                'more': [],
+                'separator': [],
+                'sigla': 'mm',
+                'placing': ['1', '1_5'],
+                'placingName': ['1º', '1º ao 5º']
+            },
+            // 'mcc': {
+            //     'name': 'Milhar Centena Combinada',
+            //     'type': 'number',
+            //     'min': 4,
+            //     'more': [],
+            //     'separator': [],
+            //     'sigla': 'mcc'
+            // },
+        }
+
+
+        var bichoObj = {
+            1: {
+                name: "Avestruz",
+                sequencial: ['01', '02', '03', '04']
+            },
+            2: {
+                name: "Águia",
+                sequencial: ['05', '06', '07', '08']
+            },
+            3: {
+                name: "Burro",
+                sequencial: ['09', '10', '11', '12']
+            },
+            4: {
+                name: "Borboleta",
+                sequencial: ['13', '14', '15', '16']
+            },
+            5: {
+                name: "Cachorro",
+                sequencial: ['17', '18', '19', '20']
+            },
+            6: {
+                name: "Cabra",
+                sequencial: ['21', '22', '23', '24']
+            },
+            7: {
+                name: "Carneiro",
+                sequencial: ['25', '26', '27', '28']
+            },
+            8: {
+                name: "Camelo",
+                sequencial: ['29', '30', '31', '32']
+            },
+            9: {
+                name: "Cobra",
+                sequencial: ['33', '34', '35', '36']
+            },
+            10: {
+                name: "Coelho",
+                sequencial: ['37', '38', '39', '40']
+            },
+            11: {
+                name: "Cavalo",
+                sequencial: ['41', '42', '43', '44']
+            },
+            12: {
+                name: "Elefante",
+                sequencial: ['45', '46', '47', '48']
+            },
+            13: {
+                name: "Galo",
+                sequencial: ['49', '50', '51', '52']
+            },
+            14: {
+                name: "Gato",
+                sequencial: ['53', '54', '55', '56']
+            },
+            15: {
+                name: "Jacaré",
+                sequencial: ['57', '58', '59', '60']
+            },
+            16: {
+                name: "Leão",
+                sequencial: ['61', '62', '63', '64']
+            },
+            17: {
+                name: "Macaco",
+                sequencial: ['65', '66', '67', '68']
+            },
+            18: {
+                name: "Porco",
+                sequencial: ['69', '70', '71', '72']
+            },
+            19: {
+                name: "Pavão",
+                sequencial: ['73', '74', '75', '76']
+            },
+            20: {
+                name: "Peru",
+                sequencial: ['77', '78', '79', '80']
+            },
+            21: {
+                name: "Touro",
+                sequencial: ['81', '82', '83', '84']
+            },
+            22: {
+                name: "Tigre",
+                sequencial: ['85', '86', '87', '88']
+            },
+            23: {
+                name: "Urso",
+                sequencial: ['89', '90', '91', '92']
+            },
+            24: {
+                name: "Veado",
+                sequencial: ['93', '94', '95', '96']
+            },
+            25: {
+                name: "Vaca",
+                sequencial: ['97', '98', '99', '00']
+            }
+        }
+        jQuery(document).ready(function($) {
+            var swiper = new Swiper(".mySwiper", {
+                effect: 'coverflow',
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                grabCursor: true,
+                slideToClickedSlide: true,
+                initialSlide: typeModality,
+                clickable: true,
+                on: {
+                    init: function() {
+                        muda_jogo(typeModality);
+                        $('.swiper-slide-active').addClass('item-jogar-selected')
+                    },
+                },
+                coverflowEffect: {
+                    rotate: 10,
+                    stretch: 0,
+                    depth: 180,
+                    modifier: 1,
+                    slideShadows: false,
+                },
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+
+            swiper.on('realIndexChange', function(e) {
+                setTimeout(() => {
+                    typeModality = swiper.realIndex
+                    $('.item-jogar-list').removeClass('item-jogar-selected')
+                    $('.swiper-slide-active').addClass('item-jogar-selected')
+                    muda_jogo(typeModality);
+                }, 0);
+            });
+
+
+            /**
+             * Excluir aposta (NAO FINALIZADO)
+             */
+
+            $('.jogo').on('click', '.del-bet', function() {
+
+                Swal.fire({
+                    title: 'Deseja deletar esta aposta?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: `Sim, Deletar!`,
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true,
+
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        let indexJogo = numbers.indexOf($(this).children('span').text())
+                        numbers.splice(indexJogo, 1)
+                        $(this).remove();
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Aposta deletada com sucesso'
+                        })
+                    }
+                    total_aposta()
+                })
+            });
+
+            /**
+             * Aplica mascara nos campos de jogo (milhar, dezena, centena...)
+             */
+            $("input[type='tel'][name='valor-jogo']").inputmask({
+                'alias': 'currency',
+                'positionCaretOnClick': "radixFocus",
+                'numericInput': true,
+                '_radixDance': true,
+                'groupSeparator': '',
+                'autoGroup': true,
+                'digits': 2,
+                'radixPoint': ",",
+                'digitsOptional': false,
+                'allowMinus': false,
+                'prefix': '',
+                'rightAlign': false,
+
+            });
+
+            $(document).on("focus", "input[type='tel'][name='bet_numbers[]']", function() {
+                $(this).mask("0");
+            });
+
+            /**
+             * Detecta quando preencher um campo
+             */
+            jQuery(".jogo").on("keyup", "input[name='bet_numbers[]']", function(e) {
+                if (this.value.length === 1) {
+                    var break_loop = false;
+                    let type = $('.swiper-slide-active').attr('data-type');
+
+                    const full = Array.from($('input[name="bet_numbers[]"]')).filter(input => input.value === "");
+                    if (full.length === 0) {
+                        var valBet = $('input[name="bet_numbers[]"]').map(function() {
+                            return this.value;
+                        }).get();
+
+
+                        if (numbers.includes(valBet.join(''))) {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Jogo Repetido'
+                            })
+                            return
+                        }
+                        if (statesModality[type].separator !== null) {
+                            let separator = statesModality[type].separator[0];
+                            let qntSeparator = statesModality[type].min;
+                            let minRequiredModality = statesModality[type].separator[1];
+
+                            for (let i = qntSeparator; i < (qntSeparator * minRequiredModality); i += qntSeparator) {
+                                valBet.splice(i, 0, separator)
+                                i++
+                            }
+                        }
+                        let jogo = valBet.join('')
+
+                        $('.bets-placed').append(`
+                <div class="del-bet">
+                <img src="/website/assets/images/icon-jogar.png" alt='Icone' style="height: 50px;" />
+                <span style="margin-left: 10px;">${jogo}</span>
+                </div>
+                `)
+
+                        numbers.push(jogo)
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Jogo Inserido'
+                        })
+                        $('input[name="bet_numbers[]"]').val('')
+                        total_aposta();
+                    }
+                    jQuery('input[name="bet_numbers[]"]').each(function(index, item) {
+
+                        if (jQuery(item).val() === "" && !break_loop) {
+                            jQuery(item).focus();
+                            break_loop = true;
+                        }
+                    });
+                    //jQuery(':focus').parent().nextAll("." + parentClass[0]).eq(0).children("input.input-jogo").focus();
+                }
+
+            });
+
+            $(".content-horarios").on("change", "input[name='horario[]']", function(e) {
+                let grupo = $(this).attr('data-grupo')
+                let checked = $(`input[name='horario[]'][data-grupo='${grupo}']:checked`).length;
+                if (!checked) {
+                    $(`.box-horario[data-grupo='${grupo}']`).removeClass("selected")
+                } else {
+                    $(`.box-horario[data-grupo='${grupo}']`).addClass("selected")
+                }
+                total_aposta()
+            })
+            $(".mostrar-sorteio").on("change", "input[name='sorteio[]']", function(e) {
+                total_aposta()
+            })
+            $(".content-mais-jogos").on("change", "input[name='mais_jogos[]']", function(e) {
+                total_aposta()
+            })
+            $(document).on("change", "input[name='dividir']", function(e) {
+                total_aposta()
+            })
+
+            $(".input-valor-jogo").on("input", function() {
+                total_aposta()
+            });
+
+            $(".input-valor-jogo").on("blur", function() {
+                if (parseInt($(this).val()) < 1) {
+                    $(this).val('1,00')
+                }
+            });
+
+            /**
+             * Seleciona todos os sorteios
+             */
+            jQuery("#sorteio_todos").change(function() {
+                if (this.checked) {
+                    jQuery("input[name='sorteio[]']").each(function(index, item) {
+                        jQuery(item).not(":checked").trigger("click");
+                    });
+                } else {
+                    jQuery("input[name='sorteio[]']").each(function(index, item) {
+                        if (jQuery(item).is(":checked")) {
+                            jQuery(item).trigger("click");
+                        }
+                    });
+                }
+            });
+
+        });
+
+
+        function converteMoedaFloat(valor) {
+
+            if (valor === "") {
+                valor = 0;
+            } else {
+                valor = valor.split(".").join("")
+                valor = valor.replace(",", ".");
+                valor = parseFloat(valor);
+            }
+            return valor;
+
+        }
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                $(obj).text(`${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(progress * (end - start) + start))}`);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        /**
+         * Muda o tipo de jogo na tela de jogar
+         * @returns {undefined}
+         */
+
+        function total_aposta() {
+            const qntHorario = $("input[name='horario[]']:checked").length;
+            const qntSorteio = $("input[name='sorteio[]']:checked").length;
+            let qntJogos = $(".del-bet").length;
+            const qntMaisJogos = $("input[name='mais_jogos[]']:checked").length + 1;
+            const valorAposta = converteMoedaFloat($('.input-valor-jogo').val().replace(/R\$\s/g, ""));
+            const saldoAtual = converteMoedaFloat($('.mostra-saldo-real').html().replace(/R\$\s/g, ""));
+            const all = $("input[name='dividir']:checked").length
+
+            if (qntJogos === 0) qntJogos = 1;
+
+            let totalAposta = valorAposta * qntJogos;
+
+            let startTotalBets = converteMoedaFloat($("span.aposta-total").text().replace(/R\$\s/g, ""));
+
+            let startTotalBalance = converteMoedaFloat($("span.saldo-futuro").text().replace(/R\$\s/g, ""));
+
+            if (qntHorario > 0) totalAposta = totalAposta * qntHorario
+            if (qntSorteio > 0) totalAposta = totalAposta * qntSorteio
+            if (qntMaisJogos > 0) totalAposta = totalAposta * qntMaisJogos
+            const totalJogos = (qntHorario * qntSorteio * qntJogos) * qntMaisJogos
+
+            if (all) {
+                totalAposta = totalAposta / qntJogos
+            }
+
+            total_bet = totalAposta
+            animateValue($("span.aposta-total"), startTotalBets, totalAposta, 500);
+            animateValue($("span.saldo-futuro"), startTotalBalance, (saldoAtual - totalAposta), 500);
+        }
+
+
+        /**
+         * Muda o tipo de jogo na tela de jogar
+         * @returns {Boolean}
+         */
+        function muda_jogo(el) {
+            numbers = [];
+            let type = $('.swiper-slide-active').attr('data-type');
+            let rowJogos = '';
+            let rowSorteios = '';
+            let rowMaisJogos = '';
+
+            $('.mostrar-pvv').remove()
+
+            if (statesModality[type].type === 'number') {
+
+                rowJogos = `<div class='item-jogar tipos-de-jogos'>
+        <div class='title-jogar'><span class=''>2</span> Digite o número da sua aposta</div><div class='add-jogo mt-4'>`
+                if (statesModality[type].separator != "") {
+                    for (let i = 0; statesModality[type].separator[1] > i; i++) {
+                        if (i) rowJogos += `<div class="separator">${statesModality[type].separator[0]}</div>`;
+
+                        for (let i = 0; i < statesModality[type].min; i++) {
+                            rowJogos += `
+                    <div>
+                    <input type='tel' class='input-jogo' name='bet_numbers[]' />
+                    </div>`
+                        }
+                    }
+                    rowJogos += `</div> <div class="bets-placed" style="display: flex;padding: 0 5px;;flex-flow: wrap;justify-content: center;"></div></div>`;
+                    $('.jogo').html(`${rowJogos}`)
+
+                } else {
+
+                    for (let i = 0; i < statesModality[type].min; i++) {
+                        rowJogos += `
+                <div>
+                <input type='tel' value='' class='input-jogo' name='bet_numbers[]' />
+                </div>`
+                    }
+                    rowJogos += `</div> <div class="bets-placed" style="display: flex;padding: 0 5px;;flex-flow: wrap;justify-content: center;"></div></div>`
+
+                    $('.jogo').html(`${rowJogos}`)
+                }
+            } else { // ROW ANIMALS
+
+                if (type === 'pas') {
+                    rowPvv = `<div class="mostrar-pvv">
+                                    <div class="horario-title">Passe Vai e Vem</div>
+                                    <div class="form-inline row content-pvv">
+                                        <div class="form-group mb-2 d-flex align-items-center col-6">
+                                            <div class="toggle-btn">
+                                                <input type="checkbox" class="cb-value" name="pvv" value="1" id="pvv">
+                                                <span class="round-btn"></span>
+                                            </div>
+                                            <label class="form-check-label" for="pvv">
+                                                Virar passes? (PVV)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>`
+                    $('.mais-jogos').after(rowPvv)
+                }
+
+                rowJogos += ` <div class='jogo-${type} col-lg-12'>
+                                <div class='item-jogar tipos-de-jogos'>
+                                    <div class='title-jogar'>
+                                        <span class=''>2</span> escolha 1 ou mais grupos da sua aposta
+                                    </div>
+                                    <div class='col-12' style="flex-wrap: wrap;display: flex; justify-content:center">`;
+                for (let i = 1; i <= 25; i++) {
+                    rowJogos += ` <div class="content-select-bicho">
+                                    <div class="img-select-bicho bicho-${i}" data-selected-time='0' onclick="seleciona_bicho(${i}); return false;">
+                                    <img src="/website/assets/images/texturas/img-bicho-${i}.png" />
+                                    <p class="number">${i}</p>
+                                    <p class="title">${bichoObj[i].name}</p>
+                                <div class="content-sequencial">
+                ${bichoObj[i].sequencial.map(function (seq) {
+                        return `<p class="sequencial">${seq}</p>`
+                    }).join('')
+                        }
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                }
+
+                rowJogos += `<div class="bets-placed" style="display: flex;padding: 0 5px;;flex-flow: wrap;justify-content: center;"></div></div>`
+
+                $('.jogo').html(`${rowJogos}`)
+            }
+
+            for (let i = 0; i < statesModality[type].placing.length; i++) {
+                if (statesModality[type].placingName[i] !== "") {
+                    rowSorteios += `<div class="form-group mb-2 d-flex align-items-center col-6">
+                                    <div class="toggle-btn ${!i && 'active'}">
+                                        <input type="checkbox" ${!i && 'checked="checked"'} class="cb-value" name='sorteio[]' value="${statesModality[type].placingName[i]}" id="sorteio_${statesModality[type].placing[i]}" />
+                                        <span class="round-btn"></span>
+                                    </div>
+                                    <label class="form-check-label" for="sorteio_${statesModality[type].placing[i]}">
+                                    ${statesModality[type].placingName[i]}
+                                    </label>
+                                </div>`;
+                }
+            }
+            $('.mostrar-sorteio .content-sorteios').html(`${rowSorteios}`)
+            if (statesModality[type].more.length) {
+                for (let i = 0; i < statesModality[type].more.length; i++) {
+                    rowMaisJogos += ` <div class="form-group mb-12 d-flex align-items-center">
+                                            <div class="toggle-btn">
+                                                <input type="checkbox" class="cb-value" name='mais_jogos[]' value="${statesModality[statesModality[type].more[i]].sigla}" id="mais_jogos_${statesModality[statesModality[type].more[i]].sigla}" />
+                                                <span class="round-btn"></span>
+                                            </div>
+                                            <label class="form-check-label" for="mais_jogos_${statesModality[statesModality[type].more[i]].sigla}">
+                                                Jogar também na ${statesModality[statesModality[type].more[i]].name}
+                                            </label>
+                                        </div>`;
+                }
+                $('.mais-jogos .content-mais-jogos').html(`${rowMaisJogos}`)
+                $('.mais-jogos').show()
+            } else {
+                $('.mais-jogos .content-mais-jogos').html(``)
+                $('.mais-jogos').hide()
+            }
+
+
+            //uncheck todos os jogos a apostar
+            $("[name='mais_jogos[]']:checked:visible").each(function () {
+                this.checked = false;
+                $(this).parent().removeClass('active')
+            });
+
+
+            return false;
+        }
+
+
+        function clean_fields_animals() {
+            //Zera a variavel global que controla quantidade de animal selecioando
+            totalSelectAnimal = 0;
+
+            //Zera todas quantidades de animais
+            $('.img-select-bicho').attr('data-selected-time', 0)
+
+            //remove todos os campos extras
+            $(".btn-bicho-selected").remove();
+            $(".btn-remove-bicho-selected").remove();
+            $(".img-select-bicho").removeClass('active')
+        }
+
+        /**
+         * Remove bicho selecionado
+         * @param {type} bicho
+         * @returns {undefined}
+         */
+        function remove_bicho(bicho, event) {
+            event.stopPropagation();
+
+            //diminui o numero total de animal selecionado
+            totalSelectAnimal--;
+
+            let elem = $(".img-select-bicho.bicho-" + bicho);
+            let qntSelectedAnimal = Number(elem.attr('data-selected-time') - 1)
+            let index = numbersAnimals.indexOf(bicho);
+
+            //remove o numero
+            if (index > -1) {
+                numbersAnimals.splice(index, 1);
+            }
+
+            // Altera a quantidade de vezes que o numero foi selecionado
+            elem.attr('data-selected-time', qntSelectedAnimal)
+
+            // verifica se existe só 1 animal selecionado, caso for mais ele só altera a quantidade
+            if (qntSelectedAnimal === 0) {
+                elem.removeClass('active')
+                elem.children('.btn-bicho-selected').remove()
+                elem.children('.btn-remove-bicho-selected').remove()
+            } else {
+                elem.children('.btn-bicho-selected').html(qntSelectedAnimal)
+            }
+        }
+
+        /**
+         * Faz o jogo com os dados preenchidos
+         * 
+         * @returns {undefined}
+         */
+
+        function realizar_jogo() {
+            var tipo_jogo = $('.swiper-slide-active').attr('data-type');
+            var error = false;
+
+            //verifica se foi inserido jogo
+            if (!$.trim($(".bets-placed").html())) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Digite os números da sua aposta.',
+                    timer: 3000,
+                    timerProgressBar: true,
+                })
+                return false;
+            }
+
+            //verifica se foi selecionado horarios
+            if (!jQuery("input[name='horario[]']:checked").val()) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecione o horário do sorteio.',
+                    timer: 3000,
+                    timerProgressBar: true,
+                })
+                return false;
+            }
+
+            //verifica se foi selecionado colocação
+            if (!jQuery("input[name='sorteio[]']:checked").val()) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Selecione a colocação da aposta.',
+                    timer: 3000,
+                    timerProgressBar: true,
+                })
+                return false;
+            }
+
+
+
+            // moregame     = Sigla dos jogos adicionais
+            // lottery      = id da loteria (PTM, PTN, FED)
+            // numbers      = numeros dos jogos feitos
+            // value:       = valor da aposta com o index da colocação de acordo com backend Ex: {5: '1.00'}
+            // valueOptions = Todos(all) ou Cada(each) com o index da colocação de acordo com backend  2: "each", 3: "all"
+
+            //monta form e envia
+            var tipodejogo = statesModality[tipo_jogo];
+            var value_bet = $("input[name='valor-jogo']").val().replace(",", '.')
+            var moregame = [];
+            var lottery = [];
+            var all = $("input[name='dividir']:checked").length ? 'all' : 'each'
+            var valueOptions = [];
+            var value = [];
+            var data = { numbers: {}, valueOptions: {}, lottery: {}, moregame: {}, game: tipodejogo, value: { value: value, names: [] } };
+
+            var valor = parseFloat();
+
+            //verifica se é pvv
+            if ($("input[name='pvv']:checked").length) {
+                Object.assign(data, { "pvv": 1 });
+            }
+
+
+            //recupera horarios
+            jQuery("input[name='horario[]']:checked").each(function () {
+                lottery.push(jQuery(this).attr('id'));
+            });
+
+            //recupera sorteios
+            jQuery("input[name='sorteio[]']:checked").each(function () {
+                data.value.names.push(jQuery(this).val());
+                index = tipodejogo.placingName.indexOf($(this).val())
+                value[index] = value_bet
+                valueOptions[index] = all
+            });
+
+            //recupera mais jogos
+            jQuery("input[name='mais_jogos[]']:checked").each(function () {
+                moregame.push(statesModality[$(this).val().toLowerCase()]);
+            });
+
+            data.numbers = numbers
+            data.lottery = lottery
+            data.valueOptions = valueOptions
+            data.moregame = moregame
+
+            //envia jogo
+            registrar_jogo(data);
+        }
+
+        /**
+         * Envia os dados do jogo para registrar
+         * @param {string} tipodejogo
+         * @param {array} jogos
+         * @param {array} horario
+         * @param {array} sorteio
+         * @param {float} valor
+         * @param {int} saldodebito
+         * @param {array} maisjogos
+         * @returns 
+         */
+
+        function registrar_jogo(data) {
+            $('#btn-finalizar-jogo').prop('disabled', true)
+            $(".loading-screen").fadeIn(0);
+            moment.locale('pt-br');
+            let now = moment()
+            var nameGame = data.game.name
+            if (data.pvv) {
+                nameGame = 'Passe Vai e Vem'
+            }
+            var textHorario = "";
+            var textHorarioShow = "";
+
+            $(".show-datajogo").html(now.format("DD/MM/YYYY"))
+
+            $(".tipo-de-jogo").html("")
+
+            if (data.moregame.length > 0) {
+                let separator = ""
+                let row = "";
+                row = nameGame + "&nbsp <strong>-</strong> &nbsp";
+                data.moregame.forEach(function (value, index) {
+                    row += (separator + value.name);
+                    separator = "&nbsp <strong>-</strong> &nbsp"
+                });
+                $(".tipo-de-jogo").html(row);
+            } else {
+                $(".tipo-de-jogo").html(`${nameGame}`)
+            }
+
+            //mostra sorteios
+            jQuery(".sorteios-selecionados").html("");
+            if (data.value.names.length > 0) {
+                let separator = ""
+                let row = "";
+                data.value.names.forEach(function (value, index) {
+                    value = value.split("/").join(' ao ')
+                    row += (separator + "(" + value + ")");
+                    separator = "&nbsp <strong>-</strong> &nbsp"
+                });
+                $(".sorteios-selecionados").html(row);
+            } else {
+                jQuery(".sorteios-selecionados").html("-");
+            }
+
+            let jogos = "";
+
+            let separator = ""
+            data.numbers.map((jogo) => {
+                jogos += separator + "(" + jogo + ")";
+                separator = "&nbsp <strong>-</strong> &nbsp"
+            })
+
+            //mostra jogos
+            jQuery(".jogos-apostados").html(jogos);
+
+            var numbers = [];
+            var game = data.game.sigla.toUpperCase();
+            var moregames = [];
+
+            data.numbers.map((number) => {
+                numbers.push(number.toString())
+            })
+
+            data.moregame.map((moregame) => {
+                moregames.push(moregame.sigla.toUpperCase())
+            })
+
+            var dataObj = {
+                ...data,
+                lottery: data.lottery,
+                value: data.value.value,
+                valueOptions: data.valueOptions,
+                game: game,
+                allgames: moregames,
+                numbers: numbers,
+            }
+        
+            $('.corre-em').html(`Corre em ${now.format("DD/MM/YYYY")}`)
+            $('.data-realizada-aposta').html(now.format("ddd. DD/MM/YYYY hh:mm:ss"))
+            $('.poule .usuario').html($('.container-profile .user-list-name').text())
+
+            $.ajax({
+                type: "POST",
+                url: "game/" + game,
+                data: dataObj,
+                success: function (response) {
+                    let data = JSON.parse(response)
+                    let row = ""
+                    let separator = ""
+
+                    //mostra valor da aposta
+                    $("span.valor-aposta").html(new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    }).format(data.total));
+
+                    //mostra loterias jogadas
+                    data.loteria.map((elem, index) => {
+                        row += (separator + "(" + elem.replace('-', ' ') + "h)");
+                        separator = "&nbsp <strong>-</strong> &nbsp"
+                    })
+                    $(".horarios-selecionados").html(row);
+                    $(".show-horario").html(row);
+                    //mostra alerta de erro
+                    if (data[0].error) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: `${data[0].message}`
+                        })
+                    } else {
+                        pouleModal.show()
+                        clean_fields()
+                        getBets()
+                    }
+                    $('#btn-finalizar-jogo').prop('disabled', false)
+                    $(".loading-screen").fadeOut(100);
+                }
+            });
+
+            //salva imagem do codigo de barras
+            // if (retorno["barcode_img"] !== undefined) {
+            //     jQuery("#barcode_img").val(retorno["barcode_img"]);
+            //     jQuery("#data_jogo").val(retorno["data_ultimo_jogo"]);
+            //     jQuery("#barcode").val(retorno["barcode"]);
+
+            //     //seta dados
+            //     jQuery(".seu-lucro").html(retorno["lucro"]);
+            //     jQuery(".img-codigo-barras").attr("src", "data:image/png;base64," + retorno["barcode_img"]);
+            //     jQuery(".numero-codigo-barras").html(retorno["barcode"]);
+            // }
+
+            //limpa dados do jogo
+            // clean_fields();
+            // } else {
+            //     //mostra modal com erros
+            //     var messages = "<ul>";
+            //     for (var i = 0; i < retorno["messages"].length; i++) {
+            //         messages += "<li>" + retorno["messages"][i] + "</li>";
+            //     }
+            //     messages += "</ul>";
+
+            //     jQuery("#modal_erro .modal-body").html(messages);
+            //     jQuery("#modal_erro").modal("show");
+            // }
+            //     } catch (e) {
+            //         //mostra modal com erro
+            //         jQuery("#modal_erro .modal-body").html("Ocorreu um erro ao registrar Jogo. Verifique seu histórico de jogos, caso seu jogo não esteja lá, tente novamente.");
+            //         jQuery("#modal_erro").modal("show");
+            //     }
+            // }).fail(function() {
+            //     jQuery(".loading").hide();
+
+            //     //mostra modal com erro
+            //     jQuery("#modal_erro .modal-body").html("Ocorreu um erro ao registrar Jogo. Verifique seu histórico de jogos, caso seu jogo não esteja lá, tente novamente.");
+            //     jQuery("#modal_erro").modal("show");
+            // });
+        }
+
+        /**
+         * Limpa todos os campos do jogo
+         * @returns {undefined}
+         */
+        function clean_fields() {
+            numbersAnimals = [];
+            typeModality = 0;
+            numbers = [];
+            total_bet = 0;
+
+            clean_fields_animals()
+
+            $(".toggle-btn").removeClass('active')
+            $(".cb-value").prop('checked', false).removeAttr('checked')
+
+            $('.bets-placed').html('')
+
+            //altera valor minimo da aposta
+            // jQuery("span.aposta-minima").html(1);
+
+            // Deixar o primeiro horário disponivel checado
+            $("input[name='horario[]']").first().parent().addClass('active')
+            $("input[name='horario[]']").first().prop("checked", true);
+
+            // Deixar a primeira colocação disponivel checada
+            $("input[name='sorteio[]']").first().parent().addClass('active')
+            $("input[name='sorteio[]']").first().prop("checked", true);
+
+        }
+
+
+        jQuery(document).ready(function () {
+            $('input[type=radio][name=saldo_debito]').change(function () {
+                if (this.value === '1') {
+                    //mostra campo de cupom
+                    jQuery(".campo-cupom").show();
+                } else if (this.value === '2') {
+                    //esconde campo de cupom
+                    jQuery(".campo-cupom").hide();
+                    jQuery("#codigo-cupom").val("");
+                }
+            });
+        });
+
+        //ao selecionar mais de um tipo de jogo muda o valor minimo de aposta
+        // jQuery(document).ready(function() {
+        //     jQuery("[name='mais_jogos[]']").bind('change', function() {
+        //         //conta quantos tipos de jogos serão jogados
+        //         var quantidade_jogos = 1;
+        //         quantidade_jogos += jQuery("[name='mais_jogos[]']:checked:visible").length;
+
+        //         //altera valor minimo da aposta
+        //         jQuery("span.aposta-minima").html(quantidade_jogos);
+        //     });
+        // });
+
+
+        /**
+         * Imprime comprovante do jogo
+         * 
+         * @param {string} barcode
+         * @returns {Boolean}
+         */
+        function imprimir_comprovante(barcode) {
+            var html = "<h4>Império do Jogo</h4>";
+
+            //recupera data
+            html += jQuery(".description-jogo").html();
+
+            //recupera data
+            html += "<br /><br /><b>Data do jogo:</b><br />" + jQuery("#data_jogo").val();
+
+            //recupera informações do jogo
+            html += "<br /><br />";
+            html += jQuery(".col-lg-6 .description-jogo-jogado").html();
+
+            //insere codigo de barra
+            html += "<br /><br />";
+            html += "<img src='data:image/png;base64," + jQuery("#barcode_img").val() + "' alt='Código de barras' /><br /><div class='espacamento-barcode' style='letter-spacing: 20px;'>" + jQuery("#barcode").val() + '</div>';
+
+            var myWindow = window.open("");
+
+            myWindow.document.write(html);
+
+            myWindow.focus();
+            myWindow.print();
+
+            return false;
+        }
+
+        function seleciona_bicho(bicho) {
+            let elem = $(".img-select-bicho.bicho-" + bicho);
+            let tipo_jogo = $('.swiper-slide-active').attr('data-type');
+            let qntSelectedAnimal = Number(elem.attr('data-selected-time'))
+
+            qntSelectedAnimal++;
+
+            elem.attr('data-selected-time', qntSelectedAnimal)
+
+            if (qntSelectedAnimal === 1) {
+                elem.addClass('active')
+                elem.append("<div class='btn-bicho-selected'>" + qntSelectedAnimal + "</div>");
+                elem.append("<div class='btn-remove-bicho-selected btn-remove-bicho' onclick='remove_bicho(" + bicho + ", event); return false;' style='top: 60%;'><i class='fas fa-minus'></i></div>");
+            } else if (qntSelectedAnimal > 1) {
+                $(`.img-select-bicho.bicho-${bicho} .btn-bicho-selected`).html(`${qntSelectedAnimal}`)
+            }
+
+            numbersAnimals.push(bicho)
+            totalSelectAnimal++
+
+            if (tipo_jogo === 'g' && totalSelectAnimal === 1) {
+                Toast.fire({ icon: 'success', title: 'Jogo Inserido' })
+
+                if (numbersAnimals.length > 1) {
+                    numbersAnimals = [];
+                    clean_fields_animals()
+                    return
+                }
+
+                numbers.push(numbersAnimals)
+
+                total_aposta();
+
+                $('.bets-placed').append(`
+                <div class="del-bet">
+                <img src="/website/assets/images/icon-jogar.png" alt='Icone' style="height: 50px;" />
+                <span style="margin-left: 10px;">${numbersAnimals}</span>
+                </div>
+                `)
+
+                numbersAnimals = [];
+                setTimeout(() => {
+                    clean_fields_animals()
+                }, 150);
+
+            } else if ((tipo_jogo === 'dg' || tipo_jogo === 'pas') && totalSelectAnimal === 2) {
+                Toast.fire({ icon: 'success', title: 'Jogo Inserido' })
+
+                if (numbersAnimals.length > 2) {
+                    numbersAnimals = [];
+                    clean_fields_animals()
+                    return
+                }
+
+                numbers.push(numbersAnimals)
+                total_aposta();
+
+                $('.bets-placed').append(`
+                <div class="del-bet">
+                <img src="/website/assets/images/icon-jogar.png" alt='Icone' style="height: 50px;" />
+                <span style="margin-left: 10px;">${numbersAnimals}</span>
+                </div>
+                `)
+                numbersAnimals = [];
+                setTimeout(() => {
+                    clean_fields_animals()
+                }, 150);
+
+            } else if (tipo_jogo === 'tg' && totalSelectAnimal === 3) {
+                Toast.fire({ icon: 'success', title: 'Jogo Inserido' })
+
+                if (numbersAnimals.length > 3) {
+                    numbersAnimals = [];
+                    clean_fields_animals()
+                    return
+                }
+
+                numbers.push(numbersAnimals)
+
+                total_aposta();
+
+                $('.bets-placed').append(`
+                <div class="del-bet">
+                <img src="/website/assets/images/icon-jogar.png" alt='Icone' style="height: 50px;" />
+                <span style="margin-left: 10px;">${numbersAnimals}</span>
+                </div>
+                `)
+
+                numbersAnimals = [];
+                setTimeout(() => {
+                    clean_fields_animals()
+                }, 150);
+            } else if (tipo_jogo === 'qg' && totalSelectAnimal === 4) {
+                Toast.fire({ icon: 'success', title: 'Jogo Inserido' })
+
+                if (numbersAnimals.length > 4) {
+                    numbersAnimals = [];
+                    clean_fields_animals()
+                    return
+                }
+
+                numbers.push(numbersAnimals)
+
+                total_aposta();
+
+                $('.bets-placed').append(`
+                <div class="del-bet">
+                <img src="/website/assets/images/icon-jogar.png" alt='Icone' style="height: 50px;" />
+                <span style="margin-left: 10px;">${numbersAnimals}</span>
+                </div>
+                `)
+
+                numbersAnimals = [];
+                setTimeout(() => {
+                    clean_fields_animals()
+                }, 150);
+            } else if (tipo_jogo === 'qg5' && totalSelectAnimal === 5) {
+                Toast.fire({ icon: 'success', title: 'Jogo Inserido' })
+
+                if (numbersAnimals.length > 5) {
+                    numbersAnimals = [];
+                    clean_fields_animals()
+                    return
+                }
+
+                numbers.push(numbersAnimals)
+
+                total_aposta();
+
+                $('.bets-placed').append(`
+                <div class="del-bet">
+                <img src="/website/assets/images/icon-jogar.png" alt='Icone' style="height: 50px;" />
+                <span style="margin-left: 10px;">${numbersAnimals}</span>
+                </div>
+                `)
+
+                numbersAnimals = [];
+                setTimeout(() => {
+                    clean_fields_animals()
+                }, 150);
+            }
+        }
+    </script>
+</body>
+
+</html>

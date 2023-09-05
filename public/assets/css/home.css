@@ -1,0 +1,2086 @@
+.message-error.success {
+  background: var(--primary);
+}
+
+.btn-bet {
+  border: 1px solid;
+  background: transparent;
+  padding: 10px 20px;
+  width: 150px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 100px;
+  transition: .25s;
+  margin: 10px;
+  flex: 1;
+  transform: scale(1);
+  white-space: nowrap;
+  border-color: var(--primary);
+  background: var(--primary);
+  text-align: center;
+  text-decoration: none;
+}
+
+.content-separator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 0;
+}
+
+.content-separator .hr-separator {
+  flex: 1;
+  height: 2px;
+  background: var(--text-secondary);
+}
+
+.content-separator h1 {
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin: 10px;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.btn-login-google {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  opacity: 0.4;
+  cursor: not-allowed;
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-login-google[disabled] {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.btn-login-google:hover::before {
+  content: attr(title);
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--text-secondary);
+  color: #fff;
+  padding: 5px 25px;
+  border-radius: 5px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.btn-login-google:hover::before {
+  visibility: visible;
+  opacity: 1;
+}
+
+.content-inputs-login {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-inputs-login .input-group {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px;
+  position: relative;
+}
+
+.content-inputs-login .input-group .input-login {
+  outline: none;
+  border: 2px solid #413e7f;
+  padding: 10px 10px 10px 32px;
+  background: #302e63;
+  border-radius: 5px;
+  position: relative;
+  color: #ffffff78;
+  transition: .5s ease;
+  font-weight: 600;
+  font-size: revert !important;
+}
+
+#passwordLogin {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+#passwordLogin::-ms-reveal,
+#passwordLogin::-ms-clear {
+  display: none;
+}
+
+.input-login::placeholder {
+  color: #ffffff78;
+  font-weight: 100;
+}
+
+.content-inputs-login .input-group .input-login:focus {
+  color: #fff;
+}
+
+.label-text.active {
+  letter-spacing: normal !important;
+}
+
+.content-inputs-login .input-group .label-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #fff;
+  margin: 5px;
+  transition: .5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.label-remember {
+  transition: .5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.label-remember.animate-text {
+  letter-spacing: 2px;
+}
+
+.content-inputs-login .input-group .label-icon {
+  position: absolute;
+  top: 37px;
+  left: 12px;
+  z-index: 2;
+  font-size: 14px;
+  color: #ffffff78;
+}
+
+.content-inputs-login .input-group .label-icon.password-icon {
+  right: 12px;
+  left: inherit;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.content-inputs-login .input-group a {
+  align-self: self-end;
+  font-size: 14px;
+  margin: 5px 0;
+  color: var(--text-secondary);
+  transition: 0.3s ease-in;
+}
+
+.content-inputs-login .input-group a:hover {
+  background: linear-gradient(to right, var(--text-secondary) 0%, var(--primary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.modal-footer .input-group {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0;
+}
+
+.input-group label[for="rememberLogin"] {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0 5px;
+}
+
+.alert-login {
+  display: none;
+}
+
+.alert-login.active-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ed4337;
+  margin: 10px -35px;
+  padding: 10px;
+}
+.alert-login.active-error .line-error {
+  font-size: 1rem;
+}
+
+/* HEADER HOME */
+.container-header {
+  height: 105px;
+  width: 100%;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  transition: .5s ease-in-out;
+}
+
+.home-header.active {
+  background-color: var(--bg-primary);
+  box-shadow: 0 0 10px #000;
+}
+
+.content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania Mobile"] {
+  display: none;
+  width: 50px;
+}
+
+.content-buttons-home {
+  display: flex;
+  align-items: center;
+}
+
+.content-buttons-home #logoutUser {
+  color: #fff;
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 10px;
+  transition: .4s ease-in-out;
+}
+
+.content-buttons-home #logoutUser i {
+  color: var(--danger);
+}
+
+.content-buttons-home #logoutUser:hover {
+  color: var(--danger)
+}
+
+.content-buttons-home #logoutUser:hover i {
+  color: #fff;
+}
+
+.content-buttons-home .btn-login,.btn-register {
+  border: 1px solid;
+  background: transparent;
+  padding: 10px 20px;
+  width: 150px;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 100px;
+  transition: .25s;
+  margin: 10px;
+  flex: 1;
+  transform: scale(1);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-buttons-home .btn-register {
+  border-color: var(--primary);
+  background: var(--primary);
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-register:active,.btn-register:hover {
+  background: transparent;
+  box-shadow: 0 3px 20px rgb(42 193 185 / 25%), inset -5.5em 0 0 0 #18163b, inset 5.5em 0 0 0 #18163b;
+  transform: scale(1.1);
+  flex: 2;
+}
+
+.btn-register:focus {
+  transform: scale(1);
+  box-shadow: 0 3px 20px rgb(42 193 185 / 10%);
+}
+
+.btn-login:hover,.btn-login:active {
+  border-color: var(--primary);
+  box-shadow: 0 3px 20px rgb(42 193 185 / 25%), inset -6em 0 0 0 var(--primary), inset 6em 0 0 0 var(--primary);
+  transform: scale(1.1);
+  flex: 2;
+}
+
+/* HOME */
+.container-home {
+  width: 100%;
+  /* height: 100%; */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url(/assets/images/home/bg-home.png), var(--bg-primary) no-repeat;
+  background-size: cover;
+}
+
+.content-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #fff;
+}
+
+.home-img-presentation-mobile {
+  display: none;
+}
+
+.home-img-presentation-mobile img {
+  max-width: 130px;
+  min-width: 130px;
+  width: 100%;
+}
+
+.home-presentation {
+  margin: 10px 35px;
+  /* width: 100%; */
+}
+
+.span-home {
+  padding: 8px 15px;
+  border-radius: 100px;
+  border: 1px solid #ffffff33;
+  width: max-content;
+  display: block;
+}
+
+.span-home h1 {
+  font-size: .8rem;
+  font-weight: 400;
+  color: #fff;
+}
+
+.text-presentation h1 {
+  font-size: 3.5rem;
+}
+
+.text-presentation h2 {
+  font-size: 1rem;
+  font-weight: 200;
+  color: #FCFCFC;
+  margin: 15px 0;
+}
+
+.text-presentation h1 strong {
+  color: var(--primary);
+}
+
+.separator-presentation {
+  border-color: rgba(255, 255, 255, 0.20);
+  margin: 25px 0;
+}
+
+.content-presentation {
+  display: flex;
+  align-items: center;
+  margin: 65px 0px 10px;
+}
+
+.btn-want-bet {
+  border-radius: 100px;
+  background: linear-gradient(90deg, #2AC1B9 0%, #49FFF5 100%);
+  padding: 20px 60px;
+  color: #FFF;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .5s ease-in-out, transform 0.3s ease;
+}
+
+.btn-want-bet:hover {
+  background: linear-gradient(90deg, #2AC1B9 100%, #49FFF5 0%);
+  transform: scale(1.050);
+}
+
+.shield-presentation {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 40px;
+}
+
+.shield-presentation h1 {
+  color: #B6B6B6;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 10px;
+  white-space: nowrap;
+}
+
+.span-shield img[alt="Jogo do Bicho Online - Bicho Mania SEGURANÇA E PRIVACIDADE"] {
+  height: 40px;
+}
+
+/* APP */
+.container-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 65px 10px;
+  position: relative;
+  background: linear-gradient(180deg, #17163B 16.39%, #17163B 20.51%, #17163B 24.79%, #17163B 30.46%, #17163B 34.11%, #17163B 36.21%, #17163B 100%);
+}
+
+.container-app::after {
+  content: '';
+  width: 80px;
+  height: 250px;
+  background: var(--primary);
+  filter: blur(100px);
+  position: absolute;
+  top: 25%;
+  left: -50px;
+  z-index: 1;
+}
+
+.content-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: revert;
+  margin: 20px;
+}
+
+.content-app.img {
+  position: relative;
+  z-index: 2;
+  width: max-content;
+}
+
+.content-app.img img[alt="Celular Jogo do Bicho Online - Bicho Mania"] {
+  max-height: 540px;
+  width: 100%;
+  z-index: 3;
+}
+
+.content-app.img::after {
+  content: '';
+  width: 80px;
+  height: 80px;
+  background: var(--primary);
+  filter: blur(80px);
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+.title-app {
+  color: #FFF;
+  font-size: 38px;
+  margin: 25px 10px;
+  text-align: center;
+}
+
+.title-app strong {
+  color: var(--primary);
+}
+
+.text-app {
+  color: rgba(255, 255, 255, 0.60);
+  font-size: 1rem;
+  text-align: center;
+  margin: 0px 10px 30px;
+}
+
+.container-buttons-app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-app {
+  width: 190px;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  background: #fff;
+  border-radius: 100px;
+  margin: 10px;
+  transition: .20s ease-in;
+}
+
+.btn-app.android i {
+  font-size: 1.5rem;
+}
+
+.btn-app.ios i {
+  font-size: 2rem;
+}
+
+.btn-app hr {
+  height: 80%;
+  width: 1px;
+  background: #000;
+  opacity: 0.2;
+  border: none;
+  outline: none;
+  border-radius: 100px;
+  margin: 0px 10px;
+}
+
+.btn-app-span {
+  text-align: start;
+  transition: .20s ease-in;
+}
+
+.btn-app-span small {
+  color: #696969;
+  font-size: 12px;
+}
+
+.btn-app-span h1 {
+  font-size: 1rem;
+}
+
+.btn-app:hover {
+  background: var(--primary);
+  color: #fff !important;
+}
+
+.btn-app:hover hr {
+  opacity: 1;
+  background-color: #fff;
+}
+
+.btn-app:hover .btn-app-span small {
+  color: #fff;
+}
+
+.btn-app:active {
+  background: var(--primary);
+  color: #fff !important;
+}
+
+.btn-app:active hr {
+  opacity: 1;
+  background-color: #fff;
+}
+
+.btn-app:active .btn-app-span small {
+  color: #fff;
+}
+
+/* CASSINO */
+.container-cassino {
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-cassino .container-responsive {
+  padding: 65px 15px;
+}
+
+.content-cassino {
+  width: revert;
+}
+
+.content-cassino.text p.title-cassino {
+  color: #0C0047;
+  font-size: 48px;
+  font-weight: 600;
+  min-width: 270px;
+  width: 500px;
+}
+
+.content-cassino.text p.title-cassino strong {
+  color: var(--primary);
+}
+
+.content-clients-img {
+  display: flex;
+  align-items: center;
+}
+
+.people-betting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  background: #fff;
+  border-radius: 100px;
+  padding: 2px;
+  margin: 5px;
+}
+
+.people-betting img[alt="Pessoa jogando em Jogo do Bicho Online - Bicho Mania"] {
+  width: 100%;
+}
+
+.content-cassino.img {
+  width: 950px;
+  /* height: 580px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-cassino.img img[alt="Cassino Online - Bicho Mania"] {
+  width: 100%;
+}
+
+.content-clients-img .people-betting-text {
+  color: #000 !important;
+  font-size: 14px !important;
+  font-size: 500;
+  margin: 5px 10px;
+}
+
+.content-clients-img .people-betting-text strong {
+  color: var(--primary);
+}
+
+.want-text {
+  color: #969696 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  margin: 10px;
+}
+
+.button-cassino {
+  display: flex;
+  align-items: center;
+  margin: 35px 5px 10px;
+}
+
+.button-cassino.mobile {
+  display: none !important;
+}
+
+/* RESULTADOS - RESULTS */
+.container-results {
+  display: flex;
+  justify-content: center;
+  padding: 70px 20px;
+}
+
+.content-results {
+  flex-direction: column;
+}
+
+.header-content-results {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 65px;
+}
+
+.results-mobile {
+  display: none !important;
+}
+
+.content-header-results {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.content-header-results h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-right: 25px;
+  font-weight: 500;
+}
+
+.date-result {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.20);
+  padding: 5px 10px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.date-result #dateResult {
+  margin: 0 10px;
+}
+
+.date-result .btn-result-back, .date-result .btn-result-next {
+  padding: 5px 10px;
+  font-size: .8rem;
+}
+
+.span-results {
+  border-radius: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.20);
+  background: hsl(244deg 18% 51% / 30%);
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: 300;
+  padding: 5px 15px;
+  white-space: nowrap;
+}
+
+.span-results i {
+  background: -webkit-linear-gradient(90deg, #0f5f5b, #00fff2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.span-results h2 {
+  font-weight: 500;
+  margin: 0 0 0 10px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.item-nav-result {
+  margin: 20px 30px;
+  min-width: 150px;
+  text-align: start;
+  color: #0C0047;
+  opacity: .6;
+}
+
+.results-desktop {
+  display: flex;
+  width: 100%;
+  height: 785px;
+}
+
+.nav-results-desktop {
+  display: flex;
+  flex-direction: column;
+  background: #f2f2f2;
+  border-radius: 20px 0 0 20px;
+  padding: 15px 0;
+}
+
+.item-nav-result.active {
+  color: #0C0047;
+  opacity: 1;
+  font-weight: 700;
+  position: relative;
+}
+
+.item-nav-result.active::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background: var(--primary);
+}
+
+.area-results {
+  width: 100%;
+  background: #fff;
+  border-radius: 0 20px 20px 0;
+  padding: 20px 15px;
+  overflow-x: auto;
+}
+
+.table-head-results .item-table-results:first-child {
+  background: var(--primary);
+  padding: 10px 15px;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.table-results {
+  height: 100%;
+  overflow: auto;
+}
+
+.row-table-results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item-table-results {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  min-width: 110px;
+}
+
+.item-table-results h1 {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0C0047;
+  border-radius: 100px;
+  color: #fff;
+}
+
+.table-body-results {
+  margin: 30px 0;
+  /* height: 100%; */
+}
+
+.table-body-results .item-table-results:first-child {
+  font-weight: 600;
+}
+
+.table-body-results .row-table-results {
+  border-bottom: 1px solid rgb(111 108 153 / 20%);
+  padding: 15px 0;
+}
+
+.table-body-results .row-table-results:last-child {
+  border-bottom: none;
+}
+
+.results-mobile {
+  flex-direction: column;
+  width: 100%;
+}
+
+.header-mobile-results {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.area-results-mobile {
+  display: flex;
+  overflow: auto;
+}
+
+.nav-results-mobile {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.nav-results-mobile .item-nav-result {
+  margin: 0px;
+  min-width: max-content;
+  text-align: start;
+  color: #0C0047;
+  opacity: .6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 25px;
+  height: 100%;
+}
+
+.nav-results-mobile .item-nav-result.active {
+  color: #fff;
+  background: var(--primary);
+  opacity: 1;
+  font-weight: 700;
+  position: relative;
+}
+
+.nav-results-mobile .item-nav-result.active::after {
+  display: none;
+}
+
+.nav-results-mobile .item-nav-result:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.nav-results-mobile .item-nav-result:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.item-results-mobile {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  margin: 10px;
+}
+
+.item-results-mobile .results-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-results-mobile .results-img img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+
+.results-mobile-guesses {
+  margin: 0 0 0 30px;
+  width: 150px;
+}
+
+.results-mobile-guesses .row-results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 5px;
+}
+
+.results-mobile-guesses .row-results span:first-child {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6F6C99;
+  border-radius: 100px;
+  color: #fff;
+}
+
+.results-mobile-guesses .row-results span:last-child {
+  margin: 0 10px;
+}
+
+.results-mobile-guesses .row-results span:first-child.active  {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17163B;
+  border-radius: 100px;
+  box-shadow: 0 5px 5px rgb(0 0 0 / 25%);
+}
+
+/* COTAÇÃO - QUOTATION */
+.container-quotation {
+  padding: 70px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1C1B4A;
+}
+
+.container-responsive.content-quotation {
+  flex-direction: column;
+}
+
+.header-quotation {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.header-quotation h1 {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.header-quotation hr {
+  width: 30px;
+  height: 2px;
+  border: none;
+  margin: 10px;
+  background: var(--primary);
+}
+
+.table-quotation {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.table-quotation table {
+  background: #fff;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-quotation th:first-child {
+  text-align: start;
+}
+
+.table-quotation th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #fff;
+  color: #0C0047;
+  padding: 20px !important;
+  text-align: center;
+}
+
+.table-head-quotation tr th > h2 {
+  color: #0C0047;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.table-head-quotation tr th {
+  color: #2AC1B9;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.table-head-quotation tr th > small {
+  color: #858BA0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.table-quotation td, .table-quotation th {
+  border: 2px solid #fff;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.table-quotation tr:nth-child(even){
+  background-color: #E6E9F5;
+}
+
+.table-quotation tr:nth-child(odd){
+  background-color: rgb(230, 233, 245, .4);
+}
+
+#body-quatation tr > td:first-child {
+  text-align: start;
+}
+
+#body-quatation tr td {
+  text-align: center;
+}
+
+#body-quatation tr td > span {
+  color: #858BA0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#body-quatation tr:last-child td:first-child {
+  border-radius: 10px;
+}
+
+
+/* PAGAMENTO - PAYMENT */
+.container-payment {
+  background: #f2f2f2;
+  padding: 70px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.content-payment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-payment {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  align-items: end;
+}
+
+.text-payment h1 {
+  color: #0C0047;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.text-payment p {
+  color: #969696;
+  font-weight: 400;
+  margin: 25px 0;
+}
+
+.container-method-payment {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.icon-payment {
+  padding: 50px;
+  background: #E2E2FF;
+  border-radius: 100px;
+  color: #0C0047;
+  font-size: 4rem;
+  margin: 10px;
+  margin-right: 50px;
+}
+
+.content-method-payment {
+  display: flex;
+  align-items: center;
+  flex: 1 0 150px;
+  padding: 15px 25px;
+  border: 1px solid #C7C7C7;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.content-method-payment img {
+  height: 30px;
+  width: 100%;
+}
+
+/* SONHOS - DREAMS */
+.container-dreams {
+  background: url(/assets/images/home/bg-dreams.svg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 20px;
+}
+
+.content-dreams {
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-items: self-start !important;
+}
+
+.search-header-dreams {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-header-dreams .message-error {
+  background: var(--danger);
+  width: 100%;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.search-header-dreams h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(255 255 255 / 80%);
+}
+
+.search-header-dreams .input-group {
+  position: relative;
+  width: max-content;
+  min-width: 250px;
+}
+
+.search-result {
+  cursor: pointer;
+}
+
+.search-header-dreams #inputSearchDreams {
+  padding: 10px 10px 10px 30px;
+  width: 100%;
+  max-width: 450px;
+  font-size: 1rem;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+.search-header-dreams label[for="inputSearchDreams"] {
+  position: absolute;
+  left: 10px;
+  color: #000;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.result-search-result {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 20px 0 0;
+}
+
+.item-meaning, .item-guess {
+  width: 50%;
+  flex: 1;
+  background: #1C1B4A;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  /* height: 100%; */
+  min-width: 320px;
+}
+
+.item-meaning h1, .item-guess h1 {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.item-meaning {
+  margin-right: 10px;
+}
+
+.item-guess {
+  margin-left: 10px;
+}
+
+.item-guess-dreams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.search-guess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.result-guess {
+  width: 100%;
+  margin: 15px;
+}
+
+.guess-dreams {
+  width: 100%;
+}
+
+.line-dreams {
+  width: 100%;
+  opacity: .4;
+  margin: 10px;
+}
+
+.result-guess-img {
+  display: flex;
+  position: relative;
+  width: 225px;
+  min-width: 225px;
+  height: 225px;
+}
+
+.result-guess-img img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1000px;
+  object-position: bottom;
+}
+
+.result-guess-img span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #D9D9D9;
+  color: #0C0047;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0px 15px;
+  min-width: 120px;
+  text-align: center;
+  border-radius: 100px;
+}
+
+/* COMO JOGAR - HOW TO PLAY */
+.how-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 20px;
+  background: url(/assets/images/home/bg-dice.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container-responsive.container-how-play {
+  flex-direction: column;
+}
+
+.header-how-play {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.header-how-play h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.header-how-play h2 {
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.content-how-play {
+  width: 100%;
+}
+
+.swiper {
+  width: 100%;
+  padding: 20px 0;
+  margin: 20px auto;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  height: 465px;
+  margin: 10px;
+  border-radius: 20px;
+  position: relative;
+  transition: .5s ease-in-out;
+}
+
+.swiper-slide .swiper-cape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(/assets/images/bg-how-to-play.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .5s ease-in-out;
+  border-radius: 20px;
+}
+
+.swiper-slide .swiper-cape span {
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 100px;
+}
+
+.swiper-slide.swiper-slide-active .swiper-cape {
+  width: 100%;
+  height: 0;
+}
+
+.swiper-slide.swiper-slide-active {
+  border: 4px solid var(--primary);
+}
+
+.swiper-button-prev, .swiper-button-next {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 5px 5px rgb(0, 0, 0, 0.25);
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 1rem;
+  color: #343434;
+}
+
+.swiper-body {
+  font-size: .6rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 25px 5px;
+}
+
+.swiper-body h1 {
+  color: var(--primary);
+}
+
+.swiper-body h2 {
+  font-weight: 400;
+}
+
+.swiper-body h2 span {
+  font-weight: 600;
+}
+
+/* HISTÓRIA - HISTORY */
+
+.container-history {
+  background: url(/assets/images/home/bg-history.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  position: relative;
+}
+
+.container-history::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  bottom: 0px;
+  left: -50px;
+  background: var(--primary);
+  filter: blur(80px);
+}
+
+.content-history {
+  width: 100%;
+  padding: 70px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(77deg, #1C1B4A 15.98%, rgb(23 22 59) 61.11%, rgb(23 22 59 / 84%) 89.62%);
+}
+
+.content-history .container-responsive {
+  flex-direction: column;
+  align-items: start;
+}
+
+.content-history h1 {
+  color: #FFF;
+  font-size: 42px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.content-history p {
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 18px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+/* RODAPÉ - FOOOTER */
+.container-footer {
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.container-responsive.footer {
+  flex-direction: column;
+  align-items: start;
+}
+
+.container-footer .content-footer:first-child {
+  display: flex;
+  margin: 55px 0;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content-footer:first-child .text-payment {
+  text-align: start;
+  align-items: self-start;
+}
+
+.content-footer:first-child .text-payment h1 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #343434;
+}
+
+.content-footer:first-child .text-payment h2 {
+  color: #343434;
+  font-size: .9rem;
+  font-weight: 400;
+}
+
+.content-footer:first-child .text-payment h2 strong {
+  color: var(--primary);
+}
+
+.content-footer:first-child .btn-app {
+  margin: 5px;
+  background: #0C0047;
+}
+
+.content-footer:first-child .btn-app-span h1 {
+  color: #fff;
+}
+
+.content-footer:first-child .btn-app i {
+  color: #fff;
+}
+
+.content-footer:first-child .btn-app-span small {
+  color: #b9b3b3;
+}
+
+.content-footer:first-child .container-buttons-app {
+  flex-wrap: nowrap;
+  margin: 0 0 70px;
+}
+
+.content-footer:first-child .content-method-payment {
+  flex: 1 0 150px;
+  padding: 0px 25px;
+  border: none;
+  margin: 0;
+}
+
+.item-footer:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.item-footer:nth-child(2), .item-footer:nth-child(3) {
+  display: flex;
+  align-items: end;
+}
+
+.footer-nav-title {
+  font-size: 1.1rem;
+  color: #343434;
+  font-weight: 700;
+}
+
+.footer-nav-link {
+  text-decoration: none;
+  color: #343434;
+  font-size: 16px;
+  opacity: .8;
+}
+
+.footer-nav-list-item {
+  margin: 20px 0;
+}
+
+.footer-nav-list-item:last-child {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.container-footer .content-footer:last-child {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 2px solid rgb(111 108 153 / 30%);
+}
+
+.container-footer .content-footer:last-child p {
+  color: #343434;
+  font-weight: 300;
+}
+
+.container-footer .content-footer:last-child img {
+  width: 110px;
+  margin-right: 20px;
+}
+
+.container-footer .content-footer:last-child p a {
+  color: var(--primary);
+  font-weight: 400;
+}
+
+/* CADASTRAR - SIGNUP */
+.container-home.container-register {
+  justify-content: start;
+}
+.container-home .input-group {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px;
+  position: relative;
+}
+
+.container-home .input-group .input-login {
+  outline: none;
+  border: 2px solid #413e7f;
+  padding: 10px 10px 10px 38px;
+  background: #302e63;
+  border-radius: 5px;
+  position: relative;
+  color: #ffffff78;
+  transition: .5s ease;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.container-home .input-group .input-login.is-invalid {
+  border-color: var(--danger);
+}
+
+.container-home .input-group .input-login:placeholder-shown {
+  font-size: .8rem;
+  padding: 16px 10px 15px 45px;
+}
+
+.container-home .input-login::placeholder {
+  color: #ffffff78;
+  font-weight: 100;
+}
+
+.container-home .input-group .input-login:focus {
+  color: #fff;
+}
+
+.container-home .label-text.active {
+  letter-spacing: normal !important;
+}
+
+.container-home .input-group .label-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #fff;
+  margin: 5px;
+  transition: .5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container-home .label-remember {
+  transition: .5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container-home .label-remember.animate-text {
+  letter-spacing: 2px;
+}
+
+.container-home .input-group .label-icon {
+  position: absolute;
+  top: 55%;
+  left: 12px;
+  z-index: 2;
+  font-size: 1.3rem;
+  color: #ffffff78;
+}
+
+.container-home .input-group .label-icon.password-icon {
+  right: 12px;
+  left: inherit;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.container-home .input-group a {
+  align-self: self-end;
+  font-size: 14px;
+  margin: 5px 0;
+  color: var(--text-secondary);
+  transition: 0.3s ease-in;
+}
+
+.container-home .input-group a:hover {
+  background: linear-gradient(to right, var(--text-secondary) 0%, var(--primary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.container-home .form-signup {
+  width: 100%;
+}
+
+.container-home .form-signup .row {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.container-home .form-signup .row .input-group {
+  width: 100%;
+}
+
+.container-home .container-signup {
+  flex-direction: column;
+  align-items: self-start;
+  padding: 45px 20px;
+}
+
+.header-signup {
+  margin: 10px 0 30px;
+  width: 100%;
+}
+
+.header-signup h1 {
+  color: #f2f2f2;
+  font-size: 2.5rem;
+  text-shadow: 0 0px 30px #5ad1cd;
+}
+
+.header-signup h2 {
+  color: #f2f2f2;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+.container-home .container-complete-signup {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  margin: 30px auto 15px;
+}
+
+.container-home .container-complete-signup p a {
+  color: var(--primary);
+}
+
+.container-home .btn-signup {
+  margin: 15px;
+  width: 100%;
+  background: var(--primary);
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.container-home .message-error {
+  background: var(--danger);
+  width: 100%;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin: 30px 0 0;
+}
+
+/* TERMOS, PRIVACIDADE, POLITICA, ETC... */
+.container-mania {
+	background: linear-gradient(-90deg, #17153a, #1f1c52);
+	background-size: 300% 300%;
+	animation: gradient 10s ease infinite;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content-mania {
+  flex-direction: column;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* APP */
+
+/* RESPONSIVO - HOME */
+
+/* RESPONSIVO  */
+@media (max-width: 1200px) {
+  /* Estilos para desktops - HOME */
+
+}
+
+@media (max-width: 1199px) {
+  /* Estilos para tablets maiores e laptops - HOME */
+}
+
+@media (max-width: 1100px) {
+  /* Estilos para tablets maiores e laptops - HOME */
+  .home-img-presentation {
+    display: none;
+  }
+  .home-img-presentation-mobile {
+    display: block;
+    margin-left: auto;
+  }
+  .content-presentation {
+    flex-direction: column;
+    align-items: self-start;
+    margin: 10px 0;
+  }
+  .shield-presentation {
+    margin: 10px;
+  }
+  /* CASSINO */
+  .container-cassino .container-responsive {
+    flex-direction: column;
+  }
+  .content-cassino.text p.title-cassino {
+    text-align: center;
+  }
+  .content-cassino.img {
+    width: 100%;
+    /* height: 350px !important; */
+    margin: 15px;
+  }
+  .button-cassino.desktop {
+    display: none !important;
+  }
+  .button-cassino.mobile {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .content-cassino.img img[alt="Cassino Online - Bicho Mania"] {
+    height: 100%;
+  }
+  .button-cassino {
+    margin: 10px 5px;
+  }
+  .content-clients-img {
+    justify-content: center;
+  }
+  /* PAGAMENTO - PAYMENT */
+  .icon-payment {
+    display: none;
+  }
+  .text-payment {
+    align-items: center;
+  }
+  .text-payment h1, .text-payment p {
+    text-align: center;
+  }
+  .text-payment .broken-line {
+    display: none;
+  }
+  /* SONHOS - DREAMS */
+  .result-search-result {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .item-meaning, .item-guess {
+    margin: 10px !important;
+    width: 85% !important;
+  }
+  .search-header-dreams {
+    align-items: center;
+  }
+  .search-header-dreams h1 {
+    text-align: center;
+  }
+  .search-header-dreams h2 {
+    text-align: center;
+  }
+  /* FOOTER */
+  .container-footer .content-footer:first-child {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container-method-payment {
+    margin: 40px 0;
+  }
+  .content-footer:first-child .text-payment {
+    align-items: center;
+  }
+  .footer-nav-title {
+    text-align: center;
+  }
+  .footer-nav-list-item {
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Estilos para dispositivos móveis - HOME */
+  .shield-presentation {
+    margin: 20px 10px;
+  }
+  .text-presentation .broken-line {
+    display: none;
+  }
+  .text-presentation h1 {
+    font-size: 3rem;
+    line-height: 50px;
+  }
+  .content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania"] {
+    width: 100px;
+  }
+  /* APP */
+  .title-app {
+    font-size: 28px;
+    margin: 15px 10px;
+  }
+  .text-app {
+    font-size: 14px;
+  }
+  .text-app .broken-line {
+    display: none;
+  }
+  .content-app {
+    margin: 20px 10px;
+  }
+  /* CASSINO */
+  .content-cassino.text p.title-cassino .title-cassino {
+    min-width: revert;
+    font-size: 32px;
+  }
+  /* RESULTADOS */
+  .header-content-results {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .results-desktop {
+    display: none !important;
+  }
+  .results-mobile {
+    display: flex !important;
+  }
+  /* REGISTRAR */
+  .container-home .form-signup .row {
+    flex-direction: column;
+  }
+}
+
+/* SMALL MOBILE - HOME */
+
+@media (max-width: 490px) {
+  .content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania Mobile"] {
+    display: block;
+  }
+  .btn-login,.btn-register {
+    padding: 10px 10px !important;
+    width: 100px !important;
+    margin: 10px 5px !important;
+  }
+  .content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania"] {
+    display: none;
+  }
+  .home-img-presentation-mobile {
+    margin: 0px;
+  }
+  .shield-presentation h1 {
+    white-space: normal;
+  }
+  .text-presentation h1 {
+    font-size: 2.5rem;
+  }
+  .home-header {
+    padding: 20px 10px;
+  }
+
+  /* CASSINO */
+  .content-cassino.img {
+    height: 200px !important;
+  }
+  .content-cassino.text p.title-cassino {
+    width: 100%;
+    font-size: 2rem;
+  }
+  /* RESULTADOS */
+  .item-results-mobile {
+    flex-direction: column;
+    width: 480px;
+    flex: 1 0 250px;
+    gap: 10px;
+    margin: 10px;
+  }
+  .item-results-mobile .results-img img {
+    width: 150px;
+    height: 150px;
+  }
+  .results-mobile-guesses {
+    margin: 0px;
+  }
+  /* COMO JOGAR */
+  .swiper-button-prev, .swiper-button-next {
+    display: none !important;
+  }
+  /* HISTORY */
+  .content-history {
+    padding: 80px 35px;
+  }
+  .item-meaning, .item-guess {
+    margin: 10px 0 !important;
+    width: 100% !important;
+    min-width: 260px;
+  }
+  .item-guess {
+    text-align: center;
+  }
+  .search-guess {
+    flex-direction: column-reverse;
+  }
+  .result-guess-img {
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
+    margin-top: 15px;
+  }
+  .result-guess-img span {
+    font-size: 1rem;
+    min-width: 80px;
+  }
+  /* FOOTER */
+  .content-method-payment img {
+    margin: 10px 0;
+  }
+  .container-footer .content-footer:last-child img {
+    width: 50px;
+    margin-right: 5px;
+  }
+  .content-footer:first-child .container-buttons-app {
+    flex-wrap: wrap;
+  }
+  .content-footer:first-child .text-payment h2 {
+    text-align: center;
+  }
+  .container-footer .content-footer:last-child {
+    align-items: start;
+  }
+  .container-method-payment {
+    margin: 10px 0 50px;
+  }
+}

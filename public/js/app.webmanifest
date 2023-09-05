@@ -1,0 +1,70 @@
+{
+    "background_color": "#ffffff",
+    "description": "Aposte online no jogo do bicho, o jogo mais tradicional do brasil. Depósitos disponível na hora via pix!",
+    "categories": ["milionario","loterias","jogo do bicho","bicho","jogos"],
+    "dir": "ltr",
+    "display": "standalone",
+    "name": "bichomania",
+    "orientation": "any",
+    "short_name": "Bicho Mania",
+    "start_url": "/",
+    "theme_color": "#343a40",
+    "icons": [
+        {
+            "src": "/website/assets/images/logo48x48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/logo72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/logo96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/logo192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/logo512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/website/assets/images/print_game.png",
+            "sizes": "320x644",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/print_deposit.png",
+            "sizes": "320x644",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/print_withdraw.png",
+            "sizes": "320x644",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/print_results.png",
+            "sizes": "320x644",
+            "type": "image/png"
+        },
+        {
+            "src": "/website/assets/images/print_cotacao.png",
+            "sizes": "320x644",
+            "type": "image/png"
+        }
+    ],
+    "related_applications": [{
+        "platform": "webapp",
+        "url": "https://bichomania.bet/app.webmanifest"
+      }]
+}

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Apostas cotadas</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+
+    <style>
+      .swal2-content {
+        width: 100% !important;
+      }
+
+      .swal2-popup {
+        width: 50% !important;
+      }
+
+      /*.width-form {
+        width: 100%;
+      }*/
+
+      @media (max-width: 1000px) {
+        .swal2-popup {
+          width: 80% !important;
+        }
+      }
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i>Apostas <strong>cotadas</strong></h4>
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <button type="button" id="add-quoted" class="btn btn-success mb-5">Adicionar novo valor</button>
+              <div id="tab" class="table-responsive">
+                  <table id="dttable" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th width="33.33%">ID</th>
+                        <th width="66%">Número</th>
+                        <th width="2.33%">Ação</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script src="/admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="/admin/assets/vendors/datatable/datatables.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $('[data-toggle="tooltip"]').tooltip();
+      const atualizarListaBtn = $('#att_list');
+      const adicionarQuotedBtn = $('#add-quoted');
+
+      const tabela = $('#dttable').DataTable({
+        initComplete: function () {
+          carregarDados();
+        },
+        "columns": [{
+            "data": "campo_quoted_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '--';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "campo_numero",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_quoted_id",
+            "render": function(data, type, row) {
+              let btns = `
+                <button id="del-quoted" data-quoted="${row['campo_quoted_id']}" type="button" class="btn btn-sm btn-danger" title="Deletar valor" data-toggle="tooltip"><i class="icon-trash" style="color: #fff !important;" title="Deletar valor"></i></button>&nbsp;`;
+
+              return btns;
+            }
+          }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      // get list
+      async function carregarDados() {
+        try {
+          const response = await fetch('/api_admin/quoted/', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.status === 200) {
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+          } else if (response.status === 401) {
+
+            Swal.fire({
+              toast: true,
+              type: 'warning',
+              showConfirmButton: false,
+              position: 'top-end',
+              timer: 1300,
+              title: "Sessão de usuário expirada",
+            })
+
+            setTimeout(
+              function() {
+                location.reload();
+            },1400)
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+        }
+      }
+
+      adicionarQuotedBtn.click(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+          type: 'question',
+          // width: '55%',
+          title: 'Adicionar novo valor',
+          confirmButtonText: "Confirmar",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          reverseButtons: true,
+          html: `<div style="margin-top:20px">
+                  <form id="addquoted">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-label">Valor da aposta cotada:</label>
+                          <input type="number" min="1" id="campo_numero" name="campo_numero" class="form-control select-height" required>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>`,
+
+          preConfirm: () => {
+            // validação
+            return new Promise((resolve) => {
+
+              // Executar a validação
+              let erros = [];
+              let form = document.getElementById("addquoted");
+              let inputs = Array.from(form.querySelectorAll("[required]"));
+
+              inputs.forEach((validate) => {
+                if (!validate.value.trim()) {
+                  erros.push(validate);
+                  validate.classList.add("is-invalid");
+                } else {
+                  validate.classList.remove("is-invalid");
+                }
+              });
+
+              if (erros.length === 0) {
+
+                // pegar valores
+                let myForm = document.getElementById('addquoted');
+                let formData = new FormData(myForm);
+
+                let formObject = Object.fromEntries(formData.entries());
+                // for (var pair of formData.entries()) {
+                //   console.log(pair[0] + ': ' + pair[1]);
+                // }
+
+                // salvar dados
+                fetch('/api_admin/quoted/', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(formObject)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                    if (response.status == 201) {
+                    Swal.fire({
+                      type: "success",
+                      width: '35%',
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      width: '35%',
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+                resolve(); // Resolva a promessa para fechar o diálogo
+              } else {
+                Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                resolve();
+              }
+            });
+          }
+        })
+      });
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        recarregarDados();
+      });
+
+      function recarregarDados() {
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw();
+        carregarDados();
+      }
+
+      $(document).on('click', '#del-quoted', function(e) {
+        e.preventDefault();
+
+        const qbet_id = $(this).data('quoted');
+        Swal.fire({
+          type: 'question',
+          title: 'Deletar item ID: '+qbet_id + '?',
+          confirmButtonText: "Confirmar",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          reverseButtons: true,
+          preConfirm: () => {
+            // salvar dados
+            fetch('/api_admin/quoted/'+qbet_id, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+              .then(response => response.json())
+              .then(response => {
+
+              if (response.status == 200) {
+                Swal.fire({
+                  type: "success",
+                  showConfirmButton: false,
+                  timer: 1500,
+                  title: response.message
+                })
+                
+                setTimeout(
+                  function() {
+                    recarregarDados();
+                  }, 1600);
+              } else {
+                Swal.fire({
+                  type: "error",
+                  showConfirmButton: false,
+                  timer: 2000,
+                  title: response.message
+                })
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+          });
+        }
+      })
+    })
+  });
+
+  </script>
+  </body>
+</html>

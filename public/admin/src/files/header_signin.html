@@ -1,0 +1,480 @@
+<script src="//code-sa1.jivosite.com/widget/OpobiX93Xm" async></script>
+<header>
+    <img src="/website/assets/images/logo-header.png" alt="logo-header">
+
+    <menu class="noselect" ondragstart="return false;" ondrop="return false;" style="    justify-content: flex-end;">
+
+        <div class="container-buttons-login" style="float: right;">
+            <div class="content-buttons-login">
+                <input class="primary" name="user" id="user" type="text" placeholder="USUÁRIO" tabindex="1">
+                <input class="primary" name="lpassword" id="lpassword" type="password" placeholder="SENHA" tabindex="2">
+                <button type="submit" class="primary sign-in" anim="ripple" title="Entrar" onclick="login()"><img
+                        src="/website/assets/images/signIn.png" alt="sign-in" height="15" />
+                    <p>ENTRAR</p>
+                </button>
+            </div>
+            <button class="primary register" anim="ripple" title="Cadastrar" onclick="register()">
+                <p>REGISTRAR-SE</p>
+            </button>
+        </div>
+
+    </menu>
+    <div class="menu-burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
+<style>
+    .swal2-toast .swal2-close {
+        position: absolute;
+        right: 10px;
+    }
+    
+    .swal2-popup.swal2-toast {
+        align-items: center;
+        justify-content: center;
+        display: flex !important;
+        /* margin-top: 100px; */
+    }
+</style>
+<script>
+    $('#user').on('keydown', function(e) {
+        if (e.which === 13) { // Verifica se o enter foi pressionado.
+            if ($(this).val()) { // Verifica se o campo está preenchido para prosseguir.
+                if (!$('#lpassword').val()) { // Caso campo Pwd estiver vazio, foca nele.
+                    $('#lpassword').focus()
+                } else {
+                    $('button.sign-in').trigger('click') // Caso preenchido Pwd, dá click no login
+                }
+            }
+
+        }
+    });
+    // Verifica as teclas pressionaddas no input Password
+    $('#lpassword').on('keydown', function(e) {
+        if (e.which === 13) {
+            if ($(this).val()) {
+                if (!$('#user').val()) {
+                    $('#user').focus()
+                } else {
+                    $('button.sign-in').trigger('click')
+                }
+            }
+        }
+    });
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
+    // Menu Mobile
+    $('.menu-burger').click(function() {
+        const targetElement = $('#lateral_menu')
+        if ($(this).hasClass('active')) {
+            // bodyScrollLock.enableBodyScroll(targetElement);
+            // $(window).scrollTop($('body').attr('data-pos'));
+            $('body').removeClass('noscroll')
+            $(this).removeClass('active');
+            $('#lateral_menu').removeClass('active');
+        } else {
+            $('body').addClass('noscroll')
+                // bodyScrollLock.disableBodyScroll(targetElement);
+                // $('body').attr('data-pos', $(window).scrollTop())
+            $(this).addClass('active');
+            $('#lateral_menu').addClass('active');
+        }
+    });
+
+
+    // Effect Ripple Button
+    [].map.call(document.querySelectorAll('[anim="ripple"]'), el => {
+        el.addEventListener('click', e => {
+            e = e.touches ? e.touches[0] : e;
+            const r = el.getBoundingClientRect(),
+                d = Math.sqrt(Math.pow(r.width, 2) + Math.pow(r.height, 2)) * 2;
+            el.style.cssText = `--s: 0; --o: 1;`;
+            el.offsetTop;
+            el.style.cssText = `--t: 1; --o: 0; --d: ${d}; --x:${e.clientX - r.left}; --y:${e.clientY - r.top};`
+        })
+    })
+
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: "users/login",
+            data: {
+                username: $("#user").val(),
+                password: $("#lpassword").val()
+            },
+            success: function(response) {
+                let data = JSON.parse(response)
+                if (data.error) {
+                    Toast.fire({
+                        icon: 'error',
+                        text: data.message,
+                        timer: 0,
+                        showCloseButton: true,
+                        position: 'top'
+                    })
+                } else {
+                    window.location = "/jogo"
+                }
+            }
+        })
+
+    }
+
+
+    function email_correto() {
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!regex.exec($("#email").val())) {
+            Swal.showValidationMessage(
+                `Email com formato incorreto.`
+            )
+            $("input[name=email]").removeClass('valid').addClass('invalid')
+            return false;
+        } else {
+            $("input[name=email]").removeClass('invalid').addClass('valid')
+        }
+    }
+
+    function usuario_correto() {
+        var regex = /(?=(?:.*?[A-Za-z]){6})/;
+        if (!regex.exec($("#username").val())) {
+            Swal.showValidationMessage(
+                `A username deve conter no mínimo 6 letras!`
+            )
+            $("#username").removeClass('valid').addClass('invalid')
+            return false;
+        } else {
+            $("#username").removeClass('invalid').addClass('valid')
+        }
+    }
+
+    function maiorIdade(data_nasc) {
+
+        let nasc = data_nasc.split("/").map(Number);
+        //construir data 18 anos a seguir a data dada pelo usuario
+        let depois18Anos = new Date(nasc[2] + 18, nasc[1] - 1, nasc[0]);
+        let agora = new Date();
+
+        if (data_nasc.length < 10) {
+            $("input[name=birth_date]").removeClass('valid').addClass('invalid');
+            Swal.showValidationMessage(
+                `Data Incompleta`
+            )
+            return false;
+        } else if (depois18Anos >= agora || nasc[2] < 1910 || nasc[0] < 1 || nasc[0] > 31 || nasc[1] < 1 || nasc[1] > 12) {
+            Swal.showValidationMessage(
+                `Proibido menor de 18 anos`
+            )
+            $("input[name=birth_date]").removeClass('valid').addClass('invalid');
+            return false;
+        } else {
+            $("input[name=birth_date]").removeClass('invalid').addClass('valid');
+        }
+    }
+
+    function register(paramUrl, username) {
+        // if (paramUrl == undefined) {
+        //     var url_atual = window.location.href;
+        //     var paramUrl = url_atual.split("?")[1]; // nid=? || ind=?
+        //     var username = url_atual.split("&")[1];
+        // }
+        // if (paramUrl != undefined) {
+        //     if (paramUrl.substring(0, 3) == 'ind') {
+        //         var username = `<p>Usuário indicado por: <strong>${username.split('=')[1]}</strong> </p>`
+        //         var nid = 1
+        //         var ind = paramUrl.substring(4, 8)
+        //         var bonus = 'Y'
+        //     } else if (paramUrl.substring(0, 3) == 'nid') {
+        //         var username = `<p>Usuário indicado por: <strong>${username.split('=')[1]}</strong> </p>`
+        //         var ind = 1
+        //         var nid = paramUrl.substring(4, 8)
+        //         var bonus = 'N'
+        //     }
+        // } else {
+
+        // }
+        var ind = 1
+        var nid = 1
+        var bonus = 'N'
+        var username = ''
+
+        Swal.fire({
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                let erro = false
+                let nomeErro = "obrigatório"
+                var whatsFormated = '';
+                $(".required").each((index, value) => {
+                    name = $(value).attr('name')
+
+                    if (name === 'username') {
+                        if (usuario_correto() === false) {
+                            erro = true
+                            return false;
+                        }
+                    } else if (name === 'email') {
+                        if (email_correto() === false) {
+                            erro = true
+                            return false;
+                        }
+                    } else if (name === 'birth_date') {
+                        if (maiorIdade($("#birth_date").val()) === false) {
+                            erro = true
+                            return false;
+                        }
+                    } else if ($(value).val().trim() == "") {
+                        console.log(name)
+                        $("input[name=" + name + "]").removeClass('valid').addClass('invalid')
+                        nomeErro = ' do ' + $("label[for=" + name + "]").text()
+                        Swal.showValidationMessage("Complete o Campo do " + $("label[for=" + name + "]").text());
+                        erro = true
+                        return false;
+                    } else {
+                        $("input[name=" + name + "]").removeClass('invalid').addClass('valid')
+                        $("#swal2-validation-message").hide();
+                    }
+                })
+
+                if (erro) return false
+
+                if ($("#phone").val().length < 16) {
+                    erro = true;
+                    nomeErro = 'do WhatsApp';
+                    Swal.showValidationMessage("Complete o Campo do WhatsApp");
+                    $("#phone").removeClass('valid').addClass('invalid');
+                    return false;
+
+                } else {
+                    $("#phone").removeClass('invalid').addClass('valid')
+                }
+                if (!erro) {
+                    let username = $("#username").val()
+
+
+                    if ($("#password").val() == $("#rpassword").val()) {
+                        whats = $("#phone").val()
+                        whatsFormated = whats.substr(1, 2) + "-" + whats.substr(5, 1) + whats.substr(7, 4) + whats.substr(12, 4);
+                        date_birth = $("#birth_date").val().split("/").reverse().join("-")
+                        return $.ajax({
+                            type: "POST",
+                            url: "users/register",
+                            data: {
+                                username: username,
+                                email: $("#email").val(),
+                                firstname: $("#firstname").val(),
+                                lastname: $("#lastname").val(),
+                                password: $("#password").val(),
+                                phone: whatsFormated,
+                                cep: '',
+                                city: '',
+                                uf: '',
+                                id: nid,
+                                ind: ind,
+                                bonus_ind: bonus,
+                                saldo_ind: 0,
+                                social: '',
+                                date_birth: date_birth,
+                            },
+                            success: function(response) {
+
+                                let data = JSON.parse(response)
+
+                                if (data.error) {
+                                    Swal.showValidationMessage(data.message)
+                                    if (data.message == "Email já cadastrado.") {
+
+                                        $("input[name=email]").removeClass('valid').addClass('invalid')
+                                        $("#email").select()
+                                    } else if (data.message == "Telefone já cadastrado.") {
+
+                                        $("input[name=phone]").removeClass('valid').addClass('invalid')
+                                        $("#phone").select()
+                                    } else if (data.message == "Nome de usuário já cadastrado.") {
+
+                                        $("input[name=username]").removeClass('valid').addClass('invalid')
+                                        $("#username").select()
+                                    } else if (data.message == "CPF já cadastrado.") {
+
+                                        $("input[name=cpf]").removeClass('valid').addClass('invalid')
+                                        $("#cpf").select()
+                                    }
+                                } else {
+                                    Swal.fire({
+                                        allowOutsideClick: false,
+                                        showCloseButton: true,
+                                        confirmButtonText: 'Obrigado.',
+                                        backdrop: `rgba(0,0,0,0.9)`,
+                                        customClass: {
+                                            confirmButton: 'confirm-register',
+                                            container: 'sombra-swal',
+                                            popup: 'modal-register',
+                                        },
+                                        html: `
+                                                    <div class="container-register"> 
+                                                        <div class="header-register">
+                                                            <img src="/website/assets/images/logo-header.png" height="70" alt="logo"> 
+                                                            <h5 style="margin-top: 20px">Pronto! Faça seu login e divirta-se.</h5>
+                                                            <hr style="height: 2px; margin: 0 auto 20px auto">
+                                                        </div>
+                                                    </div>
+                                                       `
+                                    })
+                                }
+                            }
+                        })
+                    } else {
+                        Swal.showValidationMessage(
+                            `A senha nao coincide com a anterior!`
+                        )
+                        $("input[name=rpassword]").removeClass('valid').addClass('invalid')
+
+                    }
+                } else {
+
+                    if (nomeErro.trim() == "do Data de Nascimento") {
+                        Swal.showValidationMessage(
+                            `Proibido menor de 18 anos`
+                        )
+                    } else {
+                        Swal.showValidationMessage(
+                            `Complete o campo ${nomeErro}`
+                        )
+                    }
+                }
+                Swal.enableButtons()
+            }, // Fechamento preConfirm
+
+            didOpen: () => {
+
+                $('#username').mask("AAAAAAAAAAAAAAAAAAAA"),
+                    $('#phone').mask("(99) 9 9999-9999"),
+                    $('#cep').mask('99999-999'),
+                    $('#birth_date').mask("99/99/9999"),
+
+                    $("#email").focusout(function() {
+                        if ($(this).val() != "")
+                            setTimeout(() => {
+                                email_correto()
+                            }, 10);
+                    }),
+
+                    $("#username").focusout(function() {
+                        if ($(this).val() != "")
+                            setTimeout(() => {
+                                usuario_correto()
+                            }, 10);
+                    })
+                $("#birth_date").focusout(function() {
+                    if ($(this).val() != "")
+                        setTimeout(() => {
+                            maiorIdade(this.value)
+                        }, 10);
+                })
+            }, // Fechamento willOpen
+
+            allowOutsideClick: false,
+            showCloseButton: true,
+            confirmButtonText: 'Registrar',
+            width: 600,
+            backdrop: `rgba(0,0,0,0.9)`,
+            customClass: {
+                confirmButton: 'confirm-register',
+                container: 'sombra-swal',
+                popup: 'modal-register',
+            },
+            html: `
+                        <div class="container-register"> 
+                            <div class="header-register">
+                                <img src="/website/assets/images/logo-header.png" height="50" alt="logo"> 
+                                ${username != '' ? username : ''}
+                                <h5 style='margin: 10px 0px;'>Criar Conta</h5>
+                                <hr style="height: 2px; margin: 0 auto 20px auto">
+                            </div>
+                           
+                                <form class="form-floating form-signin" method="post" action="register.php" role="form" >
+                                    <div class="row g-4">
+                                        <div class="col-md">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control required" id="firstname"  name="firstname" placeholder="Nome" value="" autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                                <label for="firstname">Primeiro Nome</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control required" id="lastname" name="lastname" placeholder="Nome" value="" autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                                <label for="lastname">Segundo Nome</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-4">
+                                        <div class="col-md">
+                                            <div class="form-floating mb-3">
+                                                <input type="tel" class="form-control required" id="birth_date" name="birth_date" placeholder="Data de Nascimento" value="" autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                                <label for="birth_date">Data de Nascimento</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating mb-3">
+                                                <input type="tel" class="form-control required" id="phone" name="phone" placeholder="Celular" value="" autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                                <label for="phone">Celular</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control required" id="email" name="email" placeholder="email@example.com" value="">
+                                        <label for="email">Email</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control required" id="username" name="username" placeholder="Usuário" value="" maxlength='10' autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                        <label for="username">Usuário</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control required" id="password" name="password" placeholder="Senha" value=""  autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                        <label for="password">Senha</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control required" id="rpassword" name="rpassword" placeholder="Repita a Senha" value=""  autocomplete="new-password" autocorrect="off" autocapitalize="none" spellcheck="false">
+                                        <label for="rpassword">Repita a Senha</label>
+                                    </div>
+                                    
+                                </form>
+
+                                <div class="register-footer">
+                                    <div class="footer-frase">
+                                        Ao clicar no botão cadastrar você esta<br>de acordo com os nossos<br><a href="">termos e condições</a>
+                                    </div>
+
+                                    <div class="ambiente-seguro">
+                                        <img src="/website/assets/images/ambiente-seguro.png" height="30" alt="ambienteSeguro"> 
+                                        <p>100% REGISTRO SEGURO</p>
+                                        </div>
+
+                                </div>
+
+                </div>
+        `
+
+        })
+
+    }
+
+    // verifica oque tem na url
+
+    // var url_atual = window.location.href;
+    // var paramUrl = url_atual.split("?")[1]; // nid=? || ind=?
+    // var username = url_atual.split("&")[1];
+    // if (paramUrl != undefined) {
+    //     register(paramUrl, username)
+    // }
+</script>

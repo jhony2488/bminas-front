@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Novos usuários</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+
+    <style>
+    /*  .swal2-icon {
+        width: 5em !important;
+        height: 5em !important;
+        border-width: .25em !important;
+      }*/
+
+      /*.swal2-container {
+        zoom: 1.3;
+      }*/
+/*
+      .swal2-container {
+        z-index: 9999;
+      }*/
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title" style="text-transform: none;">Novos <strong>Usuários</strong></strong></h4>
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <!--form action="#" role="form" method="post" enctype="multipart/form-data">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Data Inicio </label>
+                        <input type="date" id="inicio" name="inicio" class="form-control" value="">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Data Final </label>
+                        <input type="date" id="final" name="final" class="form-control" value="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                        <button id="buscarDados" type="submit" name="pesquisar" value="pesquisar" class="btn btn-wide btn-success">Pesquisar</button>
+                         <a href="rel_campanha.php?gerente=<?php echo $gerente; ?>&inicio=<?php echo $inicio; ?>&final=<?php echo $final; ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a> 
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form-->
+              <br>
+
+              <div class="table-responsive">
+                <table id="dtable" width="100%" class="table table-striped table-lightfont" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <!-- <th scope="col">ID</th> -->
+                      <th width="20%">Data/Tempo Espera</th>
+                      <th width="20%">Username/Dt. Nasc</th>
+                      <th width="20%">Nome/CPF</th>
+                      <th width="20%">Email</th>
+                      <th width="10%">Telefone</th>
+                      <!-- <th width="10%">Ação</th> -->
+                    </tr>
+                  </thead>
+                  <tbody id="tabela">
+                  </tbody>
+                </table>
+              </div>
+              <!-- <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                <a href="rel_campanha.php?gerente=<?php echo $gerente; ?>&inicio=<?php echo $inicio; ?>&final=<?php echo $final; ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script>
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      const atualizarListaBtn = $('#att_list');
+      const buscarDadosBtn = $('#buscarDados');
+      const dataInicioInput = $('#data_inicio');
+      const dataFimInput = $('#data_fim');
+
+      const formattedStartOfMonth = getFormattedStartOfMonth();
+      const formattedCurrentDate = getFormattedCurrentDate();
+
+      // Datatable
+      const tabela = $('#dtable').DataTable({
+        initComplete: function () {
+          $('#datatable_processing').css('display', 'inline');
+          carregarDados();
+        },
+        "columns": [{
+            "data": "campo_creat",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '00-00-0000';
+              }
+
+              const origin = new Date(data);
+              const target = new Date();
+              const diffMs = target - origin;
+              const diffDuration = new Date(diffMs);
+
+              // Formatação da data
+              const formattedDate = origin.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+
+              // Formatação da duração
+              const formattedDuration = `${diffDuration.getUTCDate() - 1} d ${diffDuration.getUTCHours()}:${diffDuration.getUTCMinutes()} h`;
+
+              // Resultado final
+              const result = `${formattedDate} - ${formattedDuration}`;
+              console.log(result);
+              return result;
+            }
+          },
+          {
+            "data": "campo_nome_usuario",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              let datebirth = new Date(row['campo_data_nascimento']);
+              let formattedDatte = datebirth.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+              return `${data}<br>${formattedDatte}`;
+            }
+          },
+          {
+            "data": "campo_primeiro_nome",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+              return `${row['campo_primeiro_nome']} ${row['campo_ultimo_nome']}<br><span class="cpf">${row['campo_cpf']}</span>`;
+            }
+          },
+          {
+            "data": "campo_email",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "campo_telefone",
+            "render": function(data, type, row) {
+            //  console.log(row);
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return `<span class="phone">${row['campo_telefone']}</span>`;
+            }
+          }/*,
+          {
+            "data": "user_id",
+            "render": function(data, type, row) {
+              return `<button type='button' title='Realizar primeiro atendimento' class='btn btn-sm btn-success' onClick='addWelcome("${row['campo_nome_usuario']}","${row['saldo_saque']}","${row['campo_id']}","${row['campo_indicacao']}","${row['campo_primeiro_nome']}","${row['campo_ultimo_nome']}")'><i class='icon-doc'></i></button>
+                   <button type='button' id='edita_usuario' title='Editar usuário' class='btn btn-sm btn-info' onClick='edit_user(${row['campo_id']})'><i class='icon-pencil' title='Editar'></i></button>`;
+            }
+          }*/],
+          "createdRow": function(row, data, dataIndex) {
+            if (!data['campo_telefone']) {
+            //  return 'Não encontrado';
+              $(row).find('td:eq(4)').css({
+                'background-color': '#d8d8d8',
+                'color': '#0a0a0a'
+              });
+            } else{
+              $(row).find('td:eq(4)').css({
+                'background-color': data['campo_tel_valido'] == 1 ? '#ef4e4e' : '#26a13b',
+                'color': '#fff'
+              });
+            }
+          },
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      function getFormattedStartOfMonth() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-01`;
+      }
+
+      function getFormattedCurrentDate() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+      }
+
+      dataInicioInput.val(getFormattedStartOfMonth());
+      dataFimInput.val(getFormattedCurrentDate());
+
+      //get list
+      async function carregarDados() {
+        try {
+          const response = await fetch('/api_admin/users/newusers', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.ok) {
+
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+
+            $(".cpf").mask('000.000.000-00');
+            $('.phone').mask('(00) 00000-0000');
+
+            if (data.length === 0) {
+              const emptyMessage = 'Nenhum usuário cadastrado hoje';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+
+          } else if (response.status === 401) {
+            location.reload();
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          buscarDadosBtn.html('<i class="fa fa-search fa-2xl"></i>Pesquisar');
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+          $('#datatable_processing').css('display', 'block');
+        }
+      }
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        const initialDate = dataInicioInput.val();
+        const finalDate = dataFimInput.val();
+        const type = $('#tipo').val();
+        const status = $('#status').val();
+
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+        tabela.clear().draw();
+        carregarDados();
+      });
+
+      buscarDadosBtn.click(function(e) {
+        e.preventDefault();
+
+        $(this).html(`<div class="spinner-border text-primary" role="status"></div>`);
+        console.log('em desenvolvimento')
+      });
+
+    function addWelcome(username, debit_base, user_id, indication_id, first_name, last_name) {
+      const saldo_ind = 3642;
+      console.log('teste')
+      Swal.fire({
+        title: `Atender o usuário ${username}`,
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+        showCancelButton: true,
+        reverseButtons: true,
+        html: `
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-center mb-1">
+              <span  style='font-size: 18px; font-weight: bold'>Nome: </span>&nbsp;<span class="mr-3" style='font-size: 18px;' name="nome">${username}</span> -
+              <span class="ml-3" style='font-size: 18px; font-weight: bold'>ID: </span>&nbsp;<span style='font-size: 18px;' name="id">${user_id}</span>
+            </div>
+
+            <div class="col-md-12 mt-4">
+              <div class="form-group">
+                  <label class="form-label">Mensagem:</label>
+                  <textarea class="form-control" id="mensagem" name="mensagem" rows="5" style="width: 100%"></textarea>
+              </div>
+            </div>
+          </div>
+        `,
+      }).then((response) => {
+
+        if (response.value) {
+          const mensagem = document.getElementById('mensagem').value;
+          const usernameAdm = 'freitas';//document.getElementById('usernameAdm').value;
+          // const check = document.getElementById('isCheck').checked;
+          // const inativaUsuario = document.getElementById('inativa').checked;
+
+          if (mensagem.trim()) {
+            $.ajax({
+              type: "POST",
+              url: "./ajax_welcome.php",
+              data: {
+                user_id,
+                mensagem,
+                // check,
+                saldo_ind,
+                debit_base,
+                username,
+                usernameAdm,
+                // inativa: inativaUsuario,
+                indication_id,
+              }
+            }).then((response) => {
+              let data;
+              try {
+                data = JSON.parse(response);
+                Swal.fire({
+                  type: 'success',
+                  showConfirmButton: false,
+                  title: 'Atendimento realizado com sucesso!',
+                  timer: 2000
+                }).then((result) => {
+                  location.reload();
+                })
+              } catch (e) {
+                Swal.fire({
+                  showConfirmButton: true,
+                  confirmButtonText: 'Entendido',
+                  type: 'info',
+                  title: 'Atendimento realizado com sucesso, porém sua sessão expirou, faça o login novamente.',
+                  timer: 5000
+                }).then((result) => {
+                  window.location.replace('login.html')
+                })
+              }
+            });
+          }
+        }
+      })
+    }
+
+    function inativaUsuario(value) {
+      const inativa = document.getElementById('inativa').checked;
+
+      if (inativa) {
+        document.getElementById('isCheck').checked = false;
+        document.getElementById('isCheck').setAttribute('disabled', true);
+      } else {
+        document.getElementById('isCheck').checked = true;
+        document.getElementById('isCheck').removeAttribute('disabled');
+      }
+    }
+
+    function edit_user(id) {
+      // alert('Alteração de dados em fase de desenvolvimento.');
+
+      url = 'ajax_busca_usuario.php';
+      $.ajax({
+        type: 'GET',
+        url,
+        data: {
+          id,
+        },
+        success: (data) => {
+          Swal.fire({
+
+            confirmButtonText: 'Editar',
+            // showConfirmButton: false,
+            html: data,
+          }).then((result) => {
+            if (result.value) {
+              let edit_email = document.getElementById('edit_email').value;
+              let phone = document.getElementById('phone').value;
+              let type_acc = document.getElementById('type_acc').value;
+              let bank = document.getElementById('bank').value;
+              let agency = document.getElementById('agency').value;
+              let acc = document.getElementById('acc').value;
+              let status = document.getElementById('status').value;
+              let op = document.getElementById('op').value;
+              let type = document.getElementById('type_manager').value;
+              let cpf = document.getElementById('cpf').value;
+              let cnpj = document.getElementById('cnpj').value;
+              let first_name = document.getElementById('first_name').value;
+              let last_name = document.getElementById('last_name').value;
+              let adm = document.getElementById('adm') && document.getElementById('adm').value;
+              let titular = document.getElementById('titular').value;
+              let indication = document.getElementById('indication').value;
+              let city = document.getElementById('city').value;
+              let uf = document.getElementById('uf').value;
+              let date_birth = document.getElementById('date_birth').value;
+              let motivo = document.getElementById('motivo').value;
+              let dt_validation = document.getElementById('validou_dt').checked;
+              let cpf_validation = document.getElementById('validou_cpf').checked;
+              let card_orientou = document.getElementById('card_orientou').checked;
+              let pix_orientou = document.getElementById('pix_orientou').checked;
+              let boleto_orientou = document.getElementById('boleto_orientou').checked;
+              let bloqueado_mp = document.getElementById('bloqueado_mp').checked;
+              let bloqueado_cardpay = document.getElementById('bloqueado_cardpay').checked;
+              let saque_free = document.getElementById('saque_free').value;
+              let supervisor = document.getElementById('supervisor') && document.getElementById('supervisor').value;
+              let dia_atendimento = document.getElementById('dia_atendimento') && document.getElementById('dia_atendimento').value;
+              let lresultado = document.getElementById('lresultado') && document.getElementById('lresultado').value;
+
+
+              let erro = 0;
+              let msgTextErr = '';
+              let msgTitleErr = '';
+
+              Swal.fire({
+                title: 'Quer mesmo editar ?',
+                text: 'Você poderá editar novamente, não se preocupe!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, editar!',
+                cancelButtonText: 'Cancelar.',
+                confirmButtonColor: '#0071c7',
+                cancelButtonColor: '#eb4034',
+              }).then((result) => {
+                if (result.value) {
+                  $(".required").each((index, value) => {
+                    if ($(value).val().trim() == "") {
+                      erro = true;
+                      msgTitleErr = 'Campos em branco!';
+                      msgTextErr = 'Complete todos os campos para poder editar.';
+                    }
+                  })
+
+                  if (phone.length != 12) {
+                    erro = true;
+                    msgTitleErr = 'Telefone inválido';
+                    msgTextErr = 'Exemplo de formato válido 34-988880000.';
+                  }
+
+
+                  if (cpf != '') {
+                    if (cpf.trim().length < 14) {
+                      erro = true;
+                      msgTitleErr = 'CPF Invalido';
+                      msgTextErr = 'O cpf deve ter 14 caracteres com . e -';
+                    }
+                  }
+
+                  if (status == 0) {
+                    if (motivo.trim().length <= 10) {
+                      erro = true;
+                      msgTitleErr = 'Motivo inválido';
+                      msgTextErr = 'O motivo deve ter no mínimo 10 caracteres';
+                    }
+                  }
+
+                  if (erro) {
+                    Swal.fire({
+                      title: msgTitleErr,
+                      text: msgTextErr,
+                      timer: 3000
+                    }).then(() => {
+                      edit_user(id);
+                    })
+                  } else {
+                    var url = 'ajax_edita_usuario.php';
+                    $.ajax({
+                      type: 'POST',
+                      url,
+                      data: {
+                        id,
+                        email: edit_email,
+                        phone,
+                        type_acc,
+                        bank,
+                        agency,
+                        acc,
+                        op,
+                        status,
+                        type,
+                        cpf,
+                        cnpj,
+                        first_name,
+                        last_name,
+                        adm,
+                        titular,
+                        indication,
+                        city,
+                        uf,
+                        date_birth: date_birth.split("/").reverse().join("-"),
+                        motivo,
+                        cpf_validation,
+                        dt_validation,
+                        saque_free,
+                        card_orientou,
+                        pix_orientou,
+                        boleto_orientou,
+                        bloqueado_mp,
+                        bloqueado_cardpay,
+                        supervisor,
+                        dia_atendimento,
+                        lresultado
+                      },
+                      success: (result) => {
+                        // console.log(result);
+                        location.reload();
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          });
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

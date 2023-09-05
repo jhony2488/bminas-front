@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Cadastro de Movimento</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><i class="fa fa-table"></i> Registros do <strong>Usuário - "<span id="nomeUser"></span>"</strong></h4>
+              <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+              <br>
+
+              <form id="pesquisa" enctype="multipart/form-data">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Data Inicio </label>
+                        <input type="date" id="initial_date" name="initial_date" class="form-control" value="">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Data Final </label>
+                        <input type="date" id="final_date" name="final_date" class="form-control" value="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                        <a href="/admin/users/historic"> <button type="button" name="voltar" value="voltar" class="btn btn-wide btn-dark"><i class="glyphicon glyphicon-arrow-left"> Voltar</i></button></a>
+                        <button id="btn-search" name="pesquisar" value="pesquisar" class="btn btn-wide btn-success">Pesquisar</button>
+                        <a href="#rel_vida_usuario.php?tipo=<?php echo $tipo; ?>&inicio=<?php echo $inicio; ?>&final=<?php echo $final; ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+              <br><br>
+
+              <div id="tab" class="panel-content pagination2 table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr></tr>
+                    <tr>
+                      <td colspan='5'><strong>Saldo Anterior:<strong></td>
+                      <td align='right'><strong></strong></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+
+                <table id="dtable" class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Data</th>
+                      <!-- <th scope="col" align='right'>Saldo antorior</th> -->
+                      <th style="text-align: right;">Deposito</th>
+                      <th style="text-align: right;">Jogo</th>
+                      <th style="text-align: right;">Estorno</th>
+                      <th style="text-align: right;">Premio</th>
+                      <th style="text-align: right;">Saque</th>
+                      <th style="text-align: right;">Bonus</th>
+                      <th style="text-align: right;">Restituição</th>
+                      <!-- <th  style="text-align: right;">Estorno Dep.</th> -->
+                      <th style="text-align: right;">Saldo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tfoot>
+                    <tr>
+                      <th style="font-size: 16px;" colspan="1">Total</th>
+                        <th style="font-size: 16px;text-align:right;"></th>
+                        <th style="font-size: 16px;text-align:right"></th>
+                        <th style="font-size: 16px;text-align:right"></th>
+                        <th style="font-size: 16px;text-align:right;"></th>
+                        <th style="font-size: 16px;text-align:right;"></th>
+                        <th style="font-size: 16px;text-align:right;"></th>
+                        <th style="font-size: 16px;text-align:right;"></th>
+                        <th style="font-size: 16px;text-align:right;"></th>
+                      </tr>
+                    </tfoot>
+                  </tbody>
+                </table>
+              </div>
+              <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                <a href="#rel_vida_usuario.php?tipo=<?php echo $tipo; ?>&inicio=<?php echo $inicio; ?>&final=<?php echo $final; ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a>
+              </div>
+            <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const userId = window.location.pathname.split('/')[4];
+    function buscarDados(userId, body) {
+      const url = '/api_admin/users/activity/' + userId;
+      // console.log(url);
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: body ? JSON.stringify(body) : null
+      })
+        .then(response => response.json())
+        .catch(error => {
+          throw new Error('Erro na busca de dados: ' + error);
+        })
+        .finally(() => {
+          document.getElementById('btn-search').innerHTML = '<i class="fa fa-search fa-2xl"></i>Pesquisar';
+          });
+    }
+
+    async function processarDados(userId, body) {
+      try {
+        const dados = await buscarDados(userId, body);
+        console.log(dados);
+        if (!Array.isArray(dados) || dados.length < 1) {
+          throw new Error('Dados inválidos');
+        }
+
+        // $("#nomeUser").html(dados[0]['campo_primeiro_nome'] + ' ' + dados[0]['campo_ultimo_nome']);
+
+        tabela.clear().draw();
+        tabela.rows.add(dados).draw();
+
+      } catch (error) {
+        console.log('Erro ao processar dados:', error);
+      }
+    }
+
+    document.getElementById('btn-search').addEventListener('click', function(e) {
+        e.preventDefault();
+        this.innerHTML = `<div class="spinner-border text-primary" role="status"></div>`;
+
+        var myForm = document.getElementById('pesquisa');
+        var formData = new FormData(myForm);
+        var formObject = Object.fromEntries(formData.entries());
+
+
+
+      for (const pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
+      processarDados(userId, Object.keys(formObject).length > 0 ? formObject : null);
+    });
+
+    // Chamada inicial para carregar os dados sem o envio do formulário
+    processarDados(userId, null);
+
+
+         // Datatable
+        /* var tabela = $('#dtable').DataTable({
+        "createdRow": function( row, data, dataIndex){
+          if (data['campo_status'] == 0) {
+            $(row).css({"background-color": "red", "color": "white"});
+          } else if (data['campo_indicacao'] != 1 && data['campo_indicacao'] != 0) {
+            if (data['gerente_name'] != 'bichostars10') {
+              $(row).css({"background-color": "#85a8ef", "color": "white"});
+            } else {
+              $(row).css("background-color", "#06bd3d");
+            }
+          } else {
+            $(row).css("background-color", "none");
+          }
+        },
+        "columns": [{
+            "data": "campo_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '00-00-0000';
+              }
+
+              row['user_atendente'] = row['user_atendente'] == null ? '' : row['user_atendente'];
+
+              const Data = new Date(row['campo_creat']);
+              // Formatação da data
+              const formattedDate = Data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+              return `${row['campo_id']}<br>${formattedDate}<br>${row['user_atendente']}`;
+            }
+          },
+          {
+            "data": "campo_nome_usuario",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '0';
+              }
+
+              row['gerente_name'] = row['gerente_name'] == null ? '' : row['gerente_name'];
+
+              let type_user;
+              if (row['campo_base'] > 0) {
+                if (row['campo_indicacao'] > 0) {
+                type_user = 'AP IND';
+                } else {
+                  type_user = 'AP WEB';
+                }
+              } else {
+                if (row['campo_indicacao'] > 0) {
+                type_user = 'N CAD IND';
+                } else {
+                  type_user = 'N CAD WEB';
+                }
+              }
+
+              return `${data}<br>${type_user}<br>${row['gerente_name']}`;
+            }
+          },
+          {
+            "data": "campo_primeiro_nome",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return `${row['campo_primeiro_nome']}<br>SD: <span class="money">${row['campo_base']}</span> SP: <span class="money">${row['campo_premio']}</span>`;
+            }
+          },
+          {
+            "data": "campo_telefone",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return `Tel: <span class="phone">${row['campo_telefone']}</span><br>Email: ${row['campo_email']}`;
+            }
+          },
+          {
+            "data": "percent_ind",
+            "render": function(data, type, row) {
+              // if (!data) {
+              //   return 'Não encontrado';
+              // }
+
+              if (row['total_jogos2'] == '') {
+                let valor7dias = 0;
+              } else {
+                valor7dias = row['total_jogos2'];
+              }
+
+              return `${data}`;//`${row['percent_ind']}%<br>Jogos Ultimos 7 dias: <span class="money">${row['total_jogos']}</span><br>Jogos 7 a 14 dias : <span class="money">${valor7dias}</span>`;
+            }
+          },
+        {
+          "data": "campo_id",
+          "render": function(data, type, row) {
+            return `<button onclick="event.stopPropagation();configUser('${row['campo_id']}','${row['percent_ind']}','${row['saldo_ind']}')" type="button" class="btn btn-sm btn-success" title="Configurar" data-toggle="tooltip"><i class="icon-settings"></i></button>
+
+            <a href="/admin/users/activity/${row['campo_id']}" target="_blank" onclick="return event.stopPropagation();">
+
+            <button type="button" title="Vida Usuario" class="btn btn-sm btn-primary"><i class="icon-user"></i></button></a>
+
+            <a class='btn btn-sm btn-info' id='edita_usuario' onclick="event.stopPropagation();edit_user(${row['campo_id']})"  data-id="${row['campo_id']}"  name='abremodal' data-target="#dados"  data-toggle="modal"   href="#"  title='Editar dados do usuário' onclick="return event.stopPropagation();"><i class='icon-pencil' title='Editar'></i></a>
+
+            <a class='btn btn-sm btn-warning' id='envia_mensagem' onclick="event.stopPropagation();enviar_mensagem('${row['campo_id']}','${row['username']}')"  data-id="${row['campo_id']}"  name='mensagem' data-target="#dados"  data-toggle="modal"   href="#"  title='Enviar mensagem' onclick="return event.stopPropagation();"><i class='icon-speech' title='Enviar Mensagem'></i></a>
+
+            <a href="/admin/users/oldactivity/${row['campo_id']}" class='btn btn-sm btn-secondary' id='historico_antigo' name='antigo' data-target="#dados"  data-toggle="modal"   href="#"  title='Histórico antigo' onclick="return event.stopPropagation();"><i class='icon-doc' title='Histórico antigo'></i></a>
+            <!--a class='btn btn-sm btn-default dropdown-toggle' id='historico_antigo' onclick="event.stopPropagation();historico_antigo(${row['campo_id']})" name='antigo' data-target="#dados"  data-toggle="modal"   href="#"  title='Histórico antigo' onclick="return event.stopPropagation();"><i class='fa fa-info' title='Histórico antigo'></i></a-->`;
+          }
+        }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });*/
+  })
+  </script>
+
+  </body>
+</html>

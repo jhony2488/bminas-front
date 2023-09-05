@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <meta name="description" content="Aposte online no jogo do bicho, o jogo mais tradicional do brasil. Depósitos automaticos e disponíveis em segundos na sua conta">
+    <meta name="keywords" content="Jogo, Bicho, jogo do bicho, Federal, federal, deu no poste, estatisticas, resultado, resultados, Resultado, Resultados, resultado do jogo do bicho, deu no poste, poste, resultado do bicho, bicho online, jogo do bicho online, apostar no bicho online">
+    <meta name="author" content="Bicho Mania">
+    <meta name="robots" content="index, follow">
+    <meta name="msapplication-config" content="none">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>App - Jogo do bicho</title>
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://bichomania.bet/app">
+    <meta name="google-site-verification" content="7BPuil9jdxgI5EOT_3tWlExznbtOATrlWJfsR-O3af8" />
+
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css?ver=1.1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.1">
+    <!-- <link rel="stylesheet" href="/website/assets/css/footer.css?ver=1.1"> -->
+    <link rel="stylesheet" href="/website/assets/css/download_app.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/style.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?ver=1.1">
+
+    <link rel="manifest" href="/app.webmanifest">
+
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat" crossorigin="anonymous"></script>
+
+    <script>
+        serviceWorker.register({
+            onUpdate: registration => {
+                const waitingServiceWorker = registration.waiting
+
+                if (waitingServiceWorker) {
+                    waitingServiceWorker.addEventListener("statechange", event => {
+                        if (event.target.state === "activated") {
+                            window.location.reload()
+                        }
+                    });
+                    waitingServiceWorker.postMessage({
+                        type: "SKIP_WAITING"
+                    });
+                }
+            }
+        });
+    </script>
+    <!-- <script type="module">
+        import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-window.prod.mjs'; if ('serviceWorker' in navigator) { const wb = new Workbox('/pwabuilder-sw.js'); let registration; const showSkipWaitingPrompt = async (event) =>
+        { wb.addEventListener('controlling', () => { window.location.reload(); }); const updateAccepted = await promptForUpdate(); if (updateAccepted) { wb.messageSkipWaiting(); } }; wb.addEventListener('waiting', (event) => { showSkipWaitingPrompt(event);
+        }); wb.register(); }
+    </script> -->
+</head>
+
+<body>
+    <!-- <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div> -->
+
+
+    <!-- <div class="show_lateral" id="lateral_menu"></div> -->
+    <div class="container-app">
+        <!-- <div class="back-header" id="header"></div> -->
+        <div class="header-app">
+            <img src="/website/assets/images/logo.png" alt="Bicho Mania" height="100">
+        </div>
+
+        <div class="content-app">
+            <img src="/website/assets/images/aposte-app.png" alt="Aposte no App" height="130">
+            <p class="text">Rápido e Fácil</p>
+            <p class="text">Jogue com a segurança de sempre!</p>
+            <button class="button-download" id="enable-banner-install">
+                <img src="/website/assets/images/icon-download-app.svg" alt="Bicho Mania" height="20">
+                <p>Instalar APP!</p>
+            </button>
+
+            <!-- Button trigger modal -->
+            <a href="" type="button" data-bs-toggle="modal" data-bs-target="#Modalvideo" style="color: #fff; margin: 25px 0px; text-decoration: none;">COMO INSTALAR NO IOS!</a>
+
+            <a href="/" style="    
+                color: #fff;
+                z-index: 1; text-decoration: none;" class="btn btn-outline-danger"><i class="fa fa-arrow-left"></i> Voltar</a>
+
+            <!-- Modal -->
+        </div>
+        <div class="modal fade" id="Modalvideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="place-self: center;">
+                        <iframe src="/website/assets/images/IOS.mp4" style="height: 350px;" frameborder="0"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div id="footer"></div> -->
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=" anonymous "></script>
+    <script src="/assets/js/ajax.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin=" anonymous " referrerpolicy="no-referrer "></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/website/assets/js/main.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js " integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ " crossorigin="anonymous "></script>
+
+    <script>
+        window.onload = function() {
+            let deferredPrompt;
+            const addBtn = $('#enable-banner-install');
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // $(addBtn).css('display', 'block');
+                e.preventDefault();
+                deferredPrompt = e;
+                $(addBtn).on('click', (e) => {
+                    // addBtn.style.display = 'none';
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the prompt');
+                        } else {
+                            console.log('User dismissed the prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            });
+        };
+    </script>
+</body>
+
+</html>

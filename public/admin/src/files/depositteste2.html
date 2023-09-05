@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <!-- <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src https://*; child-src 'none';"> -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/style.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/radio_card.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/deposit.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?ver=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Depósito - Bicho Premiado</title>
+    <script>
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i)
+
+            if (texto.substring(0, 1) != saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+
+        function somenteNumeros(e) {
+            var charCode = e.charCode ? e.charCode : e.keyCode;
+            // charCode 8 = backspace   
+            // charCode 9 = tab
+            if (charCode != 8 && charCode != 9) {
+                // charCode 48 equivale a 0   
+                // charCode 57 equivale a 9
+                if (charCode < 48 || charCode > 57) {
+                    return false;
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body style="overflow: hidden;">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHPGFP9" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div>
+    <div class="wrapper">
+        <aside class="d-flex">
+            <div class="" id="lateral_menu"></div>
+            <div class="body-container noselect ">
+                <div class="back-header" id="header"></div>
+
+                <div class="container-fluid no-gutters content-body">
+                    <div class='col-lg-12'>
+                        <div class="container-header-page">
+                            <div class="content-header-page">
+                                <p class="title">Depósito</p>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <main>
+
+                        <div>
+                            <div class="">
+                                <form id="comprar" method="post" onsubmit="return false;">
+                                    <div class="row">
+                                        <label class="value-deposit-withdraw no-select">
+                                            <input type="tel" id="amount" maxlength="6" placeholder="0"
+                                                autocomplete="new-password" />
+                                            <span>R$</span>
+                                            <span>,00</span>
+                                        </label>
+                                        <input type="hidden" name="code" id="code" value="" />
+                                    </div>
+                                </form>
+                                <form class="mt-2" id="cpfs" method="post" onsubmit="return false;">
+                                    <div class="row">
+                                        <label class="value-deposit-withdraw no-select">
+                                            <input type="tel" name="cpf" class="pe-2" id="cpf-input" maxlength="14"
+                                                autocomplete="new-password">
+                                            <span>CPF</span>
+                                        </label>
+                                        <!-- <input type="hidden" name="code" id="code" value="" /> -->
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="content-main">
+
+                            <div class="content-form-payments"></div>
+
+                            <div class="text-center content-logo" style="flex: 1;">
+                                <img src="/website/assets/images/logo-header.png" alt="logo">
+                            </div>
+
+                            <div class="infos-deposit">
+                                <div>
+                                    <p>Várias formas<br> de depósito<br> para você</p>
+                                    <p>Seguro, rápido e fácil.</p>
+                                    <div class="buttons-deposit">
+                                        <button class="primary deposit" anim="ripple" title="Depositar" id="enviar">
+                                            <p>Depositar</p>
+                                        </button>
+                                    </div>
+                                    <p><span>*</span>Selecione ao lado uma das opções para depósito.<br> E clique no
+                                        botao acima.
+                                    </p>
+                                </div>
+                                <!-- <p><span>*</span>Para retirada apenas digite o valor, em seguida clique no botao "Retirar".
+                                </p> -->
+                            </div>
+
+                        </div>
+                        <div class="col-md-12" style="padding: 0;">
+                            <fieldset>
+                                <div id="checkDiv" class="plan-card-group">
+
+                                </div>
+                            </fieldset>
+                        </div>
+                    </main>
+                </div>
+
+                <div id="footer"></div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <script src="assets/js/ajax.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/website/assets/js/main.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+    <!-- <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script> -->
+
+    <script>
+        $("#lateral_menu").load("/slim/src/files/lateral_menu.html");
+        $("#header").load("/slim/src/files/header.html");
+        $("#footer").load("/slim/src/files/footer.html");
+
+        $(window).on("load", function () {
+            $('.wrapper').css('display', 'block');
+            $(".loading-screen").fadeOut(100, function () {
+                $('body').css('overflow', 'visible');
+            });
+
+            $('#amount').inputmask("decimal", {
+                // placeholder: "0",
+                digits: 0,
+                // digitsOptional: '00',
+                radixPoint: ",",
+                groupSeparator: ".",
+                autoGroup: true,
+                autoUnmask: true,
+            });
+
+            checkDeposit()
+
+        });
+
+        //PUXAR CPF
+        function showCPF() {
+            ajaxControl({
+                type: "GET",
+                url: "users/",
+                success: (response) => {
+                    let data = JSON.parse(response)
+
+                    $("#cpf-input").val(data.company)
+
+                    // MASCARAS INPUT
+                    $("#cpf-input").mask('000.000.000-00');
+
+                    if (data.company) {
+                        $('#cpf-input').prop({ 'readonly': true, 'disabled': true });
+                    }
+                }
+            });
+        }
+
+        showCPF()
+
+        // VALIDAR CPF
+        function validationCPF(cpf) {
+            cpf = cpf.replace(/[^\d]+/g, '');
+            if (cpf == '') return false;
+            // Elimina CPFs invalidos conhecidos	
+            if (cpf.length != 11 ||
+                cpf == "00000000000" ||
+                cpf == "11111111111" ||
+                cpf == "22222222222" ||
+                cpf == "33333333333" ||
+                cpf == "44444444444" ||
+                cpf == "55555555555" ||
+                cpf == "66666666666" ||
+                cpf == "77777777777" ||
+                cpf == "88888888888" ||
+                cpf == "99999999999")
+                return false;
+            // Valida 1o digito	
+            add = 0;
+            for (i = 0; i < 9; i++)
+                add += parseInt(cpf.charAt(i)) * (10 - i);
+            rev = 11 - (add % 11);
+            if (rev == 10 || rev == 11)
+                rev = 0;
+            if (rev != parseInt(cpf.charAt(9)))
+                return false;
+            // Valida 2o digito	
+            add = 0;
+            for (i = 0; i < 10; i++)
+                add += parseInt(cpf.charAt(i)) * (11 - i);
+            rev = 11 - (add % 11);
+            if (rev == 10 || rev == 11)
+                rev = 0;
+            if (rev != parseInt(cpf.charAt(10)))
+                return false;
+            return true;
+        }
+
+        $("#cpf-input").focusout(function () {
+            if (validationCPF($("#cpf-input").val()) == false) {
+                Swal.showValidationMessage(
+                    `CPF Inválido!`
+                )
+                erro = true
+                $("input[name=cpf]").next().next().text("CPF Inválido!")
+                $("input[name=cpf]").removeClass('valid').addClass('invalid');
+            } else {
+                $("input[name=cpf]").next().next().text("muito bem!")
+                $("#swal2-validation-message").hide();
+            }
+        })
+        // VALIDAR CPF
+
+        //Rolagem para o pagamento do MP 
+        $('.content-form-payments').on('click', 'a[href^="#"].click-scroll', function (e) {
+            e.preventDefault();
+            var id = $(this).attr('href'),
+                targetOffset = $(id).offset().top;
+
+            $('html, body').animate({
+                scrollTop: targetOffset - 120
+            }, 500);
+        });
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        var copyToClipboard = function (text) {
+            var $txt = $('<textarea />');
+            $txt.val(text).css({ width: "1px", height: "1px" }).appendTo('body');
+            $txt.select();
+            if (document.execCommand('copy')) {
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Pix copiado com sucesso. Cole no seu banco'
+                })
+                $txt.remove();
+            }
+        };
+
+        $('.content-form-payments').on('click', '[id^="full-marca-blanca"]', function (e) {
+            let target = $(e.target)
+            let id_method = $(e.target).val()
+            let qr_code = $(target).siblings('#copiacola-' + id_method).val()
+            if (qr_code) {
+                copyToClipboard(qr_code)
+            }
+        });
+
+        //Copy text key pix
+        $('.content-form-payments').on('click', '#full-marca-blanca28', function (e) {
+            navigator.clipboard.writeText('11910930949');
+            Toast.fire({
+                icon: 'success',
+                title: 'Pix copiado com sucesso. Cole no seu banco'
+            })
+        });
+
+        function inverteData(data) {
+            let x = data.split(" ")
+            if (data.indexOf("-") > -1) {
+                return x[0].split("-").reverse().join("/") + " " + x[1]
+            } else {
+                return x[0].split("/").reverse().join("-") + " " + x[1]
+            }
+        }
+
+        function maiorIdade(data_nasc) {
+            // let data_nasc = "31/12/2019"
+            let nasc = data_nasc.split("/").map(Number);
+            if (nasc[0] > 0 && nasc[0] < 32 && nasc[1] > 0 && nasc[1] < 13 && nasc[2] >= 1930) {
+                //construir data 18 anos a seguir a data dada pelo usuario
+                let depois18Anos = new Date(nasc[2] + 18, nasc[1] - 1, nasc[0]);
+                let agora = new Date();
+                if (depois18Anos <= agora) {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return true
+            }
+        }
+
+
+        // FUNÇÕES DEPOSITAR
+        /////////////////////////////////////
+        ///////////////////////////////////
+        search()
+
+        function search() {
+            ajaxControl({
+                type: "GET",
+                url: "bank/search",
+                success: (response) => {
+                    let data = JSON.parse(response)
+                    var id = data[0].transacao
+                    var file = data[0].file_name
+                    var receiver = data[0].receiver
+                    if (id != undefined && file == null && receiver != 'Banco Pix' && receiver != 'Banco Pix Clube Maia' && receiver != 'Banco Brasil' && receiver != 'Banco Bradesco' && receiver != 'Banco Cartao' && receiver != 'Banco Boleto') {
+                        $("#insere_comprovante").html(`<form id="form_img" action="ts/upload.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                  <input type="file" name="archive" id="archive" class="btn btn-success blink" accept="image/png, image/jpeg" multiple required/> 
+                  <input type="hidden" name="nid" value='${id}'/> 
+                  <button type="submit" name="addcomprovante" value="Enviar Comprovante"  class="btn btn-wide btn-primary" >Enviar Comprovante</button> </form>`)
+                    }
+                }
+            })
+        }
+
+
+        function checkDeposit() {
+            search()
+            ajaxControl({
+                type: "GET",
+                url: "bank/check",
+                success: (response) => {
+                    let data = JSON.parse(response)
+                    let rows = '';
+                    if (data.deposit == false) {
+                        data.bank.forEach((element, index) => {
+                            // if (element.bank_id == '34') {
+                            //     return
+                            // }
+                            rows += `
+                            <label class="card-checkbox payment ${element.valor}" 
+                            for="full-marca-blanca${element.bank_id}" 
+                            id="radio-label${element.bank_id}">
+                                    <input class="card__input" type="radio" name="method[]" 
+                                    value="${element.valor}" id="full-marca-blanca${element.bank_id}" ${index == 0 ? 'checked' : ''} />
+                                    <div class="card__body">
+                                            <img src="/website/assets/images/${element.img}" class="card__body-cover-image" />
+                                        </div>
+                                        <span class="card__body-cover-checkbox">
+                                            <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1">
+                                                </polyline>
+                                            </svg>
+                                        </span>
+                                </label>`;
+                        })
+
+                        $(".content-form-payments").html(rows)
+                        // $(".content-form-payments").html(`<input class="btn btn-success" type="hidden" id="enviar">`)
+                        $('#checkDiv').empty()
+                        $("#enviar").attr('disabled', false);
+                    } else {
+                        console.log(data);
+                        $("#enviar").attr('disabled', true);
+                        if (data.info.receiver == 'Banco Mercado Pago') {
+                            ajaxControl({
+                                type: 'POST',
+                                url: 'bank/mercadopago',
+                                data: {
+                                    'value': data.info.amount.split(',')[0],
+                                    'cents': data.info.amount.split(',')[1]
+                                },
+                                success: (data) => {
+                                    var teste = `<iframe src="${data}" width="100%" height="600" frameborder="0" allowfullscreen="" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture "></iframe>`
+                                    $('#mercadopago-button-container').html(teste)
+                                }
+                            })
+                        }
+                        let div = ""
+                        let operation = ""
+                        // <small class="text-muted" style="font-size: 13px !important;">Clique para fazer o pagamento!</small></a>
+                        
+                        if (data.info.receiver == 'Banco Pix Clube Maia' || data.info.receiver == 'Banco Pix Fit Bank') {
+                            // qr-code-base64
+                            // <img src="/website/assets/images/${data.bank.img}" class="card__body-cover-image" />
+                            // <p style="margin-top: 10px">Copia e cola:<br>${data.info.copiacola}</p>
+                            div = `
+                            <label class="card-checkbox payment ${data.amount}" for="full-marca-blanca${data.bank.bank_id}"  id="radio-label${data.bank.bank_id}" style="text-align: center">
+                                    <input class="card__input" type="radio" name="method[]" value="${data.bank.bank_id}" id="full-marca-blanca${data.bank.bank_id}" checked readonly />
+                                    <input id="copiacola-${data.bank.bank_id}" type="hidden" value="${data.info.copiacola}" />
+                                    <div class="card__body" style="flex-direction:column;height: 180px;">
+                                        <div style="display: flex;justify-content: space-between; width: 100%; padding: 0 30px">
+                                            <div style="display: flex; flex-direction: column;justify-content: center">
+                                                <img src="/website/assets/images/${data.bank.img}" class="card__body-cover-image" style="width: 70px;margin-bottom:20px" />
+                                                <p><strong>R$ ${data.info.amount}</strong></p>	
+                                            </div> 
+                                            <img class="card__body-cover-image" alt='Embedded Image' src='data:image/png;base64,${data.info.qrcode}' />
+                                        </div> 
+                                    </div>
+                                        <span class="card__body-cover-checkbox">
+                                            <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1">
+                                                </polyline>
+                                            </svg>
+                                        </span>
+                                        <button class="btn btn-success my-3 d-flex mx-auto w-100 justify-content-center" id="copyQR" type="button"> Copiar código </button>
+                                        <button class="btn btn-danger my-3 d-flex mx-auto" type="button" id="cancelar">Cancelar</button>
+                                </label>
+                            `
+                            if (data.info.copiacola && data.info.copiacola != ' ' ) {
+                                $(".content-form-payments").html(div)
+                            } else {
+                                div = `<p style="text-align: center; font-size: 1rem; color: var(--red); margin: 10px auto;">Erro, não foi possível gerar o QR CODE.</p>
+                                <button class="btn btn-sm btn-danger" style="width: max-content; margin: auto" id="cancelar">Tentar novamente</button>`
+                                $(".content-form-payments").html(div)
+                            }
+                        } else if (data.info.receiver == 'Banco Pix') {
+                            div = `
+                            <label class="card-checkbox payment ${data.amount}" for="full-marca-blanca${data.bank.bank_id}"  id="radio-label${data.bank.bank_id}" style="text-align: center">
+                                    <input class="card__input" type="radio" name="method[]" value="${data.bank.bank_id}" id="full-marca-blanca${data.bank.bank_id}" checked readonly />
+                                    <div class="card__body" style="flex-direction:column;height: 180px;">
+                                            <img src="/website/assets/images/${data.bank.img}" class="card__body-cover-image" />
+                                            <p style="margin-top: 10px">Chave Celular:<br> <strong>(11) 9 1093-0949</strong></p>
+                                              <p>Valor: ${data.info.amount}</p>	
+                                              <small class="text-muted" style="font-size: 13px !important;">Clique para copiar chave.</small>
+                                            </div>
+                                            <p style="text-align: center;margin: 10px 0;">Após o pagamento, favor enviar comprovante para o suporte.</p>
+                                        <span class="card__body-cover-checkbox">
+                                            <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1">
+                                                </polyline>
+                                            </svg>
+                                        </span>
+                                        <button class="btn btn-danger my-3 d-flex mx-auto" type="button" id="cancelar">Cancelar</button>
+                                </label>
+                            `
+
+                            $(".content-form-payments").html(div)
+                        } else if (data.info.receiver == 'Banco Mercado Pago') {
+                            div = `
+                            <h5 class="text-center m-3"><strong>Pagamento via Mercado Pago</strong></h5>
+              <div class="content-info-bank">  
+              
+              <div class="text-center" >  
+                <a class="click-scroll" href="#mercadopago-button-container"><img style="width:150px; border: 1px solid #efefef;margin-right: 10px;" src="/website/assets/images/${data.bank.img}" class="img-circle"><br>
+                <small class="text-muted" style="font-size: 13px !important;">Clique para fazer o pagamento!</small></a>	  
+              </div>
+              </div>
+              <button class="btn btn-danger my-3 d-flex mx-auto" type="button" id="cancelar">Cancelar</button>`;
+                            $(".content-form-payments").html(`
+                      <div class="card-bank">
+                            <div>
+                                ${div}
+                            </div>
+                      </div>`);
+
+                            $("#checkDiv").html(`<div id="mercadopago-button-container" class="col-md-12 my-4"></div>`)
+                        } else if (data.info.receiver == 'Banco Bradesco') {
+                            div = `
+                <h5 class="text-center m-3"><strong>Dados para a transferência</strong></h5>
+              <div class="content-info-bank">  
+              <div style="padding: 10px;font-size: 18px;">  
+                <h5>
+                <span style="float:left">${data.bank.descricao}<br>
+                ${operation}
+                <strong>Agência</strong>: ${data.bank.ag}<br>
+                <strong>Cc</strong>: ${data.bank.cc}<br>
+                </h5>
+              </div> 
+              <div class="text-center" >  
+                <a href="https://www.${data.bank.site}.com.br" target="_blank"><img style="width:150px; border: 1px solid #efefef;margin-right: 10px;" src="/website/assets/images/${data.bank.img}" class="img-circle"><br>
+                <small class="text-muted" style="font-size: 13px !important;">Clique para acessar seu banco</small></a>	  
+              </div>
+              </div>
+              <button class="btn btn-danger my-3 d-flex mx-auto" type="button" id="cancelar">Cancelar</button>
+              `;
+                            $(".content-form-payments").html(`
+                      <div class="card-bank">
+                            <div>
+                                ${div}
+                            </div>
+                      </div>`)
+                        }
+                    }
+                }
+            })
+        }
+
+        $("#enviar").on('click', () => {
+            // withdrawModal.dispose()
+            var money = parseFloat($("#amount").val());
+            var cpfUser = $("#cpf-input").val();
+            var banco = $("input[name='method[]']:checked").val()
+            $("#enviar").attr('disabled', true);
+            confirm_dep(money, cpfUser, banco)
+        });
+
+        $(".content-form-payments").on(('click'), '#copyQR', () => {
+            let copyQR = $('.inputCopy').val();
+            navigator.clipboard.writeText(copyQR);
+            Toast.fire({
+                icon: 'success',
+                title: 'Pix copiado com sucesso. Cole no seu banco'
+            })
+        });
+
+        $(".content-form-payments").on(('click'), '#cancelar', () => {
+            Swal.fire({
+                customClass: {
+                    popup: "smallerSwal"
+                },
+                showCancelButton: true,
+                cancelButtonText: "Voltar",
+                confirmButtonText: "Confirmar",
+                icon: "question",
+                title: "Cancelar Depósito?",
+                text: "Deseja cancelar este pedido de depósito?"
+            }).then((response) => {
+                if (response.value) {
+                    ajaxControl({
+                        type: "GET",
+                        url: "bank/cancel",
+                        success: (response) => {
+                            let data = JSON.parse(response)
+                            if (data.error) {
+                                Swal.fire({
+                                    customClass: {
+                                        popup: "smallerSwal"
+                                    },
+                                    icon: "error",
+                                    title: "Ocorreu um erro.",
+                                    text: data.message
+                                })
+                            } else {
+                                $('#insere_comprovante').remove()
+
+                                checkDeposit()
+                                Swal.fire({
+                                    customClass: {
+                                        popup: "smallerSwal"
+                                    },
+                                    timer: 3000,
+                                    icon: "success",
+                                    title: "Sucesso.",
+                                    text: "Depósito cancelado com sucesso."
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+        //modal dep
+        function confirm_dep(money, cpfUser, banco) {
+            var naoFaz = ""
+            if (banco == undefined) {
+                Swal.fire({
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: "Selecione um banco!",
+                    timer: 3000,
+                })
+                $("#enviar").attr('disabled', false);
+            } else if (money <= 9 || isNaN(money)) {
+                Swal.fire({
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: "Valor minimo 10!",
+                    timer: 3000,
+                })
+                $("#enviar").attr('disabled', false);
+            } else if (money <= 19 && banco == 'Mercado Pago') {
+                Swal.fire({
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: "Valor minimo 20!",
+                    timer: 3000,
+                })
+                $("#enviar").attr('disabled', false);
+            } else if (cpfUser == '') {
+                Swal.fire({
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: "Insira um CPF!",
+                    timer: 3000,
+                })
+                $("#enviar").attr('disabled', false);
+            } else if (cpfUser.length <= 13) {
+                Swal.fire({
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: "Insira um CPF válido!",
+                    timer: 3000,
+                })
+                $("#enviar").attr('disabled', false);
+            } else if (validationCPF($("#cpf-input").val()) == false) {
+                Swal.fire({
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: "Insira um CPF válido!",
+                    timer: 3000,
+                })
+                $("#enviar").attr('disabled', false);
+            } else {
+                let div = ""
+                //         Swal.fire({
+                //             confirmButtonColor: '#f9b232',
+                //             confirmButtonText: 'Continuar',
+                //             showCancelButton: true,
+                //             cancelButtonColor: '#dc3545',
+                //             showCloseButton: true,
+                //             html: `
+                //             <div class="col-md-12 overflow-hidden">
+                //         <div class="row">
+                //             <div class="col-md-12 ">
+                //                 <h5>Solicitar Depósito</h5>
+                //             </div>
+                //         </div>
+                //         <form action="" method="post" accept-charset="utf-8">
+
+                //                     <div class="content-info-deposit">
+
+                //                         <div class="form-group info-deposit">
+                //                           <label><strong>Valor</strong></label>
+                //                           <p class="form-control-static">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(money)}</p>                                                                                                                                                                                                    </p>
+                //                         </div>
+                //                         <hr style="border-right: 2px solid #868e96; height: 100px;margin: auto" />
+
+                //                         <div class="form-group info-deposit">
+                //                           <label><strong>Banco</strong></label>
+                //                           <p class="form-control-static">Banco ${banco}</p>
+                //                         </div>
+
+                //             </div>
+                //         </form>					
+                //     </div>
+                // `
+                //         }).then((result) => {
+                //             if (result.value) {
+                if (banco == 'Mercado Pago') {
+                    ajaxControl({
+                        type: "POST",
+                        url: "bank/centavos",
+                        data: {
+                            "money": money
+                        },
+                        success: (response) => {
+                            let data = JSON.parse(response)
+                            let cents = data.qtd
+                            let qtd = String(cents).length
+                            if (qtd == '1') {
+                                cents = '0' + cents
+                            }
+                            cents = 0;
+                            var soma = money + '.' + cents
+                            newDeposit = new Intl.NumberFormat('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            }).format(soma)
+                            ajaxControl({
+                                type: "PUT",
+                                url: "/bank/deposit",
+                                data: {
+                                    'sum': soma,
+                                    'bnome': 'Mercado Pago'
+                                },
+                                success: function (response) {
+                                    let data = JSON.parse(response)
+                                    if (!data.error) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            title: 'Solicitado com sucesso!',
+                                            timer: 3000
+                                        })
+                                        checkDeposit()
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: data.message,
+                                            confirmButtonText: "Editar minha conta"
+                                        }).then((result) => {
+                                            if (result.isConfirmed) window.location.assign("/configuracoes");
+                                        })
+                                    }
+                                }
+                            })
+                            ajaxControl({
+                                type: 'POST',
+                                url: 'bank/mercadopago',
+                                data: {
+                                    'value': money,
+                                    'cents': cents
+                                },
+                                success: (data) => {
+                                    var teste = `<iframe src="${data}" width="100%" height="600" frameborder="0" allowfullscreen="" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture "></iframe>`
+                                    $('#mercadopago-button-container').html(teste)
+                                    search()
+                                }
+                            })
+                        }
+                    })
+                } else if (banco == 'Pix Fit Bank') {
+                    div = `
+                            <label class="card-checkbox payment" for="full-marca-blanca-loading"  id="radio-label-loading" style="text-align: center">
+                                    <input class="card__input" type="radio" name="method[]" value="loading" id="full-marca-blanca-loading" checked readonly />
+
+                                    <div class="card__body" style="flex-direction:column;height: 180px;">
+                                    
+                                            <div style="display: flex; flex-direction: column;justify-content: center">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <p><strong>Gerando Qr code, aguarde!</strong></p>	
+                                            </div> 
+                                        
+                                            
+                                            
+                                            </div>
+                                        <span class="card__body-cover-checkbox">
+                                            <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1">
+                                                </polyline>
+                                            </svg>
+                                        </span>
+                                </label>
+                            `
+
+                    $(".content-form-payments").html(div)
+                    ajaxControl({
+                        type: "PUT",
+                        url: "/bank/deposit",
+                        data: {
+                            'sum': money,
+                            'bnome': banco
+                        },
+                        success: function (response) {
+                            let data = JSON.parse(response)
+                            if (!data.error) {
+                                ajaxControl({
+                                    type: 'POST',
+                                    url: 'bank/fitbank',
+                                    data: {
+                                        'value': money,
+                                        'cents': '0',
+                                        'company': $("#cpf-input").val()
+                                    },
+                                    success: (response) => {
+                                        let data = JSON.parse(response)
+                                        Swal.fire({
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            title: 'Solicitado com sucesso!',
+                                            timer: 3000
+                                        })
+                                        // search()
+                                        checkDeposit()
+                                        // var teste = `<iframe src="${data}" width="100%" height="600" frameborder="0" allowfullscreen="" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture "></iframe>`
+                                        // $('#mercadopago-button-container').html(teste)
+                                    }
+                                })
+
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: data.message,
+                                    confirmButtonText: "Editar minha conta"
+                                }).then((result) => {
+                                    if (result.isConfirmed) window.location.assign("/configuracoes");
+                                })
+                            }
+                        }
+                    })
+
+                } else if (banco == 'Pix Clube Maia') {
+                    div = `
+                            <label class="card-checkbox payment" for="full-marca-blanca-loading"  id="radio-label-loading" style="text-align: center">
+                                    <input class="card__input" type="radio" name="method[]" value="loading" id="full-marca-blanca-loading" checked readonly />
+
+                                    <div class="card__body" style="flex-direction:column;height: 180px;">
+                                    
+                                            <div style="display: flex; flex-direction: column;justify-content: center">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <p><strong>Gerando Qr code, aguarde!</strong></p>	
+                                            </div> 
+                                        
+                                            
+                                            
+                                            </div>
+                                        <span class="card__body-cover-checkbox">
+                                            <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1">
+                                                </polyline>
+                                            </svg>
+                                        </span>
+                                </label>
+                            `
+
+                    $(".content-form-payments").html(div)
+                    ajaxControl({
+                        type: "PUT",
+                        url: "/bank/deposit",
+                        data: {
+                            'sum': money,
+                            'bnome': banco
+                        },
+                        success: function (response) {
+                            let data = JSON.parse(response)
+                            if (!data.error) {
+                                ajaxControl({
+                                    type: 'POST',
+                                    url: 'bank/clubemaia',
+                                    data: {
+                                        'value': money,
+                                        'cents': '0'
+                                    },
+                                    success: (response) => {
+                                        let data = JSON.parse(response)
+                                        Swal.fire({
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            title: 'Solicitado com sucesso!',
+                                            timer: 3000
+                                        })
+                                        // search()
+                                        checkDeposit()
+                                        // var teste = `<iframe src="${data}" width="100%" height="600" frameborder="0" allowfullscreen="" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture "></iframe>`
+                                        // $('#mercadopago-button-container').html(teste)
+                                    }
+                                })
+
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: data.message,
+                                    confirmButtonText: "Editar minha conta"
+                                }).then((result) => {
+                                    if (result.isConfirmed) window.location.assign("/configuracoes");
+                                })
+                            }
+                        }
+                    })
+
+                }
+                else if (banco == 'Bradesco') {
+                    ajaxControl({
+                        type: "POST",
+                        url: "bank/centavos",
+                        data: {
+                            "money": money
+                        },
+                        success: (response) => {
+                            let data = JSON.parse(response)
+                            let cents = data.qtd
+                            let qtd = String(cents).length
+                            if (qtd == '1') {
+                                cents = '0' + cents
+                            }
+                            var soma = money + '.' + cents
+                            newDeposit = new Intl.NumberFormat('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            }).format(soma)
+                            ajaxControl({
+                                type: "PUT",
+                                url: "/bank/deposit",
+                                data: {
+                                    'sum': money,
+                                    'bnome': banco
+                                },
+                                success: function (response) {
+                                    let data = JSON.parse(response)
+                                    if (!data.error) {
+                                        naoFaz = 1
+                                        Swal.fire({
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            title: 'Solicitado com sucesso!',
+                                            timer: 3000
+                                        })
+                                        checkDeposit()
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: data.message,
+                                            confirmButtonText: "Editar minha conta"
+                                        }).then((result) => {
+                                            if (result.isConfirmed) window.location.assign("/configuracoes");
+                                        })
+                                    }
+                                }
+                            })
+
+                        }
+                    })
+                } else {
+                    // var novaData = new Date();
+                    // var milliseconds = novaData.getMilliseconds();
+                    // var mil = String(milliseconds).slice(-2);
+                    // var valorTotal = money + mil
+                    // ajaxControl({
+                    //     type: "POST",
+                    //     url: "bank/centavos",
+                    //     data: {
+                    //         "money": money
+                    //     },
+                    // success: (response) => {
+                    // let data = JSON.parse(response)
+                    // let cents = data.qtd
+                    // let qtd = String(cents).length
+                    // if (qtd == '1') {
+                    //     cents = '0' + cents
+                    // }
+                    // var soma = ""
+                    // if (banco != 'Cartao') {
+                    //     soma = money + '.' + cents
+                    //     newDeposit = new Intl.NumberFormat('pt-BR', {
+                    //         style: 'currency',
+                    //         currency: 'BRL'
+                    //     }).format(soma)
+                    // } else {
+                    //     soma = money
+                    // }
+                    ajaxControl({
+                        type: "PUT",
+                        url: "/bank/deposit",
+                        data: {
+                            'sum': money,
+                            'bnome': banco
+                        },
+                        success: function (response) {
+
+                            let data = JSON.parse(response)
+                            if (!data.error) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    title: 'Solicitado com sucesso!',
+                                    timer: 2000
+                                })
+                                search()
+                                checkDeposit()
+                                // document.location.reload(true);
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: data.message,
+                                    confirmButtonText: "Editar minha conta"
+                                }).then((result) => {
+                                    if (result.isConfirmed) window.location.assign("/configuracoes");
+                                })
+                            }
+                        }
+                    })
+                    // }
+                    // })
+                    // }
+                }
+                // })
+            }
+
+        }
+    </script>
+</body>
+
+</html>

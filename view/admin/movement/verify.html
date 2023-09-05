@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Apuração</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+
+    <style>
+      table.dataTable tbody tr.selected > * {
+        background-color: #f96464;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="modal fade" tabindex="-1" role="dialog" style="overflow-y: hidden;">
+          <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center mt-0" role="document">
+            <!-- <div class="spinner-grow text-secondary" role="status">
+              <span class="sr-only"></span>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><i class="fa fa-table"></i> <strong>Apuração</strong> </h4>
+              <br>
+
+              <table class="table table-responsive table-bordered table-hover" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th width="1">ID</th>
+                    <th width="15%">Loteria</th>
+                    <th width="20%">Data</th>
+                    <th width="10%">1º Prêmio</th>
+                    <th width="10%">2º Prêmio</th>
+                    <th width="10%">3º Prêmio</th>
+                    <th width="10%">4º Prêmio</th>
+                    <th width="10%">5º Prêmio</th>
+                    <th width="10%">6º Prêmio</th>
+                    <th width="10%">7º Prêmio</th>
+                    <th width="15%">Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="tbody">
+                  <tr style="background-color: rgba(94, 130, 152, 0.15);">
+                    <td colspan="11" class="dataTables_empty text-center">Carregando registros...</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div style="text-align: right;" class="col-md-12 mt-3 mb-3">
+                <button id="apurar" class="btn btn-success">Liberar Apuração <span class="lotery_desc"></span></button>
+              </div>
+
+              <h4 class="mb-4" style="text-align:center"><span class="lotery_desc"></span> - <span class="lotery_date"></span></h4>
+
+              <table class="table table-responsive table-bordered table-hover mb-5" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th width="15%">Loteria</th>
+                    <th width="14%">1º Prêmio</th>
+                    <th width="14%">2º Prêmio</th>
+                    <th width="14%">3º Prêmio</th>
+                    <th width="14%">4º Prêmio</th>
+                    <th width="14%">5º Prêmio</th>
+                    <th width="14%">6º Prêmio</th>
+                    <th width="14%">7º Prêmio</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody_lottery">
+                  <tr style="background-color: rgba(94, 130, 152, 0.15);">
+                    <td colspan="8" class="dataTables_empty text-center">Carregando registros...</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="table-responsive">
+              <table id="dttable" class="table  table-striped mt-5" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th width="1%">#</th>
+                    <th width="20%">Usuário</th>
+                    <th width="15%">Modal.</th>
+                    <th width="15%">Colocação</th>
+                    <th width="15%">Jogo</th>
+                    <th width="15%">Apostado</th>
+                    <!-- <th>Bonus</th> -->
+                    <!-- <th>Cotação</th> -->
+                    <!-- <th>Comb.</th> -->
+                    <th>Pag.</th>
+                    <th width="15%">Acertos</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody_prizes">
+                  <tfoot>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <!-- <th></th> -->
+                          <th></th>
+                          <th colspan="6"></th>
+                        </tr>
+                      </tfoot>
+                </tbody>
+              </table></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+
+  <script src="/admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="/admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="/admin/assets/vendors/datatable/datatables.min.js"></script>
+  <script src="/admin/assets/vendors/datatable/dataTables.select.min.js"></script>
+
+  <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const apurarResultadoBtn = $('#apurar');
+      const resultId = window.location.pathname.split('/')[4];
+      // $('.modal').modal('show');
+
+      const tabela = $('#dttable').DataTable({
+        "createdCell": function (td, cellData, rowData, row, col) {
+          $(td).find('.my-checkbox').addClass('  select-checkbox');
+        },
+        "drawCallback": function (settings) {
+          // máscara de moeda
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+        },
+        "footerCallback": function ( row, data, start, end, display ) {
+          var api = this.api();
+
+          var totalPremios = data.length;
+          var totalApostado = api.column(6, { search: 'applied' })
+            .data()
+            .reduce(function (a, b) {
+              if (typeof b === 'number') {
+                return a + b;
+              } else {
+                return a;
+              }
+            }, 0);
+
+            // console.log(totalApostado)
+
+            var formattedApostado = totalApostado.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+            });
+
+            var totalPago = api.column(7, { search: 'applied' })
+              .data()
+              .reduce(function (a, b) {
+                if (typeof b === 'number') {
+                  return a + b;
+                } else {
+                  return a;
+                }
+              }, 0);
+
+            var formattedPago = totalPago.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL'
+            });
+
+            $(api.column(4).footer()).html(
+              `<div class="d-flex justify-content-end mt-2 mb-2">Prêmios:&nbsp;<span class="text-danger">${totalPremios}</span>&nbsp;&nbsp;&nbsp; Total apostado:&nbsp;<span class="text-success">${formattedApostado}</span>&nbsp;&nbsp;&nbsp; Total pago: <span class="text-danger">&nbsp;${formattedPago}</span></div>`
+            );
+          },
+          'columnDefs': [
+              {
+                 'targets': 0,
+                 'checkboxes': {
+                    'selectRow': true
+                    //"className": "  select-checkbox"
+                 }
+              }
+           ],
+           'select': {
+              'style': 'multi'
+           },
+          "columns": [{
+            'data': 'campo_jogo_ident',
+              'checkboxes': {
+                'selectRow': true
+              }
+            },
+            {
+            "data": "campo_jogo_ident",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_nome_usuario",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          
+          {
+            "data": "campo_modalidade",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "campo_colocacao",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_palpite",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_valor_jogado",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              var formattedTotalValor = data.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
+
+              return `<span>${formattedTotalValor}</span>`;
+            }
+          },
+          {
+            "data": "campo_valor_premio",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              var formattedValue = data.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
+
+              return `<span>${formattedValue}</span>`;
+            }
+          },
+          {
+            "data": "campo_acertos",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}`;
+            }
+          }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "/admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      fetch('/api_admin/games/calculation_result/'+resultId, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(response => {
+          console.log(response);
+
+          if (response.status == 429) {
+            Swal.fire({
+              type: "error",
+              showConfirmButton: false,
+              timer: 1500,
+              title: response.message
+            })
+            setTimeout(
+              function() {
+                window.location = '/admin/movement/showresults';
+              }, 1500);
+          }
+
+          $('.lotery_desc').html(response.campo_resultados.lottery_name);
+
+          let tbody = ``;
+
+          var colorMap = {
+            1: {
+              backgroundColor: '#ffa64d',
+              textColor: '#fff'
+            },
+            2: {
+              backgroundColor: '#00b300',
+              textColor: '#fff'
+            },
+            3: {
+              backgroundColor: '#3399ff',
+              textColor: '#fff'
+            },
+            4: {
+              backgroundColor: '#ff4d4d',
+              textColor: '#fff'
+            }
+          };
+
+          var type = response.campo_resultados.status_result_id;
+          var style = colorMap[type] || {};
+
+          const origin = new Date(response.campo_resultados.created_at);
+          const formattedDate = origin.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+
+          const date = new Date(response.campo_resultados.created_at);
+          const options = { day: 'numeric', month: 'long', year: 'numeric' };
+          const dayTitle = date.toLocaleDateString('pt-BR', options);
+
+          $('.lotery_date').html(dayTitle);
+
+          if (response.campo_resultados.length === 0) {
+            tbody += `
+              <tr style="background-color: rgba(94, 130, 152, 0.15);">
+                <td valign="top" colspan="11" class="dataTables_empty text-center">Nenhum registro encontrado</td>
+              <tr>`;
+            $('#tbody').html(tbody);
+          }else {
+
+            tbody += `
+              <tr>
+                <td>${response.campo_resultados.result_id}</td>
+                <td>${response.campo_resultados.lottery_name}</td>
+                <td>${formattedDate}</td>
+                <td>${response.campo_resultados.animal_1}</td>
+                <td>${response.campo_resultados.animal_2}</td>
+                <td>${response.campo_resultados.animal_3}</td>
+                <td>${response.campo_resultados.animal_4}</td>
+                <td>${response.campo_resultados.animal_5}</td>
+                <td>${response.campo_resultados.animal_6}</td>
+                <td>${response.campo_resultados.animal_7}</td>
+                <td style="background-color: ${style.backgroundColor || ''}; color: ${style.textColor || ''}">${response.campo_resultados.status_name}</td>
+              </tr>`;
+          }
+
+          $('#tbody').html(tbody);
+
+          let tbodyLottery = ``;
+          if (response.campo_resultados.length === 0) {
+            tbodyLottery += `
+              <tr style="background-color: rgba(94, 130, 152, 0.15);">
+                <td valign="top" colspan="8" class="dataTables_empty text-center">Nenhum registro encontrado</td>
+              <tr>`;
+            $('#tbody_lottery').html(tbodyLottery);
+          }else {
+            tbodyLottery += `
+              <tr>
+                <td>${response.campo_resultados.lottery_name}</td>
+                <td>${response.campo_resultados.first_place}</td>
+                <td>${response.campo_resultados.second_place}</td>
+                <td>${response.campo_resultados.third_place}</td>
+                <td>${response.campo_resultados.fourth_place}</td>
+                <td>${response.campo_resultados.fifith_place}</td>
+                <td>${response.campo_resultados.sixth_place}</td>
+                <td>${response.campo_resultados.seventh_place}</td>
+              </tr>`;
+          }
+
+          $('#tbody_lottery').html(tbodyLottery);
+
+          const dataPrize = response.campo_jogos_premiados;
+          tabela.clear().rows.add(dataPrize).draw();
+          if (dataPrize.length === 0) {
+            const emptyMessage = 'Sem resultados';
+            tabela.rows.add([]).draw();
+            $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {
+          $('.modal').modal('hide');
+      });
+
+      apurarResultadoBtn.click(function(e) {
+        e.preventDefault();
+
+        var resultado = [];
+        tabela.rows().every(function() {
+          var rowNode = this.node();
+
+          var columnData = this.data().campo_jogo_ident;
+          var campo_jogo_bloqueado = $(rowNode).hasClass("selected") ? 1 : 0;
+
+          resultado.push({
+            campo_jogo_ident: columnData || '',
+            campo_jogo_bloqueado: campo_jogo_bloqueado
+          });
+        });
+
+        console.log(resultado)
+
+        Swal.fire({
+          type: "warning",
+          title: "Você tem certeza?",
+          confirmButtonText: "Apurar",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+
+            Swal.fire({
+              title: 'Aguarde',
+              text: 'Apurando resultado...',
+              // width: '35%',
+              timerProgressBar: true,
+              onBeforeOpen: () => {
+                Swal.showLoading();
+              },
+              onClose: () => {
+                clearInterval(timerInterval);
+              },
+            });
+
+            // apurar resultado
+            fetch('/api_admin/games/save_raffle_prize/'+resultId, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(resultado)
+            })
+              .then(response => response.json())
+              .then(response => {
+                console.log(response);
+
+                if (response.status == 200) {
+                Swal.fire({
+                  type: "success",
+                  // width: '35%',
+                  showConfirmButton: false,
+                  timer: 1600,
+                  title: response.message
+                })
+                setTimeout(
+                  function() {
+                    window.location = '/admin/movement/showresults';
+                  }, 1700);
+              } else {
+                Swal.fire({
+                  type: "error",
+                  // width: '35%',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  title: response.message
+                })
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+            });
+          }
+        })
+      })
+    });
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,729 @@
+<html lang="pt-br">
+
+<head>
+  <link rel="canonical" href="https://bichomania.bet" />
+  <meta charset="UTF-8">
+  <meta content="origin" name="referrer">
+  <meta name="keywords" content="jogo do bicho online">
+  <meta name="description" content="Descubra como fazer suas apostas no jogo do bicho online e tenha mais chances de ganhar. Acesse agora e saiba mais!">
+  <meta name="theme-color" content="#0c2030e6" />
+
+  <title>Bicho Mania ♣ A maior banca de jogo do bicho online no Brasil</title>
+  <meta name="author" content="Mania">
+  <meta name="robots" content="index, follow">
+  <meta name="msapplication-config" content="none">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/default.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+
+  <link rel="manifest" href="./js/app.webmanifest">
+
+    <script type="module">
+        import { Workbox } from 'https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-window.prod.mjs'; if ('serviceWorker' in navigator) { const wb = new Workbox('./js/pwabuilder-sw.js'); wb.register(); wb.addEventListener('installed', event => { if
+        (event.isUpdate) { if (confirm(`New content is available!. Click OK to refresh`)) { window.location.reload(); } } }); }
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate"></script>
+
+</head>
+
+<body>
+
+  <pwa-update id="updateComponent"></pwa-update>
+  <script async defer>
+      const ref = document.getElementById("updateComponent");
+  </script>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal modal-login d-none">
+    <div class="modal-content">
+      <div class="modal-title">
+        <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Bicho Mania">
+        <button class="btn btn-close-modal">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1 class="title-modal-login">Entrar</h1>
+        <div class="container-inputs-login">
+          <form action="">
+            <div class="content-inputs-login">
+              <button class="btn btn-login-google" title="EM BREVE!" disabled data-hover="EM BREVE!">
+                <img src="./assets/images/icon-google.svg" alt="Jogo do Bicho Online - Bicho Mania, Login com Google">
+                Google
+              </button>
+            </div>
+            <div class="content-separator">
+              <span class="hr-separator"></span>
+              <h1>ou</h1>
+              <span class="hr-separator"></span>
+            </div>
+            <div class="content-inputs-login">
+              <div class="input-group">
+                <label for="userLogin" class="label-text" id="labelTextUser">Usuário</label>
+                <label for="userLogin" class="label-icon">
+                  <i class="fas fa-user"></i>
+                </label>
+                <input type="text" autocomplete="off" id="userLogin" class="input-login"
+                  placeholder="Insira seu usuário">
+              </div>
+              <div class="input-group">
+                <label for="passwordLogin" class="label-text" id="labelTextPassword">Senha</label>
+                <label for="passwordLogin" class="label-icon">
+                  <i class="icon-lock fas fa-lock"></i>
+                </label>
+                <input type="password" autocomplete="off" id="passwordLogin" class="input-login"
+                  placeholder="Insira sua senha">
+                <label for="passwordLogin" class="label-icon password-icon d-none">
+                  <i class="icon-eye fas fa-eye"></i>
+                </label>
+                <a href="/recuperar-senha">Esqueceu sua senha?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="alert-login active">
+        <h1 class="line-error"></h1>
+      </div>
+      <div class="modal-footer">
+        <div class="input-group">
+          <input type="checkbox" id="rememberLogin">
+          <label for="rememberLogin" class="label-remember">Mantenha-me logado</label>
+        </div>
+        <button class="btn btn-modal-login" id="btnLogin">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalMania"></div>
+
+  <div class="loading-screen">
+    <div class="content-logo">
+      <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <main class="container-home">
+    <div class="container-header">
+      <header class="home-header">
+        <a href="/" class="content-logo-home">
+          <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania">
+          <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania Mobile">
+        </a>
+        <div class="content-buttons-home">
+
+        </div>
+      </header>
+    </div>
+    <div class="content-home">
+      <div class="home-img-presentation">
+        <video width="320" autoplay loop muted>
+          <source src="./assets/images/videos/mascote.webm" type="video/webm"
+            alt="Mascote Jogo do Bicho Online - Bicho Mania">
+        </video>
+      </div>
+      <div class="home-presentation">
+        <span class="span-home">
+          <h1>Jogo do Bicho Online</h1>
+        </span>
+        <div class="text-presentation">
+          <h1>A <strong>maior banca</strong> do <br class="broken-line"> Brasil, agora online.</h1>
+          <h2>Deposite, jogue e saque seu prêmio sem sair de casa.</h2>
+        </div>
+        <hr class="separator-presentation">
+        <div class="content-presentation">
+          <button class="btn btn-want-bet">QUERO APOSTAR</button>
+          <div class="shield-presentation">
+            <span class="span-shield">
+              <img src="./assets/images/shield.svg" alt="Jogo do Bicho Online - Bicho Mania SEGURANÇA E PRIVACIDADE">
+            </span>
+            <h1>Jogue com praticidade e <strong>segurança</strong></h1>
+            <div class="home-img-presentation-mobile">
+              <img src="./assets/images/videos/mascote.gif" alt="Mascote Jogo do Bicho Online - Bicho Mania Mobile">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="container-app">
+    <article class="content-app">
+      <span class="span-home large">
+        <h1>Jogo do Bicho Online</h1>
+      </span>
+      <h1 class="title-app">Aposte pelo nosso <strong>APP</strong></h1>
+      <p class="text-app">De um jeito ainda mais rápido e fácil, temos <br class="broken-line"> a versão do app para
+        melhor agilidade.</p>
+      <div class="container-buttons-app">
+        <button class="btn btn-app android">
+          <i class="fab fa-android"></i>
+          <hr>
+          <span class="btn-app-span">
+            <small>Instalar no</small>
+            <h1>Android</h1>
+          </span>
+        </button>
+        <button class="btn btn-app ios">
+          <i class="fab fa-apple"></i>
+          <hr>
+          <span class="btn-app-span">
+            <small>Instalar no</small>
+            <h1>IOS</h1>
+          </span>
+        </button>
+      </div>
+    </article>
+    <article class="content-app img">
+      <img src="./assets/images/home/cellphone-home.svg" alt="Celular Jogo do Bicho Online - Bicho Mania">
+    </article>
+  </section>
+  <section class="container-cassino">
+    <article class="container-responsive">
+      <div class="content-cassino text">
+        <p class="title-cassino">
+          Faça também a sua <strong>aposta esportiva</strong> no <br> Cassinomania
+        </p>
+        <div class="clients-cassino">
+          <div class="content-clients-img">
+            <span class="people-betting">
+              <img src="./assets/images/home/people1.svg" alt="Pessoa jogando em Jogo do Bicho Online - Bicho Mania">
+            </span>
+            <span class="people-betting">
+              <img src="./assets/images/home/people2.svg" alt="Pessoa jogando em Jogo do Bicho Online - Bicho Mania">
+            </span>
+            <span class="people-betting">
+              <img src="./assets/images/home/people3.svg" alt="Pessoa jogando em Jogo do Bicho Online - Bicho Mania">
+            </span>
+            <p class="people-betting-text"><strong>+</strong> 56 mil clientes</p>
+          </div>
+        </div>
+        <div class="button-cassino desktop">
+          <a href="https://cassinomania.com/" class="btn btn-want-bet">
+            Apostar
+          </a>
+          <p class="want-text">Lucre alto com o seu palpite</p>
+        </div>
+      </div>
+      <div class="content-cassino img">
+        <picture>
+          <source srcset="./assets/images/home/img-cassino.svg" media="(min-width: 1100px)">
+          <img src="./assets/images/home/img-cassino-mobile.svg" alt="Cassino Online - Bicho Mania">
+        </picture>
+      </div>
+      <div class="button-cassino mobile">
+        <button class="btn btn-want-bet">
+          Apostar
+        </button>
+        <p class="want-text">Lucre alto com o seu palpite</p>
+      </div>
+    </article>
+  </section>
+  <section id="resultados" class="container-results">
+    <article class="content-results container-responsive">
+      <div class="header-content-results">
+        <div class="content-header-results">
+          <h1>Resultados</h1>
+          <div class="date-result">
+            <button class="btn btn-date-result btn-result-back">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="dateResult" data-time="1" data-date="0000-00-00"></span>
+            <button class="btn btn-date-result btn-result-next d-none">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="content-header-results">
+          <span class="span-results">
+            <i class="fas fa-chart-pie"></i>
+            <h2>Deu no poste</h2>
+          </span>
+        </div>
+      </div>
+      <div class="results-desktop">
+        <div class="nav-results-desktop">
+          <!-- LOTERIAS -->
+        </div>
+        <div class="area-results">
+          <div class="table-results">
+            <div class="table-head-results">
+              <div class="row-table-results">
+                <span class="item-table-results">HORÁRIO</span>
+                <span class="item-table-results">
+                  <h1>1°</h1>
+                </span>
+                <span class="item-table-results">
+                  <h1>2°</h1>
+                </span>
+                <span class="item-table-results">
+                  <h1>3°</h1>
+                </span>
+                <span class="item-table-results">
+                  <h1>4°</h1>
+                </span>
+                <span class="item-table-results">
+                  <h1>5°</h1>
+                </span>
+                <span class="item-table-results">
+                  <h1>6°</h1>
+                </span>
+                <span class="item-table-results">
+                  <h1>7°</h1>
+                </span>
+              </div>
+            </div>
+            <div class="table-body-results">
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="results-mobile">
+        <div class="header-mobile-results">
+          <div class="nav-results-mobile">
+          </div>
+        </div>
+
+        <div class="area-results-mobile">
+
+        </div>
+      </div>
+    </article>
+  </section>
+  <div id="cotacao" class="container-quotation">
+    <div class="container-responsive content-quotation">
+      <div class="header-quotation">
+        <h1>Cotação</h1>
+        <hr/>
+      </div>
+      <div class="table-quotation">
+        <table>
+          <thead class="table-head-quotation">
+            <tr>
+              <th><h2>Modalidades</h2></th>
+              <th>1° <small>e colocados</small></th>
+              <th>1° ao 5°</th>
+              <th>1° ao 6°</th>
+              <th>1° ao 7°</th>
+            </tr>
+          </thead>
+          <tbody id="body-quatation">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <section class="container-payment">
+    <article class="container-responsive content-payment">
+      <div class="icon-payment">
+        <i class="fas fa-credit-card"></i>
+      </div>
+      <div class="text-payment">
+        <h1>Formas de Pagamento</h1>
+        <p>Nós do Bicho Mania garantimos total segurança com seus dados e compromiso nos jogos online, iremos priorizar
+          sempre, qualidade, segurança e agilidade, e para melhor atender-vos, temos vários métodos de pagamentos!</p>
+        <div class="container-method-payment">
+          <span class="content-method-payment">
+            <img src="./assets/images/pay-brokers.svg" alt="Método Paybrokers | Jogo do Bicho Online - Bicho Mania">
+          </span>
+          <span class="content-method-payment">
+            <img src="./assets/images/mercado-pago.svg" alt="Método Mercado Pago | Jogo do Bicho Online - Bicho Mania">
+          </span>
+          <span class="content-method-payment">
+            <img src="./assets/images/pix.svg" alt="Método PIX | Jogo do Bicho Online - Bicho Mania">
+          </span>
+        </div>
+      </div>
+    </article>
+  </section>
+  <div class="container-dreams">
+    <div class="container-responsive content-dreams">
+      <div class="search-header-dreams">
+        <h1>O que você sonhou?</h1>
+        <h2>Descubra o significado do seu sonho e os palpites</h2>
+        <div class="input-group">
+          <input type="text" id="inputSearchDreams" placeholder="Digite uma palavra">
+          <label for="inputSearchDreams" class="search-result"><i class="fas fa-search"></i></label>
+        </div>
+        <div class="message-error"></div>
+      </div>
+      <div class="result-search-result" style="display: none;">
+
+      </div>
+    </div>
+  </div>
+  <section class="how-play">
+    <div class="container-responsive container-how-play">
+      <div class="header-how-play">
+        <h1>Aprenda jogar agora mesmo</h1>
+        <h2>De um jeito ainda mais rápido e fácil conheça as modalidades do Jogo do Bicho Online e comece apostar</h2>
+      </div>
+      <div class="content-how-play">
+        <div class="mySwiper swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Grupo</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Escolhe-se o grupo/animal. Pode-se jogar do 1º ao 7º.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>O grupo/animal precisa vir na premiação escolhida.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Milhar</span>
+              </div>
+              <div class="swiper-body">
+                  <div class="swiper-how-play">
+                    <h1>Como jogar?</h1>
+                    <h2>Você escolhe uma milhar. Pode-se jogar do 1º ao 6º prêmio.</h2>
+                  </div>
+                  <div class="swiper-how-win">
+                    <h1>Como ganhar?</h1>
+                    <h2>Ganha-se quando sua milhar sair na premiação escolhida.</h2>
+                  </div>
+                  <div class="swiper-obs">
+                    <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                  </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Milhar Centena</span>
+              </div>
+              <div class="swiper-body">
+                  <div class="swiper-how-play">
+                    <h1>Como jogar?</h1>
+                    <h2>Da mesma forma da modalidade milhar e centena você jogará na modalidade milhar/centena.</h2>
+                  </div>
+                  <div class="swiper-how-win">
+                    <h1>Como ganhar?</h1>
+                    <h2>Nessa modalidade você ganha se o resultado sair a centena ou a
+                      milhar. É necessário que saia ou a Milhar ou a centena saia na mesma ordem que você fez
+                      a aposta.</h2>
+                  </div>
+                  <div class="swiper-obs">
+                    <h2>Lembre-se que jogando na modalidade milhar/centena o valor da cotação é dividido pois
+                      você está jogando em duas modalidades em um único jogo.</h2>
+                    <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                  </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Centena</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Você escolhe uma centena. Pode-se jogar do 1º ao 7º prêmio.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se quando sua centena sair na premiação escolhida.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Dezena</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Você escolhe uma dezena. Pode-se jogar do 1º ao 7º prêmio.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se quando sua dezena sair na premiação escolhida.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Terno de Dezena</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Escolhe-se três dezenas.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se as três dezenas saírem do 1º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Duque de Dezena</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Escolhe-se duas dezenas.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se as duas dezenas vierem do 1º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Milhar combinada</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Para jogar na milhar combinada é simples, você escolhe uma milhar.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se os números apostados saírem nos prêmios apostados.
+                    Nessa modalidade para ganhar os números apostados podem vir em qualquer ordem, mas devem
+                    vir os 4 números da milhar.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Centena combinada</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Para jogar na centena combinada é simples, você escolhe 1
+                    centena.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se os números apostados saírem nos prêmios apostados.
+                    Nessa modalidade para ganhar os números apostados podem vir em qualquer ordem, mas devem
+                    vir os 3 números da centena.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Dezena combinada</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Para jogar na dezena combinada escolhe-se uma dezena. Pode-se
+                    jogar do 1º ao 5º.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se acertando a dezena combinada no prêmio escolhido.
+                    Nessa modalidade para ganhar os números apostados podem vir em qualquer ordem, mas devem
+                    vir os 2 números da dezena.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Dupla de Grupo</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Você escolhe dois grupos.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se os dois grupos saírem em quaisquer que sejam a
+                    colocação do 1º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Terno de Grupo</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Você escolhe 3 grupos do 01 ao 25.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se se os 3 bichos saírem em quaisquer que sejam os
+                    prêmios (entre o 1° e o 5° prêmio).</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Quadra de Grupo</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Na quadra de grupo você vai precisar escolher quatro grupos e
+                    eles precisam sair do 1º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2> É preciso que venha os 4 números para você ganhar.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Quina de Grupo</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>Na quina de grupo você vai precisar escolher cinco grupos e
+                    eles precisam sair do 1º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>Ganha-se acertando os 5 grupos (1° ao 5°).</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Passe</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>É escolhido dois grupos do 01 ao 25.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2>O primeiro GRUPO escolhido precisa vir no primeiro prêmio
+                    (primeira colocação) e o segundo grupo pode vir do 2º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-cape">
+                <span>Passe VAI VEM</span>
+              </div>
+              <div class="swiper-body">
+                <div class="swiper-how-play">
+                  <h1>Como jogar?</h1>
+                  <h2>É escolhido dois grupos. 01 ao 25.</h2>
+                </div>
+                <div class="swiper-how-win">
+                  <h1>Como ganhar?</h1>
+                  <h2> É NECESSARIO que pelo menos um grupo saia na primeira
+                    colocação, e o outro grupo pode sair do 2º ao 5º prêmio.</h2>
+                </div>
+                <div class="swiper-obs">
+                  <h2><span>OBS:</span> VALOR DE PRÊMIO SUJEITO A ALTERAÇÃO DE ACORDO COM A SUA APOSTA.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container-history">
+    <article class="content-history">
+      <div class="container-responsive">
+        <h1>História do Jogo do Bicho</h1>
+        <p>O jogo do bicho foi criado em 1892, no Rio de Janeiro, pelo Barão João Batista Viana Drummond como uma
+          atração para os visitantes de seu Jardim Zoológico. Localizado em Vila Isabel e inaugurado em 1888, este se
+          encontrava em dificuldades financeiras, após perder o subsídio imperial. Ao adquirir o ticket do ingresso, o
+          visitante ganhava uma figurinha de um bicho. No alto de um poste, à entrada do zoológico, escondia-se a
+          gravura de um dos 25 bichos da lista sob uma caixa de madeira, a ser revelado ao fim do dia. Quem estivesse
+          com a figura do mesmo animal ganhava um prêmio de 20 vezes o valor da entrada.</p>
+      </div>
+    </article>
+  </section>
+  <footer class="container-footer" id="footerIndex">
+
+  </footer>
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="./assets/js/home.js"></script>
+  <script src="./assets/js/modal.js"></script>
+
+</body>
+
+</html>

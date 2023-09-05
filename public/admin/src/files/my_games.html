@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WHPGFP9');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/website/assets/css/global.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/my_games.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/style.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/select.css?v=1">
+    <link rel="stylesheet" href="/website/assets/css/mobile.css?v=1">
+    <title>Meus Jogos - Bicho Premiado</title>
+</head>
+
+
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHPGFP9" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div>
+    <div class="wrapper">
+        <aside class="d-flex">
+            <div class="" id="lateral_menu"></div>
+            <div class="body-container noselect ">
+                <div class="back-header" id="header"></div>
+
+                <div class="container-fluid no-gutters content-body my-games-body">
+                    <div class='col-lg-12'>
+                        <div class="container-header-page">
+                            <div class="content-header-page">
+                                <p class="title">Meus Jogos</p>
+                                <hr />
+                            </div>
+                            <div class="content-header-page" style="display: flex;">
+                                <div class="content-filter noselect datas-loterias mx-3">
+                                    <label for="select-filter">DATA</label>
+                                    <select name="data_jogo" id="data_jogo" class="custom-select sources">
+                                    </select>
+                                </div>
+                                <div class="content-filter noselect loteria mx-3">
+                                    <label for="loteria">LOTERIA</label>
+                                    <select name="loteria" id="loteria" class="custom-select sources">
+                                        <option value="" class="selection">Todas</option>
+                                        <option value="2">PT-RIO</option>
+                                        <option value="3">FED</option>
+                                        <option value="4">LK</option>
+                                        <option value="5">LN</option>
+                                    </select>
+                                </div>
+                                <div class="content-filter noselect status_awarded mx-3">
+                                    <label for="status_awarded">STATUS</label>
+                                    <select name="status_awarded" id="status_awarded" class="custom-select sources">
+                                        <option value="todos" class="selection">Todas</option>
+                                        <option value="premiada">Premiada</option>
+                                        <option value="aguardando">Aguardando</option>
+                                        <option value="sempremio">Não prêmiada</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <main>
+                        <div class="container-games">
+                            <div class="content-games">
+
+
+                            </div>
+                        </div>
+                    </main>
+
+                </div>
+
+
+                <div id="footer"></div>
+            </div>
+        </aside>
+    </div>
+
+    <!--MODAL DO JOGO-->
+    <div class="modal fade" id="modal_jogo" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <!-- <div class='modal-header winning-notice text-center'> -->
+                <!-- <h4 class="" style="color: #56ca98;">Parabéns! Você foi prêmiado.</h4><br /> -->
+                <!-- <h2 class='modal-title title-jogo' id="modalLabel">Jogo Realizado com Sucesso!</h2> -->
+                <!-- </div> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body d-flex flex-column">
+                    <div class="d-flex justify-content-evenly flex-wrap">
+
+                        <div class='col-lg-6'>
+                            <div class='resumo-jogo'>RESUMO</div>
+                            <div class='description-jogo-jogado'>
+                                <b>Tipo de Jogo:</b><br />
+                                <span class="tipo-de-jogo"></span><br /><br />
+
+                                <b>Jogos:</b><br />
+                                <span class="jogos-apostados"></span><br /><br />
+
+                                <b>Horário:</b><br />
+                                <span class="horarios-selecionados"></span><br /><br />
+
+                                <b>Sorteios:</b><br />
+                                <span class="sorteios-selecionados"></span><br /><br />
+
+                                <b>Valor da aposta:</b><br /><span class="valor-aposta"></span><br /><br />
+                                <!-- <b class="winning-notice">Parabéns! Você foi prêmiado.</b><br /><br /> -->
+                            </div>
+
+                        </div>
+                        <div class='col-lg-6 d-flex justify-content-center align-items-center flex-column'>
+                            <div class='resumo-jogo'>POULE</div>
+                            <blockquote class="poule">
+                                <p class="winning-notice">PARABÉNS!</p>
+
+                                <p>Bicho Premiado</p>
+                                <hr />
+                                <p class="corre-em"></p>
+                                <hr />
+                                <p class="jogo-id"></p>
+                                <p class="usuario"></p>
+                                <p class="data-realizada-aposta"></p>
+                                <hr />
+                                <b>Tipo de Jogo:</b>
+                                <p class="tipo-de-jogo"></p>
+                                <b>Sorteio:</b>
+                                <p class="sorteios-selecionados"></p>
+                                <b>Jogo:</b>
+                                <p class="jogos-apostados"></p>
+                                <b>Loteria:</b>
+                                <p class="horarios-selecionados"></p>
+                                <p><b>Cotação: </b><span class="valor-cotacao"></span></p>
+                                <hr />
+                                <p><b>Valor: </b><span class="valor-jogo"></span></p>
+                                <p><b>BONUS: </b><span class="valor-bonus"></span></p>
+                                <p><b>TOTAL: </b><span class="valor-aposta"></span></p>
+                                <hr />
+                                <p><span class="premio"></span></p>
+                                <p><b>Combinações: </b><span class="combinacoes"></span></p>
+                                <hr />
+                                <b>Reclame máximo 5 dias</b><br>
+                                <p>Boa sorte!</p>
+                            </blockquote>
+                        </div>
+                        <div class="col-12 result-table"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <script src="/assets/js/ajax.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/website/assets/js/main.js"></script>
+    <script src="/website/assets/js/select.js"></script>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/pt-br.min.js"
+    integrity="sha512-1IpxmBdyZx3okPiZ14mzw6+pOGa690uDmcdjqvT310Kwv3NRcjvL/aOtoSprEyvkDdAb7ZtM2um6KrLqLOY97w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="/website/assets/js/my_games.js?v=1"></script>
+    <script>
+        $("#lateral_menu").load("/slim/src/files/lateral_menu.html?v=1");
+        $("#header").load("/slim/src/files/header.html?v=1");
+        $("#footer").load("/slim/src/files/footer.html?v=1");
+
+        $.getScript("/website/assets/js/side_menu.js?v=1");
+        $.getScript("/website/assets/js/header.js?v=1");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<style>
+    .whatsapp-float {
+        display: none;
+    }
+
+    .whatsapp-suport {
+        position: fixed;
+        bottom: 1rem;
+        left: 12.6rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        text-decoration: none;
+        font-size: 2.45rem;
+
+        width: 3.4375rem;
+        height: 3.4375rem;
+        border-radius: 1rem;
+
+        transition: all .5s;
+        box-shadow: 0px 0px 20px #5a08c6ab;
+        background-color: #40c351;
+        color: #fff;
+
+        z-index: 999;
+    }
+
+    .whatsapp-suport:hover {
+        box-shadow: 0px 0px 20px #40c35179;
+        background-color: var(--color-primary);
+        color: #fff;
+
+        transition: all .5s;
+    }
+
+    @media only screen and (max-width: 900px) {
+        .whatsapp-suport {
+            left: 1rem;
+            
+            height: 2.8125rem;
+            width: 2.8125rem;
+
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<a class="whatsapp-suport" href="https://wa.me/5511910930949?text=Olá,%20preciso%20de%20ajuda." target="_blank">
+    <i class="fa fa-whatsapp"></i>
+</a>

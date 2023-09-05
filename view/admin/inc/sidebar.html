@@ -1,0 +1,142 @@
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="height: 100%;">
+          <ul class="nav">
+            <li class="nav-item nav-profile border-top border-bottom" style="border-bottom: 1px solid #1b304b !important;border-top: 1px solid #1b304b !important;">
+              <a href="#" class="nav-link">
+                <div class="profile-image">
+                  <img class="img-xs rounded-circle" src="../../../public/admin/assets/images/faces/face8.jpg" alt="profile image">
+                  <div class="dot-indicator bg-success"></div>
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name" style="text-transform: uppercase;white-space: normal;"><span id="adm_name_side"></span></p>
+                  <p class="designation"><span id="adm_level_side"></span></p>
+                </div>
+                <div class="icon-container">
+                  <button id="logout" class="btn btn-sm btn-dark"><i class="icon-power"></i></button>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item nav-category">
+              <span class="nav-link">Página inicial</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="home-link" href="#">
+                <span class="menu-title">Home</span>
+                <i class="icon-screen-desktop menu-icon"></i>
+              </a>
+            </li>
+
+            <div id="divMenu" style="display:none;">
+              <li class="nav-item nav-category">
+                <span class="nav-link">Monitoramento</span>
+              </li>
+
+              <li class="nav-item" id="managerMenu" style="display:none;">
+                <a class="nav-link" data-toggle="collapse" href="#ui-gerencia" aria-expanded="false" aria-controls="ui-gerencia">
+                  <span class="menu-title">Gerencia</span>
+                  <i class="icon-action-redo menu-icon"></i>
+                </a>
+                <div class="collapse" id="ui-gerencia">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/admin/management/quotedbets">Apostas cotadas</a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href="/admin/management/exchange">Comissões cambistas</li> -->
+                    <li class="nav-item"> <a class="nav-link" href="/admin/management/modbets">Modalidades</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/management/banks">Bancos</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/management/coupons">Cupons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/management/parameters">Parâmetros</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/report/mdischarge">Monitoramento descarga</a></li>
+                  </ul>
+                </div>
+              </li>
+            </div>
+
+            <li class="nav-item" id="transactionsMenu" style="display:none;">
+              <a class="nav-link" href="/admin/transaction/list">
+                <span class="menu-title">Transações</span>
+                <i class="icon-chart menu-icon"></i>
+              </a>
+            </li>
+
+            <li class="nav-item" id="resultsMenu">
+              <a class="nav-link" href="/admin/movement/showresults">
+                <span class="menu-title">Resultados</span>
+                  <i class="icon-flag menu-icon"></i>
+              </a>
+            </li>
+
+            <li class="nav-item" id="reportsMenu" style="display:none;">
+              <a class="nav-link" data-toggle="collapse" href="#ui-rel" aria-expanded="false" aria-controls="ui-rel">
+                <span class="menu-title">Relatórios</span>
+                <i class="icon-doc menu-icon"></i>
+              </a>
+              <div class="collapse" id="ui-rel">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="/admin/report/awarded">Jogos premiados</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/report/wdperiod">Saques & depositos</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/report/daygames">Jogos por usuários</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/report/usedbonus">Cupons / Bônus ganhos</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/report/userperiod">Ganhos por jogadores</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="/admin/report/extract">Extrato</a></li> -->
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item nav-category"><span class="nav-link">Categorias</span></li>
+            <li class="nav-item">
+              <a class="nav-link d-flex justify-content-betwen" href="/admin/deposits">
+                <span class="menu-title">Depósitos</span>
+                <div class="nav-content-icons" style="margin-left: auto;">
+                  <span id="not_deposit" class="count-notification" style=""></span>
+                  <i class="icon-credit-card menu-icon" ></i>
+                </div>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link d-flex justify-content-betwen" href="/admin/withdraws">
+                <span class="menu-title">Saques pendentes</span>
+                <div class="nav-content-icons" style="margin-left: auto;">
+                  <span id="not_withdraw" class="count-notification" style=""></span><i class="icon-credit-card menu-icon"></i>
+                </div>
+              </a>
+            </li>
+
+            <li class="nav-item" id="lotterysMenu" style="display:none;">
+              <a class="nav-link" href="/admin/loteries">
+                <span class="menu-title">Loterias</span>
+                <i class="icon-globe menu-icon" style="font-size: 1.0rem;"></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/users/historic">
+                <span class="menu-title">Historico de usuários</span>
+                  <i class="icon-book-open menu-icon" ></i>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link d-flex justify-content-betwen" href="/admin/users/birthday">
+                <span class="menu-title">Aniversariantes</span>
+                <div class="nav-content-icons" style="margin-left: auto;">
+                  <span id="not_birthusers" class="count-notification" style=""></span><i class="icon-calendar menu-icon" ></i>
+                </div>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link d-flex justify-content-betwen" href="/admin/users/news">
+                <span class="menu-title">Novos jogadores</span>
+                <div class="nav-content-icons" style="margin-left: auto;">
+                  <span id="not_users" class="count-notification" style=""></span><i class="icon-user-follow menu-icon" ></i>
+                </div>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/configs">
+                <span class="menu-title">Configurações extras</span>
+                <i class="icon-settings menu-icon"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>

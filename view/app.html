@@ -1,0 +1,212 @@
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicho Mania ♣ A maior banca de jogo do bicho online no Brasil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/default.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+</head>
+
+<style>
+  .container-app::after {
+    width: 0px;
+    height: 0px;
+  }
+</style>
+
+<body>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal modal-login d-none">
+    <div class="modal-content">
+      <div class="modal-title">
+        <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Bicho Mania">
+        <button class="btn btn-close-modal">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1 class="title-modal-login">Entrar</h1>
+        <div class="container-inputs-login">
+          <form action="">
+            <div class="content-inputs-login">
+              <button class="btn btn-login-google" title="EM BREVE!" disabled data-hover="EM BREVE!">
+                <img src="./assets/images/icon-google.svg" alt="Jogo do Bicho Online - Bicho Mania, Login com Google">
+                Google
+              </button>
+            </div>
+            <div class="content-separator">
+              <span class="hr-separator"></span>
+              <h1>ou</h1>
+              <span class="hr-separator"></span>
+            </div>
+            <div class="content-inputs-login">
+              <div class="input-group">
+                <label for="userLogin" class="label-text" id="labelTextUser">Usuário</label>
+                <label for="userLogin" class="label-icon">
+                  <i class="fas fa-user"></i>
+                </label>
+                <input type="text" autocomplete="off" id="userLogin" class="input-login"
+                  placeholder="Insira seu usuário">
+              </div>
+              <div class="input-group">
+                <label for="passwordLogin" class="label-text" id="labelTextPassword">Senha</label>
+                <label for="passwordLogin" class="label-icon">
+                  <i class="icon-lock fas fa-lock"></i>
+                </label>
+                <input type="password" autocomplete="off" id="passwordLogin" class="input-login"
+                  placeholder="Insira sua senha">
+                <label for="passwordLogin" class="label-icon password-icon d-none">
+                  <i class="icon-eye fas fa-eye"></i>
+                </label>
+                <a href="/recuperar-senha">Esqueceu sua senha?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="alert-login active">
+        <h1 class="line-error"></h1>
+      </div>
+      <div class="modal-footer">
+        <div class="input-group">
+          <input type="checkbox" id="rememberLogin">
+          <label for="rememberLogin" class="label-remember">Mantenha-me logado</label>
+        </div>
+        <button class="btn btn-modal-login" id="btnLogin">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-screen">
+    <div class="content-logo">
+      <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <main class="container-home">
+    <div class="container-header">
+      <header class="home-header">
+        <a href="/" class="content-logo-home">
+          <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania">
+          <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania Mobile">
+        </a>
+        <div class="content-buttons-home">
+          <button class="btn btn-login">
+            Entrar
+          </button>
+          <a href="/cadastrar" class="btn btn-register">
+            Criar conta
+          </a>
+        </div>
+      </header>
+    </div>
+
+    <section class="container-app" style="background: transparent;">
+      <article class="content-app">
+        <span class="span-home large">
+          <h1>Jogo do Bicho Online</h1>
+        </span>
+        <h1 class="title-app">Aposte pelo nosso <strong>APP</strong></h1>
+        <p class="text-app">De um jeito ainda mais rápido e fácil, temos <br class="broken-line"> a versão do app para
+          melhor agilidade.</p>
+        <div class="container-buttons-app">
+          <button class="btn btn-app android">
+            <i class="fab fa-android"></i>
+            <hr>
+            <span class="btn-app-span">
+              <small>Instalar no</small>
+              <h1>Android</h1>
+            </span>
+          </button>
+          <button class="btn btn-app ios">
+            <i class="fab fa-apple"></i>
+            <hr>
+            <span class="btn-app-span">
+              <small>Instalar no</small>
+              <h1>IOS</h1>
+            </span>
+          </button>
+        </div>
+      </article>
+      <article class="content-app img">
+        <img src="./assets/images/home/cellphone-home.svg" alt="Celular Jogo do Bicho Online - Bicho Mania">
+      </article>
+    </section>
+
+  </main>
+  <footer class="container-footer" id="footerIndex">
+
+  </footer>
+
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="./assets/js/home.js"></script>
+
+  <script>
+    window.onload = async function () {
+      let deferredPrompt;
+      const addBtn = $('#enable-banner-install');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // $(addBtn).css('display', 'block');
+        e.preventDefault();
+        deferredPrompt = e;
+        $(addBtn).on('click', (e) => {
+          // addBtn.style.display = 'none';
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the prompt');
+            } else {
+              console.log('User dismissed the prompt');
+            }
+            deferredPrompt = null;
+          });
+        });
+      });
+
+      if ('getInstalledRelatedApps' in window.navigator) {
+        const relatedApps = await navigator.getInstalledRelatedApps();
+        relatedApps.forEach((app) => {
+          //if your PWA exists in the array it is installed
+          window.location = 'https://bichomania.bet/';
+        });
+      }
+    };
+  </script>
+
+</body>
+
+</html>

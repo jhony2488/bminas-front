@@ -1,0 +1,104 @@
+.container-home-404 {
+  width: 100%;
+  /* height: 100%; */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url(/assets/images/home/bg-home-404.png), var(--bg-primary) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.content-home {
+  flex-direction: column;
+  padding: 15px;
+}
+
+.content-button a, .container-text-404 a {
+  text-decoration: none;
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.container-text-404 {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  visibility: hidden;
+}
+
+.container-text-404 > h1 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.container-text-404 > h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #fff;
+  margin: 15px 0;
+}
+
+.container-text-404 > h2 > span {
+  border-bottom: 2px solid var(--primary);
+}
+
+.container-text-404 > h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.container-text-404 > h3 > span {
+  border-bottom: 2px solid var(--primary);
+}
+
+
+.img-home {
+  position: relative;
+  visibility: hidden;
+}
+
+.img-home .blur {
+  position: absolute;
+  border-radius: 400px;
+  background: rgba(75, 233, 204, 0.20);
+  filter: blur(50px);
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.img-home .blur:first-child {
+  top: 0;
+  left: 0;
+}
+
+.img-home .blur:last-child {
+  bottom: 0;
+  right: 0;
+}
+
+img[alt="Jogo do Bicho Online - Imagem página não encontrada"] {
+  position: relative;
+  max-width: 550px;
+  width: 100%;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .container-text-404 > h1 {
+    font-size: 2.5rem;
+  }
+
+  .container-text-404 > h2 {
+    font-size: 1.3rem;
+  }
+
+  .container-text-404 > h3 {
+    font-size: 1rem;
+  }
+}

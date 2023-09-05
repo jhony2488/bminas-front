@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Bônus</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+    <style>
+    .swal2-icon {
+      width: 5em !important;
+      height: 5em !important;
+      border-width: .25em !important;
+    }
+
+    .swal2-container {
+      zoom: 1.3;
+    }
+
+    .swal2-container {
+      z-index: 9999;
+    }
+  </style>
+  </head>
+
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <!-- <div class="page-header">
+          <h3 class="page-title">Cadastro <strong>Regiões</strong></h3>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Regiões</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Lista</li>
+            </ol>
+          </nav>
+        </div> -->
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><i class="fa fa-table"></i> Bônus <strong>Campanha BichoMania</strong></h4>
+              <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+              <br>
+
+              <div class="row">
+                <div id="tab" class="panel-content pagination2 table-responsive">
+                  <table id="dtable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                      <?php
+                      /* include('conexao.php');
+                        $sql = "SELECT a.first_name, a.last_name,a.created,a.email,a.username,a.phone,a.user_id
+                        FROM users a WHERE  (SELECT type FROM transactions WHERE (sender = a.username AND type = 1) or (receiver = a.username AND type = 4)
+                        LIMIT 1) is NULL AND a.phone is not null AND a.gerente = 0 ORDER BY a.created DESC";
+                        $result = $pdo->query($sql);
+                        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+                        //  echo $sql;
+                        foreach ($data as $row) {
+                          echo "<tr>";
+                          echo "<td>" . date('d/m/Y', strtotime($row['created'])) . "</td>";
+                          echo "<td>" . $row['username'] . "</td>";
+                          echo "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
+                          echo "<td>" . $row['phone'] . "</td>";
+                          echo "<td>" . $row['email'] . "</td>";
+                          echo '<td><button onclick="confirmarCampanha(\'' . $row["username"] . '\',' . $row["user_id"] . ')" type="button" class="btn btn-sm btn-success" title="Confirmar" data-toggle="tooltip"><i class="fa fa-check"></i></button></td>';
+                          echo "</tr>";
+                        }*/
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                    <a href="rel_campanha.php?gerente=<?php //echo $gerente;
+                                                      ?>&inicio=<?php //echo $inicio;
+                                                                ?>&final=<?php //echo $final;
+                                                                          ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      function buscarDados() {
+        const url = 'ajax_rcampanha.txt';
+        return $.ajax({
+          url: url,
+          method: 'get',
+          dataType: 'json'
+        });
+      }
+
+      async function processarDados() {
+        try {
+          const dados = await buscarDados().then(function(result) {
+            return result;
+          });
+
+          if (!Array.isArray(dados) || dados.length < 1) {
+            throw new Error('Dados inválidos');
+          }
+console.log(dados)
+          tabela.clear().draw();
+          tabela.rows.add(dados).draw();
+
+          $('.phone').mask('(00) 00000-0000');
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+
+        } catch (error) {
+          console.log('Erro ao processar dados:', error);
+        }
+      }
+      processarDados();
+
+      // Datatable
+      var tabela = $('#dtable').DataTable({
+        "columns": [{
+            "data": "created",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '00-00-0000';
+              }
+
+              const Data = new Date(row['created']);
+              // Formatação da data
+              const formattedDate = Data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+              return `${formattedDate}`;
+            }
+          },
+          {
+            "data": "username",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "first_name",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return `${row['first_name']} ${row['last_name']}`;
+            }
+          },
+          {
+            "data": "phone",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return `<span class="phone">${row['phone']}</span>`;
+            }
+          },
+          {
+            "data": "email",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "user_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return `<button onclick="confirmarCampanha('${row["username"]}','${row["user_id"]}')" type="button" class="btn btn-sm btn-success" title="Confirmar" data-toggle="tooltip"><i class="fa fa-check"></i></button>`;
+          }
+        }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "oLanguage": {
+          "sUrl": "./admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+    });
+
+    function confirmarCampanha(username,user_id) {
+      console.log(username)
+      Swal.fire({
+        type: 'question',
+        title: "Confirmar a transação de username: " + username,
+        confirmButtonText: "Confirmar",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+        html: `
+
+        <div class="col-md-12"><label>Valor:<label><input name='amount' id='amount' type='number' > </div>
+            <div class="col-md-6"><label>Data:<label><input name='date_up' id='date_up' type='date' > </div>`
+      }).then((result) => {
+        if ($('#date_up').val() != '') {
+          if (result.value) {
+              $.ajax({
+                type: "GET",
+                url: "ajax_resgate_campanha.php",
+                data: {
+                  user_id: user_id,
+                  username: username,
+                  amount: $('#amount').val(),
+                  date_up: $('#date_up').val(),
+                },
+                success: function(response) {
+                  console.log(response)
+                  let data = JSON.parse(response)
+                  if (data.error) {
+                    Swal.fire({
+                      type: 'error',
+                      title: data.message,
+                      showConfirmButton: false,
+                      timer: 2000
+                    })
+                  } else {
+                    Swal.fire({
+                      type: 'success',
+                      title: 'Bônus Campanha confirmado com sucesso',
+                      showConfirmButton: false,
+                      timer: 2000
+                    }).then((result) => {
+                      location.reload();
+                    })
+                  }
+                }
+              })
+          }
+        } else {
+          Swal.fire({
+            type: 'error',
+            title: 'Data campo obrigatório',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+      })
+    }
+  </script>
+
+  </body>
+</html>

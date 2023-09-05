@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Apostas por Modalidade</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    <link href="/admin/assets/vendors/datatable/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
+
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+    <style>
+      div.dt-button-collection {width: 400px;}
+      div.dt-button-collection button.dt-button {display: inline-block;width: 32%;}
+      div.dt-button-collection button.buttons-colvis {display: inline-block;width: 49%;}
+      div.dt-button-collection h3 {margin-top: 5px;margin-bottom: 5px;font-weight: 100;border-bottom: 1px solid rgba(150, 150, 150, 0.5);font-size: 1em;padding: 0 1em;}
+      div.dt-button-collection h3.not-top-heading {margin-top: 10px;}
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i> Apostas <strong>por Modalidade</strong></h4>
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <form action="#" role="form" method="post" enctype="multipart/form-data">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Data Inicio</label>
+                        <input type="date" id="data_inicio" name="initial_date" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Data Final </label>
+                        <input type="date" id="data_fim" name="final_date" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Loteria</label>
+                        <select id="loteria" name="loteria" class="form-control" data-search="true">
+                          <option value="all">- Selecione -</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Grupo de Loteria</label>
+                        <select id="loteria_gr" name="loteria_gr" class="form-control" data-search="true">
+                          <option value="all">- Selecione -</option>
+                          <option value="12">PIX</option>
+                          <option value="2">PT-Rio</option>
+                          <option value="3">Federal</option>
+                          <option value="4">LK-Goias</option>
+                          <option value="5">LN-Nacional</option>
+                          <option value="6">SP-Loterias</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label>Ordem</label>
+                        <select id="ordem" name="ordem" class="apagar form-control" data-search="true">
+                          <option value="1">- Selecione -</option>
+                          <option value="3">Valor</option>
+                          <option value="4">Quantidade</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <button id="buscarDados" type="submit" name="pesquisar" value="pesquisar" class="btn btn-wide btn-success">Pesquisar</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+              <br><br>
+
+              <div id="tab" class="table-responsive">
+                <table id="dttable" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr style="font-size:9pt">
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th colspan='2' style="text-align: center; border: 1px solid #6a7685;">TT Valor</th>
+                      <th colspan='2' style="text-align: center; border: 1px solid #6a7685;">TT Prêmio</th>
+                    </tr>
+                    <tr style="font-size:9pt">
+                      <th>M</th>
+                      <th>Nome</th>
+                      <th>Quantidade</th>
+                      <th style="text-align: center; border: 1px solid #6a7685;">Valor</th>
+                      <th style="text-align: center; border: 1px solid #6a7685;">%</th>
+                      <th style="text-align: center; border: 1px solid #6a7685;">Prêmio</th>
+                      <th style="text-align: center; border: 1px solid #6a7685;">%</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                  <tfoot>
+                    <tr style="font-size:9pt">
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <script src="/admin/assets/vendors/datatable/dataTables.buttons.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $('[data-toggle="tooltip"]').tooltip();
+      const atualizarListaBtn = $('#att_list');
+
+      const dataInicioInput = $('#data_inicio');
+      const dataFimInput = $('#data_fim');
+      const loteriaInput = $('#loteria').val();
+      const grupoInput = $('#loteria_gr').val();
+      const ordemInput = $('#ordem').val();
+
+      const buscarDadosBtn = $('#buscarDados');
+      const formattedCurrentDate = getFormattedCurrentDate();
+
+      const dataApi = `/api_admin/modality/report/${formattedCurrentDate}/${formattedCurrentDate}/${grupoInput}/${loteriaInput}/${ordemInput}`;
+
+      const tabela = $('#dttable').DataTable({
+        initComplete: function () {
+          carregarDados(`/api_admin/modality/report/${formattedCurrentDate}/${formattedCurrentDate}/all/all/${ordemInput}`);
+        },
+        "drawCallback": function (settings) {
+          // máscara de moeda
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+        },
+        "dom": 'Bfrtip',
+        "buttons": [
+          {
+            text: 'Exportar lista',
+            extend: 'collection',
+            className: 'custom-html-collection',
+            buttons: [
+              '<h3>Exportar</h3>',
+              'pdf',
+              'csv',
+              'excel',
+              '<h3 class="not-top-heading">Colunas selecionadas</h3>',
+              'columnsToggle'
+            ]
+          }
+        ],
+        "columns": [{
+            "data": "campo_modalidade_id",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return 'Não encontrado!';
+                }
+
+                return data;
+              }
+            },
+            {
+            "data": "campo_nome",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return 'Não encontrado!';
+                }
+
+                return data;
+              }
+            },
+            {
+            "data": "campo_quantidade_jogos",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return 'Não encontrado!';
+                }
+
+                return data;
+              }
+            },
+            {
+            "data": "campo_valor_jogado",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return 'R$ 0,00';
+                }
+
+                var formattedValor = data.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                });
+                return `R$ <span class="money">${formattedValor}</span>`;
+              }
+            },
+            {
+            "data": "porcentagem_valor_jogado",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return '0.00%';
+                }
+
+                return `${data.toFixed(2)}%`;
+              }
+            },
+            {
+            "data": "campo_premio_modalidade",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return 'R$ 0,00';
+                }
+
+                var formattedPValor = data.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                });
+                return `R$ <span class="money">${formattedPValor}</span>`;
+              }
+            },
+            {
+            "data": "porcentagem_premio_modalidade",
+              "render": function(data, type, row) {
+                if (!data) {
+                  return '0.00%';
+                }
+
+                return `${data.toFixed(2)}%`;
+              }
+            }
+        ],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      function getFormattedCurrentDate() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+      }
+
+      dataInicioInput.val(getFormattedCurrentDate());
+      dataFimInput.val(getFormattedCurrentDate());
+
+      // get list
+      async function carregarDados(apiAddress) {
+        try {
+          const response = await fetch(apiAddress, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          const data = await response.json();
+
+          const total_valor_jogado = data.reduce((total, item) => total + parseFloat(item.campo_valor_jogado), 0);
+          const total_premio_modalidade = data.reduce((total, item) => total + parseFloat(item.campo_premio_modalidade), 0);
+
+          data.forEach(item => {
+            item.porcentagem_valor_jogado = (parseFloat(item.campo_valor_jogado) * 100) / total_valor_jogado;
+            item.porcentagem_premio_modalidade = (parseFloat(item.campo_premio_modalidade) * 100) / total_premio_modalidade;
+          });
+
+          tabela.clear().rows.add(data).draw();
+          console.log(data);
+
+          if (data.length === 0) {
+            const emptyMessage = 'Sem resultados';
+            tabela.rows.add([]).draw();
+            $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          $('#datatable_processing').css('display', 'block');
+          buscarDadosBtn.html('<i class="fa fa-search fa-2xl"></i>Pesquisar');
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+        }
+      }
+
+      buscarDadosBtn.click(function(e) {
+        e.preventDefault();
+
+        const initialDate = dataInicioInput.val();
+        const finalDate = dataFimInput.val();
+        const loteria = $('#loteria').val();
+        const grupo = $('#loteria_gr').val();
+        const ordem = $('#ordem').val();
+
+        $(this).html(`<div class="spinner-border text-primary" role="status"></div>`);
+        const url = `/api_admin/modality/report/${initialDate}/${finalDate}/${grupo}/${loteria}/${ordem}`;
+
+        carregarDados(url);
+
+      });
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+        const initialDate = dataInicioInput.val();
+        const finalDate = dataFimInput.val();
+        const loteria = $('#loteria').val();
+        const grupo = $('#loteria_gr').val();
+        const ordem = $('#ordem').val();
+
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw(); console.log(dataApi)
+        const url = `/api_admin/modality/report/${initialDate}/${finalDate}/${grupo}/${loteria}/${ordem}`;
+
+        carregarDados(url);
+      });
+
+      // select lotteries
+      fetch('/api_admin/lotteries', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(response => {
+
+          let select = ``;
+          select += `<option value="all">- Selecione -</option>`;
+          response.map((response) => {
+            select += `<option value="${response.campo_lottery_id}">${response.campo_nome}</option>`;
+          });
+
+          $('#loteria').html(select);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {
+        });
+    });
+
+  </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

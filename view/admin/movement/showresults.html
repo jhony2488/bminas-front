@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Movimentação &amp; Resultados</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4><i class="fa fa-table"></i> <strong>Resultados</strong> da data<strong>: "<span id="data_title">--</span>"</strong></h4>
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <form action="#" role="form" method="post" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="form-label">Data</label>
+                      <input type="date" id="data_input" name="atualday" class="form-control">
+                    </div>
+                    <div class="mb-5">
+                      <button id="buscarDados" name="pesquisar" value="pesquisar" class="btn btn-wide btn-success">Mudar data</button>
+                    </div>
+                  </div>
+
+                  <div class="d-flex">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label class="form-label">Loteria - <span id="day_title"></span></label>
+                        <select class="apagar form-control required" id="loteria" name="selloteria" required>
+                        </select>
+                      </div>
+
+                          <!-- <button type="button" class="btn btn-primary" id='get_result'>Buscar Resultado</button> -->
+                          <!--?php /*if ($gerente == 1) {
+                            echo '<button type="button" class="btn btn-primary" id="generate_result">Gerar Resultado (PIX)</button>';
+                          } */?-->
+                    </div>
+
+                    <!-- END -->
+                    <!-- DIV RESULTADOS -->
+
+                      <div class="col-md-12">
+                        <label class="form-label">Resultados</label>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="1º Prêmio" id="premio1" class="apagar milhar soma-premio col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 premio1" id="inp1"></div>
+                          </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="2º Prêmio" id="premio2" class="apagar milhar soma-premio col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 premio2" id="inp2"></div>
+                          </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="3º Prêmio" id="premio3" class="apagar milhar soma-premio col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 premio3" id="inp3"></div>
+                          </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="4º Prêmio" id="premio4" class="apagar milhar soma-premio col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 premio4" id="inp4"></div>
+                          </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="5º Prêmio" id="premio5" class="apagar milhar soma-premio col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 premio5" id="inp5"></div>
+                          </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="6º Prêmio" id="sexto" class="apagar col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 sexto" id="inp6"></div>
+                          </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="row">
+                          <div style="padding-right: 1px;" class="col-md-10">
+                            <input type="text" placeholder="7º Prêmio" id="setimo" class="apagar col-md-6 form-control form-control-sm" maxlength="4">
+                          </div>
+                          <div style="padding-left: 1px;" class="col-md-8">
+                            <div class="col-md-6 setimo" id="inp7"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END  -->
+                    </div>
+                  </div>
+                </form>
+                <br>
+                <div class="row">
+                  <div style="text-align: center;" class="col-md-12">
+                    <button type="button" class="btn btn-success btn-md" id="salvarSorteio">Salvar Sorteio</button>
+                  </div>
+                </div>
+                <br>
+
+              <div class="row">
+                <div id="tab" class="panel-content pagination2 table-responsive">
+                    <table id="dtable" class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Loteria</th>
+                          <th>Data</th>
+                          <th>1º Prêmio</th>
+                          <th>2º Prêmio</th>
+                          <th>3º Prêmio</th>
+                          <th>4º Prêmio</th>
+                          <th>5º Prêmio</th>
+                          <th>6º Prêmio</th>
+                          <th>7º Prêmio</th>
+                          <th>Status</th>
+                          <th>Ação</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tbody">
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+
+	<script>
+  // document.addEventListener('DOMContentLoaded', function() {
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    const dataInput = $('#data_input');
+    const dataTitle = $('#data_title');
+    const buscarDadosBtn = $('#buscarDados');
+    const atualizarListaBtn = $('#att_list');
+    const formattedCurrentDate = getFormattedCurrentDate();
+
+      // datatable
+      const tabela = $('#dtable').DataTable({
+        initComplete: function () {
+
+          const dataApi = '/api_admin/lotteries/draw-results?date='+formattedCurrentDate;
+          carregarDados(dataApi);
+          console.log(dataApi)
+        },
+        "columns": [{
+            "data": "result_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "name",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "date_of_calculation",
+            "render": function(data, type, row) {
+              if (!data) {
+                return '00-00-0000';
+              }
+
+              // Formatação da data
+              const origin = new Date(row['date_of_calculation']);
+              const formattedDate = origin.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+              return `${formattedDate}`;
+            }
+          },
+          {
+            "data": "animal_1",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['first_place']})`;
+            }
+          },
+          {
+            "data": "animal_2",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['second_place']})`;
+            }
+          },
+                    {
+            "data": "animal_3",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['third_place']})`;
+            }
+          },
+          {
+            "data": "animal_4",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['fourth_place']})`;
+            }
+          },
+          {
+            "data": "animal_5",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['fifith_place']})`;
+            }
+          },
+          {
+            "data": "animal_6",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['sixth_place']})`;
+            }
+          },
+          {
+            "data": "animal_7",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${data}<br> (${row['seventh_place']})`;
+            }
+          },
+          {
+            "data": "status",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "result_id",
+            "render": function(data, type, row) {
+              let btns = ``;
+
+              if(row['status'] == 'Em aberto' || row['status'] == 'Estornado' ){
+                btns += `
+                  <!--button onclick=\"window.open('tsimagemlight.php?premio1=" . $row['primeiro_premio'] . "&premio2=" . $row['segundo_premio'] . "&premio3=" . $row['terceiro_premio'] . "&premio4=" . $row['quarto_premio'] . "&premio5=" . $row['quinto_premio'] . "&premio6=" . $row['sexto_premio'] . "&premio7=" . $row['setimo_premio'] . "&bicho=" . $row['bicho1'] . "&grupo1=" . $row['grupo1'] . "&grupo2=" . $row['grupo2'] . "&grupo3=" . $row['grupo3'] . "&grupo4=" . $row['grupo4'] . "&grupo5=" . $row['grupo5'] . "&grupo6=" . $row['grupo6'] . "&grupo7=" . $row['grupo7'] . "&descricao=" . $row['descricao'] . "&data=" . date($atualDay, strtotime($row['data'])) . "&loteria_desc=" . $row['grupo_desc'] . "&sigla=" . $row['sigla'] . "', '_blank')\" type=\"button\" class=\"btn btn-sm btn-light\" title=\"Gerar Imagem Light\" data-toggle=\"tooltip\"><i class=\"fa fa-image\"></i></button-->
+
+                  <button id="edit_result" data-result="${row['result_id']}" type="button" class="btn btn-sm btn-success" title="Editar resultado" data-toggle="tooltip"> <i class="icon-pencil" style="color: #fff !important;" title="Editar resultado"></i></button>
+
+                  <button onclick="excluiResultado('${row['result_id']}','${row['lottery_id']}','${row['first_place']}','${row['second_place']}','${row['third_place']}','${row['fourth_place']}','${row['fifith_place']}','${row['sixth_place']}','${row['seventh_place']}')" type="button" class="btn btn-sm btn-danger" title="Excluir resultado" data-toggle="tooltip"> <i class="icon-trash" style="color: #fff !important;" title="Excluir resultado"></i></button>
+
+                  <a href="/admin/movement/verify/${row['result_id']}" class='btn btn-sm btn-info' title='Apurar resultado'><i class='icon-action-redo' title='Apurar resultado'></i></a>
+
+                  <!--button onclick="window.location.href="tsapuracao_pix.php?sorteio_id=' . $row['sorteio_id'] . '&loteria_id=' . $row['loteria_id'] . '&data=' . explode(" ", $row['data'])[0] . '\'" type="button" class="btn btn-sm btn-info" title="Apurar resultado" data-toggle="tooltip"> <i class="icon-action-redo" style="color: #fff !important;" title="Apurar resultado"></i></button-->
+                  `;
+
+              } else if(row['status'] == 'Finalizado' ){
+                btns += `
+                  <button onclick="estornaResultado('${row['result_id']}','${row['date_of_calculation']}','${row['first_place']}','${row['second_place']}','${row['third_place']}','${row['fourth_place']}','${row['fifith_place']}','${row['sixth_place']}','${row['seventh_place']}')" type="button" class="btn btn-sm btn-info" title="Estornar resultado" data-toggle="tooltip"> <i class="icon-refresh" style="color: #fff !important;" title="Estornar resultado"></i></button>
+
+                  <a href="/admin/movement/image/${row['result_id']}/${row['date_of_calculation']}" class='btn btn-sm btn-success' title='Imagem do sorteio'><i class='icon-camera' title='Imagem do sorteio'></i></a>
+
+                  <!--button onclick=\"window.open('tsimagemdark.php?premio1=".$row['primeiro_premio']."&premio2=".$row['segundo_premio']."&premio3=".$row['terceiro_premio']."&premio4=".$row['quarto_premio']."&premio5=".$row['quinto_premio']."&premio6=".$row['sexto_premio']."&premio7=".$row['setimo_premio']."&bicho=".$row['bicho1']."&grupo1=".$row['grupo1']."&grupo2=".$row['grupo2']."&grupo3=".$row['grupo3']."&grupo4=".$row['grupo4']."&grupo5=".$row['grupo5']."&grupo6=".$row['grupo6']."&grupo7=".$row['grupo7']."&descricao=".$row['descricao']."&data=".date('d/m/Y',strtotime($row['data']))."&loteria_desc=".$row['grupo_desc']."', '_blank')\" type=\"button\" class=\"btn btn-sm btn-dark\" title=\"Gerar Imagem Dark\" data-toggle=\"tooltip\"><i class=\"fa fa-image\"></i></button-->
+
+                  <!--button onclick=\"window.open('tsimagemlight.php?premio1=" . $row['primeiro_premio'] . "&premio2=" . $row['segundo_premio'] . "&premio3=" . $row['terceiro_premio'] . "&premio4=" . $row['quarto_premio'] . "&premio5=" . $row['quinto_premio'] . "&premio6=" . $row['sexto_premio'] . "&premio7=" . $row['setimo_premio'] . "&bicho=" . $row['bicho1'] . "&grupo1=" . $row['grupo1'] . "&grupo2=" . $row['grupo2'] . "&grupo3=" . $row['grupo3'] . "&grupo4=" . $row['grupo4'] . "&grupo5=" . $row['grupo5'] . "&grupo6=" . $row['grupo6'] . "&grupo7=" . $row['grupo7'] . "&descricao=" . $row['descricao'] . "&data=" . date($atualDay, strtotime($row['data'])) . "&loteria_desc=" . $row['grupo_desc'] . "&sigla=" . $row['sigla'] . "', '_blank')\" type=\"button\" class=\"btn btn-sm btn-light\" title=\"Gerar Imagem Light\" data-toggle=\"tooltip\"><i class=\"fa fa-image\"></i></button-->
+
+                    `;
+              } else if(row['status'] == 'Cancelado'){
+                btns += ``;//`<button onclick="editarResultado('${row['result_id']}')" type="button" class="btn btn-sm btn-success" title="Editar resultado" data-toggle="tooltip"> <i class="icon-pencil" style="color: #fff !important;" title="Editar resultado"></i></button>`;
+              }
+
+              return btns;
+            }
+          }
+        ],
+        "createdRow": function(row, data, dataIndex) {
+          var colorMap = {
+            1: {//em aberto
+              backgroundColor: '#ffa64d',
+              textColor: '#fff'
+            },
+            2: {//finalizado
+              backgroundColor: '#0CBB0C',
+              textColor: '#fff'
+            },
+            3: {//estornado
+              backgroundColor: '#3399ff',
+              textColor: '#fff'
+            },
+            4: {//cancelad
+              backgroundColor: '#ff4d4d',
+              textColor: '#fff'
+            }
+          };
+
+          var type = data['status_result_id'];
+          var style = colorMap[type] || {};
+
+          $(row).find('td:eq(10)').css({
+            'background-color': style.backgroundColor || '',
+            'color': style.textColor || ''
+          });
+        },
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      // get list
+      async function carregarDados(apiAddress) {
+        try {
+          const response = await fetch(apiAddress, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.status === 200) {
+
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+console.log(data)
+            const searchDate = dataInput.val();
+
+            // const currentDate = getFormattedCurrentDate();
+            const formattedDate = formatDate(searchDate);console.log(formattedDate)
+            dataTitle.text(formattedDate);
+
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+
+          } else if (response.status === 401) {
+            location.reload();
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          buscarDadosBtn.html('Mudar data');
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+          $('#datatable_processing').css('display', 'block');
+        }
+      }
+
+        const searchDate = dataInput.val();
+
+console.log(searchDate)
+      // select lotteries
+      fetch('/api_admin/lotteries/resultspending/'+formattedCurrentDate, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(response => {
+
+console.log(response)
+
+          let select = ``;
+          select += `<option value="">- Selecione -</option>`;
+          response.map((response) => {
+            select += `<option value="${response.campo_lottery_id}">${response.campo_nome}</option>`;
+          });
+
+          $('#loteria').html(select);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {
+        });
+
+
+      function formatDate(dateString) {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const date = new Date(dateString + 'T00:00:00');
+        return date.toLocaleDateString('pt-BR', options);
+      }
+
+      function getFormattedCurrentDate() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+      }
+
+      dataInput.val(getFormattedCurrentDate());
+
+//   });
+
+      buscarDadosBtn.click(function(e) {
+        e.preventDefault();
+
+        const searchDate = dataInput.val();
+        $(this).html(`<div class="spinner-border text-primary" role="status"></div>`);
+
+        tabela.clear().draw();
+        const dataApi = '/api_admin/lotteries/draw-results?date='+searchDate;
+        carregarDados(dataApi);
+
+
+        fetch('/api_admin/lotteries/resultspending/'+searchDate, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+          .then(response => response.json())
+          .then(response => {
+            
+  console.log(response)
+
+            let select = ``;
+            select += `<option value="">- Selecione -</option>`;
+            response.map((response) => {
+              select += `<option value="${response.campo_lottery_id}">${response.campo_nome}</option>`;
+            });
+
+            $('#loteria').html(select);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {
+          });
+      });
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        recarregarDados();
+      });
+
+      function recarregarDados() {
+
+        const searchDate = dataInput.val();
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw();
+        const dataApi = '/api_admin/lotteries/draw-results?date='+searchDate;
+        carregarDados(dataApi);
+      }
+
+		$("#salvarSorteio").click(() => {
+			let loteria = $("#loteria").val();
+
+			if (!loteria) {
+        Swal.fire({
+          toast: true,
+          type: 'warning',
+          showConfirmButton: false,
+          position: 'top-end',
+          timer: 1800,
+          title: "Selecione uma loteria.",
+        })
+				return;
+			}
+
+			let premio1 = $("#premio1").val()
+			let premio2 = $("#premio2").val()
+			let premio3 = $("#premio3").val()
+			let premio4 = $("#premio4").val()
+			let premio5 = $("#premio5").val()
+			let premio6 = $("#sexto").val()
+			let premio7 = $("#setimo").val()
+			let atualDay = $("#data_input").val()
+
+      console.log(atualDay);
+
+			if (!premio1 || !premio2 || !premio3 || !premio4 || !premio5 || !premio6 || !premio7) {
+				Swal.fire({
+          toast: true,
+          type: 'warning',
+          showConfirmButton: false,
+          position: 'top-end',
+          timer: 1800,
+          title: "Digite todos os valores.",
+        })
+				return;
+			}
+
+			if (!atualDay) {
+        Swal.fire({
+          toast: true,
+          type: 'warning',
+          showConfirmButton: false,
+          position: 'top-end',
+          timer: 1800,
+          title: "Selecione uma data",
+        })
+				return;
+			}
+
+			Swal.fire({
+				type: "warning",
+				title: "Inserir loteria?",
+				confirmButtonText: "Inserir",
+				showCancelButton: true,
+				cancelButtonText: "Cancelar",
+				reverseButtons: true
+			}).then((result) => {
+				if (result.value) {
+
+          let prizes = [premio1,premio2,premio3,premio4,premio5,premio6,premio7];
+          console.log(prizes)
+
+          fetch('/api_admin/lotteries/draw-results', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ lottery_id: loteria, prizes: prizes, date: atualDay })
+          })
+            .then(response => response.json())
+            .then(response => {
+
+              if (response.status == 200) {
+                Swal.fire({
+                  type: "success",
+                  // width: '35%',
+                  showConfirmButton: false,
+                  timer: 1500,
+                  title: response.message
+                })
+
+                setTimeout(
+                function() {
+                  tabela.clear().draw();
+                  const dataApi = '/api_admin/lotteries/draw-results?date='+formattedCurrentDate;
+                  carregarDados(dataApi);
+                }, 1600);
+
+
+
+                for (let i = 1; i <= 7; i++) {
+                  $(`#inp${i}`).empty();
+                }
+
+                $(".apagar").each((index, elem) => {
+                  $(elem).val("")
+                  $('[data-toggle="tooltip"]').tooltip()
+                })
+
+              } else {
+                Swal.fire({
+                  type: "error",
+                  // width: '35%',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  title: response.message
+                })
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+            });
+
+				}
+			})
+		})
+
+    arrayBicho = [
+      "Vaca", "Avestruz", "Águia",
+      "Burro", "Borboleta", "Cachorro",
+      "Cabra", "Carneiro", "Camelo",
+      "Cobra", "Coelho", "Cavalo",
+      "Elefante", "Galo", "Gato",
+      "Jacaré", "Leão", "Macaco",
+      "Porco", "Pavão", "Peru",
+      "Touro", "Tigre", "Urso",
+      "Veado", "Vaca"
+    ]
+
+    $(".milhar").keyup((e) => {
+      let id = $(e.target).attr("id")
+      if ($(e.target).val().length == 4) {
+        let ok = true
+        $(".milhar").each((index, elem) => {
+          if ($(elem).val() == "") {
+            ok = false
+          }
+        })
+        if (ok) {
+          let sexto = 0
+          let setimo = $("#premio1").val() * $("#premio2").val()
+          $(".soma-premio").each((index, elem) => {
+            sexto += parseInt($(elem).val())
+          })
+          let sextoResult = String(sexto).substr(-4)
+          let setimoResult = (String(setimo).padStart(7, "0")).substr(-6, 3)
+          $("#sexto").val(sextoResult)
+          $("#setimo").val(setimoResult)
+          let sextoBicho = Math.ceil(sextoResult.padStart(4, "0").substr(-2) / 4)
+          let setimoBicho = Math.ceil(setimoResult.padStart(4, "0").substr(-2) / 4)
+          $(".sexto").text(isFinite(sextoBicho) ? (sextoBicho + " - " + arrayBicho[sextoBicho]) : sextoBicho)
+          $(".setimo").text(isFinite(setimoBicho) ? (setimoBicho + " - " + arrayBicho[setimoBicho]) : setimoBicho)
+        }
+        let primeiraDezena = Math.ceil(parseFloat($(e.target).val().padStart(4, "0").substr(-2)) / 4)
+        $("." + id).text(isFinite(primeiraDezena) ? (primeiraDezena + " - " + arrayBicho[primeiraDezena]) : primeiraDezena)
+        $(e.target).parent().parent().next(".row").find(".milhar").focus()
+      } else {
+        $("." + id).text("")
+      }
+    })
+
+    // edit result
+  $(document).on("click", "#edit_result", function() {
+    var tddata = tabela.row($(this).parents('tr')).data();
+      // e.preventDefault();
+
+      console.log(tddata)
+
+      let status_result;
+      Swal.fire({
+        type: 'question',
+        title: 'Editar resultado ID: '+tddata.result_id,
+        confirmButtonText: "Confirmar",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+        showLoaderOnConfirm: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        html: `<div style="margin-top:20px">
+                <form id="editresult" enctype="multipart/form-data">
+                  <div class="row d-flex">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Data</label>
+                          <input type="date" id="edit_day" name="date" class="form-control" required>
+                        </div>
+                        <!--div class="mb-2">
+                          <button type="submit" name="pesquisar" value="pesquisar" class="btn btn-wide btn-success">Mudar data</button>
+                        </div-->
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Loteria - <div id="DayTitle"></div></label>
+                          <select class="apagar form-control" id="loteria-edit" name="lottery_id">
+                          </select>
+                        </div>                          
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+
+                          <label class="form-label">Resultados</label>
+                          <div class="row">
+                            <div class="linha">
+                              <input type="text" placeholder="1º Prêmio" id="premio_1" class="apagar milhar soma-premio  form-control" maxlength="4" required>
+
+                              <div style="" class="">
+                                <div class="premio_1"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="linha mt-2">
+                                <input type="text" placeholder="2º Prêmio" id="premio_2" class="apagar milhar soma-premio  form-control" maxlength="4" required>
+
+                                <div style="" class="">
+                                  <div class=" premio_2"></div>
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="linha mt-2">
+                              <input type="text" placeholder="3º Prêmio" id="premio_3" class="apagar milhar soma-premio  form-control form-control-sm" maxlength="4" required>
+
+                              <div style="" class="">
+                                <div class=" premio_3"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="linha mt-2">
+                              <input type="text" placeholder="4º Prêmio" id="premio_4" class="apagar milhar soma-premio  form-control" maxlength="4" required>
+
+                              <div style="" class="">
+                                <div class=" premio_4"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="linha mt-2">
+                              <input type="text" placeholder="5º Prêmio" id="premio_5" class="apagar milhar soma-premio  form-control" maxlength="4" required>
+
+                              <div style="" class="">
+                                <div class=" premio_5"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="linha mt-2">
+                              <input type="text" placeholder="6º Prêmio" id="premio_6" class="apagar  form-control" maxlength="4" required>
+
+                              <div style="" class="">
+                                <div class="sexto"></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="linha mt-2">
+                              <input type="text" placeholder="7º Prêmio" id="premio_7" class="apagar form-control" maxlength="4" required>
+
+                              <div class="setimo"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+              </div>
+              `,
+        onOpen: () => {
+          if (tddata.result_id != null) {
+
+            fetch('/api_admin/lotteries/draw-results/?date='+tddata.date_of_calculation, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then(response => response.json())
+            .then(response => {
+              
+              console.log(response)
+
+              const data = response.find(obj => obj.result_id == tddata.result_id);
+              status_result = data.status_result_id;
+
+              console.log(data)
+
+              const currentDate = new Date(data.date_of_calculation);
+              const formattedEditDate = currentDate.toISOString().slice(0, 10);
+              console.log(formattedEditDate);
+
+              $('#edit_day').val(data.date_of_calculation.slice(0, 10));
+              $('#premio_1').val(data.first_place);
+              $('#premio_2').val(data.second_place);
+              $('#premio_3').val(data.third_place);
+              $('#premio_4').val(data.fourth_place);
+              $('#premio_5').val(data.fifith_place);
+              $('#premio_6').val(data.sixth_place);
+              $('#premio_7').val(data.seventh_place);
+
+              // select lotteries
+              let select = ``;
+              select += `<option class="bg-secondary" value="${data.lottery_id}" selected>${data.name}</option>`;
+
+              fetch('/api_admin/lotteries/resultspending/'+formattedEditDate, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+                .then(response => response.json())
+                .then(lotteryResponse => {
+                  console.log('lots')
+
+                  console.log(lotteryResponse)
+
+                  // let select = ``;
+                  lotteryResponse.map((lottery) => {
+                    const isSelected = (data.lottery_id == lottery.campo_lottery_id) ? 'selected="selected"' : '';
+                    select += `<option value="${lottery.campo_lottery_id}" ${isSelected}>${lottery.campo_nome}</option>`;
+                  });
+
+                  $('#loteria-edit').html(select);
+                //  $('#loteria_edit').val(response[0].campo_lottery_id).change();
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+              });
+            })
+          }
+        },
+        preConfirm: () => {
+          // validação
+          return new Promise((resolve) => {
+
+            // Executar a validação
+            let erros = [];
+            let form = document.getElementById("editresult");
+            let inputs = Array.from(form.querySelectorAll("[required]"));
+
+            inputs.forEach((validate) => {
+              if (!validate.value.trim()) {
+                erros.push(validate);
+                validate.classList.add("is-invalid");
+              } else {
+                validate.classList.remove("is-invalid");
+              }
+            });
+
+            if (erros.length === 0) {
+
+              let prizes = [];
+              for (let i = 1; i <= 7; i++) {
+                prizes.push($(`#editresult #premio_${i}`).val());
+              }
+
+              let formObject = {
+                status_result_id: status_result,
+                data_of_calculation: $('#editresult #edit_day').val(),
+                lottery_id: $("#editresult #loteria-edit").val(),
+                prizes: prizes,
+              };
+
+              // salvar dados
+              fetch('/api_admin/lotteries/draw-results/'+tddata.result_id, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+              })
+                .then(response => response.json())
+                .then(response => {
+
+                  if (response.status == 200) {
+                    Swal.fire({
+                      type: "success",
+                      // width: '35%',
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      // width: '35%',
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                  .catch(error => {
+                    console.log(error);
+                  })
+                  .finally(() => {
+              });
+
+              resolve(); // Resolva a promessa para fechar o diálogo
+            } else {
+              Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+              resolve();
+            }
+          });
+        }
+      })
+    })
+
+		function excluiResultado(id, lottery, p1, p2, p3, p4, p5, p6, p7) {
+			Swal.fire({
+				type: "error",
+				title: "Tem certeza?",
+				text: "Ao excluir loteria será impossivel recuperar",
+				confirmButtonText: "Excluir",
+				showCancelButton: true,
+				cancelButtonText: "Cancelar",
+				reverseButtons: true
+			}).then((result) => {
+				if (result.value) {
+
+          let prizes = [p1, p2, p3, p4, p5, p6, p7];
+          const formObject = {
+            status_result_id: id,
+            lottery_id: lottery,
+            lottery_description: 'lottery_description',
+            prizes: prizes
+          };
+
+          fetch('/api_admin/lotteries/draw-results/'+id, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+          })
+            .then(response => response.json())
+            .then(response => {
+              console.log(response);
+
+              Swal.fire({
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 2000
+              }).finally(() => {
+                window.location.reload()
+              })
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+          });
+				}
+			})
+		}
+
+		function estornaResultado(id, desc) {
+			Swal.fire({
+				type: "error",
+				title: "Tem certeza?",
+				text: "Ao estornar loteria será impossivel recuperar",
+				confirmButtonText: "Estornar",
+				showCancelButton: true,
+				cancelButtonText: "Cancelar",
+				reverseButtons: true
+			}).then((result) => {
+				if (result.value) {
+
+          let data = new Date(desc);
+          let dataFormatada = data.toISOString().split('T')[0];
+
+          Swal.fire({
+            title: 'Aguarde',
+            text: 'Estornando resultados...',
+            // width: '35%',
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            },
+            onClose: () => {
+              clearInterval(timerInterval);
+            },
+          });
+
+          fetch('/api_admin/lotteries/draw-results/reverse', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({date: dataFormatada, result_id: id})
+          })
+              .then(response => response.json())
+              .then(response => {
+                console.log(response);
+
+                if (response.status == 200) {
+                Swal.fire({
+                  type: "success",
+                  // width: '35%',
+                  showConfirmButton: false,
+                  timer: 1600,
+                  title: response.message
+                })
+                setTimeout(
+                  function() {
+                    window.location = '/admin/movement/showresults';
+                  }, 1700);
+              } else {
+                Swal.fire({
+                  type: "error",
+                  // width: '35%',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  title: response.message
+                })
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+            });
+				}
+			})
+		}
+
+		$("#generate_result").click(() => {
+			var e = document.getElementById("loteria");
+			var loteria = e.value;
+
+			if (loteria) {
+				$.ajax({
+					type: "GET",
+					url: "generateResultRand.php",
+					data: {
+						loteria,
+						credibilidade: true,
+						auto: false
+					},
+					success: function(response) {
+						let data = response
+						let e = jQuery.Event("keypress");
+						e.keyCode = $.ui.keyCode.ENTER;
+
+						if (data.error) {
+							Swal.fire({
+								type: "warning",
+								title: data.error,
+								confirmButtonText: "Ok",
+							})
+							return;
+						}
+
+
+						$('#premio1').val(data.number_1).trigger('keyup');
+						$('#premio2').val(data.number_2).trigger('keyup');
+						$('#premio3').val(data.number_3).trigger('keyup');
+						$('#premio4').val(data.number_4).trigger('keyup');
+						$('#premio5').val(data.number_5).trigger('keyup');
+						$('#sexto').val(data.number_6).trigger('keyup');
+						$('#setimo').val(data.number_7).trigger('keyup');
+
+
+						$("#porcentagem_bilhetes_premiados").html(data.porcentagem_bilhetes_premiados)
+						$("#porcentagem_jogadores_premiados").html(data.porcentagem_jogadores_premiados)
+						$("#porcentagem_paga").html(data.porcentagem_paga)
+						$("#quantidade_de_bilhetes_participando").html(data.quantidade_de_bilhetes_participando)
+						$("#quantidade_de_bilhetes_premiados").html(data.quantidade_de_bilhetes_premiados)
+						$("#quantidade_de_jogadores_participando").html(data.quantidade_de_jogadores_participando)
+						$("#quantidade_de_jogadores_premiados").html(data.quantidade_de_jogadores_premiados)
+						$("#valor_pago").html(data.valor_pago)
+
+						window.location.reload()
+					}
+				});
+			} else {
+				Swal.fire({
+					type: "warning",
+					title: "Selecione uma loteria.",
+					confirmButtonText: "Ok",
+				})
+			}
+		})
+
+		$("#cancelar").click(() => {
+			$("#salvarSorteio").show()
+			$("#salvarEdicao").hide()
+			$("#cancelar").hide()
+			$(".apagar").each((index, elem) => {
+				$(elem).val("")
+			})
+			edita = ""
+		})
+
+		$("#get_result").click(() => {
+			var e = document.getElementById("loteria");
+			var loteria = e.value;
+
+			if (loteria) {
+				$.ajax({
+					type: "GET",
+					url: `https://www.deunobicho.com/deunobic_api/get_results_api.php?loteria_id=${loteria}&token=508681b802e2ef5216e5c6b10b19a32e`,
+					success: function(response) {
+
+						let e = jQuery.Event("keypress");
+						e.keyCode = $.ui.keyCode.ENTER;
+						$('#premio1').val(response.primeiro_premio).trigger('keyup');
+						$('#premio2').val(response.segundo_premio).trigger('keyup');
+						$('#premio3').val(response.terceiro_premio).trigger('keyup');
+						$('#premio4').val(response.quarto_premio).trigger('keyup');
+						$('#premio5').val(response.quinto_premio).trigger('keyup');
+						if (!response) {
+							Swal.fire({
+								type: "warning",
+								title: "Nenhum resultado encontrado.",
+								confirmButtonText: "Ok",
+							})
+						}
+					}
+				});
+			} else {
+				Swal.fire({
+					type: "warning",
+					title: "Selecione uma loteria.",
+					confirmButtonText: "Ok",
+				})
+			}
+		})
+
+		$("#salvarEdicao").click(() => {
+			if (edita != "") {
+				Swal.fire({
+					type: "warning",
+					title: "Editar loteria?",
+					confirmButtonText: "Editar",
+					showCancelButton: true,
+					cancelButtonText: "Cancelar",
+					reverseButtons: true
+				}).then((result) => {
+					if (result.value) {
+						$.ajax({
+							type: "POST",
+							url: "ajax_gerencia_resultado.php",
+							data: {
+								id: edita,
+								loteria: $("#edit_loteria").val(),
+								premio1: $("#premio1").val(),
+								premio2: $("#premio2").val(),
+								premio3: $("#premio3").val(),
+								premio4: $("#premio4").val(),
+								premio5: $("#premio5").val(),
+								premio6: $("#sexto").val(),
+								premio7: $("#setimo").val()
+							},
+							success: function(response) {
+								$("#tbody").html(response)
+								$("#cancelar").click()
+								$('[data-toggle="tooltip"]').tooltip()
+								Swal.fire({
+									type: 'success',
+									title: 'Loteria editada com sucesso.',
+									showConfirmButton: false,
+									timer: 2000
+								})
+							}
+						})
+					}
+				})
+			}
+		})
+	</script>
+</body>
+</html>

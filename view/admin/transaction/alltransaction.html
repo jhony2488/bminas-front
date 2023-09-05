@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Todas &amp; Transações</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i> Todas <strong>Transações</strong></h4>
+                <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <form id="pesquisa">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Data Inicio </label>
+                        <input type="date" id="data_inicio" name="initial_date" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Data Final </label>
+                        <input type="date" id="data_fim" name="final_date" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Tipo Transação </label>
+                        <select name="tipo" id="tipo" class="form-control">
+                            <!-- <option value="">Todos</option> -->
+                            <option value="1">Depósito</option>
+                            <option value="2">Saque</option>
+                            <option value="3">Transferência</option>
+                            <option value="4">Bônus</option>
+                            <option value="5">Pagamento</option>
+                            <option value="6">Restituição</option>
+                            <option value="7">Estorno depósito</option>
+                            <option value="8">Indicação inicial</option>
+                            <option value="100">Aposta</option>
+                            <option value="101">Estorno de aposta</option>
+                            <option value="102">Prêmio</option>
+                            <option value="103">Estorno de prêmio</option>
+                            <option value="104">Caça-niquel</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="form-label">Status </label>
+                        <select name="status" id="status" class="form-control">
+                            <!-- <option value="">Todos</option> -->
+                            <option value="1">Pendente</option>
+                            <option value="2" selected>Confirmado</option>
+                            <option value="3" >Restituição</option>
+                            <option value="4">Disputa</option>
+                            <option value="5">Bloqueado</option>
+                            <option value="6">Cancelado</option>
+                            <option value="7">Processando</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div style="text-align:center" class="col-md-12">
+                        <button name="pesquisar" value="pesquisar" id="buscarDados" class="btn btn-wide btn-success">Pesquisar</button>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+              <br>
+
+              <div id="tab" class="panel-content pagination2 table-responsive">
+                <table id="dtable" class="table table-striped table-lightfont">
+                  <thead>
+                    <tr>
+                      <th width="4%">ID</th>
+                      <th width="8%">Data</th>
+                      <th width="4%">Tipo</th>
+                      <th width="15%">Usuário</th>
+                      <th width="15%">Serviço</th>
+                      <th width="15%">Montante</th>
+                      <th width="1%">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th colspan="3"></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+      
+  <!-- plugins:js -->
+  <script src="/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  <script defer="defer" src="/admin/assets/js/utils.js"></script>
+
+  <script src="/admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="/admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="/admin/assets/vendors/datatable/datatables.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      const dataInicioInput = $('#data_inicio');
+      const dataFimInput = $('#data_fim');
+      const buscarDadosBtn = $('#buscarDados');
+      const atualizarListaBtn = $('#att_list');
+      const typ = $('#tipo').val();
+      const stats = $('#status').val();
+
+      const formattedStartOfMonth = getFormattedStartOfMonth();
+      const formattedCurrentDate = getFormattedCurrentDate();
+      const dataApi = `/api_admin/transactions/?initial_date=${formattedCurrentDate}&final_date=${formattedCurrentDate}&type=${typ}&status=${stats}`;
+
+      const tabela = $('#dtable').DataTable({
+        initComplete: function () {
+          $('#datatable_processing').css('display', 'inline');
+          carregarDados(dataApi);
+          console.log(dataApi)
+        },
+        "createdRow": function(row, data, dataIndex) {
+          var colorMap = {
+            1: {//deposit
+              backgroundColor: '#0d7ad7b8',
+              textColor: '#fff'
+            },
+            2: {//saque
+              backgroundColor: '#cc6600',
+              textColor: '#fff'
+            },
+            3: {//transferencia
+              backgroundColor: '#cc66cc',
+              textColor: '#fff'
+            },
+            4: {//bonus
+              backgroundColor: '#009999',
+              textColor: '#fff'
+            },
+            5: {//pagamento
+              backgroundColor: '#9933ff',
+              textColor: '#fff'
+            },
+            6: {//cancelado
+              backgroundColor: '#cc0000',
+              textColor: '#fff'
+            },
+            7: {//processando
+              backgroundColor: '#99cc33',
+              textColor: '#fff'
+            },
+            103: {//Caça-Niquel Crédito
+              backgroundColor: '#9999cc',
+              textColor: '#fff'
+            },
+            104: {//Caça-Niquel Resgate
+              backgroundColor: '#99cc00',
+              textColor: '#fff'
+            },
+            100: {//jogo
+              backgroundColor: '#0ab930b8',
+              textColor: '#fff'
+            },
+            101: {//estorno
+              backgroundColor: '#e70b0bab',
+              textColor: '#fff'
+            },
+            102: {//premio
+              backgroundColor: '#c1bb0eb8',
+              textColor: '#fff'
+            }
+          };
+
+          var type = data['type'];
+          var style = colorMap[type] || {};
+
+          $(row).find('td:eq(2)').css({
+            'background-color': style.backgroundColor || '',
+            'color': style.textColor || ''
+          });
+        },
+        "footerCallback": function ( row, data, start, end, display ) {
+          var api = this.api();
+
+          // Calcular o total da coluna "amount"
+          var totalValor = api.column(5, { search: 'applied' })
+            .data()
+            .reduce(function (a, b) {
+              var parsedValue = parseFloat(b.replace(/[^\d.,]/g, '').replace(',', '.'));
+              return a + parsedValue;
+            }, 0);
+
+          var totalQuantidade = data.length;
+          var formattedTotalValor = totalValor.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          });
+
+          $(api.column(1).footer()).html(
+            `Total quantidade: <span class="text-danger">${totalQuantidade} </span>&nbsp;&nbsp;&nbsp; Total valor: <span class="text-danger ">${formattedTotalValor}</span>`
+          );
+        },
+        "drawCallback": function (settings) {
+          // máscara de moeda
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+        },
+        "columns": [{
+            "data": "transaction_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "created_at",
+            "render": function(data, type, row) {
+              if (!data) {
+
+                return '00-00-0000';
+              }
+
+              return formatarDataHora(data);
+            }
+          },
+          {
+            "data": "type",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              if (data == '1') {
+                data = "Depósito";
+              } else if (data == '2') {
+                data = "Saque";
+              } else if (data == '3') {
+                data = "Transferência";
+              } else if (data == '4') {
+                data = "Bônus";
+              } else if (data == '5') {
+                data = "Pagamento";
+              }  else if (data == '6') {
+                data = "Cancelado";
+              }  else if (data == '7') {
+                data = "Processando";
+              } else if (data == '100') {
+                data = "Aposta";
+              } else if (data == '101') {
+                data = "Estorno de aposta";
+              } else if (data == '102') {
+                data = "Prêmio";
+              } else if (data == '103') {
+                data = "Estorno de prêmio";
+              } else if (data == '104') {
+                data = "Caça-Niquel Resgate";
+              } else {
+                data = 'Não Informado';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "username",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "bank_name",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "amount",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return `R$ <span class="money">${row['amount']}</span>`;
+            }
+          },
+          {
+            "data": "status",
+            "render": function(data, type, row) {
+              if (data == '1') {
+                status = "<label class='badge' style='background-color:orange;color:white;'>Pendente</label>";
+              } else if (data == '2') {
+                status = "<label class='badge badge-success'>Confirmado</label>";
+              } else if (data == '3') {
+                status = "<label class='badge badge-primary'>Restituição</label>";
+              } else if (data == '4') {
+                status = "<label class='badge badge-black'>Disputa</label>";
+              } else if (data == '5') {
+                status = "<label class='badge badge-info'>Bloqueado</label>";
+              } else if (data == '6') {
+                status = "<label class='badge badge-danger'>Cancelado</label>";
+              } else {
+                status = 'Não Informado';
+              }
+              return status;
+            }
+          }],
+        'order': [
+          [1, 'desc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        },
+      });
+
+      function getFormattedStartOfMonth() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-01`;
+      }
+
+      function getFormattedCurrentDate() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+      }
+
+      dataInicioInput.val(getFormattedCurrentDate());
+      dataFimInput.val(getFormattedCurrentDate());
+
+      buscarDadosBtn.click(function(e) {
+        e.preventDefault();
+
+        const initialDate = dataInicioInput.val();
+        const finalDate = dataFimInput.val();
+        const type = $('#tipo').val();
+        const status = $('#status').val();
+
+        $(this).html(`<div class="spinner-border text-primary" role="status"></div>`);
+        const url = `/api_admin/transactions/?initial_date=${initialDate}&final_date=${finalDate}&type=${type}&status=${status}`;
+        carregarDados(url);
+      });
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        const initialDate = dataInicioInput.val();
+        const finalDate = dataFimInput.val();
+        const type = $('#tipo').val();
+        const status = $('#status').val();
+
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+        tabela.clear().draw();
+
+        const url = `/api_admin/transactions/?initial_date=${initialDate}&final_date=${finalDate}&type=${type}&status=${status}`;
+        carregarDados(url);
+      });
+
+      // get list
+      async function carregarDados(apiAddress) {
+        try {
+          const response = await fetch(apiAddress, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.ok) {
+
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+
+          } else if (response.status === 401) {
+            location.reload();
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          buscarDadosBtn.html('<i class="fa fa-search fa-2xl"></i>Pesquisar');
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+          $('#datatable_processing').css('display', 'block');
+        }
+      }
+    });
+</script>
+
+</body>
+</html>

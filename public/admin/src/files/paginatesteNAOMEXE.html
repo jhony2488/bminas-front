@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.1">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5LH2F99');
+    </script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/website/assets/css/testepagina.css">
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/style.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/mobile.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/loading.css?ver=1.1">
+
+    <title>Resultados - Bicho Premiado</title>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1034732420656918');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1034732420656918&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<style>
+    .today,
+    .yesterday,
+    .table,
+    .table th {
+        color: #6D6D6D !important;
+    }
+</style>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LH2F99"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loading-screen">
+        <div class="loader center"><span></span></div>
+    </div>
+    <div class="wrapper">
+        <aside class="d-flex">
+            <div id="lateral_menu"></div>
+            <div class="body-container noselect">
+                <div class="back-header" id="header"></div>
+
+                <div class="container-fluid no-gutters content-body">
+
+                    <main>
+
+                        <div class="text-content">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="page-title text-start">Resultado do <b>Jogo do Bicho</b></div>
+                                    <div class="page-subtitle text-start">Deu no poste</div>
+                                </div>
+                            </div>
+
+                            <!-- Today -->
+
+                            <div class="today mt-2 text-center d-flex flex-column align-items-center">
+
+                                <div class='row'>
+                                    <div class='col-lg-12'>
+                                        <h5 class="date-result">Resultados</h5>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <!-- Yesterday -->
+
+                            <div class="yesterday mt-4 text-center d-flex flex-column align-items-center">
+                                <div class='row'>
+                                    <div class='col-lg-12'>
+                                        <h5 class="date-result">Resultados</h5>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                    </main>
+
+                    </div>
+
+                    <div id="footer"></div>
+                </div>
+        </aside>
+        </div>
+
+        <style>
+            .summary-register {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .results-button {
+                margin: 10px;
+                width: 20%;
+            }
+            
+            button:focus:not(:focus-visible) {
+                outline: none;
+            }
+            
+            .btn-check:focus+.btn-primary,
+            .btn-primary:focus {
+                color: #fff;
+                background-color: none;
+                border-color: none;
+                box-shadow: none;
+            }
+            
+            .btn-check:focus+.btn,
+            .btn:focus {
+                outline: none;
+                box-shadow: none;
+            }
+            
+            .btn-check:active+.btn-primary:focus,
+            .btn-check:checked+.btn-primary:focus,
+            .btn-primary.active:focus,
+            .btn-primary:active:focus,
+            .show>.btn-primary.dropdown-toggle:focus {
+                box-shadow: none;
+            }
+            
+            .btn-summary>i {
+                transition: 0.7s transform;
+                transform: rotate(-180deg);
+            }
+            
+            .btn-summary:active>i {
+                transition: 0.7s transform;
+                transform: rotate(0deg);
+            }
+            
+            .btn-summary:hover>i {
+                transition: 0.7s transform;
+                transform: rotate(0deg);
+            }
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js " integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=" anonymous "></script>
+        <script src="/assets/js/ajax.js "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js " integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin=" anonymous " referrerpolicy="no-referrer "></script>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.js "></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11 "></script>
+        <script src="/website/assets/js/main.js "></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js " integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ " crossorigin="anonymous "></script>
+
+        <script>
+            $("#lateral_menu").load("/slim/src/files/lateral_menu.html");
+            $("#header").load("/slim/src/files/header.html");
+            $("#footer").load("/slim/src/files/footer.html");
+
+            function loteria() {
+                state = ['/true', ""]
+                state.forEach(prev => {
+                    $.ajax({
+                        type: "GET",
+                        url: "lotery/today" + prev,
+                        success: (response) => {
+                            let rows = ""
+                            let data = JSON.parse(response)
+                            let groups = []
+                            console.log(data[0])
+                            data[0].map((res) => {
+                                groups.push({
+                                    grupo: res.grupo,
+                                    desc: res.lot_desc
+                                })
+                            })
+
+                            groups = groups.filter(function(a) {
+                                return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
+                            }, Object.create(null))
+
+                            if (data[0].length > 0) {
+                                groups.map((res) => {
+
+
+                                    rows += `
+                                    <a class="btn btn-primary results-button" data-bs-toggle="collapse" href="#multiCollapseExample${res.grupo+ '-' + data[1]}" role="button" aria-expanded="false" aria-controls="multiCollapseExample${res.grupo+ '-' + data[1]}" style="background-color: #1a3f92"><div class="btn-summary summary-register" >Resultados ${res.desc} <i class="fas fa-sort-down"></i></div></a> 
+                                    <div class="collapse multi-collapse col-12" id="multiCollapseExample${res.grupo+ '-' + data[1]}">
+                                            <div class="card card-body">
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped table-bordered table-results">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>HORÁRIO</th>
+                                                                        <th>1º</th>
+                                                                        <th>2º</th>
+                                                                        <th>3º</th>
+                                                                        <th>4º</th>
+                                                                        <th>5º</th>
+                                                                        <th>6º</th>
+                                                                        <th>7º</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                            `;
+                                    data[0].forEach(element => {
+                                        if (res.grupo !== element.grupo) return
+                                        imgName1 = element.bicho1.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        imgName2 = element.bicho2.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        imgName3 = element.bicho3.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        imgName4 = element.bicho4.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        imgName5 = element.bicho5.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        imgName6 = element.bicho6.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        imgName7 = element.bicho7.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
+                                        rows += `
+                                        <tr>
+                                            <th scope="row">${element.descricao}</th>
+                                            <td>${element.primeiro_premio} - ${element.bicho1}  <img src="website/assets/images/bichos/${imgName1}.png" alt="${element.bicho}" height="40"></td>
+                                            <td>${element.segundo_premio} - ${element.bicho2}<img src="website/assets/images/bichos/${imgName2}.png" alt="${element.bicho}" height="40"></td>
+                                            <td>${element.terceiro_premio} - ${element.bicho3}<img src="website/assets/images/bichos/${imgName3}.png" alt="${element.bicho}" height="40"></td>
+                                            <td>${element.quarto_premio} - ${element.bicho4}<img src="website/assets/images/bichos/${imgName4}.png" alt="${element.bicho}" height="40"></td>
+                                            <td>${element.quinto_premio} - ${element.bicho5}<img src="website/assets/images/bichos/${imgName5}.png" alt="${element.bicho}" height="40"></td>
+                                            <td>${element.sexto_premio} - ${element.bicho6}<img src="website/assets/images/bichos/${imgName6}.png" alt="${element.bicho}" height="40"></td>
+                                            <td>${element.setimo_premio} - ${element.bicho7}<img src="website/assets/images/bichos/${imgName7}.png" alt="${element.bicho}" height="40"></td>
+                                        </tr>
+                                                                
+                                        `
+                                    })
+                                    rows += `</tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`
+
+                                })
+                            } else {
+                                rows = `<div class="d-flex justify-center align-center pt-3"><h5 id="dataLoteria" style="text-align:center; font-weight: bold; margin-bottom: 15px;">Não há resultados.</h5></div>`
+                            }
+
+                            if (prev) {
+                                $('.yesterday').append(rows)
+                                $('.yesterday .date-result').html(`Resultados - <b>${data[1].split('-').reverse().join('/')}</b>`)
+                                $(".loading-screen").fadeOut(100);
+                            } else {
+                                $('.today').append(rows)
+                                $('.today .date-result').html(`Resultados - <b>${data[1].split('-').reverse().join('/')}</b>`)
+
+                            }
+                        }
+                    });
+
+                })
+
+            }
+            loteria()
+        </script>
+</body>
+
+</html>

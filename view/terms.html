@@ -1,0 +1,1074 @@
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicho Mania ♣ A maior banca de jogo do bicho online no Brasil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/default.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+</head>
+
+<style>
+  .container-terms h2 {
+    color: var(--primary);
+    margin-top: 20px;
+    font-size: 22px;
+  }
+
+  .container-terms {
+    color: #fff;
+  }
+
+  .container-terms a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .container-terms a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  .container-terms .title-responsavel {
+    font-size: 18px;
+    color: var(--primary);
+  }
+
+</style>
+
+<body>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal modal-login d-none">
+    <div class="modal-content">
+      <div class="modal-title">
+        <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Bicho Mania">
+        <button class="btn btn-close-modal">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1 class="title-modal-login">Entrar</h1>
+        <div class="container-inputs-login">
+          <form action="">
+            <div class="content-inputs-login">
+              <button class="btn btn-login-google" title="EM BREVE!" disabled data-hover="EM BREVE!">
+                <img src="./assets/images/icon-google.svg" alt="Jogo do Bicho Online - Bicho Mania, Login com Google">
+                Google
+              </button>
+            </div>
+            <div class="content-separator">
+              <span class="hr-separator"></span>
+              <h1>ou</h1>
+              <span class="hr-separator"></span>
+            </div>
+            <div class="content-inputs-login">
+              <div class="input-group">
+                <label for="userLogin" class="label-text" id="labelTextUser">Usuário</label>
+                <label for="userLogin" class="label-icon">
+                  <i class="fas fa-user"></i>
+                </label>
+                <input type="text" autocomplete="off" id="userLogin" class="input-login"
+                  placeholder="Insira seu usuário">
+              </div>
+              <div class="input-group">
+                <label for="passwordLogin" class="label-text" id="labelTextPassword">Senha</label>
+                <label for="passwordLogin" class="label-icon">
+                  <i class="icon-lock fas fa-lock"></i>
+                </label>
+                <input type="password" autocomplete="off" id="passwordLogin" class="input-login"
+                  placeholder="Insira sua senha">
+                <label for="passwordLogin" class="label-icon password-icon d-none">
+                  <i class="icon-eye fas fa-eye"></i>
+                </label>
+                <a href="/recuperar-senha">Esqueceu sua senha?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="alert-login active">
+        <h1 class="line-error"></h1>
+      </div>
+      <div class="modal-footer">
+        <div class="input-group">
+          <input type="checkbox" id="rememberLogin">
+          <label for="rememberLogin" class="label-remember">Mantenha-me logado</label>
+        </div>
+        <button class="btn btn-modal-login" id="btnLogin">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-screen">
+    <div class="content-logo">
+      <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <main class="container-mania">
+    <div class="container-header">
+      <header class="home-header">
+        <a href="/" class="content-logo-home">
+          <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania">
+          <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania Mobile">
+        </a>
+        <div class="content-buttons-home">
+          <button class="btn btn-login">
+            Entrar
+          </button>
+          <a href="/cadastrar" class="btn btn-register">
+            Criar conta
+          </a>
+        </div>
+      </header>
+    </div>
+
+    <div class="content-mania container-responsive">
+      <div class="header-signup">
+        <h1>TERMOS E CONDIÇÕES</h1>
+        <h2>As seguintes definições são utilizadas nestes termos e condições:</h2>
+      </div>
+      <div class="centered container-terms">
+        <div class="entry-content">
+          <p>«<strong>Dispositivo de Acesso</strong>» significa qualquer meio eletrônico de acesso aos Serviços,
+            incluindo, mas não limitado a computadores, dispositivos de telefones inteligentes, telefones de recurso,
+            dispositivos tablet, dispositivos de toque ou qualquer sistema de entretenimento doméstico, tais como
+            consoles de videogame e TVs inteligentes (ou por qualquer outro meio remoto); «Dispositivo de Acesso»
+            significa qualquer meio eletrônico de acesso aos Serviços, incluindo, mas não limitado a computadores,
+            dispositivos de telefones inteligentes, telefones de recurso, dispositivos tablet, dispositivos de toque ou
+            qualquer sistema de entretenimento doméstico, tais como consoles de videogame e TVs inteligentes (ou por
+            qualquer outro meio remoto);</p>
+          <p>«<strong>Termos de Bônus</strong>» significa quaisquer termos e condições e/ou regras a respeito de
+            promoções, bônus e ofertas especiais que possam se aplicar a qualquer parte dos Serviços de tempos em
+            tempos;</p>
+          <p>«<strong>Instituição supervisora</strong>» significa a instituição supervisora do jogo comercial em
+            Curaçao;</p>
+          <p>«<strong>Termos e Condições</strong>» significa os termos e condições estabelecidos neste documento;</p>
+          <p>«<strong>Política de Privacidade</strong>» significa a política de privacidade do Operador acessada através
+            do link Política de Privacidade, que é uma parte inseparável destes Termos e Condições;</p>
+          <p>«<strong>Regras</strong>» significa as Regras de Apostas e as Regras de Jogo especificamente aplicáveis ao
+            tipo de aposta neste Website, como mais adiante identificado no parágrafo 1.3;</p>
+          <p>«<strong>Reembolso</strong>» significa a reversão de um meio a pedido de um Jogador depositado na Conta do
+            Jogador não utilizado para os Serviços.</p>
+          <p>«<strong>Serviços</strong>» significa, conforme o caso, os serviços oferecidos pelo Operador através do
+            Website e/ou através de qualquer aplicativo de Dispositivo de Acesso;</p>
+          <p>«<strong>Termos de Uso</strong>» significa (a) os Termos e Condições Gerais; (b) a Política de Privacidade;
+            (c) quando aplicável sob o parágrafo 1.3, as Regras relevantes, Termos de Bônus e Termos Adicionais
+            aplicáveis aos Serviços que estão sendo utilizados por Você; e</p>
+          <p>«<strong>Website</strong>» significa o website ou qualquer página, sub-página, sub-domínio ou seção dele de
+            tempos em tempos localizada ou acessível através do nome de domínio: bichomania.bet.</p>
+          <p>1.2 Ao usar e/ou visitar qualquer seção do Website, ou ao abrir uma conta com o Operador através do
+            Website, Você concorda em estar vinculado às Condições de Uso e, conseqüentemente (a) concorda com o uso de
+            comunicações eletrônicas para celebrar contratos; e (b) renuncia a quaisquer direitos ou exigências
+            aplicáveis que exijam uma assinatura manuscrita, na medida do permitido por qualquer lei aplicável; (c)
+            concorda que, para usar nosso serviço, Você será obrigado a nos fornecer certas informações pessoais que
+            serão processadas com base em nossa Política de Privacidade. Os Termos de Uso não afetam seus direitos
+            estatutários.</p>
+          <p>1.3 Além disso, quando você jogar qualquer jogo ou fazer uma aposta usando os Serviços, ou de outra forma
+            usar os Serviços, você concorda em estar vinculado às regras de qualquer jogo que jogar («Regras do Jogo»),
+            conforme estabelecido na seção de Ajuda Geral relevante e guias de regras, com respeito a qualquer novo
+            jogo, as regras aplicáveis àquele jogo; quaisquer termos de bônus; quaisquer termos e condições relativos a
+            retiradas e quaisquer outros termos aplicáveis aos Serviços e/ou que você seja obrigado a confirmar seu
+            consentimento como parte dos Serviços.</p>
+          <p>1.4 O texto original dos Termos de Uso está em inglês e qualquer interpretação dos Termos de Uso deve ser
+            baseada no texto original em inglês. Se os Termos de Uso ou quaisquer documentos ou avisos relacionados a
+            eles forem traduzidos para qualquer outro idioma, a versão original em inglês prevalecerá.</p>
+          <p>1.5 Favor ler atentamente os Termos de Uso antes de aceitá-los. Uma vez aceitos os Termos de Uso, favor
+            imprimir os Termos de Uso e salvá-los, juntamente com todos os e-mails de confirmação, termos adicionais,
+            detalhes da transação, regras do jogo, regras de negociação justa e métodos de pagamento relevantes ao seu
+            uso do Website. Favor observar que os Termos de Uso estão sujeitos a alterações conforme estabelecido no
+            parágrafo 3.</p>
+          <p>1.6 Se você não concordar em aceitar e estar vinculado aos Termos de Uso, por favor, não abra uma conta
+            e/ou continue a usar sua conta. Seu uso continuado de qualquer um dos Serviços constituirá sua aceitação dos
+            Termos de Uso que lhe notificamos que estão em vigor de tempos em tempos.</p>
+          <p>1.7 Para evitar dúvidas, cada seção do Website é regida pelos Termos de Uso e Você deve sempre garantir que
+            seu uso dos Serviços esteja de acordo com os Termos de Uso.</p>
+          <p>1.9 A principal moeda da loteria são os R$. Todas as outras moedas dependem do real, a menos que seja
+            indicado o contrário.</p>
+          <h2>3.- ALTERAÇÕES AOS TERMOS DE USO</h2>
+          <p>3.1 Podemos precisar alterar os Termos de Uso de tempos em tempos por uma série de razões, incluindo (sem
+            limitação) por razões comerciais, para cumprir a lei ou regulamentação, para cumprir as instruções,
+            orientações ou recomendações de um órgão regulador, ou por razões de serviço ao cliente. Os Termos de Uso
+            mais atuais podem ser acessados a partir do link Termos de Uso na seção de rodapé do site.</p>
+          <p>3.2 Quando desejarmos fazer mudanças materiais nos Termos de Uso, notificaremos o usuário sobre tais
+            mudanças com a maior antecedência possível por um dos métodos estabelecidos no parágrafo 3.3 abaixo. No caso
+            de alterações menores ou não substanciais, não podemos notificá-lo de tais alterações e você é aconselhado a
+            rever os Termos de Uso através do link Termos e Condições no Website regularmente.</p>
+          <p>3.3 Quando fizermos alterações nos Termos de Uso que desejamos notificar o cliente, o faremos através do
+            método de notificação que julgarmos apropriado.</p>
+          <h2>4. ABERTURA DE SUA CONTA</h2>
+          <p>4.1 Para fazer uma aposta ou apostar ou jogar um jogo usando os Serviços, você deve abrir uma conta com o
+            Operador («Sua Conta» ou «Conta»).</p>
+          <p>4.2 Para abrir sua conta para utilizar os Serviços, Você pode:</p>
+          <p>4.2.1 clique em Cadastre-se no site e siga as instruções na tela; ou</p>
+          <p>4.2.2 aberto por qualquer outro método de abertura de conta oferecido pelo Operador de tempos em tempos;
+          </p>
+          <p>4.3 Ao abrir sua conta, você será solicitado a nos fornecer informações pessoais, incluindo seu nome e data
+            de nascimento e detalhes de contato apropriados, incluindo número de telefone e endereço de e-mail («Seus
+            detalhes de contato»). Você pode atualizar seus dados de contato de tempos em tempos entrando em contato com
+            o Serviço de Atendimento ao Cliente; ou através da página de gerenciamento «Minha Conta» no Website: ou por
+            outro método que possa, de tempos em tempos, ser oferecido pelo Operador.</p>
+          <p>4.4 Ao abrir sua conta, você garante que você</p>
+          <p>4.4.1 Você compreende e aceita o risco de que, ao utilizar os Serviços, você possa, além de ganhar
+            dinheiro, perder dinheiro;</p>
+          <p>4.4.2 Você é: (a) acima da idade de 18 anos; e (b) acima da idade em que o jogo ou atividades de jogo são
+            legais sob a lei ou jurisdição aplicável a você (a «Idade Relevante»); e (c) acima da idade em que o jogo ou
+            atividades de jogo são legais sob a lei ou jurisdição aplicável a você (a «Idade Relevante»);</p>
+          <p>4.4.3 O jogo não é ilegal no território onde Você reside;</p>
+          <p>4.4.4 Você é legalmente capaz de firmar contratos;</p>
+          <p>4.4.5 Você não foi excluído dos jogos de azar; e</p>
+          <p>4.4.6 Você não teve uma conta fechada por nenhum motivo.</p>
+          <p>4.5 Sua conta deve ser registrada com seu nome e dados pessoais corretos e será emitida somente uma vez
+            para Você e não será duplicada através de qualquer outra pessoa, família, residência, endereço (postal ou
+            IP), endereço de e-mail, dispositivo de acesso ou qualquer ambiente no qual os dispositivos de acesso sejam
+            compartilhados (por exemplo, escolas, locais de trabalho, bibliotecas públicas, etc.) e/ou conta em relação
+            aos Serviços. Qualquer outra conta que você abrir conosco, ou que você possua em conexão com os Serviços,
+            será uma «Conta Duplicada». Podemos fechar qualquer conta duplicada (mas não somos obrigados a fazê-lo). Se
+            fecharmos uma conta duplicada</p>
+          <p>4.5.1 todos os bônus, apostas grátis e ganhos acumulados com tais bônus e apostas grátis obtidas usando
+            aquela Conta Duplicada serão confiscados e perdidos por Você;</p>
+          <p>4.5.2 poderemos, a nosso exclusivo critério, anular todos os ganhos e reembolsar todos os depósitos (menos
+            os valores referentes a ganhos nulos) feitos com relação a essa Conta Duplicada e, na medida em que não os
+            recuperarmos da Conta Duplicada relevante, quaisquer valores que nos devam ser reembolsados por você em
+            relação a uma Conta Duplicada poderão ser recuperados por nós diretamente de qualquer outra de suas contas
+            (incluindo qualquer outra Conta Duplicada); ou</p>
+          <p>4.5.3 podemos, a nosso exclusivo critério, permitir que o uso da Conta Duplicada seja considerado válido,
+            caso em que todas as perdas e apostas feitas por ou para você através da Conta Duplicada serão retidas por
+            nós.</p>
+          <h2>5. VERIFICAÇÃO DE SUA IDENTIDADE; REQUISITOS ANTI LAVAGEM DE DINHEIRO</h2>
+          <p>5.1 Você garante que</p>
+          <p>5.1.1 o nome e endereço que você fornece quando abre sua conta estão corretos; e</p>
+          <p>5.1.2 você é o legítimo proprietário de qualquer dinheiro que deposite em sua conta a qualquer momento.</p>
+          <p>5.1.3 Ao fazer um depósito, você confirma que o método de pagamento utilizado para o depósito pertence
+            somente a você e não pode ser utilizado por mais ninguém.</p>
+          <p>5.2 Ao concordar com os Termos de Uso, o usuário nos autoriza a fazer tais verificações de tempos em
+            tempos, conforme possamos exigir de nós mesmos ou conforme seja exigido por terceiros (incluindo, mas não se
+            limitando aos órgãos reguladores) para confirmar estes fatos (as «Verificações»). Você concorda que de
+            tempos em tempos, a nosso pedido (incluindo pedidos do processador de pagamento), você poderá ser solicitado
+            a fornecer detalhes adicionais em relação a qualquer informação que nos tenha fornecido, inclusive em
+            relação a qualquer depósito que tenha feito em sua conta.</p>
+          <p>5.3 Enquanto estamos realizando quaisquer verificações, podemos restringir a retirada de fundos de sua
+            conta e/ou impedi-lo de acessar a totalidade ou partes do site. Favor observar que, de tempos em tempos,
+            podemos reexecutar as verificações por motivos regulatórios, de segurança ou outros motivos comerciais. Se
+            estas restrições lhe causarem um problema, entre em contato conosco – contato@maniajogos.com.</p>
+          <p>5.4 Em determinadas circunstâncias, podemos precisar entrar em contato com você e pedir-lhe que forneça
+            mais informações diretamente para que possamos realizar as verificações. Para isso, teremos o direito, a
+            nosso exclusivo critério, de exigir que você nos forneça um documento de identidade autenticado ou qualquer
+            outro documento de identidade certificado equivalente nos termos da lei aplicável de sua jurisdição ou de
+            outra forma, comprovante de endereço, contas de serviços públicos, dados bancários, extratos e referências
+            bancárias e qualquer documentação que valide sua fonte de fundos. Até que tais informações tenham sido
+            fornecidas a nosso contento, poderemos impedir qualquer atividade do cliente em relação à Conta ou
+            poderemos, quando acreditarmos razoavelmente que o cliente tenha fornecido informações incorretas, reter
+            quaisquer valores depositados na Conta após o encerramento da Conta por nós.</p>
+          <p>5.5 O uso do site por menores de idade pode constituir uma ofensa criminal. Se não pudermos confirmar que
+            você tem a idade relevante, poderemos suspender sua conta até que possamos confirmar que você tem a idade
+            relevante. Se posteriormente for provado que você estava abaixo da idade relevante no momento em que entrou
+            em qualquer transação de jogo ou aposta conosco, então</p>
+          <p>5.5.1 Sua conta será encerrada;</p>
+          <p>5.5.2 todas as transações feitas enquanto você era menor de idade serão anuladas, e todos os fundos
+            relacionados depositados por você serão devolvidos pelo método de pagamento utilizado para o depósito de
+            tais fundos, quando possível, após recebermos uma solicitação de uma pessoa com 18 anos de idade ou mais e
+            que seja responsável por você (pai, responsável).</p>
+          <p>5.5.3 quaisquer depósitos feitos enquanto você estava abaixo da idade relevante serão devolvidos a você
+            após recebermos um pedido de uma pessoa maior de 18 anos que seja responsável por você (pais, responsáveis);
+            e</p>
+          <p>5.5.4 quaisquer ganhos que você tenha acumulado enquanto estava abaixo da idade relevante serão confiscados
+            por você (e serão deduzidos do valor de qualquer depósito devolvido a nós sob o parágrafo 5.5.3) e você nos
+            devolverá, mediante solicitação, quaisquer fundos retirados de sua conta.</p>
+          <h2>6. CONHEÇA SUA POLÍTICA DE CLIENTES (KYC)</h2>
+          <p>Para tornar o processo de verificação da idade o mais fácil possível, aqui estão algumas dicas para quando
+            você enviar seus documentos:</p>
+          <ul>
+            <li>Cada documento deve ser enviado como uma imagem separada</li>
+            <li>As imagens das fotos são preferidas, mas se você preferir digitalizar seus documentos, envie-os como um
+              .jpeg.</li>
+          </ul>
+          <p>Quando você tira sua foto:</p>
+          <ul>
+            <li>Certifique-se de que os primeiros 6 e últimos 4 dígitos do número do seu cartão de crédito estejam
+              visíveis, e o CVV deve estar escondido</li>
+            <li>Sua foto deve estar em foco e todo o texto deve ser de fácil leitura.</li>
+            <li>A página completa do passaporte ou foto de identidade deve estar na foto, não deixe nenhum pedaço de
+              fora ou cubra-a com a mão ou com os dedos</li>
+            <li>A iluminação deve ser boa, para evitar ofuscamento não usar flash.</li>
+          </ul>
+          <p>Tudo isso é necessário porque faz parte do jogo responsável e é exigido por lei.</p>
+          <p>6.1 Por que eu tenho que verificar minha conta?</p>
+          <p>Quando você se registra para uma nova conta, verificamos se você é maior de idade e se você é quem diz ser
+            (um processo chamado «Conheça seu cliente»). Isto é parte da responsabilidade do jogo e é algo que somos
+            obrigados por lei a fazer.</p>
+          <p>6.2 O que eu tenho que fornecer?</p>
+          <p>Para verificar sua idade, aceitaremos um dos seguintes documentos:</p>
+          <ul>
+            <li>Passaporte (recomendado)</li>
+            <li>Carteira de habilitação</li>
+            <li>Carteira de identidade nacional</li>
+            <li>Certidão de nascimento (a verificação leva até 24 horas)</li>
+            <li>Cartão de pagamento (observe que os primeiros 6 e os últimos 4 dígitos devem estar visíveis e o CVV deve
+              estar escondido).</li>
+          </ul>
+          <p>Os detalhes da placa não serão coletados e armazenados por nós sem o PCI DSS.</p>
+          <p>Para verificar sua identidade (KYC), podemos precisar de documentos adicionais que também poderiam incluir
+          </p>
+          <ul>
+            <li>Contrato de crédito assinado</li>
+            <li>Conta de utilidades (menos de 6 meses de idade)</li>
+            <li>Extrato bancário (menos de 6 meses de idade)</li>
+          </ul>
+          <p>Certifique-se de que seus documentos estejam em condições aceitáveis.</p>
+          <p>6.3 Como posso enviar-lhe meus documentos?</p>
+          <p>A maneira mais rápida e fácil de verificar sua conta é on-line.</p>
+          <p>Você também pode enviar os documentos por e-mail.</p>
+          <p>Aqui estão algumas dicas para acertar da primeira vez:</p>
+          <p>Envie seus documentos por e-mail</p>
+          <ul>
+            <li>Tire uma foto de cada um de seus documentos e salve-os (ou digitalize-os e salve-os como um .jpeg)</li>
+            <li>Abra a conta de e-mail que você usou para se registrar em nosso site</li>
+            <li>Abra um novo e-mail, endereçado a contato@maniajogos.com</li>
+            <li>Anexar as fotos</li>
+            <li>Digite seu número de conta ou nome de usuário na barra «Assunto» na parte superior de seu e-mail</li>
+            <li>Clique em «Enviar».</li>
+          </ul>
+          <p>Quando você se inscrever para uma conta, na página de registro da conta, precisaremos que você nos forneça
+            certas informações por razões de segurança:</p>
+          <ul>
+            <li>Seu nome e detalhes de contato, incluindo um endereço de e-mail válido que deve ser exclusivo para sua
+              conta.</li>
+            <li>Sua data de nascimento – você deve ter pelo menos 18 anos de idade</li>
+            <li>Um nome de usuário único (seu nome de usuário só pode conter letras, números, sublinhados e hífens) e
+              uma senha para que somente você possa acessar sua conta</li>
+            <li>Sua moeda de aposta</li>
+          </ul>
+          <p>Nossa página de registro verifica seus dados à medida que você os insere e o notifica se houver algum
+            problema, para que você possa fazer as alterações necessárias antes de clicar no botão «Criar minha conta».
+          </p>
+          <p>Por razões legais, se você estiver viajando para o exterior, talvez não consiga acessar sua conta.</p>
+          <p>6.4 Países com restrições rigorosas: Letônia, Coréia do Norte, Reino Unido, Estados Unidos da América,
+            Curaçau, França e Holanda.</p>
+          <h2>7. NOME, PALAVRA-PASSE, PIN e INFORMAÇÕES DO CLIENTE</h2>
+          <p>7.1 Após abrir sua conta, você deve tomar todas as medidas razoáveis para evitar revelar (seja deliberada
+            ou acidentalmente) seu nome de usuário, senha e/ou número de conta a qualquer outra pessoa, incluindo
+            (quando possível) a garantia de que software de segurança atualizado seja baixado para seu dispositivo de
+            acesso.</p>
+          <p>7.2 Todas as transações feitas onde seu nome de usuário e senha e/ou número de conta foram inseridos
+            corretamente serão consideradas válidas, autorizadas ou não por você, e não seremos responsáveis por
+            qualquer reclamação no caso de você revelar seu nome de usuário, senha ou número de conta a qualquer outra
+            pessoa (seja deliberada ou acidentalmente).</p>
+          <p>7.3 Se você perder ou esquecer seus dados de conta, ou tiver motivos para acreditar que seus dados de conta
+            são conhecidos por um terceiro não autorizado, entre em contato conosco imediatamente para uma substituição
+            via <a href="mailto:contato@maniajogos.com">contato@maniajogos.com</a> cujos dados podem ser encontrados na
+            seção «Contato».</p>
+          <h2>8. DEPÓSITOS E SAQUES DE SUA CONTA</h2>
+          <p>8.1 Se você deseja participar dos Serviços, deve depositar dinheiro em sua conta a partir de uma conta ou
+            fonte que você possui. Tal dinheiro pode (sujeito ao parágrafo 5) ser usado por você para fazer apostas. Se
+            você utilizar um método de pagamento do qual não seja o titular da conta, reservamo-nos o direito de tratar
+            quaisquer depósitos na conta como inválidos (e quaisquer ganhos derivados de tais depósitos como nulos) até
+            que todos os cheques relevantes tenham sido satisfatoriamente completados.</p>
+          <p>Os saques (incluindo reembolsos) serão feitos dentro de 7 (sete) dias após a conclusão das verificações e
+            aprovação de sua conta. Favor observar que os reembolsos são feitos somente se não houve atividade de jogo
+            em sua conta após o depósito da respectiva quantia de dinheiro que você solicita como reembolso. Todos os
+            outros saques de sua conta serão considerados como pagamento de seus ganhos gerados como resultado da
+            utilização dos serviços.</p>
+          <p>Para solicitar um reembolso ou qualquer outra retirada, favor entrar em contato com nosso suporte ao
+            cliente pelo e-mail contato@maniajogos.com e fornecer todos os documentos solicitados pelo suporte ao
+            cliente para completar seu KYC. Se você precisar de nossos dados de contato, por favor, abra a seção «Fale
+            conosco». A lista de documentos necessários para completar seu procedimento KYC será indicada no e-mail
+            enviado a você por nosso helpdesk.</p>
+          <p>Favor observar que o reembolso pode ser solicitado no máximo 7 (sete) dias após o depósito dos respectivos
+            meios em sua conta. Após este prazo, todas as retiradas serão consideradas como pagamento de seus ganhos
+            gerados como resultado do uso dos Serviços.</p>
+          <p>8.1.1 Se um jogador quiser continuar jogando sem bônus após um novo depósito, ele deve garantir que não
+            haja bônus ativos em sua conta antes de depositar.</p>
+          <p>8.1.2 Se um jogador tiver um saldo de bônus inferior a 10 Euros, o bônus antigo será automaticamente
+            cancelado em um novo depósito. O saldo de bônus será esgotado.</p>
+
+          <p>8.2.3 O Bicho Mania poderá cobrar uma comissão de 10% pelo processamento de todas as retiradas e estas
+            informações serão claramente comunicadas ao cliente durante o processo de retirada. Como o Bicho Mania paga
+            as taxas do Sistema de Pagamento, no caso de um jogador realizar operações de depósito-depósito
+            repetidamente durante o dia, o cassino assume restrições razoáveis no número de operações de saque por 24
+            horas sem alterar o limite de saque diário de R$2.000.</p>
+          <p>8.2.4 O Bicho Mania reserva-se o direito de cobrar uma comissão de 10% a um cliente que solicite muitos
+            (mais de dois) saques por pequenas quantias por dia, tendo uma grande quantia no saldo da conta. Como o
+            Bicho Mania paga uma comissão percentual fixa (+%) para cada pagamento processado, nos reservamos o direito
+            de cobrar esta comissão ao cliente.</p>
+          <p>8.2.5 Se um cliente tiver atingido os limites de retirada, o Bicho Mania se reserva o direito de cancelar
+            quaisquer outros pedidos de retirada que excedam os limites e que posteriormente sejam devidos para
+            pagamento.</p>
+          <p>8.2.6 No caso de um cliente ter depositado através de um sistema de pagamento que não suporte pagamentos de
+            saída, não poderemos fazer um saque em outro sistema a menos que o cliente complete o limite mínimo de
+            faturamento (x3 do montante depositado).</p>
+          <p>8.3 Na medida exigida por sua legislação local ou autoridades fiscais ou outras, você é responsável por
+            informar seus ganhos e perdas decorrentes dos Serviços.</p>
+          <p>8.4 Você pode estabelecer um limite de depósito em sua conta em qualquer dia. Para informações sobre como
+            estabelecer um limite de depósito, favor contatar contato@maniajogos.com. Qualquer redução confirmada de seu
+            limite de depósito terá efeito imediato.</p>
+          <p>8.5 Sujeito aos termos de encerramento de sua conta ou quaisquer outros termos estabelecidos nestes Termos
+            e Condições ou quaisquer alterações aos mesmos, você poderá solicitar um saque de fundos de sua conta a
+            qualquer momento, desde que</p>
+          <p>8.5.1 todos os pagamentos feitos em sua conta foram confirmados como compensados e nenhum foi devolvido,
+            revertido ou cancelado de outra forma;</p>
+          <p>8.5.2 concluímos a nosso contento todas as verificações relativas à verificação de sua identidade e
+            requisitos de lavagem de dinheiro; e</p>
+          <p>8.5.3 você cumpriu quaisquer outras condições de saque que afetem sua conta (por exemplo, quaisquer
+            condições de bônus aplicáveis).</p>
+          <p>8.6 Em qualquer retirada aprovada por nós, desde que você nos forneça informações suficientes sobre como os
+            fundos devem ser transferidos para você, devolveremos os fundos relevantes a você (menos quaisquer encargos
+            incorridos ou quaisquer outros valores que precisem ser deduzidos de sua retirada para cumprir com a lei
+            aplicável).</p>
+          <p>8.9 LIMITAÇÕES:</p>
+          <p>Apoiamos as seguintes moedas: BRL.</p>
+          <p>O valor mínimo do depósito é de R$ 20.</p>
+          <p>O tamanho mínimo de retirada é de R$ 10 BRL.</p>
+          <p>O tamanho máximo de retirada é de R$ 50.000 por dia / R$ 100.000 por semana.</p>
+          <p>8.11 Não nos responsabilizamos no caso de você inserir um endereço de carteira incorreto ou não atualizar
+            seu endereço de carteira em nosso sistema depois que você parar de usar ou perder o acesso a seu endereço de
+            carteira anteriormente salvo.</p>
+          <p>8.12 Você concorda que o Bicho Mania se reserva o direito de cancelar qualquer pagamento no caso de
+            suspeita de fraude, conluio ou atividade ilegal ou se a Loteria estiver monitorando o saldo da conta ou o
+            pedido de saque recebido. Em tais casos, a loteria poderá iniciar e/ou participar e/ou ajudar na
+            investigação das circunstâncias e você concorda em apoiar e auxiliar qualquer investigação.</p>
+          <p>8.13 A administração da loteria se reserva o direito de fazer pagamentos de acordo com um cronograma
+            individual, definir o valor mínimo e máximo para uma transação e o tempo para esta transação, que pode
+            diferir dependendo do método de saque, do nível de sua conta ou de outros fatores relevantes.</p>
+          <p>8.13.1 Após o encerramento da conta (interrupção; pausa; exclusão), a loteria se reserva o direito de
+            ajustar a conta para os limites padrão de saque ou reduzi-los.</p>
+          <p>8.15 Com depósitos em moedas criptográficas é importante nos enviar a quantia correta. Por exemplo, se você
+            nos enviar menos BTC do que o solicitado, o pagamento não será processado automaticamente e ficará preso em
+            nosso sistema. Nosso sistema de bônus é automático, portanto, qualquer bônus que tenha sido anexado ao
+            depósito não será adicionado posteriormente.</p>
+          <p>8.16 Os limites de retirada estabelecidos nas contas dos clientes podem ser alterados a critério da
+            gerência, não mais do que uma vez por mês. Isto também inclui a redução dos limites de retirada previamente
+            estabelecidos.</p>
+          <h2>9. BÔNUSES</h2>
+          <p>Bicho Mania se reserva o direito de remover, adicionar ou alterar qualquer bônus não reclamado disponível
+            na conta de qualquer Cliente. Quaisquer vales reivindicados e ativos não serão removidos pelo Bicho Mania em
+            circunstâncias regulares.</p>
+          <p>9.1.1 Bicho Mania se reserva o direito de desativar qualquer conta de usuário do sistema de fidelidade /
+            bônus / cashback.</p>
+          <p>9.2. Os bônus podem ter requisitos de apostas. Estes requisitos serão exibidos apropriadamente antes que o
+            Cliente decida utilizar um bônus onde os requisitos de apostas se apliquem. 9.3. Os valores de saque só
+            serão possíveis para o saldo de dinheiro real, o saldo de dinheiro de bônus quando saque será confiscado.
+            Bicho Mania tem o direito de escolher qual jogo e serviço contribui com que quantidade para as exigências de
+            apostas. Os requisitos de apostas são um mínimo de 25 vezes o valor do bônus e a quantia de dinheiro real
+            que contribui para o valor do bônus. O depósito mínimo para desbloquear o bônus é de 20 euros/$20/$120,
+            exceto nos casos em que outro valor mínimo de depósito é especificado nos Termos e Condições do bônus
+            escolhido. Os T&amp;Cs dos diferentes bônus podem ser diferentes, por favor leia os T&amp;Cs de bônus cada
+            vez que você escolher um bônus.</p>
+          <p>9.2.1 Você só pode receber um bônus por um único depósito. Os bônus podem consistir de várias partes:
+            fundos de bônus, apostas grátis, pontos de fidelidade, etc. Um bônus combinado não pode ser dividido em
+            partes separadas. Se você cancelar um bônus que inclua apostas grátis, as apostas grátis serão anuladas com
+            o bônus cancelado.</p>
+          <p>9.3. Os bônus podem ser recebidos uma vez por pessoa (Cliente), por domicílio, por endereço, por telefone
+            celular, por computador compartilhado e por endereço IP compartilhado.</p>
+          <p>9.4. O Bicho Mania se reserva o direito de impor várias restrições aos diferentes países nos quais os
+            clientes podem residir em relação aos vales por razões não reveladas. Além disso, reservamo-nos o direito de
+            oferecer bônus específicos a clientes individuais ou grupos de clientes e sua rescisão, mudança ou outra
+            alteração sem explicação e/ou compensação de qualquer forma.</p>
+          <p>9.4.1 Os bônus não estão disponíveis fora do Brasil.</p>
+          <p>9.4.2 Bônus não estão disponíveis para jogadores com contas duplicadas.</p>
+          <p>9.4. Bicho Mania tem o direito de confiscar os ganhos e fechar a conta em caso de abuso de bônus por parte
+            do jogador ou grupo de jogadores. O abuso de bônus é considerado uma ação fraudulenta. O abuso de bônus
+            inclui, mas não está limitado a, abrir várias contas para tirar proveito de bônus ou benefícios adicionais
+            no Bicho Mania. Este tipo de comportamento não é permitido no Bicho Mania e resultará em ações apropriadas.
+          </p>
+          <p>9.5 O cliente reconhece que os bônus de reembolso serão creditados na conta do cliente e ativados
+            automaticamente. Tais bônus podem ter requisitos de apostas. Os bônus podem ter datas de validade
+            diferentes. Se o cliente desejar não receber bônus, ele deve entrar em contato com o suporte ao cliente e
+            solicitar um bloco de bônus para que ele não receba bônus ao atualizar e não os ative. Se os bônus e ganhos
+            de bônus expirarem e o saldo do bônus for queimado, a loteria não assumirá qualquer responsabilidade para
+            recuperar o valor perdido.</p>
+          <p>9.6 Ao cancelar um bônus ativo, você perderá todo o seu dinheiro do bônus. Quando você fizer um saque,
+            todos os seus bônus ativos serão cancelados e seu dinheiro de bônus será confiscado durante o processo de
+            saque. Se você fizer um novo depósito com um novo bônus, seu saldo de bônus anterior será confiscado. Todos
+            os bônus no Bicho Mania são pegajosos: todas as apostas são feitas a partir do saldo real, todos os ganhos
+            são creditados no saldo do bônus. Se você ativar um bônus, você tem que apostar nele. Os agentes de suporte
+            não podem tecnicamente adicionar seu bônus cancelado de volta com o mesmo nível de apostas.</p>
+          <p>9.7 Se você tiver qualquer dúvida de que os Termos e Condições do bônus foram entendidos corretamente, ou
+            se você encontrou um erro dentro destes termos – pedimos que entre em contato imediatamente com nosso
+            suporte ao vivo, sem jogar. Os agentes o ajudarão sempre com quaisquer perguntas, problemas ou
+            esclarecimentos.</p>
+          <p>9.13 <strong>Se você exceder a limitação máxima da aposta enquanto estiver apostando dinheiro de bônus, o
+              sistema cortará automaticamente seu saldo de bônus no valor de seu último depósito, e este será devolvido
+              ao seu saldo no momento em que o processo de apostas estiver previsto para ser concluído</strong>.</p>
+          <p>9.14 A caça ao bônus é estritamente proibida com qualquer bônus ativo (bônus do Pacote de Boas-vindas,
+            Bônus Mistério de Quarta-feira, e Recarga de Fim de Semana, etc.) *Bonus hunting refere-se à coleta de
+            recursos de bônus que incluem apostas grátis na loteria online.</p>
+          <p>9.14.1 Todas as condições de bônus para serpentinas/afiliadas/indivíduos serão discutidas individualmente.
+            As condições de tais bônus são prescritas na descrição do bônus ou são discutidas com a administração do
+            cassino. Os termos e condições gerais não se aplicam aos bônus de afiliação. Todas as questões relativas a
+            restrições e regulamentos de bônus de afiliação serão tratadas através do afiliado ou do Departamento de
+            Afiliados do cassino.</p>
+          <p>9.15 As afiliadas estão isentas de qualquer bônus porque são regulamentadas de forma diferente de um
+            cliente regular.</p>
+          <h2>10. USO LEGAL DO SITE</h2>
+          <p>10.1 O acesso ou uso do Website ou de qualquer dos Serviços através do Website pode não ser legal para
+            alguns ou todos os residentes ou pessoas em certos países. Não é nossa intenção que o Website seja usado
+            para apostas, apostas ou qualquer outro propósito por pessoas em países onde tais atividades são ilegais,
+            incluindo os Estados Unidos da América e os territórios listados no Website. O fato de o Website ser
+            acessível em qualquer desses países, ou de aparecer no idioma oficial de qualquer desses países, não deve
+            ser interpretado como uma representação ou garantia com relação à legalidade ou não do acesso e uso do
+            Website, e de fazer depósitos ou receber quaisquer ganhos de sua conta. A disponibilidade do Website não
+            constitui uma oferta, solicitação ou convite por nós feito para o uso ou assinatura de jogos de azar, jogos
+            ou outros serviços em qualquer jurisdição na qual tais atividades sejam proibidas por lei.</p>
+          <p>10.2 É de sua responsabilidade determinar a lei que se aplica no local onde você está localizado. Você deve
+            garantir que agirá legalmente em sua jurisdição ao abrir sua conta e/ou usar o Website e você representa,
+            garante e concorda que o fará.</p>
+          <p>10.3 Se tomarmos conhecimento de que você reside em um país no qual o uso do Website não é lícito ou que
+            está usando o Website de um país no qual o uso do Website não é lícito, teremos o direito de encerrar
+            imediatamente sua Conta, caso em que reembolsaremos qualquer saldo da Conta na data de tal encerramento
+            assim que formos capazes de fazê-lo.</p>
+          <h2>11. FAZER APOSTAS E/OU APOSTAS E/OU JOGOS ATRAVÉS DOS SERVIÇOS</h2>
+          <p>11.1 Para fazer uma aposta ou apostar ou acessar um Serviço, você deve seguir as instruções fornecidas na
+            seção relevante do Website.</p>
+          <p>11.2 É de sua responsabilidade garantir que os detalhes de qualquer aposta, aposta, jogo ou transação
+            similar que você fizer usando os Serviços (uma «Transação») estejam corretos ao usar o Website (seja
+            diretamente, através de um aplicativo ou de outra forma) de acordo com as Regras de Jogo relevantes,
+            conforme aplicável.</p>
+          <p>11.3 Você pode acessar seu histórico de transações clicando em «Histórico» no Website, ou através de nossa
+            equipe de atendimento ao cliente (inclusive optando por receber uma declaração por escrito).</p>
+          <p>11.4 Reservamo-nos o direito de recusar total ou parcialmente qualquer transação solicitada por você a
+            qualquer momento, a nosso exclusivo critério, ou quando você tiver violado os Termos de Uso. Não aceitamos
+            nenhuma transação até que você tenha fornecido a confirmação relevante (ou até que a tenhamos aceito de
+            outra forma) de acordo com o parágrafo 11.2. Se você tiver alguma dúvida sobre se uma transação foi aceita
+            com sucesso, deverá contatar contato@maniajogos.com.</p>
+          <p>11.5 Uma vez que uma transação tenha sido aceita por Nós, Você não pode cancelar a transação uma vez que o
+            sorteio para o qual a aposta é destinada tenha 5 minutos para começar. Antes deste tempo, as apostas podem
+            ser canceladas sem qualquer problema.</p>
+          <p>11.7 Podemos cancelar ou modificar uma transação por conluio, trapaça, fraude e atividade criminosa, erros
+            ou omissões, bem como pelos termos estabelecidos para a verificação de sua identidade.</p>
+          <h2>12. APOSTAS OU APOSTAS REMOTAS</h2>
+          <p>12.1 Ao acessar os Serviços através de uma forma de comunicação eletrônica, você deve observar que</p>
+          <p>12.1.1 em relação ao seu uso do site para fazer apostas ou jogar jogos:</p>
+          <p>12.1.1.1.1.1 Você pode estar usando uma conexão ou equipamento que seja mais lento que o equipamento usado
+            por outros e isto pode afetar seu desempenho em eventos críticos no tempo oferecidos através do Website;</p>
+          <p>12.1.1.2 Você pode encontrar falhas no sistema, falhas, erros ou interrupção do serviço, que serão tratadas
+            de acordo com a falha do computador abaixo;</p>
+          <p>12.1.1.3 as Regras do Jogo para cada evento ou jogo oferecido através do Website estão disponíveis e devem
+            ser consideradas por Você antes do seu uso dos Serviços oferecidos através do Website.</p>
+          <h2>13. CONLUIO, TRAPAÇA, FRAUDE E ATIVIDADE CRIMINOSA</h2>
+          <p>13.1 As seguintes práticas (ou qualquer uma delas) em conexão com os Serviços:</p>
+          <ul>
+            <li>abuso de bônus ou outras promoções; e/ou</li>
+            <li>uso de fatores ou influências externas injustas (comumente conhecidas como trapaças); e/ou</li>
+            <li>ganhar uma vantagem injusta (conforme definido abaixo); e/ou</li>
+            <li>abertura de contas duplicadas; e/ou</li>
+            <li>se envolver em práticas fraudulentas ou atividades criminosas (conforme definido abaixo),</li>
+          </ul>
+          <p>constituem «<strong>Práticas Proibidas</strong>» e não são permitidas e constituirão uma violação material
+            dos Termos de Uso. Tomaremos todas as medidas razoáveis para prevenir e detectar tais práticas e para
+            identificar os jogadores em questão caso elas ocorram. Entretanto, sujeito ao acima exposto, não seremos
+            responsáveis por qualquer perda ou dano que você possa incorrer como resultado de qualquer prática proibida,
+            e qualquer ação que tomarmos em relação aos mesmos ficará a nosso exclusivo critério.</p>
+          <p>13.2 Se você suspeitar que qualquer pessoa está se envolvendo em uma Prática Proibida, você deve nos
+            informar assim que for razoavelmente praticável, enviando-nos um e-mail.</p>
+          <p>13.3 Você concorda em não se envolver ou ser associado a qualquer forma de Prática Proibida em relação ao
+            seu acesso ou uso dos Serviços.</p>
+          <p>13.4 Se:</p>
+          <p>13.4.1 temos motivos razoáveis para acreditar que Você se envolveu ou esteve ligado a qualquer forma de
+            Prática Proibida (e a base de nossa crença deve incluir o uso por nós (e por nossos parceiros de jogo e
+            nossos outros fornecedores) de qualquer detecção de fraude, trapaça e práticas de conluio em uso na
+            indústria de jogos e apostas no momento relevante); ou</p>
+          <p>13.4.2 Você fez apostas e/ou jogou online com qualquer outro provedor de serviços de apostas online e é
+            suspeito (como resultado de tal jogo) de qualquer Prática Proibida ou qualquer outra atividade imprópria; ou
+          </p>
+          <p>13.4.3 estamos cientes de que você «cobrou de volta» ou recusou qualquer uma das compras ou depósitos que
+            fez em sua conta; ou</p>
+          <p>13.4.4 em nossa opinião razoável, seu uso continuado dos Serviços pode ser prejudicial ao nosso status
+            regulamentado, incluindo nossa capacidade de continuar a ser licenciado pela Autoridade de Licenciamento; ou
+          </p>
+          <p>13.4.5 você se torna falido ou sofre procedimentos similares em qualquer parte do mundo, então, (inclusive
+            em relação a qualquer suspensão e/ou encerramento de sua conta) teremos o direito, em relação a sua conta
+            (e/ou qualquer outra conta detida por você em uma empresa do Grupo Operador) de reter todo ou parte do saldo
+            e/ou recuperar da conta o valor de qualquer depósito, pagamento, bônus ou lucro que tenha sido afetado por
+            ou seja de alguma forma atribuível a qualquer um dos eventos contemplados neste parágrafo 13.4. Os direitos
+            estabelecidos neste parágrafo 13.4 não prejudicam quaisquer outros direitos (incluindo quaisquer direitos de
+            direito comum) que possamos ter contra você, seja nos termos dos Termos de Uso ou de outra forma.</p>
+          <p>13.5 Para os propósitos deste parágrafo 13:</p>
+          <p>13.5.1 «prática fraudulenta» significa qualquer atividade fraudulenta realizada por Você ou qualquer pessoa
+            agindo em seu nome ou em conluio com Você, e deve incluir, sem limitação: (a) cobranças fraudulentas e
+            atividade de rake-back; (b) o uso por Você ou qualquer outra pessoa que estava participando do mesmo jogo
+            que Você a qualquer momento, de um cartão de crédito ou débito roubado, clonado ou não autorizado como fonte
+            de fundos; (c) conluio por Você com outros a fim de obter uma vantagem injusta (inclusive através de
+            esquemas de bônus ou incentivos similares oferecidos por Nós); (d) qualquer tentativa de registrar
+            informações falsas ou enganosas da conta; e (e) qualquer ato ou tentativa de ato ou tentativa de ato que
+            consideramos razoavelmente ilegal em qualquer jurisdição aplicável, feito de má fé, ou feito com a intenção
+            de nos defraudar e/ou contornar qualquer restrição contratual ou legal, independentemente de tal ato ou
+            tentativa de ato realmente nos causar qualquer dano ou dano;</p>
+          <p>13.5.2 «atividade criminosa» incluirá, sem limitação, lavagem de dinheiro e qualquer ofensa sob qualquer
+            lei ou regulamento de seu país do qual você jogue ou onde sua PI tenha sido registrada; e</p>
+          <p>13.5.3 «vantagem injusta» incluirá, sem limitação</p>
+          <p>13.5.3.1 a exploração de um bug, brecha ou erro em nosso software ou em qualquer software de terceiros
+            utilizado por Você em conexão com os Serviços (inclusive em relação a qualquer jogo)</p>
+          <p>13.5.3.2 o uso de software ou sistemas de análise de terceiros; ou</p>
+          <p>13.5.3.3 a exploração por Você de um bug, conforme definido abaixo, de qualquer forma em seu benefício e/ou
+            em detrimento de Nós ou de outros.</p>
+          <p>13.6 Ao exercer quaisquer de nossos direitos sob 13.4 em relação a uma Prática Proibida, faremos todos os
+            esforços razoáveis para assegurar que, ao mesmo tempo em que cumprimos nossas obrigações regulamentares e
+            outras obrigações legais, exerçamos esses direitos de uma maneira justa para você e nossos outros clientes.
+          </p>
+          <p>13.7 Reservamo-nos o direito de informar as autoridades competentes, outros operadores de jogos ou apostas
+            on-line, outros prestadores de serviços e bancos on-line, empresas de cartão de crédito, provedores de
+            pagamento eletrônico ou outras instituições financeiras de sua identidade e de qualquer suspeita de prática
+            proibida de sua parte, e Você deverá cooperar plenamente conosco na investigação de qualquer atividade desse
+            tipo.</p>
+          <p>13.8 Se nosso departamento de segurança for incapaz de verificar completamente as contas dos clientes e
+            tiver uma suspeita razoável de que está ocorrendo atividade fraudulenta, os ganhos dos clientes podem ser
+            anulados e a conta bloqueada.</p>
+          <h2>14. FECHAMENTO E ENCERRAMENTO</h2>
+          <p><strong>ENCERRAMENTO E RESCISÃO POR VOCÊ</strong></p>
+          <p>14.1 Desde que sua conta não apresente saldo pendente, Você tem o direito de encerrar sua conta e rescindir
+            os Termos de Uso com pelo menos vinte e quatro horas de antecedência, a qualquer momento, entrando em
+            contato conosco pelo e-mail contato@maniajogos.com:</p>
+          <p>14.1.1 declarando seu desejo de encerrar sua conta; e</p>
+          <p>14.1.2 indicando as razões pelas quais você deseja encerrar sua conta, em particular se você estiver
+            preocupado com o nível de utilização de sua conta.</p>
+          <p>Responderemos ao seu pedido, confirmando o encerramento de sua conta e a data em que tal encerramento será
+            efetivo, dentro de um prazo razoável, desde que você permaneça responsável por todas as atividades em sua
+            conta até que tal encerramento tenha sido realizado por nós (momento em que os Termos de Uso serão
+            encerrados).</p>
+          <p>14.2 Quando o cliente solicitar o encerramento de sua conta de acordo com o parágrafo 14.1, nós lhe
+            devolveremos, sujeito ao parágrafo 13.3, qualquer saldo pendente em sua conta, de acordo com os limites de
+            sua conta pessoal. O retorno do saldo pendente só pode ser processado se houver pelo menos R$ 120 (ou seu
+            equivalente em outra moeda) em sua conta. Se você tiver menos de R$ 120 em sua conta, é impossível proceder
+            com o reembolso.</p>
+          <p>14.3 Ao encerrar sua Conta sob este parágrafo 14, teremos o direito (sem limitar nossos direitos sob o
+            parágrafo 14.6) de reter, do reembolso do saldo pendente em sua Conta, quaisquer quantias (a) em virtude de
+            conluio, jogo problemático, trapaça, fraude e atividade criminosa); (b) em virtude da violação dos Termos de
+            Uso; (c) conforme previsto nos Termos de Uso; ou (d) conforme exigido por lei ou regulamento.</p>
+          <p>14.4 Ao reembolsar o saldo pendente em sua conta, utilizaremos o mesmo método de pagamento que você
+            forneceu quando registrou sua conta, ou qualquer outro método de pagamento que pudermos razoavelmente
+            selecionar.</p>
+          <p>14.5 Caso você tenha fechado sua conta, poderemos, em determinadas circunstâncias, reabrir sua conta com os
+            mesmos detalhes que antes, se você nos solicitar. Em tais circunstâncias, embora sua conta tenha os mesmos
+            detalhes que antes, ela estará sujeita aos Termos de Uso em vigor na data de tal reabertura e quaisquer
+            direitos anteriores (incluindo, mas não limitados a bônus ou ganhos contingentes) deixarão de ser válidos.
+          </p>
+          <p><strong>ENCERRAMENTO E RESCISÃO POR NÓS</strong></p>
+          <p>14.6 A qualquer momento (e sem prejuízo de qualquer outra disposição contida nos Termos de Uso), temos o
+            direito de encerrar sua conta e encerrar os Termos de Uso mediante aviso por escrito (ou tentativa de aviso)
+            a você usando seus dados de contato. No caso de tal encerramento por nós, reembolsaremos o saldo de sua
+            conta, sujeito ao parágrafo 14.7, tão logo seja razoavelmente praticável após uma solicitação de sua parte.
+          </p>
+          <p>14.7 Caso fechemos sua conta e rescindamos os Termos de Uso por conluio, jogo problemático, trapaça, fraude
+            e atividade criminosa ou violação dos Termos de Uso, o saldo de sua conta não será reembolsável e será
+            considerado perdido por você na medida de qualquer reclamação que possamos ter contra você na data de tal
+            encerramento (seja em sua conta, uma conta duplicada ou outra). O encerramento de sua conta e o encerramento
+            dos Termos de Uso, exceto nos termos do parágrafo 12 ou 21 destes Termos e Condições, não afetará quaisquer
+            apostas pendentes, desde que tais apostas sejam válidas e você não esteja violando de forma alguma os Termos
+            de Uso. Para evitar dúvidas, não creditaremos qualquer bônus em sua conta, nem você terá direito a qualquer
+            ganho contingente, a qualquer momento após a data em que ela for encerrada (seja por Nós sob os Termos de
+            Uso, ou em resposta a seu pedido).</p>
+          <p>14.8 Os seguintes parágrafos sobreviverão ao término dos Termos de Uso: 20, 21, 22, 23, 24, 26, 27, 29, 30,
+            31, 32, 33 e 35 e quaisquer outros parágrafos que possam ser necessários para fins de interpretação;
+            juntamente com quaisquer seções relevantes das Regras do Jogo, da Política de Privacidade e dos Termos
+            Adicionais.</p>
+          <p><strong>SUSPENSÃO POR NÓS</strong></p>
+          <p>14.9 Teremos o direito de suspender sua conta nas circunstâncias expressamente estabelecidas nos Termos de
+            Uso. Após a suspensão de sua conta (a) nenhuma atividade (incluindo depósitos, saques, apostas ou jogos)
+            será permitida até que seja reativada por nós; (b) nenhum bônus ou ganho contingente será creditado na
+            conta; e (c) resolveremos o problema que levou à suspensão da conta com o objetivo de resolvê-la o mais
+            rápido possível para que a conta possa, conforme o caso, ser reativada ou encerrada.</p>
+          <h2>15. ACESSO AOS SERVIÇOS E UTILIZAÇÃO DOS MESMOS</h2>
+          <p>15.1 Você é o único responsável pelo fornecimento e manutenção de todos os seus Dispositivos de Acesso e
+            equipamentos relacionados, redes e serviços de acesso à Internet que você precisa utilizar para acessar os
+            Serviços. Não seremos de forma alguma responsáveis por quaisquer perdas causadas a Você (seja por perda de
+            serviço, baixa conectividade à Internet, largura de banda insuficiente ou de outra forma) pela Internet ou
+            por qualquer provedor de serviços de telecomunicações que Você tenha contratado para acessar os Serviços.
+            Para evitar dúvidas, o Operador não faz nenhuma representação ou garantia quanto à compatibilidade dos
+            Serviços com qualquer software ou hardware de terceiros em particular, incluindo (para evitar dúvidas)
+            análises de terceiros prometendo certos resultados de qualquer um dos Serviços.</p>
+          <p>15.2 Sob nenhuma circunstância você deve usar os Serviços para qualquer propósito que seja ou possa ser
+            considerado difamatório, abusivo, obsceno, ilegal, racista, sexista ou de natureza discriminatória, ou que
+            possa causar ofensa. Você não deve usar linguagem ou imagens abusivas ou agressivas, jurar, ameaçar,
+            assediar ou abusar de qualquer outra pessoa, incluindo outros usuários, através do Website, ou tentar
+            personificar qualquer outra pessoa, ou se comportar de tal forma para com qualquer operadora utilizada para
+            fornecer os Serviços, Serviços ao Cliente, ou qualquer serviço de suporte ou função de suporte que
+            disponibilizamos a você.</p>
+          <p>15.3 Você usará o Website exclusivamente para seu entretenimento pessoal e não poderá fornecer acesso ou
+            reproduzir o Website ou qualquer parte dele sem nosso consentimento expresso, inclusive criando links para
+            ele.</p>
+          <p>15.4 Qualquer material (exceto o Software sob o parágrafo 17) baixado por Você do Website é baixado
+            inteiramente por sua própria conta e risco e o Operador não será responsável por qualquer perda de dados ou
+            outros danos causados por tal download.</p>
+          <p>15.5 Quando tivermos motivos para acreditar que o uso dos Serviços por Você esteja violando qualquer um dos
+            parágrafos 15.2, 15.3, 15.4 Nós teremos o direito, sem prejuízo de qualquer um de Nossos outros direitos, de
+            remover imediatamente qualquer conteúdo ofensivo do Website.</p>
+          <h2>16. TERMOS DE APOSTAS E JOGOS</h2>
+          <p>16.1 As expressões utilizadas na indústria de apostas e jogos são numerosas. Se você estiver em qualquer
+            dúvida quanto ao significado de qualquer expressão, você deve:</p>
+          <p>16.1.1 examine seu significado em relação ao evento ou jogo no qual você está apostando ou jogando;</p>
+          <p>16.1.2 em caso de dúvida, entre em contato com contato@maniajogos.com para esclarecimento; e</p>
+          <p>16.1.3 não fazer qualquer aposta ou aposta em qualquer evento até que Você compreenda seu significado para
+            sua satisfação,</p>
+          <p>pois não podemos aceitar qualquer responsabilidade se Você fizer uma aposta ou aposta através dos produtos
+            oferecidos através dos Serviços em circunstâncias em que Você não entender nenhum dos termos envolvidos ou
+            relacionados com a aposta ou aposta ou o jogo.</p>
+          <h2>17. ALTERAÇÃO DO SITE</h2>
+          <p>Podemos, a nosso critério absoluto, alterar ou modificar quaisquer produtos ou serviços (incluindo os
+            preços oferecidos) disponíveis através do Website a qualquer momento, a fim de garantir a continuidade do
+            fornecimento do Website, mas sem prejuízo de quaisquer jogos e/ou apostas já em andamento no momento de tal
+            alteração. De tempos em tempos, podemos restringir seu acesso a algumas partes do Website a fim de manter o
+            Website e/ou alterar ou modificar qualquer um dos jogos e/ou produtos disponíveis através do Website.</p>
+          <h2>19. DEFEITOS DE FUNCIONAMENTO DO COMPUTADOR</h2>
+          <p>Quando ocorrem problemas no software ou hardware que usamos para fornecer os Serviços, tomaremos todas as
+            medidas razoáveis para remediar o problema o mais rápido possível. Quando tais problemas resultarem na
+            interrupção de um jogo em circunstâncias nas quais ele não possa ser reiniciado exatamente da mesma posição
+            sem qualquer prejuízo para Você ou outros jogadores, tomaremos todas as medidas razoáveis para tratá-lo de
+            forma justa (o que pode incluir o restabelecimento do saldo de sua conta na posição existente após a
+            conclusão da última aposta ou jogo registrado no servidor da Operadora imediatamente antes da ocorrência do
+            problema).</p>
+          <h2>20. ERROS OU OMISSÕES</h2>
+          <p>20.1 Pode haver uma série de circunstâncias nas quais aceitamos uma aposta ou pagamento por engano. Uma
+            lista não exaustiva de tais circunstâncias é a seguinte</p>
+          <p>20.1.1 onde cometemos um erro ao informá-lo das chances ou condições de uma aposta ou aposta como resultado
+            de um erro ou omissão óbvia na entrada de informações ou definição de um mercado, ou como resultado de um
+            mau funcionamento do computador;</p>
+          <p>20.1.2 onde cometemos um «erro palpável». Ocorre um erro palpável onde</p>
+          <p>20.1.2.1 em relação às apostas feitas antes da realização de um evento, os preços/termos oferecidos são
+            materialmente diferentes daqueles disponíveis no mercado geral; ou</p>
+          <p>20.1.2.2 em relação a qualquer evento, o preço/termos oferecidos no momento da colocação da aposta são
+            claramente incorretos, dada a probabilidade da ocorrência do evento;</p>
+          <p>20.1.3 onde continuamos a aceitar apostas em um mercado que deveria ter sido interrompido mesmo que o
+            evento em questão esteja em andamento (exceto onde as apostas «em andamento» são aceitas) ou já tenha
+            terminado (às vezes chamadas de «<strong>apostas tardias</strong>«);</p>
+          <p>20.1.4 onde um erro tenha sido cometido como resultado de uma Prática Proibida; 20.1.5 onde um erro tenha
+            sido cometido como resultado de uma Prática Proibida; e</p>
+          <p>20.1.5 onde não deveríamos ter aceitado, ou ter o direito de cancelar ou reajustar uma aposta sob as Regras
+            do Jogo (por exemplo, devido a «<strong>Contingências Relacionadas</strong>«); 20.1.6 onde não deveríamos
+            ter aceitado, ou ter o direito de cancelar ou reajustar uma aposta sob as Regras do Jogo (por exemplo,
+            devido a «Contingências Relacionadas»);</p>
+          <p>20.1.6 onde cometemos um erro no valor dos ganhos/reembolsos pagos a Você, inclusive como resultado de um
+            erro manual ou de computador; ou</p>
+          <p>20.1.7 onde cometemos um erro no valor das apostas grátis e/ou bônus creditados em sua conta,</p>
+          <p>tais circunstâncias são referidas como «<strong>Erro</strong>«.</p>
+          <p>20.2 Reservamo-nos o direito de:</p>
+          <p>20.2.1 corrigir qualquer erro cometido em uma aposta colocada e reajustar a aposta pelo preço ou termos
+            corretos que estavam disponíveis ou deveriam estar disponíveis através do Operador (na ausência do erro de
+            lançamento) no momento em que a aposta foi colocada e a aposta será considerada como tendo sido colocada nos
+            termos que eram habituais para aquela aposta; ou</p>
+          <p>20.2.2 quando não for razoavelmente praticável corrigir e reajustar sob 20.2.1 acima, declarar a aposta
+            nula e devolver sua aposta para sua conta; ou</p>
+          <p>20.2.3 em circunstâncias em que o erro foi resultado de uma Prática Proibida, tomar as medidas
+            estabelecidas nestes Termos de Uso.</p>
+          <p>20.3 Qualquer dinheiro creditado em sua conta, ou pago a Você como resultado de um Erro, será considerado
+            em custódia segura por Você para Nós e será devolvido a Nós imediatamente após a exigência de pagamento por
+            Nós. Nestas circunstâncias, se você tiver dinheiro em sua conta, podemos recuperar este dinheiro de sua
+            conta de acordo com os termos de uso. Comprometemo-nos a usar nossos esforços razoáveis para detectar
+            quaisquer erros e informá-lo assim que for razoavelmente possível.</p>
+          <p>20.4 Nem nós (incluindo nossos funcionários ou agentes) nem nossos parceiros ou fornecedores seremos
+            responsáveis por qualquer perda, inclusive perda de lucro, resultante de qualquer Erro nosso ou de qualquer
+            erro de sua parte.</p>
+          <p>20.5 Você deve nos informar o mais rápido possível caso tenha conhecimento de algum erro. Quando nenhum
+            erro tiver sido relatado pelos jogadores, a administração do Bicho Mania não será responsável por nenhuma
+            perda financeira.</p>
+          <p>20.6 Caso você tenha utilizado dinheiro creditado em sua conta ou concedido como resultado de um erro para
+            fazer apostas ou jogar, poderemos cancelar tais apostas e/ou reter quaisquer ganhos que você tenha feito com
+            tal dinheiro, e se tivermos pago por tais apostas ou atividades de jogo, tais valores serão considerados por
+            você como sendo de sua confiança para nós e você deverá nos reembolsar imediatamente tais valores mediante
+            nosso pedido de reembolso.</p>
+          <h2>21. EXCLUSÃO DE NOSSA RESPONSABILIDADE</h2>
+          <p>21.1 Seu acesso e uso dos Serviços está em sua única opção, discrição e risco. Não seremos responsáveis por
+            tentativas do cliente de utilizar os Serviços por métodos, meios ou de maneiras não pretendidas por nós.</p>
+          <p>21.2 Forneceremos os Serviços com razoável habilidade e cuidado e substancialmente como descrito nos Termos
+            de Uso. Não fazemos outras promessas ou garantias em relação aos Serviços, ou quaisquer produtos ou serviços
+            que fazem parte dos Serviços, e excluímos (na medida do permitido por lei) todas as garantias implícitas em
+            relação aos mesmos (incluindo garantias implícitas quanto à qualidade satisfatória e/ou adequação ao
+            propósito). Em particular, não garantimos que o Website terá disponibilidade ininterrupta ou que estará
+            livre de bugs, vírus ou outros erros.</p>
+          <p>21.3 NÓS (INCLUINDO NOSSAS EMPRESAS DO GRUPO, PROCESSADOR DE PAGAMENTO, AFILIADAS, DIRETORES, DIRETORES,
+            AGENTES E FUNCIONÁRIOS) NÃO SEREMOS RESPONSÁVEIS PERANTE VOCÊ, QUER TAL RESPONSABILIDADE SURJA EM CONTRATO,
+            ATO ILÍCITO (INCLUINDO NEGLIGÊNCIA) OU DE OUTRA FORMA, EM RELAÇÃO A QUALQUER</p>
+          <p>21.3.1 PERDA DE DADOS;</p>
+          <p>21.3.2 PERDA DE LUCROS;</p>
+          <p>21.3.3 PERDA DE RENDA;</p>
+          <p>21.3.4 PERDA DE OPORTUNIDADES DE NEGÓCIOS;</p>
+          <p>21.3.5 PERDA OU DANO À BOA VONTADE OU À REPUTAÇÃO;</p>
+          <p>21.3.6 INTERRUPÇÃO DOS NEGÓCIOS; OU</p>
+          <p>21.3.7 QUALQUER PERDA OU DANO INDIRETO, ESPECIAL OU CONSEQÜENTE, MESMO QUE TAL PERDA OU DANO NOS TENHA SIDO
+            NOTIFICADO COMO SENDO POSSÍVEL, DECORRENTE DOS TERMOS DE USO OU QUALQUER USO QUE VOCÊ FAÇA DOS SERVIÇOS.</p>
+          <h2>22. VIOLAÇÃO DOS TERMOS DE USO</h2>
+          <p>22.1 Você indenizará, defenderá e isentará nós e nossos diretores, diretores, funcionários, agentes,
+            empreiteiros e fornecedores de e contra todas as perdas, custos, despesas, reivindicações, demandas,
+            responsabilidades e danos (incluindo honorários advocatícios), por mais que sejam causados, sejam ou não
+            razoavelmente previsíveis, como resultado de ou em conexão com</p>
+          <p>22.1.1 acesso e uso dos Serviços por Você ou qualquer outra pessoa usando seu nome de usuário e senha; e/ou
+          </p>
+          <p>22.1.2 qualquer violação por você de qualquer um dos termos e disposições dos Termos de Uso.</p>
+          <p>22.2 Se você violar os Termos de Uso, poderemos, a nosso critério exclusivo, antes de suspender ou encerrar
+            sua conta, notificá-lo (usando seus dados de contato) de que você está violando os Termos de Uso, exigindo
+            que você cesse ou desista de agir, e/ou exigindo que você corrija um ato ou omissão de sua parte e
+            avisando-o de nossa intenção de agir se não o fizer, desde que tal notificação não seja uma condição prévia
+            à suspensão ou encerramento de sua conta.</p>
+          <p>22.3 Teremos o direito de desativar qualquer código de identificação de usuário ou senha, seja escolhido
+            por Você ou atribuído por Nós, a qualquer momento, se em nossa opinião razoável Você tiver violado qualquer
+            uma das disposições dos Termos de Uso.</p>
+          <p>22.4 Além de quaisquer outros recursos disponíveis, se Você violar qualquer um dos Termos de Uso, teremos o
+            direito de recuperar de sua conta qualquer saldo positivo na medida de qualquer quantia razoavelmente
+            reclamada contra Você, de acordo com o parágrafo 21.1.</p>
+          <p>22.5 Se considerarmos a violação das Regras como uma tentativa de enganar a loteria, o Bicho Mania poderá
+            confiscar todos os ganhos e depósitos sem reembolso.</p>
+          <h2>23. DIREITOS DE PROPRIEDADE INTELECTUAL</h2>
+          <p>23.1 Todos os desenhos, textos, gráficos, música, som, fotografias, vídeo, a seleção e arranjo dos mesmos,
+            compilações de software, código fonte subjacente, software e todos os outros materiais que fazem parte dos
+            Serviços estão sujeitos a direitos autorais e outros direitos de propriedade de nossa propriedade ou
+            utilizados sob licença por terceiros detentores de direitos. Na medida em que qualquer material contido nos
+            Serviços possa ser baixado ou impresso, tal material pode ser baixado em um único dispositivo (e cópias em
+            papel podem ser impressas) apenas para seu uso pessoal, não comercial.</p>
+          <p>23.2 Em nenhuma hipótese seu uso dos Serviços lhe concederá qualquer interesse em quaisquer direitos de
+            propriedade intelectual (por exemplo, direitos autorais, know-how ou marcas comerciais) de nossa propriedade
+            ou de terceiros, exceto uma licença pessoal, não exclusiva e não publicável para usar tais direitos de
+            propriedade intelectual em conexão com seu uso pessoal e não comercial dos Serviços, de acordo com os Termos
+            de Uso.</p>
+          <p>23.3 Nenhum direito de uso ou reprodução de quaisquer marcas ou logotipos que aparecem no Website é
+            concedido, a menos que especificamente permitido de acordo com os Termos de Uso.</p>
+          <p>23.4 Você não deve, e não deve permitir que qualquer outra pessoa copie, armazene, publique, alugue,
+            licencie, venda, distribua, altere, acrescente, exclua, remova ou adultere o Website ou qualquer parte dele
+            de qualquer forma, ou direta ou indiretamente interrompa ou interfira (ou tente interromper ou interferir)
+            com o Website, exceto durante a visualização ou uso do Website de acordo com os Termos de Uso.</p>
+          <p>23.5 Todos os direitos de propriedade intelectual no nome «Bicho Mania», os logotipos, desenhos, marcas
+            registradas e outras características distintivas da marca do Operador e qualquer conteúdo fornecido pelo
+            Operador ou qualquer terceiro para inclusão no Website são de propriedade do Operador ou do terceiro
+            relevante. Você concorda em não exibir ou usar tais logotipos, desenhos, marcas registradas e outras
+            características de marca distintivas de nenhuma maneira sem nosso consentimento prévio por escrito.</p>
+          <h2>24. VÍRUS, HACKING E OUTROS DELITOS</h2>
+          <p>24.1 Você não deve</p>
+          <p>24.1.1 corromper o site;</p>
+          <p>24.1.2 tentar obter acesso não autorizado ao Website, aos servidores nos quais o Website é armazenado ou a
+            qualquer servidor, computador ou banco de dados conectado ao Website; 24.1.3 inundar o Website, os
+            servidores nos quais o Website é armazenado ou qualquer servidor, computador ou banco de dados conectado ao
+            Website;</p>
+          <p>24.1.3 inundar o site com informações, envios múltiplos ou «spam»;</p>
+          <p>24.1.4 usar conscientemente ou negligentemente qualquer coisa que possa afetar o funcionamento do Website
+            de qualquer forma, incluindo (mas não se limitando a) liberação ou propagação de vírus, worms, cavalos de
+            Tróia, bombas lógicas ou material similar que seja malicioso ou prejudicial</p>
+          <p>24.1.5 interferir ou adulterar, apagar ou alterar de qualquer forma, qualquer informação de qualquer forma
+            contida no Website;</p>
+          <p>24.1.6 atacar o site através de um ataque de negação de serviço ou um ataque distribuído de negação de
+            serviço. Relataremos qualquer suspeita de violação às autoridades competentes de aplicação da lei e
+            cooperaremos com essas autoridades, revelando-lhes sua identidade. No caso de tal violação, seu direito de
+            usar o site cessará imediatamente.</p>
+          <p>24.2 Não seremos responsáveis por qualquer perda ou dano causado por um ataque distribuído de negação de
+            serviço, vírus ou outro material tecnologicamente nocivo que possa infectar seu dispositivo de acesso e
+            equipamentos relacionados, programas de computador, dados ou outro material proprietário devido ao seu uso
+            do Website ou ao download de qualquer material postado no Website, ou em qualquer website vinculado ao
+            Website.</p>
+          <p>24.3 O site está livre de software malicioso.</p>
+          <h2>25. SUAS INFORMAÇÕES PESSOAIS</h2>
+          <p>25.1 Todas as informações de sua conta mantidas por nós são armazenadas de forma segura e são
+            confidenciais, a menos que seja indicado o contrário nos Termos de Uso (incluindo, para evitar dúvidas, a
+            Política de Privacidade).</p>
+          <p>25.2 Somos obrigados por lei a cumprir as exigências de proteção de dados na forma como usamos quaisquer
+            informações pessoais obtidas de você na utilização dos Serviços. Portanto, levamos muito a sério nossas
+            obrigações em relação à forma como usamos suas informações pessoais.</p>
+          <p>25.3 Antes e quando você utilizar os Serviços, será necessário que coletemos certas informações sobre você,
+            incluindo seu nome e data de nascimento, seus dados de contato e também poderá incluir informações sobre
+            suas preferências de marketing (todas elas serão conhecidas como «suas informações pessoais»).</p>
+          <p>25.4 Ao nos fornecer seus Dados Pessoais, você consente que processemos seus Dados Pessoais, incluindo seus
+            Dados Pessoais que são particularmente sensíveis</p>
+          <p>25.4.1 para os propósitos estabelecidos nos Termos de Uso (incluindo a Política de Privacidade); e</p>
+          <p>25.4.2 para outros fins onde nós (incluindo o processador de pagamento) precisamos processar seus Dados
+            Pessoais para a operação dos Serviços,</p>
+          <p>inclusive compartilhando-a com nossos prestadores de serviços, funcionários e agentes para estes fins, por
+            exemplo, com nossos prestadores de serviços postais, serviços de marketing e agentes de atendimento ao
+            cliente. Também podemos divulgar seus dados pessoais para cumprir com uma obrigação legal ou regulamentar.
+          </p>
+          <p>25.5 Podemos manter cópias de quaisquer comunicações que você nos enviar (incluindo cópias de quaisquer
+            e-mails) para manter um registro preciso das informações que recebemos de você.</p>
+          <h2>26. USO DE COOKIES NO SITE</h2>
+          <p>26.1 O Website pode usar «<strong>cookies</strong>» para rastrear seu uso da Internet e para ajudar na
+            funcionalidade do Website. Um cookie é um pequeno arquivo de texto que é baixado para seu dispositivo de
+            acesso quando você acessa o Website e nos permite reconhecer quando você retorna ao Website. Usamos ou
+            usaremos cookies para o funcionamento do Website, incluindo (por exemplo) para permitir que você permaneça
+            conectado enquanto navega e usa sua conta para apostar ou jogar em diferentes partes do Website. Também
+            usamos cookies para nossos próprios fins analíticos, para que possamos identificar onde os clientes
+            encontraram problemas técnicos no site e assim nos ajudar a melhorar a experiência de nossos clientes.</p>
+          <p>26.2 Se você se opuser a cookies ou desejar excluir cookies que já estão armazenados em seu dispositivo de
+            acesso, recomendamos que você siga as instruções para excluir cookies existentes e desativar futuros cookies
+            em seu software de gerenciamento de arquivos e de navegação na Web. Você pode encontrar mais informações
+            sobre como excluir ou controlar cookies em nossa Política de Privacidade ou em <a
+              href="http://www.aboutcookies.org">www.aboutcookies.org</a>. Favor observar que ao excluir nossos cookies
+            ou desativar futuros cookies você pode não ser capaz de acessar certas áreas ou características do Website.
+          </p>
+          <h2>27. RECLAMAÇÕES E AVISOS</h2>
+          <p>27.1 Nenhuma reclamação ou disputa em relação a:</p>
+          <p>27.1.1 a aceitação ou liquidação de uma aposta ou aposta feita usando os Serviços será considerada mais de
+            trinta dias após a data da transação original; e</p>
+          <p>27.1.2 um jogo que você tenha jogado utilizando os Serviços será considerado como sendo mais de doze
+            semanas após a data em que a transação ou o jogo em questão ocorreu.</p>
+          <p>27.2 Se você desejar fazer uma reclamação sobre os Serviços, como primeiro passo você deve, assim que
+            razoavelmente praticável, contatar contato@maniajogos.com para expor sua reclamação, que será escalonada
+            conforme necessário para nossa equipe de suporte até a resolução.</p>
+          <p>27.2.1 Se você deseja fazer uma reclamação em relação ao Website, como primeiro passo, você deve, o mais
+            rápido possível, contatar a equipe de suporte sobre sua reclamação. Reclamações sobre a realização de
+            apostas e/ou recebimento de ganhos são aceitas dentro de 72 horas.</p>
+          <p>27.3 Você reconhece que nosso gerador de números aleatórios determinará o resultado dos jogos jogados
+            através dos Serviços e você aceita os resultados de todos esses jogos. Você concorda ainda que no improvável
+            caso de um desacordo entre o resultado exibido em sua tela e o servidor de jogo usado pelo Operador, o
+            resultado exibido no servidor de jogo prevalecerá, e Você reconhece e concorda que Nossos registros serão a
+            autoridade final na determinação dos termos e circunstâncias de sua participação na atividade de jogo
+            on-line relevante e os resultados desta participação.</p>
+          <p>27.4 Onde desejamos entrar em contato com Você, podemos fazê-lo utilizando qualquer um de seus dados de
+            contato. Os avisos serão considerados como tendo sido devidamente notificados e recebidos por Você
+            imediatamente após o envio de um e-mail ou após Nós termos contatado Você diretamente por telefone
+            (incluindo onde Deixamos uma mensagem de correio de voz), ou três dias após a data de postagem de qualquer
+            carta. Para provar a entrega de qualquer aviso, será suficiente provar, no caso de uma carta, que tal carta
+            foi devidamente endereçada, carimbada e postada; no caso de um e-mail, que tal e-mail foi enviado para o
+            endereço de e-mail especificado (se houver) em seus detalhes de contato no momento em que tal e-mail foi
+            enviado.</p>
+          <p>27.5 Se não houver nenhuma reação a sua reclamação ou aviso nosso ou se, em sua opinião, o assunto ainda
+            não tiver sido resolvido, você pode apresentar uma reclamação ou aviso à organização de licenciamento e
+            monitoramento entrando em contato com <a
+              href="mailto:complaints@gaminglicence.com">complaints@gaminglicence.com</a>.</p>
+          <h2>28. TRANSFERÊNCIA DE DIREITOS E OBRIGAÇÕES</h2>
+          <p>28.1 Reservamo-nos o direito de transferir, ceder, sublicenciar ou prometer os Termos de Uso (uma
+            «cessão»), no todo ou em parte, a qualquer pessoa sem aviso prévio, desde que tal cessão esteja nos mesmos
+            termos ou em condições não menos vantajosas para você.</p>
+          <p>28.2 Você não poderá ceder, sublicenciar ou de outra forma transferir quaisquer de seus direitos ou
+            obrigações sob os Termos de Uso.</p>
+          <h2>29. EVENTOS FORA DE NOSSO CONTROLE</h2>
+          <p>29.1 Não seremos responsáveis por qualquer falha ou atraso no cumprimento de qualquer uma de nossas
+            obrigações sob os Termos de Uso que seja causada por eventos fora de nosso controle razoável, incluindo (sem
+            limitação) qualquer falha na rede de telecomunicações, falha de energia, falha de terceiros (ou outros)
+            equipamentos de computador, incêndio, raio, explosão, inundação, condições climáticas adversas, disputas
+            trabalhistas ou bloqueios, atividade terrorista e atos do governo ou outras autoridades competentes (um
+            «Evento de Força Maior»).</p>
+          <p>29.2 Nosso desempenho será considerado suspenso durante o período em que o Evento de Força Maior continuar
+            e teremos uma extensão de tempo para o desempenho durante esse período. Empenhar-nos-emos ao máximo para
+            acabar com o Evento de Força Maior ou para encontrar uma solução que permita o cumprimento de nossas
+            obrigações, apesar do Evento de Força Maior.</p>
+          <h2>30. WAIVER</h2>
+          <p>29.1 Se não insistirmos no cumprimento estrito de nenhuma de suas obrigações ou se não exercermos nenhum de
+            nossos direitos ou recursos, isso não constituirá uma renúncia a esses direitos ou recursos e não o eximirá
+            de tais obrigações.</p>
+          <p>30.2 Uma renúncia nossa de qualquer inadimplência não constituirá uma renúncia de qualquer inadimplência
+            subseqüente.</p>
+          <p>30.3 Nenhuma renúncia nossa de qualquer uma das disposições dos Termos de Uso será efetiva a menos que seja
+            expressamente declarada como renúncia e comunicada a você por escrito de acordo com o parágrafo 27
+            (Reclamações e Avisos) acima.</p>
+          <h2>31. VIGILÂNCIA</h2>
+          <p>31.1 Se qualquer um dos Termos de Uso for determinado por qualquer autoridade competente como inválido,
+            ilegal ou inaplicável em qualquer extensão, tal termo, condição ou disposição será, nessa medida, separado
+            dos demais termos, condições e disposições, os quais continuarão a ser válidos até o limite máximo permitido
+            por lei.</p>
+          <p>31.2 Nesses casos, a parte considerada inválida ou inexeqüível deverá ser modificada de forma consistente
+            com a legislação aplicável para refletir, na medida do possível, a intenção original do Operador.</p>
+          <p>31.3 Quando a administração coloca uma limitação, exclusão ou bloqueio na conta de um jogador e informa o
+            jogador, a obrigação do jogador é cessar qualquer jogo e sair da conta imediatamente após a notificação. No
+            caso de uma limitação, bloqueio ou exclusão não funcionar corretamente, o jogador tem que informar a
+            gerência imediatamente e é proibido de continuar jogando.</p>
+          <h2>32. ACORDO COMPLETO</h2>
+          <p>32.1 Os Termos de Uso e quaisquer documentos expressamente mencionados neles representam o acordo completo
+            entre você e nós e substituem quaisquer acordos, entendimentos ou entendimentos anteriores entre você e nós,
+            sejam eles orais ou escritos.</p>
+          <p>32.2 Cada um de nós reconhece que nenhum de nós confiou em qualquer representação, compromisso ou promessa
+            dada pelo outro ou implícita em qualquer coisa dita ou escrita nas negociações entre nós, exceto conforme
+            expressamente declarado nos Termos de Uso.</p>
+          <p>32.3 Nenhuma das partes terá qualquer solução em relação a qualquer declaração falsa feita pela outra
+            parte, seja oralmente ou por escrito, antes da data do contrato (a menos que tal declaração falsa tenha sido
+            feita fraudulentamente) e a única solução da outra parte será a violação do contrato, conforme estabelecido
+            nos Termos de Uso.</p>
+          <h2>33. DIREITOS DE TERCEIROS</h2>
+          <p>33.1 Com exceção das empresas do Grupo Operador, a menos que estes Termos de Uso indiquem expressamente o
+            contrário, uma pessoa que não seja parte destes Termos de Uso não tem o direito de fazer valer qualquer um
+            dos termos.</p>
+          <h2>34. LEI E JURISDIÇÃO</h2>
+          <p>34.1 Estes Termos de Uso (sujeito ao parágrafo 25.2) serão regidos e interpretados de acordo com as leis de
+            Curaçao.</p>
+          <h2>35. JOGO RESPONSÁVEL/JOGO DE AZAR</h2>
+          <p>35.1 Para aqueles clientes que desejam restringir suas apostas, fornecemos uma política de auto-exclusão
+            voluntária, que lhe permite fechar sua conta ou restringir sua capacidade de fazer apostas ou jogar no site
+            por um período mínimo de um dia. Uma vez que sua conta tenha sido auto-excluída, você receberá um e-mail de
+            contato@maniajogos.com e não poderá reativar a conta em nenhuma circunstância até que o período escolhido
+            neste parágrafo expire. Após o término do período de auto-exclusão, você terá o direito de voltar a utilizar
+            os Serviços entrando em contato com <a href="mailto:contato@maniajogos.com">contato@maniajogos.com</a>.</p>
+          <p>35.2 Se você estiver preocupado com suas práticas de jogo, há uma série de diretrizes que você pode achar
+            úteis:</p>
+          <p>35.2.1 tente estabelecer limites para os valores que você deseja apostar ou depositar.</p>
+          <p>35.2.2 considere quanto tempo você quer que qualquer sessão de apostas dure antes de começar e não se
+            esqueça de ficar de olho no relógio.</p>
+          <p>35.2.3 Tente não deixar que o jogo interfira com suas responsabilidades diárias.</p>
+          <p>35.3 Favor observar que o jogo não é aconselhável se você estiver se recuperando de qualquer forma de
+            dependência ou se estiver sob a influência de álcool ou qualquer outra substância, incluindo algumas drogas
+            prescritas.</p>
+          <p>35.4 Você deve estar sempre ciente de que o jogo é uma forma de recreação e não deve ser visto como uma
+            fonte alternativa de renda ou uma forma de recuperação de dívidas. Reconhecer que você pode estar
+            desenvolvendo um problema de jogo é o primeiro passo para retomar o controle.</p>
+          <p>35.5 Tenha em mente que</p>
+          <p>35.5.1 O jogo deve ser para entretenimento e não como uma forma de ganhar dinheiro</p>
+          <p>35.5.2 Você deve evitar perseguir perdas.</p>
+          <p>35.5.3 Somente jogue o que você pode perder.</p>
+          <p>35.5.4 Controle o tempo e a quantia que você gasta com jogos de azar.</p>
+          <p>35.6 35.6 Se você precisar de qualquer informação relacionada a isto, entre em contato com nosso
+            departamento de segurança security@tsars.com a partir de seu endereço eletrônico registrado ou consulte
+            nossa seção Jogo Responsável.</p>
+          <p>35.7 O Operador está empenhado em apoiar iniciativas de Jogo Responsável. Sugerimos que você visite
+            www.responsiblegambling.org para obter mais assistência caso sinta que o jogo está começando a se tornar um
+            problema para você.</p>
+          <h2>36. LINKS</h2>
+          <p>Onde fornecemos hiperlinks para outros sites, o fazemos apenas para fins informativos. Você usa tais links
+            por seu próprio risco e não aceitamos nenhuma responsabilidade pelo conteúdo ou uso de tais websites, ou
+            pelas informações neles contidas. Você não pode criar links ou enquadrar este site sem nossa permissão
+            expressa por escrito.</p>
+          <h2>37. CONTATANDO-NOS</h2>
+          <p>Você pode entrar em contato com o operador enviando um e-mail para contato@maniajogos.com. Favor observar
+            que todas as chamadas podem ser gravadas para fins de treinamento e segurança. Se você está preocupado com
+            suas práticas de jogo, há uma série de diretrizes que você pode achar útil:</p>
+          <ul>
+            <li>Considere quanto tempo você quer que uma sessão de jogo dure antes de começar e não se esqueça de ficar
+              de olho no relógio.</li>
+            <li>Tente não deixar que o jogo interfira com suas responsabilidades diárias.</li>
+            <li>O jogo é desencorajado se você estiver se recuperando de qualquer forma de dependência ou se estiver sob
+              a influência de álcool ou qualquer outra substância, incluindo algumas drogas prescritas. Recomendamos que
+              você consulte seu médico de família para maiores informações.</li>
+            <li>O jogo é uma forma de recreação e não deve ser considerado como uma fonte alternativa de renda ou uma
+              forma de recuperação de dívidas.</li>
+          </ul>
+        </div>
+
+      </div>
+
+
+    </div>
+  </main>
+  <footer class="container-footer" id="footerIndex">
+
+  </footer>
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="./assets/js/home.js"></script>
+
+</body>
+
+</html>

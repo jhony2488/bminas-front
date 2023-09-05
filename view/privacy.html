@@ -1,0 +1,408 @@
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicho Mania ♣ A maior banca de jogo do bicho online no Brasil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/default.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+</head>
+
+<style>
+  .container-privacy h2 {
+    color: var(--primary);
+    margin: 20px 0 5px;
+    font-size: 22px;
+  }
+
+  .container-privacy span {
+    color: var(--primary);
+  }
+
+  .container-privacy {
+    color: #fff;
+    margin: 10px 5px 60px;
+  }
+
+  .container-privacy .text-link {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  .container-privacy .text-link:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style: disc;
+    padding: revert;
+    margin: revert;
+  }
+
+  ul li {
+    list-style: disc;
+  }
+
+  ul li::marker {
+    color: var(--primary);
+  }
+</style>
+
+<body>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal modal-login d-none">
+    <div class="modal-content">
+      <div class="modal-title">
+        <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Bicho Mania">
+        <button class="btn btn-close-modal">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1 class="title-modal-login">Entrar</h1>
+        <div class="container-inputs-login">
+          <form action="">
+            <div class="content-inputs-login">
+              <button class="btn btn-login-google" title="EM BREVE!" disabled data-hover="EM BREVE!">
+                <img src="./assets/images/icon-google.svg" alt="Jogo do Bicho Online - Bicho Mania, Login com Google">
+                Google
+              </button>
+            </div>
+            <div class="content-separator">
+              <span class="hr-separator"></span>
+              <h1>ou</h1>
+              <span class="hr-separator"></span>
+            </div>
+            <div class="content-inputs-login">
+              <div class="input-group">
+                <label for="userLogin" class="label-text" id="labelTextUser">Usuário</label>
+                <label for="userLogin" class="label-icon">
+                  <i class="fas fa-user"></i>
+                </label>
+                <input type="text" autocomplete="off" id="userLogin" class="input-login"
+                  placeholder="Insira seu usuário">
+              </div>
+              <div class="input-group">
+                <label for="passwordLogin" class="label-text" id="labelTextPassword">Senha</label>
+                <label for="passwordLogin" class="label-icon">
+                  <i class="icon-lock fas fa-lock"></i>
+                </label>
+                <input type="password" autocomplete="off" id="passwordLogin" class="input-login"
+                  placeholder="Insira sua senha">
+                <label for="passwordLogin" class="label-icon password-icon d-none">
+                  <i class="icon-eye fas fa-eye"></i>
+                </label>
+                <a href="/recuperar-senha">Esqueceu sua senha?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="alert-login active">
+        <h1 class="line-error"></h1>
+      </div>
+      <div class="modal-footer">
+        <div class="input-group">
+          <input type="checkbox" id="rememberLogin">
+          <label for="rememberLogin" class="label-remember">Mantenha-me logado</label>
+        </div>
+        <button class="btn btn-modal-login" id="btnLogin">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-screen">
+    <div class="content-logo">
+      <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <main class="container-mania">
+    <div class="container-header">
+      <header class="home-header">
+        <a href="/" class="content-logo-home">
+          <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania">
+          <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania Mobile">
+        </a>
+        <div class="content-buttons-home">
+          <button class="btn btn-login">
+            Entrar
+          </button>
+          <a href="/cadastrar" class="btn btn-register">
+            Criar conta
+          </a>
+        </div>
+      </header>
+    </div>
+
+    <div class="content-mania container-responsive">
+      <div class="header-signup">
+        <h1>POLÍTICA DE PRIVACIDADE</h1>
+        <h2>As seguintes políticas são utilizadas:</h2>
+      </div>
+      <div class="centered container-privacy">
+        <h2>Privacy Policy</h2>
+
+        <p>The following statement sets out Our policy relating to the collection, storage and use of
+          personal information in the course of its business.</p>
+        <br>
+        <h2>In this policy:</h2>
+        <p>“we", “us" or “our" means bichomania.bet, which is operated by Ahnah Investments N.V.
+          registration no. <span>163136</span>, which operates under the Curacao License no. 365/JAZ.
+        </p>
+        <p>We take seriously our obligation to safeguard personal information about our clients. This
+          Privacy Policy is in addition to Our Terms un Use and should be read in conjunction with the
+          Terms un Use. By using this website, opening a Account or placing a wager with Us via
+          website, you agree to be bound by the terms of this Privacy Policy.</p>
+        <p>We review our Privacy Policy from time to time and reserve the right, at our discretion, to
+          amend this policy at any time without any notice other than posting the amended Privacy
+          Policy on the Our website or apps. Amendments to our Privacy Policy will be affected
+          immediately once posted on our website or apps. Your continued use of our services following
+          the posting of an amended Privacy Policy will be deemed as acceptance of those amendments.
+        </p>
+        <p>It is your responsibility to ensure that you keep up-to-date with the current Privacy Policy.
+          You should review this page periodically so that you are updated on any changes to the
+          policy.</p>
+
+        <h2>Personal Information</h2>
+        <p>Types of Personal Information we collect and hold. We collect a variety of personal
+          information in the course of our business. The types of personal information that we may
+          collect and hold includes, without limitation:</p>
+
+        <ul>
+          <li>identification information such as your name, date of birth, residential and postal
+            address, gender, email address, telephone numbers;</li>
+          <li>financial information;</li>
+          <li>copies of identification documents such as drivers license, passport, birth certificate
+            and/or utility bills;
+          </li>
+          <li>personally, submitted preferences;</li>
+          <li>responses to competitions, other promotions and surveys;</li>
+          <li>profession, occupation or job title.</li>
+        </ul>
+
+        <h2>How we collect Personal Information</h2>
+        <p>We will collect personal information only by lawful and fair means.</p>
+        <p>We collect your personal information directly from you unless it is unreasonable or
+          impracticable to do so. We may collect this information when you:</p>
+        <ul>
+          <li>register for an account with Us;</li>
+          <li>access or use our website or apps;</li>
+          <li>use our products and services;</li>
+          <li>participate in our competitions, giveaways and other promotions;</li>
+          <li>contact us directly via any medium including: SMS, MMS, instant messaging, email, social
+            media platforms, postal mail and telephone;</li>
+          <li>provide feedback through our website/app feedback links; </li>
+          <li>It may also be necessary to collect your personal information from third parties,
+            including:
+            <ul>
+              <li>credit reporting agencies, law enforcement agencies and other government
+                entities;</li>
+              <li>identify verification providers;</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Personal information may also be collected by cookies when you use our website and apps. See
+          Cookies below for further information.</p>
+
+        <h2>Why we collect, hold, use and disclose personal information</h2>
+
+        <p>We collect and hold, use and disclose personal information for purposes including the
+          following:</p>
+        <ul>
+          <li>to allow you to register as a client of Ours;</li>
+          <li>to provide products and services to you;</li>
+          <li>to enable us to perform our obligations to you under Terms of Use, and to ensure that
+            you perform your obligations under Terms of Use;</li>
+          <li>for communicating with you, including sending you information about our products and
+            services;</li>
+          <li>for planning, research, promotion and marketing of our goods and services, including
+            conducting competitions or promotions;</li>
+          <li>to create aggregate data about clients through demographic profiling and statistical
+            analysis of our database to optimize our products and services and /or allow for more
+            efficient operation of our business;</li>
+          <li>to maintain a credit information file on you and to carry out a credit assessment on
+            you;</li>
+          <li>to establish your bona fides;</li>
+          <li>for the investigation of suspected unlawful, fraudulent or other improper activity
+            connected with the use of our products and services;</li>
+          <li>to comply with our legal and statutory obligations, including our obligations relating
+            to identity verification and reporting under the Anti-Money Laundering and Counter
+            Terrorism legislation and other applicable laws.</li>
+        </ul>
+
+        <h2>To whom Personal Information is disclosed</h2>
+        <p>By registering with Us and providing personal information you consent to your personal
+          information being used by us and other entities in the Our group of companies.</p>
+        <p>We share personal information with other entities in Our group of companies in a strictly
+          controlled manner and do not sell personal information to other companies.</p>
+        <p>We may disclose your personal information to third parties as follows:</p>
+        <ul>
+          <li>to a credit reporting agency;</li>
+          <li>to our contractors and external service providers associated with the operation of our
+            business and provision of our services including, without limitation, associated data
+            centres, web hosting providers, payment service providers, identification verification
+            service providers, advertising agencies, mailing houses, printers, call centres, market
+            research analysts, IT consultants, professional advisors and consultants;</li>
+          <li>to law enforcement agencies to assist in the prevention of criminal activities;</li>
+          <li>to government and regulatory authorities and other organizations as required or
+            authorized by law or otherwise</li>
+          <li>controlling bodies where such controlling bodies request information to protect and
+            maintain the integrity of services provided or where we consider any betting or gaming
+            activity to be suspicious or unusual; </li>
+          <li>to a successor entity in the event of a business transition, such as a merger, corporate
+            reorganization or to a purchaser of part of or all of Our assets.</li>
+        </ul>
+        <p>Should the information be transferred to a third party, we will use reasonable endeavors to
+          ensure that the information disclosed is protected by the third party under contractual
+          arrangements.</p>
+
+        <h2>Security of Personal Information</h2>
+        <p>We will take reasonable steps to protect the personal information we collect and ensure that
+          it is accurate, complete and up-to-date.</p>
+        <p>Your information is held on secure servers. We may also store personal information in
+          telephone recordings and in hard copy or paper files.</p>
+        <p>Our employees, agents, contractors are required to maintain the confidentiality of all
+          personal information.
+        </p>
+        <p>You are responsible for ensuring that you keep your username, password and account
+          information confidential. If you suspect that your details may no longer be confidential,
+          you should notify Us immediately, whereupon new details may be given.
+        </p>
+        <p>You are responsible for the security of and access to your own computer/device.  You should
+          ensure that you always log out of your account after each use of the website/app.
+        </p>
+        <p>We understand the importance of security and techniques needed to secure information. We
+          store all of the Personal Information we receive directly from you in the protected database
+          residing within our secure network behind active state-of-the-art firewall software. As well
+          as we do not store or process credentials of payment cards.
+        </p>
+
+        <h2>Access to and correcting Personal Information</h2>
+        <p>We take reasonable steps to ensure that the personal information we collect about you is
+          accurate, up-to-date and complete. We also take reasonable steps to ensure that the personal
+          information we use or disclose is accurate up-to-date, complete and relevant.
+        </p>
+        <p>If we are satisfied that your personal information should be corrected we will take
+          reasonable steps to correct it – this may include contacting you to seek your most current
+          information.
+        </p>
+        <p>You may request access to and correction of the personal information we hold about you. We
+          will require you to verify your identity and to specify what information you require.
+        </p>
+        <p>You may also update or correct some of your personal information via the “My Account" section
+          of the website/apps.</p>
+
+        <h2>Unsolicited personal information</h2>
+        <p>Where we receive unsolicited personal information, we will determine whether or not it would
+          have been permissible to collect that personal information if it had been solicited. If we
+          determine that collection would not have been permissible, to the extent permitted by law,
+          we will destroy or de-identify that personal information as soon as practicable.
+        </p>
+
+        <h2>Non-Personal Information</h2>
+        <p>Like most websites and apps, we may collect non-personal information from your use of our
+          websites and apps in order to assist with the administration of our websites and apps, to
+          track site usage and to enhance your user experience.
+        </p>
+        <p>track site usage and to enhance your user experience.
+          Once logged in your IP address is tracked against your user ID for the purposes of
+          preventing fraud, identifying improper activity connected with the use of our products and
+          services, and creating an audit trail. We collect and store non-personal information that we
+          collect through cookies, log files or web beacons to create a profile of our users. A
+          profile is stored information that we keep on individual users that detail their viewing
+          preferences.
+        </p>
+        <p>This profile is used to tailor a user’s visit to the site, and to direct pertinent marketing
+          promotions to users.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>Cookies are small pieces of data which are stored by a website through your browser, to
+          enable an improved experience whilst using or browsing a particular website/app or to
+          remember your preferences or navigation history/activity (such as pages you have visited
+          within a particular site or typical activity) at a particular site.
+        </p>
+        <p>We may use cookies to remember your preferences when you have visited our site and pages you
+          like to regularly visit and to ensure that you receive the most up to date information which
+          is relevant to you and your experience with Us. We also use cookies for internal management
+          purposes and to enable essential activity to ensure that your account works correctly when
+          accessing our services.
+        </p>
+        <p>We will not use these cookies to store information such as account details or transaction
+          history. You can delete cookies using your browsers own Clear History function. You can
+          reset your browser to refuse all cookies or to indicate when a cookie is being sent.
+          However, some website and app features or services may not function properly without
+          cookies.
+        </p>
+        <p>Most web browsers allow some control of cookies through the browser settings. It is important
+          to note however that if you block cookies from Our site or apps there are a number of
+          functions that may not work and you will need to reset your preferences each time you log
+          in.
+        </p>
+
+        <h2>Third Party cookies</h2>
+        <p>We may use third-parties to serve ads on our website/apps. These companies may place or
+          recognize cookies, action tags and other technology to measure advertising effectiveness. We
+          may use cookies to remarket to you across the internet.
+        </p>
+        <p>The use of cookies allows Us to inform, optimize, and serve ads based on someone’s past
+          visits to our website/apps.
+        </p>
+        <p>To specifically opt-out of interest-based ad targeting <a class="text-link"
+            href="https://allaboutcookies.org/what-are-opt-out-cookies">click here</a> and follow
+          the instructions.</p>
+        <p>Find out more about cookies</p>
+        <p>To find out more about cookies, including how to see what cookies have been set and how to
+          manage and delete them, visit <a class="text-link" href="www.allaboutcookies.org">www.allaboutcookies.org</a>.
+        </p>
+
+        <h2>Complaints</h2>
+        <p>If you have a complaint relating to how we handle personal information, please contact our
+          support at <a class="text-link" href="mailto:support@bichomania.bet">support@bichomania.bet</a> </p>
+      </div>
+    </div>
+  </main>
+<footer class="container-footer" id="footerIndex">
+
+  </footer>
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="./assets/js/home.js"></script>
+
+</body>
+
+</html>

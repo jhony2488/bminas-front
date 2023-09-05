@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Depositos Pendentes</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+    <style>
+      .swal2-content {
+        width: 100% !important;
+      }
+
+      .swal2-popup {
+        min-width: 60% !important;
+      }
+    </style>
+  </head>
+  
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i> Depósitos <strong>pendentes</strong></h4>
+                <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br><br>
+
+              <form enctype="multipart/form-data">
+                <div id="tab" class="panel-content pagination2 table-responsive">
+                  <table id="dtable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th width="5%">ID</th>
+                        <th width="12%">Data / Tempo Espera</th>
+                        <th width="15%">Usuário</th>
+                        <!-- <th>Telefone</th>
+                        <th>Banco</th>  -->
+                        <th width="10%">Montante</th>
+                        <th width="10%">Status</th>
+                        <th width="1%">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  <script defer="defer" src="/admin/assets/js/utils.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      const atualizarListaBtn = $('#att_list');
+
+      const formattedStartOfMonth = getFormattedStartOfMonth();
+      const formattedCurrentDate = getFormattedCurrentDate();
+      const dataApi = `/api_admin/transactions/?initial_date=&final_date=${formattedCurrentDate}&type=1&status=1`;
+
+      const tabela = $('#dtable').DataTable({
+        initComplete: function () {
+          // $('#datatable_processing').css('display', 'inline');
+          carregarDados(dataApi);
+        },
+        "drawCallback": function (settings) {
+          // máscara de moeda
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+        },
+        "columns": [{
+            "data": "transaction_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "created_at",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return formatarDataHora(data);
+            }
+          },
+          {
+            "data": "username",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "amount",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              let formattedTotalValor = data.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
+
+              return `R$ <span class="money">${formattedTotalValor}</span>`;
+            }
+          },
+          {
+            "data": "status",
+            "render": function(data, type, row) {
+              if (!data) {
+                return `<label class='badge' style='background-color:orange;color:white;'>Não encontrado</label>`;
+              }
+
+              let status = ``;
+              if (row['status'] == 1) {
+                status += `<label class='badge' style='background-color:orange;color:white;'>Pendente</label>`;
+              }
+              return status;
+            }
+          },
+          {
+            "data": "transaction_id",
+            "render": function(data, type, row) {
+              let btns = `
+                <button id="edit-user" data-user="${row['user_id']}" type="button" class="btn btn-sm" style="background-color: #436cff;border-color:#436cff;" title="Editar usuário" data-toggle="tooltip"><i class="icon-user" style="color: #fff !important;" title="Editar usuário"></i></button>
+
+                <button id="confirmarDeposito" data-transaction="${row['transaction_id']}" data-amount="${row['amount']}" type="button" class="btn btn-sm btn-success" title="Confirmar depósito" data-toggle="tooltip"> <i class="icon-check" style="color: #fff !important;" title="Confirmar depósito"></i></button>
+
+                <button onclick="bloquearDeposito('${row['transaction_id']}')" type="button" class="btn btn-sm btn-danger" title="Cancelar depósito" data-toggle="tooltip"> <i class="icon-close" style="color: #fff !important;" title="Cancelar depósito"></i></button>
+
+                <button onclick="verificarDeposito('${row['transaction_id']}')" type="button" class="btn btn-sm btn-info" title="Verificar depósito" data-toggle="tooltip"> <i class="icon-check" style="color: #fff !important;" title="Verificar depósito"></i></button>
+                  `;
+              return btns;
+            }
+          }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      function getFormattedStartOfMonth() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-01`;
+      }
+
+      function getFormattedCurrentDate() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+      }
+
+      // get list
+      async function carregarDados(apiAddress) {
+        try {
+          const response = await fetch(apiAddress, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          const data = await response.json();
+          tabela.clear().rows.add(data).draw();
+
+          if (data.length === 0) {
+            const emptyMessage = 'Sem resultados';
+            tabela.rows.add([]).draw();
+            $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          $('#datatable_processing').css('display', 'block');
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+        }
+      }
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+         $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw();
+        carregarDados(dataApi);
+      });
+    });
+
+      $(document).on('click', '#edit-user', function(e) {
+            e.preventDefault();
+
+            const user_id = $(this).data('user');
+            console.log(user_id)
+
+            let modal = `
+              <h4 class="title-tabs">Editar usuário: "<span id="apelido"></span> - ID: <span id="userid"></span>"</h4>
+                <form id="editar-usuario">
+                  <div class="container-profile mb-1">
+                  
+                    <div class="row mt-5">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Primeiro nome</label>
+                          <input class="form-control" name="primeiro_nome" id="primeiro_nome" required>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Último nome</label>
+                          <input class="form-control" name="sobrenome" id="sobrenome" required>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                          <label class="form-label">Indicação</label>
+                          <input id="indicacao" name="indicacao" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form-label">CPF</label>
+                          <input type="text" class="form-control cpf" name="cpf" id="cpf" maxlength="14">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Gênero</label>
+                          <select id="genero" name="genero" class="form-control">
+                            <option value="">--</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Data de nascimento</label>
+                          <input class="form-control" name="datansc" id="datanasc" type="date">
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="form-label">Email</label>
+                          <input class="form-control" name="email" id="email" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form-label">Endereço</label>
+                          <input class="form-control" name="endereco" id="endereco">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Cidade</label>
+                          <input class="form-control" name="cidade" id="cidade">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                          <label class="form-label">UF</label>
+                          <select id="estado" name="estado" class="form-control">
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                            <option value="DF">DF</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">Bairro</label>
+                          <input type="text" class="form-control" name="bairro" id="bairro">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label class="form-label">CEP</label>
+                          <input class="form-control cep" name="cep" id="cep">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="form-label">Telefone</label>
+                          <input id="telefone" name="telefone" class="form-control phone" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tabs navs -->
+                  <div class="mb-3 d-flex justify-content-center">
+                    <ul class="align-items-center nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Configurações</a>
+                      </li>
+                      <!--li class="nav-item">
+                        <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Configurações</a-->
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Tabs navs -->
+
+                  <!-- Tabs content -->
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+
+                      <div class="row mt-5">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="form-control" name="status" id="status">
+                              <option value="1">Ativo</option>
+                              <option value="0">Banido</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6" id="banReasonContainer" style="display: none;">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label class="form-label">Motivo</label>
+                              <input class="form-control" name="motivo" id="motivo">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="form-label">Limite de saque</label>
+                            <select class="form-control" name="limite" id="limite">
+                              <option value="1">Sim</option>
+                              <option value="0">Não</option>
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          <!--/div>
+
+        </div-->
+
+        <!-- Tabs content -->`;
+    
+
+          Swal.fire({
+            confirmButtonText: 'Editar',
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            html: modal,
+
+          onOpen: () => {
+
+            if (user_id != null) {
+              // load data
+              fetch('/api_admin/users/'+user_id, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+                .then(response => response.json())
+                .then(response => {
+
+                console.log(response) 
+                console.log(response.campo_nome_usuario)
+
+                $('#userid').text(user_id);
+                $('#apelido').text(response.campo_nome_usuario);
+
+                $('#primeiro_nome').val(response.campo_primeiro_nome);
+                $('#sobrenome').val(response.campo_ultimo_nome);
+                $('#indicacao').val(response.campo_indicacao);
+                $('#cpf').val(response.campo_cpf).change();
+                $('#endereco').val(response.campo_endereco).change();
+                $('#cidade').val(response.campo_cidade).change();
+                $('#bairro').val(response.campo_bairro).change();
+                $('#estado').val(response.campo_estado).change();
+                $('#cep').val(response.campo_cep).change();
+                $('#email').val(response.campo_email).change();
+                $('#telefone').val(response.campo_telefone).change();
+                $('#genero').val(response.campo_genero).change();
+                $('#datanasc').val(response.campo_data_nascimento).change();
+                $('#status').val(response.campo_status);
+                $('#motivo').val(response.campo_motivo);
+                $('#limite').val(response.campo_limite);
+
+                $('.cpf').mask('000.000.000-00', { reverse: true });
+                $('.phone').mask('(00) 00000-0000');
+                $('.cep').mask('00000-000');
+
+                const statusSelect = document.getElementById('status');
+                const banReasonContainer = document.getElementById('banReasonContainer');
+                
+                if (statusSelect.value === '0') {
+                  banReasonContainer.style.display = 'block';
+                } else {
+                  banReasonContainer.style.display = 'none';
+                }
+                
+                statusSelect.addEventListener('change', function () {
+                  if (statusSelect.value === '0') {
+                    banReasonContainer.style.display = 'block';
+                  } else {
+                    banReasonContainer.style.display = 'none';
+                  }
+                });
+
+                $("#cep").blur(function() {
+                  let cepCode = $("#cep").val(),
+                    inputCep = document.getElementById('cep');
+
+                  var cep = this.value.replace(/[^0-9]/, "");
+                  if (cep.length != 8) {
+                    return false;
+                  }
+                  var url = "https://viacep.com.br/ws/" + cep + "/json/";
+                  $.getJSON(url, function(dadosRetorno) {
+                    try {
+                      $("#endereco").val(dadosRetorno.logradouro);
+                      $("#bairro").val(dadosRetorno.bairro);
+                      $("#cidade").val(dadosRetorno.localidade);
+                      $("#estado").val(dadosRetorno.uf);
+                    } catch (ex) {}
+                  });
+                });
+
+
+              })
+            }
+          },
+          preConfirm: () => {
+            // validação
+            return new Promise((resolve) => {
+              // Executar a validação
+              let erros = [];
+              let form = document.getElementById("editar-usuario");
+              let inputs = Array.from(form.querySelectorAll("[required]"));
+
+              inputs.forEach((validate) => {
+                if (!validate.value.trim()) {
+                  erros.push(validate);
+                  validate.classList.add("is-invalid");
+                } else {
+                  validate.classList.remove("is-invalid");
+                }
+              });
+              
+              if (erros.length === 0) {
+
+                const data = {
+                  user_id: user_id,
+                  first_name: form.querySelector('#primeiro_nome').value,
+                  last_name: form.querySelector('#sobrenome').value,
+
+                  indication: form.querySelector('#indicacao').value,
+                  document: form.querySelector('#cpf').value || null,
+                  address: form.querySelector('#endereco').value,
+                  city: form.querySelector('#cidade').value,
+                  neighborhood: form.querySelector('#bairro').value,
+                  uf: form.querySelector('#estado').value,
+
+                  zip: form.querySelector('#cep').value,
+                  email: form.querySelector('#email').value,
+                  phone: form.querySelector('#telefone').value,
+                  gender: form.querySelector('#genero').value,
+                  date_birth: form.querySelector('#datanasc').value || null,
+
+                  status: form.querySelector('#status').value,
+                  ban_reason: form.querySelector('#motivo').value,
+                  limit_withdraw: form.querySelector('#limite').value
+                };
+
+                console.log(data)
+
+                //salvar dados
+                fetch('/api_admin/users/', {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                  if (response.status == 200) {
+                    Swal.fire({
+                      type: "success",
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+
+                resolve();
+              } else {
+                Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                resolve();
+              }
+            })
+          }
+        })
+      })
+
+    $(document).on('click', '#confirmarDeposito', function(e) {
+      e.preventDefault();
+
+      const transaction_id = $(this).data('transaction');
+      const amount = $(this).data('amount');
+      console.log(transaction_id)
+      console.log(amount)
+
+      Swal.fire({
+        type: 'question',
+        title: "Confirmar a transação de ID: " + transaction_id,
+        confirmButtonText: "Confirmar",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+
+        preConfirm: () => {
+          // salvar dados
+          fetch('/api_admin/transactions/deposit/confirm2', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({transaction_id: transaction_id, amount: amount})
+          })
+            .then(response => response.json())
+            .then(response => {
+
+              if (response.status == 200) {
+              Swal.fire({
+                type: "success",
+                showConfirmButton: false,
+                timer: 1500,
+                title: response.message
+              })
+              setTimeout(
+                function() {
+                  location.reload();
+                }, 1600);
+            } else {
+              Swal.fire({
+                type: "error",
+                showConfirmButton: false,
+                timer: 2000,
+                title: response.message
+              })
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {
+          });
+        }
+      })
+
+
+    });
+
+    function confirmarDeposito(id) {
+      Swal.fire({
+        type: 'question',
+        title: "Confirmar a transação de ID: " + id,
+        confirmButtonText: "Confirmar",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+
+        preConfirm: () => {
+          // salvar dados
+          fetch('/api_admin/transactions/deposit/confirm2', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({transaction_id: id})
+          })
+            .then(response => response.json())
+            .then(response => {
+
+              if (response.status == 200) {
+              Swal.fire({
+                type: "success",
+                showConfirmButton: false,
+                timer: 1500,
+                title: response.message
+              })
+              setTimeout(
+                function() {
+                  location.reload();
+                }, 1600);
+            } else {
+              Swal.fire({
+                type: "error",
+                showConfirmButton: false,
+                timer: 2000,
+                title: response.message
+              })
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {
+          });
+        }
+      })
+    }
+
+    function bloquearDeposito(id) {
+      Swal.fire({
+        type: "error",
+        title: "Bloquear a transação de ID: " + id,
+        confirmButtonText: "Bloquear",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+
+        preConfirm: () => {
+          // cancelar dados
+          fetch('/api_admin/transactions/deposit/cancel', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({transaction_id: id})
+          })
+            .then(response => response.json())
+            .then(response => {
+
+              if (response.status == 200) {
+              Swal.fire({
+                type: "success",
+                showConfirmButton: false,
+                timer: 1500,
+                title: response.message
+              })
+              setTimeout(
+                function() {
+                  location.reload();
+                }, 1600);
+            } else {
+              Swal.fire({
+                type: "error",
+                showConfirmButton: false,
+                timer: 2000,
+                title: response.message
+              })
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {
+          });
+        }
+      })
+    }
+
+    function verificarDeposito(id) {
+      Swal.fire({
+        type: "info",
+        title: "Verificar a transação de ID: " + id,
+        confirmButtonText: "Verificar",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+ 
+        preConfirm: () => {
+          fetch(`/api_admin/transactions/deposit/verify/`+id, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          })
+            .then(response => response.json())
+            .then(response => {
+
+              if (response.status == 200) {
+                Swal.fire({
+                  type: "success",
+                  showConfirmButton: false,
+                  timer: 1500,
+                  title: response.message
+                })
+                setTimeout(
+                  function () {
+                    location.reload();
+                  }, 1600);
+              } else {
+                Swal.fire({
+                  type: "error",
+                  showConfirmButton: false,
+                  timer: 2000,
+                  title: response.message
+                })
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            })
+            .finally(() => {
+            });
+        }
+      })
+    }
+
+  </script>
+</body>
+
+</html>

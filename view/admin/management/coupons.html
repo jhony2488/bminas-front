@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Dashboard | Cupons</title>
+  <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+
+  <!-- import style:js -->
+  <script src="/admin/static/js/styles.js"></script>
+
+  <style>
+    #name {
+      text-transform: uppercase;
+    }
+
+    .select-height {
+      height: 35px;
+    }
+
+    .invalid-input {
+      border: 2px solid red !important;
+    }
+
+    .swal2-content {
+      width: 100% !important;
+    }
+
+    .swal2-popup {
+      width: 75% !important;
+    }
+
+    .addcoupon {
+      width: 100%;
+    }
+
+    @media (max-width: 1000px) {
+      .swal2-popup {
+        width: 80% !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .swal2-popup {
+        width: 98% !important;
+      }
+    }
+  </style>
+</head>
+
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <div id="navbar-content"></div>
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title">Cupons</h4>
+                <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
+                  title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+
+              <div class="row">
+                <form action="#" role="form" method="post" enctype="multipart/form-data">
+                  <fieldset>
+                    <div class="col-md-12">
+                      <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                        <button type="button" id="add-coupon" class="btn btn-wide btn-success">Adicionar
+                          cupom</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <br>
+
+              <div id="tab" class="table-responsive">
+                <table id="dtable" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Valor</th>
+                      <th>Tipo</th>
+                      <th>Qnt</th>
+                      <th>Usabilidade</th>
+                      <th>Max Desconto</th>
+                      <th>Dias</th>
+                      <th>Início</th>
+                      <th>Expiração</th>
+                      <th>Disponibilidade</th>
+                      <th>Situação</th>
+                      <th>Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- content-wrapper ends -->
+        <div id="footer-content"></div>
+
+        <!-- plugins:js -->
+        <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+        <!-- import partials:js -->
+        <script src="/admin/static/js/partials.js"></script>
+        <script defer="defer" src="/admin/static/js/app.js"></script>
+        <script src="/admin/assets/js/utils.js"></script>
+
+        <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+        <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+        <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+
+            $('[data-toggle="tooltip"]').tooltip();
+            const atualizarListaBtn = $('#att_list');
+            const adicionarCupomBtn = $('#add-coupon');
+
+            function formatDate(date) {
+              var day = date.getDate();
+              var month = date.getMonth() + 1;
+              var year = date.getFullYear();
+              var hours = date.getHours();
+              var minutes = date.getMinutes();
+              var seconds = date.getSeconds();
+
+              return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+            }
+
+            const tabela = $('#dtable').DataTable({
+              initComplete: function () {
+                $('#datatable_processing').css('display', 'inline');
+                carregarDados();
+              },
+              "createdRow": function (row, data, dataIndex) {
+                var colorMap = {
+                  'fixed': {//fixed
+                    backgroundColor: '#666699',
+                    textColor: '#fff'
+                  },
+                  'percent': {//percent
+                    backgroundColor: '#669966',
+                    textColor: '#fff'
+                  }
+                };
+
+                var type = data['type'];
+                var style = colorMap[type] || {};
+
+                $(row).find('td:eq(3)').css({
+                  'background-color': style.backgroundColor || '',
+                  'color': style.textColor || ''
+                });
+              },
+              "drawCallback": function (settings) {
+                // máscara de moeda
+                $('.money').mask('000.000.000.000.000,00', {
+                  reverse: true
+                });
+              },
+              "columns": [{
+                "data": "coupon_id",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado!';
+                  }
+
+                  return data;
+                }
+              },
+              {
+                "data": "coupon_name",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado!';
+                  }
+
+                  return data;
+                }
+              },
+              {
+                "data": "amount",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado!';
+                  }
+
+                  let formattedTotalValor = data.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                  });
+
+                  return `R$ <span class="money">${formattedTotalValor}</span>`;
+                }
+              },
+              {
+                "data": "type",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado!';
+                  }
+
+                  let convertedType = (data === 'percent') ? 'Percentual' : 'Valor fixo';
+                  return convertedType;
+                }
+              },
+              {
+                "data": "quantity",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado';
+                  }
+                  let convertedQuantity = (data !== "") ? data : '∞';
+                  return convertedQuantity;
+                }
+              },
+              {
+                "data": "usability",
+                "render": function (data, type, row) {
+
+                  let usabilityText;
+                  switch (data) {
+                    case 1:
+                      usabilityText = `<abbr>O cupom pode ser usado uma vez por dia</abbr>`;
+                      break;
+                    case 2:
+                      usabilityText = `<abbr>O cupom só pode ser usado uma vez e não é reutilizável</abbr>`;
+                      break;
+                    case 3:
+                      usabilityText = `<abbr>O cupom só pode ser usado se o usuário não tiver aplicado nenhum outro cupom no mesmo dia</abbr>`;
+                      break;
+                    case 4:
+                      usabilityText = `<abbr>O cupom só pode ser usado por usuários que estâo inativos</abbr>`;
+                      break;
+                    case 5:
+                      usabilityText = `<abbr>O cupom só pode ser usado para usuários que estâo inativos em transações</abbr>`;
+                      break;
+                    case 6:
+                      usabilityText = `<abbr>Primeiro depósito</abbr>`;
+                      break;
+                    default:
+                      usabilityText = `Nenhuma`;
+                      break;
+                  }
+
+                  return usabilityText;
+                }
+              },
+              {
+                "data": "maximum_discount",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado!';
+                  }
+
+                  return `R$ <span class="money">${row['maximum_discount']}</span>`;
+                }
+              },
+              {
+                "data": "days",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado';
+                  }
+
+                  const diasDaSemanaTextos = data.split(',').map(numero => {
+                    switch (numero) {
+                      case '7':
+                        return 'Dom';
+                      case '1':
+                        return 'Seg';
+                      case '2':
+                        return 'Ter';
+                      case '3':
+                        return 'Qua';
+                      case '4':
+                        return 'Qui';
+                      case '5':
+                        return 'Sex';
+                      case '6':
+                        return 'Sab';
+                      default:
+                        return 'Nenhuma';
+                    }
+                  });
+
+                  return diasDaSemanaTextos.join(', ');
+                }
+              },
+              {
+                "data": "date_start",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não encontrado!';
+                  }
+                  // let convertedStart = data ? formatDate(new Date(data)) : '∞';
+                  // convertedStart
+                  return formatarDataHora(data);
+                }
+              },
+              {
+                "data": "date_expiration",
+                "render": function (data, type, row) {
+                  if (!data) {
+                    return 'Não informado';
+                  }
+
+                  // let convertedStart = data ? formatDate(new Date(data)) : '∞';
+                  return formatarDataHora(data);
+                }
+              },
+              {
+                "data": "time_start",
+                "render": function (data, type, row) {
+                  if (!data && !row['time_end']) {
+                    return 'Não usado';
+                  }
+
+                  return `${row['time_start']} até ${row['time_end']}`;
+                }
+              },
+              {
+                "data": "active",
+                "render": function (data, type, row) {
+                  let convertedActive = (data == '1') ? "<label class='badge btn-success' style='color:white;'>Ativo</label>" : "<label class='badge btn-danger' style='color:white;'>Inativo</label>";
+                  return convertedActive;
+                }
+              },
+              {
+                "data": "user_id",
+                "render": function (data, type, row) {
+                  let btns = `
+                <button id="edit-cupom" data-coupon="${row['coupon_id']}" type="button" class="btn btn-sm btn-success" title="Editar Cupom" data-toggle="tooltip"><i class="icon-pencil" style="color: #fff !important;" title="Editar Cupom"></i></button>
+
+                <!--button onclick="reportCoupon('${row['coupon_id']}')" type="button" class="btn btn-sm btn-info" title="Gerar Relatório" data-toggle="tooltip"> <i class="icon-doc" style="color: #fff !important;" title="Gerar Relatório"></i></button-->&nbsp;`;
+
+                  if (row['active'] == '1') {
+                    btns += `<button id="active-cupom" data-coupon="${row['coupon_id']}" data-active="${row['active']}" type="button" class="btn btn-sm btn-warning" title="Desativar Cupom" data-toggle="tooltip"><i class="icon-lock-open" style="color: #fff !important" title="Desativar Cupom"></i></button>`;
+                  } else {
+                    btns += `<button id="active-cupom" data-coupon="${row['coupon_id']}" data-active="${row['active']}" type="button" class="btn btn-sm btn-danger" title="Ativar Cupom" data-toggle="tooltip"><i class="icon-lock" style="color: #fff !important" title="Ativar Cupom"></i></button>`;
+                  }
+
+                  return btns;
+                }
+              }],
+              'order': [
+                [0, 'asc']
+              ],
+              "responsive": true,
+              "pageLength": 25,
+              "language": {
+                emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+              },
+              "oLanguage": {
+                "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+              }
+            });
+
+            // get list
+            async function carregarDados() {
+              try {
+                const response = await fetch('/api_admin/coupons/', {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+
+                const data = await response.json();
+                tabela.clear().rows.add(data).draw();
+
+                if (data.length === 0) {
+                  const emptyMessage = 'Sem resultados';
+                  tabela.rows.add([]).draw();
+                  $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+                }
+              } catch (error) {
+                console.log(error);
+              } finally {
+                $('#datatable_processing').css('display', 'block');
+                atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+              }
+            }
+
+            atualizarListaBtn.click(function (e) {
+              e.preventDefault();
+              recarregarDados();
+            });
+
+            function recarregarDados() {
+              $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+              tabela.clear().draw();
+              carregarDados();
+            }
+
+            adicionarCupomBtn.click(function (e) {
+              e.preventDefault();
+              Swal.fire({
+                title: 'Adicionar Cupom',
+                confirmButtonText: "Confirmar",
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                reverseButtons: true,
+                html: `
+                  <form id="addcoupon" class="addcoupon">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Tipo</label>
+                          <select name="coupon_type" id="coupon_type" class="form-control">
+                            <option value="" checked>--</option>
+                            <option value="bonus" checked>Bônus</option>
+                            <option value="deposit">Depósito</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Nome do Cupom</label>
+                          <input type="text" id="coupon_name" name="coupon_name" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Tipo de desconto</label>
+                          <select name="type" id="type" class="form-control">
+                            <option value="percent" checked>Porcentagem</option>
+                            <option value="fixed">Valor Fixo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label id="label-type" class="form-label">Valor de BONUS do cupom em %</label>
+                          <input type="text" id="amount" name="amount" class="form-control dinheiro" required>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Status</label>
+                          <select name="active" id="active" class="form-control">
+                            <option value="1" checked>Ativo</option>
+                            <option value="0">Inativo</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Usabilidade do cupom</label>
+                          <select name="usability" id="usability" class="form-control">
+                            <option value="1">O cupom pode ser usado uma vez por dia</option>
+                            <option value="2">O cupom só pode ser usado uma vez e não é reutilizável</option>
+                            <option value="3">O cupom só pode ser usado se o usuário não tiver aplicado nenhum outro cupom no mesmo dia</option>
+                            <option value="4">O cupom só pode ser usado por usuários que estâo inativos</option>
+                            <option value="5">O cupom só pode ser usado para usuários que estâo inativos em transações</option>
+                            <option value="6">Primeiro depósito</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Regras de bonificação depósito</label>
+                          <select name="deposit_bonus_permission" id="deposit_bonus_permission" class="form-control" required>
+                            <option value="1">Não permitir nenhum outro bônus somente o cupom</option>
+                            <option value="2">Permitir bônus cambista</option>
+                            <option value="3">Permitir bônus primeiro depósito</option>
+                            <option value="4">Permitir ambos</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Quantidade Disponível</label>
+                          <input type="tel" id="quantity" name="quantity" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Valor máximo desconto</label>
+                          <input type="tel" id="maximum_discount" name="maximum_discount" class="form-control dinheiro">
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Data e hora Início:</label>
+                          <input class="form-control" type="datetime-local" id="date_start" name="date_start" required>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Data e hora Expiraçao:</label>
+                          <input class="form-control" type="datetime-local" id="date_expiration" name="date_expiration">
+                        </div>
+                      </div>
+
+                      <div class="col-lg-2 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Disponibilidade inicial:</label>
+                          <input class="form-control" type="time" id="time_start" name="time_start">
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Disponibilidade final:</label>
+                          <input class="form-control" type="time" id="time_expiration" name="time_end">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h5 style="text-align: center;">Dias da semana</h5>
+                      <div class="row d-flex justify-content-center">
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="7" id="DOM">
+                          <label class="form-check-label" for="DOM">DOM</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="1" id="SEG">
+                          <label for="SEG">SEG</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="2" id="TER">
+                          <label for="TER">TER</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="3" id="QUA">
+                          <label for="QUA">QUA</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="4" id="QUI">
+                          <label for="QUI">QUI</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="5" id="SEX">
+                          <label for="SEX">SEX</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="6" id="SAB">
+                          <label for="SAB">SAB</label>
+                        </div>
+                      </div>
+                    </div>
+                  <form>`,
+
+                preConfirm: () => {
+
+                  // validação
+                  return new Promise((resolve) => {
+
+                    // Executar a validação
+                    let erros = [];
+                    let form = document.getElementById("addcoupon");
+                    let inputs = Array.from(form.querySelectorAll("[required]"));
+
+                    inputs.forEach((validate) => {
+                      if (!validate.value.trim()) {
+                        erros.push(validate);
+                        validate.classList.add("is-invalid");
+                      } else {
+                        validate.classList.remove("is-invalid");
+                      }
+                    });
+
+                    if (erros.length === 0) {
+
+                      let days = "";
+                      const checkboxValues = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB"];
+
+                      checkboxValues.forEach(checkbox => {
+                        if ($("#" + checkbox).is(":checked")) {
+                          days += $("#" + checkbox).val() + ',';
+                        }
+                      });
+
+                      days = days.slice(0, -1);
+
+                      const amountInput = document.querySelector('#amount');
+                      const amountValue = amountInput.value.replaceAll('.', '').replace(',', '.');
+
+                      const maximumDiscountInput = document.querySelector('#maximum_discount');
+                      const maximumDiscountValue = maximumDiscountInput.value.replaceAll('.', '').replace(',', '.');
+
+                      let timeStartValue = document.querySelector('#time_start').value;
+                      let timeEndValue = document.querySelector('#time_expiration').value;
+
+                      // Verifica se os valores estão vazios e atribui null se estiverem
+                      let timeStart = timeStartValue === '' ? null : timeStartValue;
+                      let timeEnd = timeEndValue === '' ? null : timeEndValue;
+
+                      const data = {
+                        coupon_name: document.querySelector('#coupon_name').value,
+                        type: document.querySelector('#type').value,
+                        amount: amountValue,
+                        usability: document.querySelector('#usability').value,
+                        coupon_type: document.querySelector('#type').value,
+                        active: document.querySelector('#active').value,
+                        // first_deposit: document.querySelector('#first_deposit').value,
+                        deposit_bonus_permission: document.querySelector('#deposit_bonus_permission').value,
+                        quantity: document.querySelector('#quantity').value,
+                        date_start: document.querySelector('#date_start').value.replace('T', ' '),
+                        date_expiration: document.querySelector('#date_expiration').value.replace('T', ' '),
+                        time_start: timeStart,
+                        time_end: timeEnd,
+                        maximum_discount: maximumDiscountValue,
+                        days: days
+                      };
+
+                      // salvar dados
+                      fetch('/api_admin/coupons', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                      })
+                        .then(response => response.json())
+                        .then(response => {
+                          if (response.status == 200) {
+                            Swal.fire({
+                              type: "success",
+                              width: '35%',
+                              showConfirmButton: false,
+                              timer: 1500,
+                              title: response.message
+                            })
+                            setTimeout(
+                              function () {
+                                recarregarDados();
+                              }, 1600);
+                          } else {
+                            Swal.fire({
+                              type: "error",
+                              width: '35%',
+                              showConfirmButton: false,
+                              timer: 2000,
+                              title: response.message
+                            })
+                          }
+                        })
+                        .catch(error => {
+                          console.log(error);
+                        })
+                        .finally(() => {
+                        });
+
+                      resolve(); // Resolva a promessa para fechar o diálogo
+                    } else {
+                      Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                      resolve();
+                    }
+                  });
+                }
+              })
+              
+              $('#type').change(function () {
+                if ($(this).val() == "percent") {
+                  $('#label-type').text("Valor de BÔNUS do cupom em %")
+                  $('#amount').prop("maxlength", 5);
+                } else {
+                  $('#label-type').text("Valor de BÔNUS do cupom em R$")
+                  $('#amount').prop("maxlength", 22);
+                }
+              })
+
+              $('.dinheiro').mask('000.000.000.000.000,00', {
+                reverse: true
+              });
+
+              $('#coupon_type').change(function () {
+                if ($(this).val() == "bonus") {
+                  console.log('tsete')
+                  $('#type option[value="percent"]').prop('hidden', true);
+                  $('#type option[value="fixed"]').prop('selected', true);
+                } else {
+                  $('#type option[value="percent"]').prop('hidden', false);
+                  $('#type option[value="percent"]').prop('selected', true);
+                }
+              })
+            })
+
+            $(document).on('click', '#edit-cupom', function (e) {
+              e.preventDefault();
+
+              const coupon = $(this).data('coupon');
+              Swal.fire({
+                title: `Editar Cupom ID: ${coupon}`,
+                confirmButtonText: "Confirmar",
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                reverseButtons: true,
+                html: `
+                  <form id="editcoupon" class="addcoupon">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Tipo</label>
+                          <select name="coupon_type" id="coupon_type" class="form-control">
+                            <option value="bonus" checked>Bonus</option>
+                            <option value="deposit">Depósito</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Nome do Cupom</label>
+                          <input type="text" id="coupon_name" name="coupon_name" class="form-control" required>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Tipo de desconto</label>
+                          <select name="type" id="type" class="form-control">
+                            <option value="percent" checked>Porcentagem</option>
+                            <option value="fixed">Valor Fixo</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label id="label-type" class="form-label">Valor de BONUS do cupom em %</label>
+                          <input type="text" id="amount" name="amount" class="form-control money" required>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Status</label>
+                          <select name="active" id="active" class="form-control">
+                            <option value="1" checked>Ativo</option>
+                            <option value="0">Inativo</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Usabilidade do cupom</label>
+                          <select name="usability" id="usability" class="form-control">
+                            <option value="1">O cupom pode ser usado uma vez por dia</option>
+                            <option value="2">O cupom só pode ser usado uma vez e não é reutilizável</option>
+                            <option value="3">O cupom só pode ser usado se o usuário não tiver aplicado nenhum outro cupom no mesmo dia</option>
+                            <option value="4">O cupom só pode ser usado por usuários que estâo inativos</option>
+                            <option value="5">O cupom só pode ser usado para usuários que estâo inativos em transações</option>
+                            <option value="6">Primeiro depósito</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Regras de bonificação depósito</label>
+                          <select name="deposit_bonus_permission" id="deposit_bonus_permission" class="form-control" required>
+                            <option value="1">Não permitir nenhum outro bônus somente o cupom</option>
+                            <option value="2">Permitir bônus cambista</option>
+                            <option value="3">Permitir bônus primeiro depósito</option>
+                            <option value="4">Permitir ambos</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Quantidade Disponível</label>
+                          <input type="tel" id="quantity" name="quantity" class="form-control" required>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label">Valor máximo desconto</label>
+                          <input type="tel" id="maximum_discount" name="maximum_discount" class="form-control money">
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Data e hora Início:</label>
+                          <input class="form-control" type="datetime-local" id="date_start" name="date_start" required>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Data e hora Expiraçao:</label>
+                          <input class="form-control" type="datetime-local" id="date_expiration" name="date_expiration">
+                        </div>
+                      </div>
+
+                      <div class="col-lg-2 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Disponibilidade inicial:</label>
+                          <input class="form-control" type="time" id="time_start" name="time_start">
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6">
+                        <div class="form-group">
+                          <label class="form-label" for="data">Disponibilidade final:</label>
+                          <input class="form-control" type="time" id="time_expiration" name="time_end">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <h5 style="text-align: center;">Dias da semana</h5>
+                      <div class="row d-flex justify-content-center">
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="7" id="DOM">
+                          <label class="form-check-label" for="DOM">DOM</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="1" id="SEG">
+                          <label for="SEG">SEG</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="2" id="TER">
+                          <label for="TER">TER</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="3" id="QUA">
+                          <label for="QUA">QUA</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="4" id="QUI">
+                          <label for="QUI">QUI</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="5" id="SEX">
+                          <label for="SEX">SEX</label>
+                        </div>
+                        <div class="mr-4 ml-4">
+                          <input type="checkbox" class="checkCoupon form-check-input" value="6" id="SAB">
+                          <label for="SAB">SAB</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  <form>`,
+                onOpen: () => {
+                  if (coupon != null) {
+                    fetch('/api_admin/coupons/' + coupon, {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                    })
+                      .then(response => response.json())
+                      .then(response => {
+                        let m1 = parseFloat(response.amount).toLocaleString('pt-br', {
+                          minimumFractionDigits: 2
+                        });
+                        let m2 = response.maximum_discount ? parseFloat(response.maximum_discount).toLocaleString('pt-br', {
+                          minimumFractionDigits: 2
+                        }) : "";
+                        // console.log(response)
+                        let dateStart = document.querySelector('#date_start').value;
+                        dateStart.replace('T', '');
+                        let dateExp = document.querySelector('#date_expiration').value;
+                        dateExp.replace('T', '');
+                        $('#coupon_name').val(response.coupon_name);
+                        $('#type').val(response.type).change();
+                        $('#amount').val(m1);
+                        $('#usability').val(response.usability).change();
+                        $('#type').val(response.type).change();
+                        $('#active').val(response.active).change();
+                        // $('#first_deposit').val(response.first_deposit).change();
+                        $('#quantity').val(response.quantity);
+                        $('#maximum_discount').val(m2);
+                        $('#deposit_bonus_permission').val(response.deposit_bonus_permission);
+                        $('#time_start').val(response.time_start);
+                        $('#time_expiration').val(response.time_end);
+
+                        // const dateStart = response.date_start.split('.')[0]; // Remover a parte dos milissegundos
+                        $('#date_start').val(dateStart);
+
+                        // const dateExp = response.date_expiration ? new Date(response.date_expiration).toISOString().slice(0, 16) : '';
+                        $('#date_expiration').val(dateExp);
+
+                        const checkboxes = {
+                          "1": "#SEG",
+                          "2": "#TER",
+                          "3": "#QUA",
+                          "4": "#QUI",
+                          "5": "#SEX",
+                          "6": "#SAB",
+                          "7": "#DOM"
+                        };
+
+                        if (typeof response.days === "string") {
+                          response.days.split(",").forEach(day => {
+                            if (checkboxes.hasOwnProperty(day.trim())) {
+                              $(checkboxes[day.trim()]).prop("checked", true);
+                            }
+                          });
+                        }
+
+                        $('.money').mask('000.000.000.000.000,00', {
+                          reverse: true
+                        });
+                      })
+                      .catch(error => {
+                        console.log(error);
+                      })
+                      .finally(() => {
+                      });
+
+                  }
+
+                  $('#coupon_type').change(function () {
+                    if ($(this).val() == "bonus") {
+                      $('#type option[value="percent"]').prop('hidden', true);
+                      $('#type option[value="fixed"]').prop('selected', true);
+
+                    } else {
+                      $('#type option[value="percent"]').prop('hidden', false);
+                      $('#type option[value="percent"]').prop('selected', true);
+                    }
+                  })
+
+                  $('#type').change(function () {
+                    if ($(this).val() == "percent") {
+                      $('#label-type').text("Valor de BÔNUS do cupom em %")
+                      $('#amount').prop("maxlength", 5);
+                    } else {
+                      $('#label-type').text("Valor de BÔNUS do cupom em R$")
+                      $('#amount').prop("maxlength", 22);
+                    }
+                  })
+                },
+                preConfirm: () => {
+                  return new Promise((resolve) => {
+
+                    // Executar a validação
+                    let erros = [];
+                    let form = document.getElementById("editcoupon");
+                    let inputs = Array.from(form.querySelectorAll("[required]"));
+
+                    inputs.forEach((validate) => {
+                      if (!validate.value.trim()) {
+                        erros.push(validate);
+                        validate.classList.add("is-invalid");
+                      } else {
+                        validate.classList.remove("is-invalid");
+                      }
+                    });
+
+                    if (erros.length === 0) {
+
+                      // pegar valores
+                      let formData = new FormData(form);
+                      let days = "";
+
+                      const checkboxValues = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB"];
+
+                      checkboxValues.forEach(checkbox => {
+                        if ($("#" + checkbox).is(":checked")) {
+                          days += $("#" + checkbox).val() + ',';
+                        }
+                      });
+
+                      days = days.slice(0, -1);
+
+                      const amountInput = document.querySelector('#amount');
+                      const amountValue = amountInput.value.replaceAll('.', '').replace(',', '.');
+
+                      const maximumDiscountInput = document.querySelector('#maximum_discount');
+                      const maximumDiscountValue = maximumDiscountInput.value.replaceAll('.', '').replace(',', '.');
+
+                      let timeStartValue = document.querySelector('#time_start').value;
+                      let timeEndValue = document.querySelector('#time_expiration').value;
+
+                      // Verifica se os valores estão vazios e atribui null se estiverem
+                      let timeStart = timeStartValue === '' ? null : timeStartValue;
+                      let timeEnd = timeEndValue === '' ? null : timeEndValue;
+
+                      const data = {
+                        coupon_id: coupon,
+                        type: document.querySelector('#type').value,
+                        amount: amountValue,
+                        usability: document.querySelector('#usability').value,
+                        coupon_type: document.querySelector('#type').value,
+                        active: document.querySelector('#active').value,
+                        // first_deposit: document.querySelector('#first_deposit').value,
+                        deposit_bonus_permission: document.querySelector('#deposit_bonus_permission').value,
+                        quantity: document.querySelector('#quantity').value,
+                        date_start: document.querySelector('#date_start').value,
+                        date_expiration: document.querySelector('#date_expiration').value,
+                        time_start: timeStart,
+                        time_end: timeEnd,
+                        maximum_discount: maximumDiscountValue,
+                        days: days
+                      };
+
+                      // salvar dados
+                      fetch('/api_admin/coupons', {
+                        method: 'PUT',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                      })
+                        .then(response => response.json())
+                        .then(response => {
+                          if (response.status == 200) {
+                            Swal.fire({
+                              type: "success",
+                              showConfirmButton: false,
+                              timer: 1500,
+                              title: response.message
+                            })
+                            setTimeout(
+                              function () {
+                                recarregarDados();
+                              }, 1600);
+                          } else {
+                            Swal.fire({
+                              type: "error",
+                              showConfirmButton: false,
+                              timer: 2000,
+                              title: response.message
+                            })
+                          }
+                        })
+                        .catch(error => {
+                          console.log(error);
+                        })
+                        .finally(() => {
+                        });
+
+                      resolve(); // Resolva a promessa para fechar o diálogo
+                    } else {
+                      Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                      resolve();
+                    }
+                  })
+                }
+              })
+            })
+
+            $(document).on('click', '#active-cupom', function (e) {
+              e.preventDefault();
+
+              const coupom_id = $(this).data('coupon');
+              const coupom_active = $(this).data('active');
+
+              const swalConfig = {
+                swalType: (coupom_active) ? "error" : "info",
+                swalTitle: (coupom_active) ? `Desativar cupom ID: ${coupom_id} ?` : `Ativar cupom ID: ${coupom_id} ?`,
+                swalBtn: (coupom_active) ? "Desativar" : "Ativar"
+              };
+
+              Swal.fire({
+                type: swalConfig.swalType,
+                title: swalConfig.swalTitle,
+                confirmButtonText: swalConfig.swalBtn,
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                reverseButtons: true,
+
+                preConfirm: () => {
+
+                  var change = (coupom_active === 1) ? 0 : 1;
+                  fetch('/api_admin/coupons', {
+                    method: 'PUT',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ coupon_id: coupom_id, active: change })
+                  })
+                    .then(response => response.json())
+                    .then(response => {
+                      if (response.status == 200) {
+                        Swal.fire({
+                          type: "success",
+                          showConfirmButton: false,
+                          timer: 1500,
+                          title: response.message
+                        })
+                        setTimeout(
+                          function () {
+                            recarregarDados();
+                          }, 1600);
+                      } else {
+                        Swal.fire({
+                          type: "error",
+                          showConfirmButton: false,
+                          timer: 2000,
+                          title: response.message
+                        })
+                      }
+                    })
+                    .catch(error => {
+                      console.log(error);
+                    })
+                    .finally(() => {
+                    });
+                }
+              })
+            })
+          });
+        </script>
+        </body>
+
+</html>

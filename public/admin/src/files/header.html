@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/website/assets/css/header.css?ver=1.2">
+<script src="//code.jivosite.com/widget/pL2c48edU7" async></script>
+<header>
+    <img src="/website/assets/images/logo-header-white.png" alt="logo-header"
+        style="filter: drop-shadow(5px 5px 1rem #222);">
+    <div class="container-notlogged-header flex-fill" style="display: none;">
+        <menu class="noselect" ondragstart="return false;" ondrop="return false;" style="justify-content: flex-end;">
+
+            <div class="container-buttons-login" style="float: right;">
+                <div class="content-buttons-login">
+                    <input class="primary" name="user" id="user" type="text" placeholder="USUÁRIO" tabindex="1">
+                    <input class="primary" name="lpassword" id="lpassword" type="password" placeholder="SENHA"
+                        tabindex="2">
+                    <button type="submit" class="primary sign-in" anim="ripple" title="Entrar" onclick="login()"><img
+                            src="/website/assets/images/signIn.png" alt="sign-in" height="15" />
+                        <p>ENTRAR</p>
+                    </button>
+                </div>
+                <button class="primary register" anim="ripple" title="Cadastrar" onclick="location.href='/registrar'">
+                    <p>REGISTRAR-SE</p>
+                </button>
+            </div>
+
+        </menu>
+    </div>
+    <div class="container-logged-header" style="display: none;">
+        <div class="container-logged-data">
+
+            <div class='container-profile'>
+                <!-- <img src="/website/assets/images/tenebroso.jfif" class="rounded-circle mx-auto d-block" alt="photo-user" /> -->
+                <div class='user-list-name'></div>
+                <div class='user-list-game'><i class="fas fa-trophy"></i> <span class="mostra-total-jogo"></span></div>
+            </div>
+            <div class='container-balance'>
+                <div class='user-list-name'>SALDO</div>
+                <div class='user-list-game'>R$ <span class="mostra-saldo-real"></span>
+                </div>
+            </div>
+            <div class='container-last-game'>
+                <div class='user-list-name'>ÚLTIMO JOGO</div>
+                <div class='user-list-game data-ultimo-jogo'></div>
+            </div>
+
+
+        </div>
+
+        <div class='container-actions-login'>
+            <a href='/minhaconta' data-toggle="tooltip" data-placement="top" title="Editar dados"><i
+                    class="fas fa-pencil-alt"></i></a>
+            <a href='/logout' data-toggle="tooltip" data-placement="top" title="Sair"><i
+                    class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+    <div class="menu-burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a class="whatsapp-float" href="https://wa.me/5511910930949?text=Olá%20preciso%20de%20ajuda" style="" target="_blank">
+    <i class="fa fa-whatsapp"></i>
+</a>

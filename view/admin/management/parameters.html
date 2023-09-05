@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Parâmetros</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+    <style>
+      .modal-btn-save{
+
+      }
+      .swal2-content {
+        width: 100% !important;
+      }
+
+      .swal2-popup {
+        width: 75% !important;
+      }
+
+      .addcoupon {
+        width: 100%;
+      }
+
+      @media (max-width: 1000px) {
+        .swal2-popup {
+          width: 80% !important;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .swal2-popup {
+          width: 98% !important;
+        }
+      }
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><strong>Parâmetros</strong></h4>
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+                <div id="tab" class="panel-content pagination2 table-responsive">
+                  <table id="dtable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Modalidade</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      const adicionarLoteriaBtn = $('#add-lottery');
+      const atualizarListaBtn = $('#att_list');
+
+      const tabela = $('#dtable').DataTable({
+        initComplete: function () {
+          carregarDados();
+        },
+        "columns": [{
+            "data": "campo_modalidade_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_nome",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return `${row['campo_abreviacao']} - ${data}`;
+            }
+          },
+          
+          
+          {
+            "data": "campo_ativo",
+            "render": function(data, type, row) {
+
+              let status = (data == 1) ? "<label class='badge btn-success' style='color:white;'>Ativo</label>" : "<label class='badge btn-danger' style='color:white;'>Inativo</label>";
+              return status;
+            }
+          },
+          {
+            "data": "campo_lottery_id",
+            "render": function(data, type, row) {
+              let btns = `
+                <button id="edit-label" data-modality="${row['campo_modalidade_id']}" type="button" class="btn btn-sm btn-success" title="Editar parâmetros" data-toggle="tooltip"><i class="icon-pencil" style="color: #fff !important;" title="Editar parâmetros"></i></button>&nbsp;`;
+
+              return btns;
+            }
+          }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      // get list
+      async function carregarDados() {
+        try {
+          const response = await fetch('/api_admin/modality', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.status === 200) {
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+console.log(data)
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+          } else if (response.status === 401) {
+
+            Swal.fire({
+              toast: true,
+              type: 'warning',
+              showConfirmButton: false,
+              position: 'top-end',
+              timer: 1300,
+              title: "Sessão de usuário expirada",
+            })
+
+            setTimeout(
+              function() {
+                location.reload();
+            },1400)
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+        }
+      }
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        recarregarDados();
+      });
+
+      function recarregarDados() {
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw();
+        carregarDados();
+      }
+
+      $(document).on('click', '#edit-label', function(e) {
+        e.preventDefault();
+
+        const modality_id = $(this).data('modality');
+        console.log(modality_id)
+
+        Swal.fire({
+          title: 'Editando parâmetro da modalidade: '+modality_id,
+          reverseButtons: false,
+          html: `<div style="margin-top:20px"><div id="formContainer"><div></div>`,
+
+          onOpen: () => {
+
+            if (modality_id != null) {
+
+              
+
+              fetch('/api_admin/modality/labels', {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+              .then(response => response.json())
+              .then(response => {
+
+                const data = response.filter(obj => obj.modality_id == modality_id);
+                console.log(data)
+
+                const keyTranslations = {
+                    "label_id": "Label id",
+                    "description": "Descrição",
+                    "modality_id": "ID da Modalidade",
+                    "status": "Status",
+                    "accept_limit": "Limite de Aceitação",
+                    "divisor": "Divisor",
+                    "amount": "Valor",
+                    "cotacao_colocacao": "Cotação Colocação"
+                };
+
+const camposExibir = ["description", "status", "divisor", "accept_limit"];
+data.forEach(item => {
+    // Crie um novo formulário para cada label_id
+    const form = document.createElement('form');
+    form.id = `form_${item.label_id}`;
+
+    const rowDiv = document.createElement('div');
+    rowDiv.classList.add('row');
+
+    for (const key in item) {
+        if (item.hasOwnProperty(key) && camposExibir.includes(key)) {
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-md-2');
+
+            const formGroup = document.createElement('div');
+            formGroup.classList.add('form-group');
+
+            const label = document.createElement('label');
+            label.textContent = keyTranslations[key] || key;
+            label.classList.add('form-label');
+
+            let input;
+
+            if (key === 'status') {
+                const select = document.createElement('select');
+                select.id = key;
+                select.name = key;
+                select.classList.add('form-control');
+
+                const option1 = document.createElement('option');
+                option1.value = '1';
+                option1.textContent = 'Ativo';
+
+                const option2 = document.createElement('option');
+                option2.value = '0';
+                option2.textContent = 'Inativo';
+
+                select.appendChild(option1);
+                select.appendChild(option2);
+
+                select.value = item[key];
+
+                input = select;
+            } else {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.name = `${key}`;//_${item.label_id}`;
+                input.value = item[key];
+                input.required = true;
+                input.classList.add('form-control');
+
+                if (key === 'label_id') {
+                    input.disabled = true;
+                }
+
+                if (key === 'description') {
+                    input.disabled = true;
+                }
+            }
+
+            formGroup.appendChild(label);
+            formGroup.appendChild(input);
+
+            if(key === 'accept_limit'){
+              input.classList.add('money');
+            }
+            if (key === 'divisor') {
+            // Crie uma nova coluna para o botão
+            const colDivButton = document.createElement('div');
+            colDivButton.classList.add('col-lg-6', 'col-md-6'); // Use a classe 'col' do Bootstrap para criar uma coluna de tamanho médio
+
+            const salvarBotao = document.createElement('button');
+            salvarBotao.textContent = 'Salvar';
+            salvarBotao.classList.add('btn', 'btn-primary', 'btn', 'mr-5', 'mt-3');
+            salvarBotao.setAttribute('data-label', item.label_id);
+
+            salvarBotao.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const formId = e.target.closest('form').id;
+                return new Promise((resolve) => {
+                    // Executar a validação
+                    let erros = [];
+                    let form = document.getElementById(formId);
+                    let inputs = Array.from(form.querySelectorAll("[required]"));
+
+                    inputs.forEach((validate) => {
+                        if (!validate.value.trim()) {
+                            erros.push(validate);
+                            validate.classList.add("is-invalid");
+                        } else {
+                            validate.classList.remove("is-invalid");
+                        }
+                    });
+
+                    if (erros.length === 0) {
+                        const dataLabel = salvarBotao.dataset.label;
+                        let formData = new FormData(form);
+                        formData.append("label_id", dataLabel);
+                        let formObject = Object.fromEntries(formData.entries());
+
+                        console.log(formObject);
+                        console.log(dataLabel);
+
+
+
+
+                fetch('/api_admin/modality/edit/label/'+dataLabel, {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(formObject)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                    if (response.status == 200) {
+                    Swal.fire({
+                      type: "success",
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                      //  recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+
+
+
+
+
+
+
+                        resolve(); // Resolva a promessa para fechar o diálogo
+                    } else {
+                        Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                        resolve();
+                    }
+                })
+            });
+
+
+            // Adicione o botão à coluna do botão
+            colDivButton.appendChild(salvarBotao);
+
+            // Adicione a coluna do botão ao grupo de formulários
+            formGroup.appendChild(colDivButton);
+            
+            const hr = document.createElement('hr');
+            hr.classList.add('mt-1', 'mb-3');
+            form.appendChild(hr);
+            
+            // $('.money').mask('000.000.000.000.000,00', {
+            //     reverse: true
+            //   });
+        }
+
+        colDiv.appendChild(formGroup);
+        rowDiv.appendChild(colDiv);
+    }
+}
+
+form.appendChild(rowDiv);
+formContainer.appendChild(form);
+});
+
+
+              })
+            }
+          },
+        })
+      })
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Historico antigo</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+
+    <style>
+      .poule {
+        background-color: rgb(255, 225, 161);
+        position: relative;
+        padding: 20px;
+      }
+      .poule:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 28px;
+        right: 0;
+        top: -16px;
+        left: 0;
+        background: -webkit-linear-gradient(135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -webkit-linear-gradient(130deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: -moz-linear-gradient(-135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -moz-linear-gradient(135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: -o-linear-gradient(-135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -o-linear-gradient(135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: -ms-linear-gradient(-135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -ms-linear-gradient(135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: linear-gradient(-135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, linear-gradient(135deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background-repeat: repeat-x;
+        background-size: 5px 4px, 5px 4px;
+      }
+      .poule:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 28px;
+        right: 0;
+        bottom: -16px;
+        left: 0;
+        background: -webkit-linear-gradient(45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -webkit-linear-gradient(130deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: -moz-linear-gradient(-45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -moz-linear-gradient(45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: -o-linear-gradient(-45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -o-linear-gradient(45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: -ms-linear-gradient(-45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, -ms-linear-gradient(45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background: linear-gradient(-45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%, linear-gradient(45deg, transparent 70%, rgb(255, 225, 161) 75%) 0 50%;
+        background-repeat: repeat-x;
+        background-size: 5px 4px, 5px 4px;
+      }
+      .poule li {
+        text-align: start;
+        margin: 10px;
+        list-style: none;
+      }
+    </style>
+
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><i class="fa fa-table"></i> Historico<strong>:</strong> "<span id="campo_nome"></span> <span id="campo_sobrenome"></span>" (<span id="campo_apelido"></span>) - ID: <span id="campo_id"></span></h4>
+                <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+
+                <div id="spinner" class="spinner-grow text-secondary" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </div>
+              <br>
+
+              <form id="pesquisa" enctype="multipart/form-data">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Data Inicio </label>
+                        <input type="date" id="data_inicio" name="initial_date" class="form-control" value="2023-01-07">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Data Final </label>
+                        <input type="date" id="data_fim" name="final_date" class="form-control" value="2023-03-29">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Transação</label>
+                        <select id="status" name="status" class="apagar form-control" data-search="true">
+                          <option value="">Todos</option>
+                          <option value="1">Pendente</option>
+                          <option value="2">Confirmado</option>
+                          <option value="3">Restituição</option>
+                          <option value="4">Disputa</option>
+                          <option value="5">Bloqueado</option>
+                          <option value="6">Cancelado</option>
+                          <option value="7">Processando</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="form-label">Tipo</label>
+                        <select id="tipo" name="tipo" class="apagar form-control" data-search="true">
+                            <option value="">Todos</option>
+                            <option value="1">Depósito</option>
+                            <option value="2">Saque</option>
+                            <option value="3">Transferência</option>
+                            <option value="4">Bônus</option>
+                            <option value="5">Pagamento</option>
+                            <option value="6">Restituição</option>
+                            <option value="7">Estorno depósito</option>
+                            <option value="8">Indicação inicial</option>
+                            <option value="100">Aposta</option>
+                            <option value="101">Estorno de aposta</option>
+                            <option value="102">Prêmio</option>
+                            <option value="103">Estorno de prêmio</option>
+                            <option value="104">Caça-niquel</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div style="text-align:center" class="col-md-12 margin-bottom-30">
+                        <a href="/admin/users/historic"> <button type="button" name="voltar" value="voltar" class="btn  btn-secondary"><i class="glyphicon glyphicon-arrow-left"> Voltar</i></button></a>
+                        <button type="submit" name="pesquisar" value="pesquisar" id="buscarDados" class="btn btn-wide btn-success">Pesquisar</button>
+                        <!-- <a href="rel_vida_usuario.php?tipo=<?php echo $tipo; ?>&inicio=<?php echo $inicio; ?>&final=<?php echo $final; ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a> -->
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+
+              <hr>
+              <div class="row text-center justify-content-center">
+                <!-- <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" id="boxtodos" value="Todos" >
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Todos</label>
+                </div> -->
+
+                <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" value="Aposta">
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Jogo</label>
+                </div>
+
+                <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" value="Estorno">
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Estorno</label>
+                </div>
+
+                <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" value="Depósito">
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Depósitos</label>
+                </div>
+
+                <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" value="Saque">
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Saques</label>
+                </div>
+
+                <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" value="Prêmio">
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Prêmios</label>
+                </div>
+
+                <div class="form-check form-check-inline d-flex">
+                  <input class="form-check-input" type="checkbox" name="box" value="Bônus">
+                  <label class="form-check-label ml-1" for="flexCheckDefault">Bônus</label>
+                </div>
+              </div>
+              <br>
+
+              <div id="tab" class="panel-content pagination2 table-responsive">
+                <table id="dtable" width="100%" class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th width="1%">Ação</th>
+                      <th>Informações</th>
+                      <th>Saldo</th>
+                      <th>Data/Hora</th>
+                      <th>IP</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+
+
+
+                <br>
+              </div>
+              <br>
+              <div style="text-align:center" class="col-md-12 margin-bottom-30">
+              <!--  <a href="rel_vida_usuario.php?tipo=<?php echo $tipo; ?>&inicio=<?php echo $inicio; ?>&final=<?php echo $final; ?>" target="_blank"> <button type="button" name="imprimir" value="imprimir" class="btn btn-wide btn-warning">Imprimir</button></a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  <script defer="defer" src="/admin/assets/js/utils.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userId = window.location.pathname.split('/')[4];console.log(userId)
+
+      const dataInicioInput = $('#data_inicio');
+      const dataFimInput = $('#data_fim');
+      const dataType = $('#tipo');
+      const dataStatus = $('#status');
+
+      const buscarDadosBtn = $('#buscarDados');
+
+      const formattedStartOfMonth = getFormattedStartOfMonth();
+      const formattedCurrentDate = getFormattedCurrentDate();
+      // const dataApi = `/api_admin/transactions/?initial_date=${getFormattedStartOfMonth}&final_date=${formattedCurrentDate}`;
+
+      const dataApi = `/api_admin/users/oldhistoric/${userId}?initial_date=${formattedCurrentDate}&final_date=${formattedCurrentDate}&type=&status=&user_id=${userId}`;
+
+      function getFormattedStartOfMonth() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-01`;
+      }
+
+      function getFormattedCurrentDate() {
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentDay = currentDate.getDate();
+        return `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+      }
+
+      dataInicioInput.val(getFormattedCurrentDate());
+      dataFimInput.val(getFormattedCurrentDate());
+
+      carregarDados(dataApi);
+      buscarDadosBtn.click(function(e) {
+        e.preventDefault();
+
+        const initialDate = dataInicioInput.val();
+        const finalDate = dataFimInput.val();
+        const type = $('#tipo').val();
+        const status = $('#status').val();
+
+        $(this).html(`<div class="spinner-border text-primary" role="status"></div>`);
+        const url = `/api_admin/users/oldhistoric/${userId}?initial_date=${initialDate}&final_date=${finalDate}&type=${type}&status=${status}&user_id=${userId}`;
+        carregarDados(url);
+      });
+
+      // get list
+      async function carregarDados(apiAddress) {
+        try {
+          const response = await fetch(apiAddress, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.ok) {
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+
+          } else if (response.status === 401) {
+            location.reload();
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          buscarDadosBtn.html('<i class="fa fa-search fa-2xl"></i>Pesquisar');
+          // $('#datatable_processing').css('display', 'block');
+        }
+      }
+
+      fetch('/api_admin/users/'+userId, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(response => {
+          console.log(response);
+          $('#campo_nome').text(response.campo_primeiro_nome);
+          $('#campo_sobrenome').text(response.campo_ultimo_nome);
+          $('#campo_apelido').text(response.campo_nome_usuario);
+          $('#campo_id').text(userId);
+        })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {
+            document.getElementById('spinner').remove();
+        });
+    });
+
+      // Datatable
+      var tabela = $('#dtable').DataTable({
+        /*"createdRow": function( row, data, dataIndex){
+          if (data['type'] == 1) {
+            $(row).css({"background-color": "#0d7ad7b8", "color": "white"});
+          } else if (data['type'] == 2) {
+            $(row).css({"background-color": "#0d7ad7b8", "color": "white"});
+          } else {
+            $(row).css("background-color", "none");
+          }
+        },*/
+        "createdRow": function(row, data, dataIndex) {
+          var colorMap = {
+            1: {//deposit
+              backgroundColor: '#0d7ad7b8',
+              textColor: '#fff'
+            },
+            2: {//saque
+              backgroundColor: '#cc6600',
+              textColor: '#fff'
+            },
+            3: {//transferencia
+              backgroundColor: '#cc66cc',
+              textColor: '#fff'
+            },
+            4: {//bonus
+              backgroundColor: '#009999',
+              textColor: '#fff'
+            },
+            5: {//pagamento
+              backgroundColor: '#9933ff',
+              textColor: '#fff'
+            },
+            6: {//restituicao
+              backgroundColor: '#9999cc',
+              textColor: '#fff'
+            },
+            7: {//Estorno Depósito
+              backgroundColor: '#99cc00',
+              textColor: '#fff'
+            },
+            100: {//jogo
+              backgroundColor: '#0ab930b8',
+              textColor: '#fff'
+            },
+            101: {//estorno
+              backgroundColor: '#e70b0bab',
+              textColor: '#fff'
+            },
+            102: {//premio
+              backgroundColor: '#c1bb0eb8',
+              textColor: '#fff'
+            },
+            103: {//estorno premio
+              backgroundColor: '#9999cc',
+              textColor: '#fff'
+            },
+            104: {//Caça-Niquel
+              backgroundColor: '#99cc00',
+              textColor: '#fff'
+            }
+          };
+
+          var type = data['type'];
+          var style = colorMap[type] || {};
+
+          $(row).find('td:eq(1)').css({
+            'background-color': style.backgroundColor || '',
+            'color': style.textColor || ''
+          });
+        },
+        "drawCallback": function (settings) {
+          // máscara de moeda
+          $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+          });
+        },
+        "columns": [{
+            "data": "transaction_id",
+            "render": function(data, type, row) {
+              console.log(data);
+              if (!data) {
+                return '--';
+              }
+              return `<a class="badge badge-primary click-transaction">${data}</a>`;
+            }
+          },
+          {
+            "data": "type",
+            "render": function(data, type, row) {
+              if (data == '1') {
+                data = "Depósito";
+              } else if (data == '2') {
+                data = "Saque";
+              } else if (data == '3') {
+                data = "Transferência";
+              } else if (data == '4') {
+                data = "Bônus";
+              } else if (data == '5') {
+                data = "Pagamento";
+              } else if (data == '6') {
+                data = "Restituição";
+              } else if (data == '7') {
+                data = "Estorno Depósito";
+              } else if (data == '8') {
+                data = "Indicação inicial";
+              } else if (data == '100') {
+                data = "Aposta";
+              } else if (data == '101') {
+                data = "Estorno de aposta";
+              } else if (data == '102') {
+                data = "Prêmio";
+              } else if (data == '103') {
+                data = "Estorno de prêmio";
+              } else if (data == '104') {
+                data = "Caça-niquel";
+              } else {
+                data = 'Não Informado';
+              }
+              return data;
+            },
+          },
+          {
+            "data": "amount",
+            "render": function(data, type, row) {
+
+              let formattedTotalValor = data.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
+
+              if (row['type'] == '1') {
+                data = `Depositou R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '2') {
+                data = `Sacou R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '3') {
+                data = `Transferiu R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '4') {
+                data = `Recebeu bônus de R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '5') {
+                data = `Pagou R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '6') {
+                data = `Restituiu R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '7') {
+                data = `Estornou R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '100') {
+                data = `Jogou R$ <span class='money'>${formattedTotalValor} </span> `;
+              } else if (row['type'] == '101') {
+                data = `Estornou R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '102') {
+                data = `Recebeu um prêmio de R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else if (row['type'] == '103') {
+                data = `Estornou R$ <span class='money'>${formattedTotalValor} </span>`;
+              } else {
+                data = 'Não Informado';
+              }
+              return data;
+            },
+          },
+          {
+            "data": "balance_user",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+              return `R$ <span class="money">${data}</span>`;
+            }
+          },
+          {
+            "data": "created_at",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado';
+              }
+
+              return formatarDataHora(data);
+            }
+          },
+          {
+            "data": "ip_address",
+            "render": function(data, type, row){
+              if(!data){
+                return '--';
+              }
+
+              return data;
+            }
+          },
+        {
+          "data": "status",
+          "render": function(data, type, row) {
+            if (data == '1') {
+                status = "<label class='badge' style='background-color:orange;color:white;'>Pendente</label>";
+              } else if (data == '2') {
+                status = "<label class='badge badge-success'>Confirmado</label>";
+              } else if (data == '3') {
+                status = "<label class='badge badge-info'>Restituição</label>";
+              } else if (data == '4') {
+                status = "<label class='badge badge-warning'>Disputa</label>";
+              } else if (data == '5') {
+                status = "<label class='badge badge-secondary'>Bloqueado</label>";
+              } else if (data == '6') {
+                status = "<label class='badge badge-danger'>Cancelado</label>";
+              } else if (data == '7') {
+                status = "<label class='badge badge-primary'>Processando</label>";
+              } else {
+                status = 'Não Informado';
+              }
+              return status;
+            },
+        }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+    $('#dtable').on('click', '.click-transaction', function () {
+      let userTransaction = $(this).text();
+
+      fetch('/api_admin/transactions/data/'+userTransaction, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(response => response.json())
+      .then(response => {
+
+        function translateStatus(status) {
+          if (status == '1') return "Pendente";
+          else if (status == '2') return "Confirmado";
+          else if (status == '3') return "Restituição";
+          else if (status == '4') return "Disputa";
+          else if (status == '5') return "Bloqueado";
+          else if (status == '6') return "Cancelado";
+          else if (status == '7') return "Processando";
+          else return "Não Informado";
+        }
+
+        function translateType(type) {
+          if (type == '1') return "Depósito";
+          else if (type == '2') return "Saque";
+          else if (type == '3') return "Transferência";
+          else if (type == '4') return "Bônus";
+          else if (type == '5') return "Pagamento";
+          else if (type == '6') return "Restituição";
+          else if (type == '7') return "Estorno de Depósito";
+          else if (type == '8') return "Indicação Inicial";
+          else if (type == '100') return "Aposta";
+          else if (type == '101') return "Estorno de Aposta";
+          else if (type == '102') return "Prêmio";
+          else if (type == '103') return "Estorno de Prêmio";
+          else if (type == '104') return "Caça-níquel";
+          else if (parseInt(type) > 1000) return "Lançamento de Financeiro";
+          else return "Não Informado";
+        }
+        function isNotNull(value) {
+          return value !== null;
+        }
+        const listInfo = `
+        <ul class="poule">
+          ${isNotNull(response.abbreviated) ? `<li><b>Abreviado:</b> ${response.abbreviated}</li>` : ''}
+          ${isNotNull(response.amount) ? `<li><b>Valor:</b> R$ ${parseFloat(response.amount).toFixed(2)}</li>` : ''}
+          ${isNotNull(response.bank_name) ? `<li><b>Nome do Banco:</b> ${response.bank_name}</li>` : ''}
+          ${isNotNull(response.bet_guesses) ? `<li><b>Palpites:</b> ${response.bet_guesses}</li>` : ''}
+          ${isNotNull(response.combinations) ? `<li><b>Combinações:</b> ${response.combinations}</li>` : ''}
+          ${isNotNull(response.created_at) ? `<li><b>Criado em:</b> ${new Date(response.created_at).toLocaleString('pt-BR')}</li>` : ''}
+          ${isNotNull(response.data_aposta) ? `<li><b>Data da Aposta:</b> ${new Date(response.data_aposta).toLocaleDateString('pt-BR')}</li>` : ''}
+          ${isNotNull(response.description) ? `<li><b>Descrição:</b> ${response.description}</li>` : ''}
+          ${isNotNull(response.game_id) ? `<li><b>ID do Jogo:</b> ${response.game_id}</li>` : ''}
+          ${isNotNull(response.name) ? `<li><b>Nome:</b> ${response.name}</li>` : ''}
+          ${isNotNull(response.pay_prize) ? `<li><b>Prêmio Pago:</b> R$ ${parseFloat(response.pay_prize).toFixed(2)}</li>` : ''}
+          ${isNotNull(response.possible_prize) ? `<li><b>Prêmio Possível:</b> R$ ${parseFloat(response.possible_prize).toFixed(2)}</li>` : ''}
+          ${isNotNull(response.status) ? `<li><b>Status:</b> ${translateStatus(response.status)}</li>` : ''}
+          ${isNotNull(response.transaction_id) ? `<li><b>ID da Transação:</b> ${response.transaction_id}</li>` : ''}
+          ${isNotNull(response.type) ? `<li><b>Tipo:</b> ${translateType(response.type)}</li>` : ''}
+        </ul>
+        `;
+
+        console.log(response);
+        swal.fire({
+          title: response.username.toUpperCase(),
+          html: listInfo,
+        });
+      })
+      .catch(error => console.error('Erro ao buscar dados:', error));
+
+    });
+
+    $('input:checkbox').on('change', function () {
+      //build a regex filter string with an or(|) condition
+      var positions = $('input:checkbox[name="box"]:checked').map(function() {
+        return this.value;
+      }).get().join('|');
+
+      //filter in column 1 by removing checked items, with an regex, no smart filtering, not case sensitive
+      //Example: ^((?!word1|word2).*)$
+      // table.column(1).search(positions ? '^((?!' + positions + ').*)$' : '', true, false, false).draw();
+
+      tabela.search('').columns(1).search(positions, true, false).draw();
+      console.log(positions)
+      //build a filter string with an or(|) condition
+      // var offices = $('input:checkbox[name="ofc"]:checked').map(function() {
+      //   return this.value;
+      // }).get().join('|');
+
+      //now filter in column 2, with no regex, no smart filtering, not case sensitive
+      //Example: word1|word2
+      // table.column(2).search(offices, true, false, false).draw(false);
+    });
+
+  </script>
+
+</body>
+</html>

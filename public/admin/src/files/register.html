@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.1">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8BBTZTDT1"></script>
+    <!-- Google tag (gtag.js) -->
+    
+    <!-- Google Tag Manager -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-N8BBTZTDT1');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css?ver=1.1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/header.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/footer.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/login.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.1">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.1">
+    <title>Bicho Premiado</title>
+
+</head>
+
+<body onload="cssChangeResize()">
+    <div class="wrapper" style="display: block;">
+        <aside class="d-flex">
+            <div class="" id="lateral_menu"></div>
+            <div class="body-container noselect">
+                <div class="back-header" id="header"></div>
+                <div class="card-body col-md-8 col-sm-12" style="margin-top: 100px;">
+                    <div class="container-register modal-register">
+                        <div class="header-register">
+                            <img src="/website/assets/images/logo-header.png" height="60" alt="logo">
+
+                            <h5 style="margin: 10px 0px; text-align: center;">Criar Conta</h5>
+                            <hr style="height: 2px; margin: 0 auto 20px auto">
+                        </div>
+
+                        <form class="form-floating form-signin" method="post" action="register.php" role="form">
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control required" id="firstname" name="firstname"
+                                            placeholder="Nome" value="" autocomplete="new-password" autocorrect="off"
+                                            autocapitalize="none" spellcheck="false" onblur="onBlurValidate(firstname)">
+                                        <label for="firstname">Primeiro Nome</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control required" id="lastname" name="lastname"
+                                            placeholder="Nome" value="" autocomplete="new-password" autocorrect="off"
+                                            autocapitalize="none" spellcheck="false" onblur="onBlurValidate(lastname)">
+                                        <label for="lastname">Segundo Nome</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control required" id="birth_date"
+                                            name="birth_date" placeholder="Data de Nascimento" value=""
+                                            autocomplete="new-password" autocorrect="off" autocapitalize="none"
+                                            spellcheck="false" maxlength="10" onblur="onBlurValidate(birth_date)">
+                                        <label for="birth_date">Data de Nascimento</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control required" id="phone" name="phone"
+                                            placeholder="Celular" value="" autocomplete="new-password" autocorrect="off"
+                                            autocapitalize="none" spellcheck="false" maxlength="16"
+                                            onblur="onBlurValidate()">
+                                        <label for="phone">Celular</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control required" id="email" name="email"
+                                    placeholder="email@example.com" value="" onblur="onBlurValidate(email)">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control required" id="username" name="username"
+                                    placeholder="Usuário" value="" maxlength="20" autocomplete="new-password"
+                                    autocorrect="off" autocapitalize="none" spellcheck="false">
+                                <label for="username" onblur="onBlurValidate(username)">Usuário</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control required" id="password" name="password"
+                                    placeholder="Senha" value="" autocomplete="new-password" autocorrect="off"
+                                    autocapitalize="none" spellcheck="false">
+                                <label for="password">Senha</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control required" id="rpassword" name="rpassword"
+                                    placeholder="Repita a Senha" value="" autocomplete="new-password" autocorrect="off"
+                                    autocapitalize="none" spellcheck="false">
+                                <label for="rpassword">Repita a Senha</label>
+                            </div>
+                        </form>
+
+                        <div class="register-footer">
+                            <div class="footer-frase">
+                                Ao clicar no botão cadastrar você esta<br>de acordo com os nossos<br><a href="">termos e
+                                    condições</a>
+                            </div>
+                            <button type="button" class="swal2-confirm confirm-register swal2-styled" aria-label=""
+                                onClick="validateRegister()">Registrar</button>
+                            <div class="ambiente-seguro">
+                                <img src="/website/assets/images/ambiente-seguro.png" height="30" alt="ambienteSeguro">
+                                <p>100% REGISTRO SEGURO</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="body" style="display: flex;">
+
+                    <div id="footer"></div>
+                </div>
+        </aside>
+    </div>
+
+    <style>
+        header {
+            box-shadow: 6px 0px 15px -3px rgb(0 0 0 / 24%);
+        }
+
+        /* .primary {
+                outline: var(--yellow) 2px solid;
+            } */
+
+        .header-register img[alt="logo"] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card-body {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .confirm-register {
+            background-color: #56CA98 !important;
+            border-radius: 20px !important;
+            display: inline-block;
+            position: relative;
+            transform: translateY(0%);
+            min-width: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script src="/assets/js/ajax.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function cssChangeResize() {
+            var height = $(".container-options").height();
+            $(".body").innerHeight(parseInt(height - 80))
+        }
+
+        window.addEventListener('resize', cssChangeResize);
+        $(function () {
+            $("#lateral_menu").load("/slim/src/files/lateral_menu.html?v=1");
+            $("#header").load("/slim/src/files/header.html?v=1");
+            $("#footer").load("/slim/src/files/footer.html?v=1");
+
+            $.getScript("/website/assets/js/side_menu.js?v=1");
+            $.getScript("/website/assets/js/header.js?v=1");
+            $.getScript("/website/assets/js/register.js?v=1");
+        });
+
+    </script>
+</body>
+
+</html>

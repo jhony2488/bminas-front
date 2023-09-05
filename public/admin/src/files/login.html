@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5LH2F99');
+    </script>
+    <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/website/assets/font-awesome/css/all.css?ver=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/website/assets/css/global.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/header_signin.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/login.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/lateral_menu.css?ver=1.0">
+    <link rel="stylesheet" href="/website/assets/css/menu-mobile.css?ver=1.0">
+    <title>Bicho Premiado</title>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1034732420656918');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1034732420656918&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body onload="cssChangeResize()">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LH2F99"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="wrapper" style="display: block;">
+        <aside class="d-flex">
+            <div class="" id="lateral_menu"></div>
+            <div class="body-container noselect">
+                <div class="slide-header" id="header"></div>
+                <div class="body" style="display: flex;">
+                    <div class="container-options">
+                        <div class="container-how-to-play">
+                            <div class="content-how-to-play">
+                                <h2>Como jogar</h2>
+                                <p>Aprenda a jogar um dos jogos que mais prêmia no Brasil, com toda a segurança que você precisa!
+                                </p>
+                                <div class="greater-eighteen">18+</div>
+                                <p>Todos os produtos desse site são direcionados para maiores de 18 anos, se você ainda não completou essa idade sugerimos que saia do site. Obrigado!</p>
+                                <button type="button" class="know-more" onclick="location.href='/comojogar';"><i
+                                        class="fas fa-long-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="container-results">
+                            <div class="content-results">
+                                <h2>Resultados</h2>
+                                <p>Acompanhe todos os resultados do dia e veja se você ganhou!</p>
+                                <div class="greater-eighteen">18+</div>
+                                <p>Todos os produtos desse site são direcionados para maiores de 18 anos, se você ainda não completou essa idade sugerimos que saia do site. Obrigado!</p>
+                                <button type="button" class="know-more" onclick="location.href='/resultados';"><i
+                                        class="fas fa-long-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer"></div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(window).on("load", function() {
+            // $('.wrapper').css('display', 'block');
+            // $(".loading-screen").fadeOut(100, function() {
+            //     $('body').css('overflow', 'visible');
+            // });
+        });
+
+        function cssChangeResize() {
+            var height = $(".container-options").height();
+            $(".body").innerHeight(parseInt(height - 80))
+        }
+
+        window.addEventListener('resize', cssChangeResize);
+        $(function() {
+            $("#lateral_menu").load("/slim/src/files/lateral_menu.html");
+            $("#header").load("/slim/src/files/header_signin.html");
+            $("#footer").load("/slim/src/files/footer.html");
+        });
+    </script>
+</body>
+
+</html>

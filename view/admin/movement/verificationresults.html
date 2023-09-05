@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Dashboard | Resultados Apurados</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+
+    <style>
+      #cover {position: absolute; height: 100%; width: 100%; top:0; left: 0; background: #F2F2F2; z-index:9999;}
+    </style>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <!-- <div class="page-header">
+          <h3 class="page-title">Cadastro <strong>Regiões</strong></h3>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Regiões</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Lista</li>
+            </ol>
+          </nav>
+        </div> -->
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><i class="fa fa-table"></i> <strong>Registros</strong> Cadastrados</h4>
+              <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+              <br>
+
+              <div id="tab" class="panel-content pagination2 table-responsive">
+                <table id="dtable" class="table table-striped">
+                  <thead>
+                    <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Usuário</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Loteria</th>
+                  <th scope="col">Modal.</th>
+                  <th scope="col">Posição</th>
+                  <th scope="col">Jogo</th>
+                  <th scope="col">CB</th>
+                  <th scope="col">Aposta</th>
+                  <th scope="col">Bônus</th>
+                  <th scope="col">CT</th>
+                  <th scope="col">Prêmio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                <?php
+              /*
+                  include('conexao.php');
+                  $sql = "SELECT b.descricao as loteria,c.sigla as modalidade,a.colocacao_label as posicao,d.username as usuario,a.usuario_id as id_usuario,
+                  a.valor as valor_aposta,a.bonus as valor_bonus,e.valor as valor_premio,e.cotacao,a.jogo_id,a.numeros as jogo,a.cotacao as cotacao,
+                  a.combinacoes as combinacoes, conferido, DATE_FORMAT(a.created_at, '%d/%m/%Y %H:%i') as datar from jogos a
+                  left join loterias b on a.loteria = b.loteria_id
+                  left join modalidades c on a.modalidade_id = c.modalidade_id
+                  left join users d on a.usuario_id = d.user_id
+                  left join premios e on e.jogo_id = a.jogo_id
+                  where e.cotacao is not null and e.valor is not null ORDER BY `jogo_id` DESC limit 400";
+                  $result = $pdo->query( $sql );
+                  $data = $result->fetchAll( PDO::FETCH_ASSOC );
+                  foreach ($data as $row) {
+                    echo "<tr>";
+                    echo "<td>".$row['jogo_id']."</td>";
+                    echo "<td>".$row['usuario']."</td>";
+                    echo "<td>".$row['datar']."</td>";
+                    echo "<td>".$row['loteria']."</td>";
+                    echo "<td>".$row['modalidade']."</td>";
+                    echo "<td>".$row['posicao']."</td>";
+                    echo "<td>".$row['jogo']."</td>";
+                    echo "<td>".$row['combinacoes']."</td>";
+                    echo "<td>".$row['valor_aposta']."</td>";
+                    echo "<td>".$row['valor_bonus']."</td>";
+                    echo "<td>".$row['cotacao']."</td>";
+                    echo "<td>".$row['valor_premio']."</td>";
+                    echo "</tr>";
+                  }
+                */
+                ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+
+  <script>
+
+      $('#dtable').DataTable({
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "oLanguage": {
+          "sUrl": "../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+  </script>
+
+  </body>
+</html>

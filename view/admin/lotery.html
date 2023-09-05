@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard | Loterias</title>
+    <link rel="shortcut icon" href="/admin/assets/images/logo.png">
+    
+    <!-- import style:js -->
+    <script src="/admin/static/js/styles.js"></script>
+  </head>
+
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <div id="navbar-content"></div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+    <!-- partial:partials/_sidebar.html -->
+    <div id="sidebar-content"></div>
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between">
+                <h4 class="card-title"><!-- <i class="icon-globe"></i> --> <strong>Loterias</strong></h4>
+                <!-- <p class="card-description"> Add class <code>.table-bordered</code></p> -->
+
+                <button id="att_list" type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Atualizar lista" style="margin-bottom: -0.4525rem;"><i class="icon-refresh"></i></button>
+              </div>
+              <hr>
+              <br>
+              <!-- <button type="button" id="restoreDefaults" class="btn btn-success mb-5">Restaurar padrões</button> -->
+              <button type="button" id="add-lottery" class="btn btn-success mb-5">Adicionar loteria</button>
+
+                <div id="tab" class="panel-content pagination2 table-responsive">
+                  <table id="dtable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th width="5%" scope="col">ID</th>
+                        <th width="15%" scope="col">Descrição</th>
+                        <th width="15%" scope="col">Horario Limite</th>
+                        <th width="15%" scope="col">Sigla</th>
+                        <th scope="col">Freq.Semanal</th>
+                        <th width="10%" scope="col">Status</th>
+                        <th width="1%" scope="col">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <div id="footer-content"></div>
+
+  <!-- plugins:js -->
+  <script src="../../admin/assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../admin/assets/vendors/jquery-mask/dist/jquery.mask.min.js"></script>
+  <script src="../../admin/assets/vendors/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="../../admin/assets/vendors/datatable/datatables.min.js"></script>
+  <!-- import partials:js -->
+  <script src="/admin/static/js/partials.js"></script>
+  <script defer="defer" src="/admin/static/js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      const adicionarLoteriaBtn = $('#add-lottery');
+      const atualizarListaBtn = $('#att_list');
+
+      const tabela = $('#dtable').DataTable({
+        initComplete: function () {
+          carregarDados();
+        },
+        "columns": [{
+            "data": "campo_lottery_id",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_nome",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_hora_limite",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              return data;
+            }
+          },
+          {
+            "data": "campo_abreviacao",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+              return data;
+            }
+          },
+          {
+            "data": "campo_dia_semana",
+            "render": function(data, type, row) {
+              if (!data) {
+                return 'Não encontrado!';
+              }
+
+              const diasDaSemanaTextos = data.split(',').map(numero => {
+                switch (numero) {
+                  case '7':
+                    return 'Dom';
+                  case '1':
+                    return 'Seg';
+                  case '2':
+                    return 'Ter';
+                  case '3':
+                    return 'Qua';
+                  case '4':
+                    return 'Qui';
+                  case '5':
+                    return 'Sex';
+                  case '6':
+                    return 'Sab';
+                  default:
+                    return 'Nenhuma';
+                  }
+              });
+
+              return diasDaSemanaTextos.join(', ');
+            }
+          },
+          {
+            "data": "campo_status",
+            "render": function(data, type, row) {
+              /*if (!data) {
+                return "<label class='badge btn-secondary' style='color:white;'>Não encontrado</label>";
+              }*/
+
+              let status = (data == 1) ? "<label class='badge btn-success' style='color:white;'>Ativo</label>" : "<label class='badge btn-danger' style='color:white;'>Inativo</label>";
+              return status;
+            }
+          },
+          {
+            "data": "campo_lottery_id",
+            "render": function(data, type, row) {
+              let btns = `
+                <!--button onclick="reportCoupon('${row['campo_lottery_id']}')" type="button" class="btn btn-sm btn-info" title="Gerar Relatório" data-toggle="tooltip"> <i class="icon-doc" style="color: #fff !important;" title="Gerar Relatório"></i></button-->
+
+                <button id="edit-lottery" data-lottery="${row['campo_lottery_id']}" type="button" class="btn btn-sm btn-success" title="Editar Cupom" data-toggle="tooltip"><i class="icon-pencil" style="color: #fff !important;" title="Editar Cupom"></i></button>&nbsp;`;
+
+              return btns;
+            }
+          }],
+        'order': [
+          [0, 'asc']
+        ],
+        "responsive": true,
+        "pageLength": 25,
+        "language": {
+          emptyTable: '<div id="datatable_processing" class="dataTables_processingfetch" role="status"><div><div></div><div></div><div></div><div></div></div></div>'
+        },
+        "oLanguage": {
+          "sUrl": "../../admin/assets/vendors/datatable/pt-br.json"
+        }
+      });
+
+      // get list
+      async function carregarDados() {
+        try {
+          const response = await fetch('/api_admin/lotteries', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if(response.status === 200) {
+            const data = await response.json();
+            tabela.clear().rows.add(data).draw();
+
+            if (data.length === 0) {
+              const emptyMessage = 'Sem resultados';
+              tabela.rows.add([]).draw();
+              $('.dataTables_empty', tabela.table().container()).html(emptyMessage);
+            }
+          } else if (response.status === 401) {
+
+            Swal.fire({
+              toast: true,
+              type: 'warning',
+              showConfirmButton: false,
+              position: 'top-end',
+              timer: 1300,
+              title: "Sessão de usuário expirada",
+            })
+
+            setTimeout(
+              function() {
+                location.reload();
+            },1400)
+
+          } else {
+            throw new Error('Erro na requisição: ' + response.status);
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          atualizarListaBtn.html(`<i class="icon-refresh"></i>`);
+        }
+      }
+
+      atualizarListaBtn.click(function(e) {
+        e.preventDefault();
+
+        recarregarDados();
+      });
+
+      function recarregarDados() {
+        $(this).html(`<div class="spinner-border spinner-border-sm" role="status"></div>`);
+
+        tabela.clear().draw();
+        carregarDados();
+      }
+
+      function checkCheckboxes(response, checkboxes) {
+        if (typeof response === "string") {
+          response.split(",").forEach(day => {
+            if (checkboxes.hasOwnProperty(day.trim())) {
+              $(checkboxes[day.trim()]).prop("checked", true);
+            }
+          });
+        }
+      }
+
+      // add lottery
+      adicionarLoteriaBtn.click(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+          type: 'question',
+          // width: '55%',
+          title: 'Adicionar Loteria',
+          confirmButtonText: "Confirmar",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          reverseButtons: true,
+          html: `<div style="margin-top:20px">
+                  <form id="addlottery">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Nome da Loteria</label>
+                          <input type="text" id="campo_nome" name="campo_nome" class="form-control select-height" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label id="label-type" class="form-label">Abreviação</label>
+                          <input type="tel" id="campo_abreviacao" name="campo_abreviacao" class="form-control select-height" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Sequencia</label>
+                          <input type="number" id="campo_sequencia" name="campo_sequencia" class="form-control select-height" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Status</label>
+                          <select name="campo_status" id="campo_status" class="form-control select-height">
+                            <option value="1" checked>Ativo</option>
+                            <option value="0">Inativo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Grupo loteria</label>
+                          <select name="campo_grupo_loteria" id="campo_grupo_loteria" class="form-control select-height" required>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                        <label class="form-label" for="data">Horario limite:</label>
+                        <input class="form-control select-height" type="time" id="campo_hora_limite" name="campo_hora_limite" required>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <h5 style="text-align: center;">Dias da semana </h5>
+                        <div class="row" style="display: flex; justify-content: space-between;">
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="7" id="DOM">
+                            <label for="DOM">DOM</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="1" id="SEG">
+                            <label for="SEG">SEG</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="2" id="TER">
+                            <label for="TER">TER</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="3" id="QUA">
+                            <label for="QUA">QUA</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="4" id="QUI">
+                            <label for="QUI">QUI</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="5" id="SEX">
+                            <label for="SEX">SEX</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="6" id="SAB">
+                            <label for="SAB">SAB</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>`,
+
+          onOpen: () => {
+            // select lotteries
+            fetch('/api_admin/lotteries/groups', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+              .then(response => response.json())
+              .then(response => {
+
+                let select = ``;
+                select += `<option value="">--</option>`;
+                response.map((response) => {
+                  select += `<option value="${response.lottery_group_id}">${response.group_name}</option>`;
+                });
+
+                $('#campo_grupo_loteria').html(select);
+              })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+              })
+          },
+          preConfirm: () => {
+            // validação
+            return new Promise((resolve) => {
+
+              // Executar a validação
+              let erros = [];
+              let form = document.getElementById("addlottery");
+              let inputs = Array.from(form.querySelectorAll("[required]"));
+
+              inputs.forEach((validate) => {
+                if (!validate.value.trim()) {
+                  erros.push(validate);
+                  validate.classList.add("is-invalid");
+                } else {
+                  validate.classList.remove("is-invalid");
+                }
+              });
+
+              if (erros.length === 0) {
+
+                // pegar valores
+                let myForm = document.getElementById('addlottery');
+                let formData = new FormData(myForm);
+
+                let days = "";
+                // let daysD = "";
+                const checkboxValues = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB"];
+
+                checkboxValues.forEach(checkbox => {
+                  if ($("#" + checkbox).is(":checked")) {
+                    days += $("#" + checkbox).val() + ',';
+                    // daysD += $("#" + checkbox).val() + ',';
+                  }
+                });
+
+                days = days.slice(0, -1);
+                //daysD = daysD.slice(0, -1);
+
+                formData.append("campo_dia_semana", days);
+                // formData.append("campo_dia_semana_padrao", daysD);
+
+                let formObject = Object.fromEntries(formData.entries());
+                // for (var pair of formData.entries()) {
+                //   console.log(pair[0] + ': ' + pair[1]);
+                // }
+
+                // salvar dados
+                fetch('/api_admin/lotteries/insert', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(formObject)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                    if (response.status == 201) {
+                    Swal.fire({
+                      type: "success",
+                      width: '35%',
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      width: '35%',
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+                resolve(); // Resolva a promessa para fechar o diálogo
+              } else {
+                Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                resolve();
+              }
+            });
+          }
+        })
+      });
+
+      // edit lottery
+      $(document).on('click', '#edit-lottery', function(e) {
+        e.preventDefault();
+
+        const lottery_id = $(this).data('lottery');
+        console.log(lottery_id)
+
+        Swal.fire({
+          type: 'question',
+          // width: '55%',
+          title: 'Editar Loteria ID: '+lottery_id,
+          confirmButtonText: "Confirmar",
+          showCancelButton: true,
+          cancelButtonText: "Cancelar",
+          reverseButtons: true,
+          html: `<div style="margin-top:20px">
+                  <form id="editlotery">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Nome da Loteria</label>
+                          <input type="text" id="name" name="name" class="form-control select-height" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label id="label-type" class="form-label">Abreviação</label>
+                          <input type="tel" id="abbreviated" name="abbreviated" class="form-control select-height" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Sequencia</label>
+                          <input type="tel" id="sequence" name="sequence" class="form-control select-height" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Status</label>
+                          <select name="status" id="status" class="form-control select-height">
+                            <option value="1" checked>Ativo</option>
+                            <option value="0">Inativo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-label">Grupo loteria</label>
+                          <select name="group_lottery" id="group_lottery" class="form-control select-height">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                        <label class="form-label" for="data">Horario limite:</label>
+                        <input class="form-control select-height" type="time" id="hour_limit" name="hour_limit" required>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <h5 style="text-align: center;">Dias da semana </h5>
+                        <div class="row" style="display: flex; justify-content: space-between;">
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="7" id="DOM">
+                            <label for="DOM">DOM</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="1" id="SEG">
+                            <label for="SEG">SEG</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="2" id="TER">
+                            <label for="TER">TER</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="3" id="QUA">
+                            <label for="QUA">QUA</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="4" id="QUI">
+                            <label for="QUI">QUI</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="5" id="SEX">
+                            <label for="SEX">SEX</label>
+                          </div>
+                          <div class="col-md-1">
+                            <input type="checkbox" class="checkCoupon" value="6" id="SAB">
+                            <label for="SAB">SAB</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <form>
+                </div>
+                `,
+          onOpen: () => {
+
+            if (lottery_id != null) {
+              // load data
+              fetch('/api_admin/lotteries/'+lottery_id, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+              .then(response => response.json())
+              .then(response => {
+
+                $('#name').val(response.campo_nome);
+                $('#sequence').val(response.campo_sequencia).change();
+                $('#status').val(response.campo_status);
+                $('#abbreviated').val(response.campo_abreviacao).change();
+                $('#hour_limit').val(response.campo_hora_limite).change();
+
+                const checkboxes = {
+                  "1": "#SEG",
+                  "2": "#TER",
+                  "3": "#QUA",
+                  "4": "#QUI",
+                  "5": "#SEX",
+                  "6": "#SAB",
+                  "7": "#DOM"
+                };
+
+                // const checkboxesD = {
+                //   "1": "#SEGD",
+                //   "2": "#TERD",
+                //   "3": "#QUAD",
+                //   "4": "#QUID",
+                //   "5": "#SEXD",
+                //   "6": "#SABD",
+                //   "7": "#DOMD"
+                // };
+
+                const grupoLoteriaSelecionado = response.campo_grupo_loteria;
+                checkCheckboxes(response.campo_dia_semana, checkboxes);
+                // checkCheckboxes(response.campo_dia_semana_padrao, checkboxesD);
+
+                // select lotteries
+                fetch('/api_admin/lotteries/groups', {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                    let select = ``;
+                    select += `<option value="">--</option>`;
+                    response.map((item) => {
+                      // Verifique se o valor atual do option corresponde ao valor selecionado
+                      const isSelected = (item.lottery_group_id === grupoLoteriaSelecionado) ? 'selected="selected"' : '';
+                      select += `<option value="${item.lottery_group_id}" ${isSelected}>${item.group_name}</option>`;
+                    });
+
+                    $('#group_lottery').html(select);
+                  })
+                  .catch(error => {
+                    console.log(error);
+                  })
+                  .finally(() => {
+                })
+              })
+            }
+          },
+          preConfirm: () => {
+            // validação
+            return new Promise((resolve) => {
+              // Executar a validação
+              let erros = [];
+              let form = document.getElementById("editlotery");
+              let inputs = Array.from(form.querySelectorAll("[required]"));
+
+              inputs.forEach((validate) => {
+                if (!validate.value.trim()) {
+                  erros.push(validate);
+                  validate.classList.add("is-invalid");
+                } else {
+                  validate.classList.remove("is-invalid");
+                }
+              });
+
+              if (erros.length === 0) {
+                // pegar valores
+                let myForm = document.getElementById('editlotery');
+
+                let days = "";
+                // let daysD = "";
+                const checkboxValues = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB"];
+
+                checkboxValues.forEach(checkbox => {
+                  if ($("#" + checkbox).is(":checked")) {
+                    days += $("#" + checkbox).val() + ',';
+                    // daysD += $("#" + checkbox).val() + ',';
+                  }
+                });
+
+                days = days.slice(0, -1);
+                // daysD = daysD.slice(0, -1);
+
+                const data = {
+                  lottery_id: lottery_id,
+                  name: myForm.querySelector('#name').value,
+                  abbreviated: myForm.querySelector('#abbreviated').value,
+                  sequence: myForm.querySelector('#sequence').value,
+                  status: parseInt(myForm.querySelector('#status').value),
+                  group_lottery: parseInt(myForm.querySelector('#group_lottery').value),
+                  hour_limit: myForm.querySelector('#hour_limit').value,
+                  days_week: days
+                  // days_week_default: daysD
+                };
+
+                console.log(data)
+
+                // salvar dados
+                fetch('/api_admin/lotteries', {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                })
+                  .then(response => response.json())
+                  .then(response => {
+
+                    if (response.status == 200) {
+                    Swal.fire({
+                      type: "success",
+                      showConfirmButton: false,
+                      timer: 1500,
+                      title: response.message
+                    })
+                    setTimeout(
+                      function() {
+                        recarregarDados();
+                      }, 1600);
+                  } else {
+                    Swal.fire({
+                      type: "error",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      title: response.message
+                    })
+                  }
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+                .finally(() => {
+                });
+
+                resolve(); // Resolva a promessa para fechar o diálogo
+              } else {
+                Swal.showValidationMessage('Preencha todos os campos obrigatórios');
+                resolve();
+              }
+            })
+          }
+        })
+      })
+    })
+  </script>
+</body>
+
+</html>

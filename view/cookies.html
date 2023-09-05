@@ -1,0 +1,216 @@
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicho Mania ♣ A maior banca de jogo do bicho online no Brasil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/default.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome.css">
+</head>
+
+<style>
+  .container-cookies h2 {
+    color: var(--primary);
+    margin-top: 20px;
+    font-size: 22px;
+  }
+
+  .container-cookies {
+    color: #fff;
+  }
+
+  .container-cookies a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .container-cookies a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  .container-cookies .title-responsavel {
+    font-size: 18px;
+    color: var(--primary);
+  }
+</style>
+
+<body>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal modal-login d-none">
+    <div class="modal-content">
+      <div class="modal-title">
+        <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Bicho Mania">
+        <button class="btn btn-close-modal">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1 class="title-modal-login">Entrar</h1>
+        <div class="container-inputs-login">
+          <form action="">
+            <div class="content-inputs-login">
+              <button class="btn btn-login-google" title="EM BREVE!" disabled data-hover="EM BREVE!">
+                <img src="./assets/images/icon-google.svg" alt="Jogo do Bicho Online - Bicho Mania, Login com Google">
+                Google
+              </button>
+            </div>
+            <div class="content-separator">
+              <span class="hr-separator"></span>
+              <h1>ou</h1>
+              <span class="hr-separator"></span>
+            </div>
+            <div class="content-inputs-login">
+              <div class="input-group">
+                <label for="userLogin" class="label-text" id="labelTextUser">Usuário</label>
+                <label for="userLogin" class="label-icon">
+                  <i class="fas fa-user"></i>
+                </label>
+                <input type="text" autocomplete="off" id="userLogin" class="input-login"
+                  placeholder="Insira seu usuário">
+              </div>
+              <div class="input-group">
+                <label for="passwordLogin" class="label-text" id="labelTextPassword">Senha</label>
+                <label for="passwordLogin" class="label-icon">
+                  <i class="icon-lock fas fa-lock"></i>
+                </label>
+                <input type="password" autocomplete="off" id="passwordLogin" class="input-login"
+                  placeholder="Insira sua senha">
+                <label for="passwordLogin" class="label-icon password-icon d-none">
+                  <i class="icon-eye fas fa-eye"></i>
+                </label>
+                <a href="/recuperar-senha">Esqueceu sua senha?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="alert-login active">
+        <h1 class="line-error"></h1>
+      </div>
+      <div class="modal-footer">
+        <div class="input-group">
+          <input type="checkbox" id="rememberLogin">
+          <label for="rememberLogin" class="label-remember">Mantenha-me logado</label>
+        </div>
+        <button class="btn btn-modal-login" id="btnLogin">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-screen">
+    <div class="content-logo">
+      <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <main class="container-mania">
+    <div class="container-header">
+      <header class="home-header">
+        <a href="/" class="content-logo-home">
+          <img src="./assets/images/logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania">
+          <img src="./assets/images/icon-logo.svg" alt="Jogo do Bicho Online - Logo Bicho Mania Mobile">
+        </a>
+        <div class="content-buttons-home">
+          <button class="btn btn-login">
+            Entrar
+          </button>
+          <a href="/cadastrar" class="btn btn-register">
+            Criar conta
+          </a>
+        </div>
+      </header>
+    </div>
+    <div class="content-mania container-responsive">
+      <div class="header-signup">
+        <h1>COOKIES</h1>
+        <h2>Ao entrar no nosso site e acessar nossos
+          conteúdos, produtos e serviços, você autoriza o uso de cookies e outras tecnologias de
+          rastreamento para coletar informações e, assim, fornecer um serviço melhor e mais
+          personalizado.</h2>
+      </div>
+      <div class="centered container-cookies">
+        <h2>O QUE SÃO COOKIES?</h2>
+        <p> Cookies são pequenos arquivos de texto, compostos
+          de letras e números, que um servidor de Web coloca no seu computador ou dispositivo móvel
+          quando você visita um site. Os cookies ajudam a tornar nossos serviços mais fáceis de usar,
+          por exemplo, lembrando suas preferências de idioma e configuração. </p>
+        <p> Os cookies são usados para que você possa navegar
+          no site da maneira mais eficiente possível. Lembrando suas preferências, a interação com o
+          site é mais fácil e eficiente. Os cookies também servem para garantir que os anúncios que
+          você vê na Internet sejam relevantes para você e seus interesses. </p>
+        <h2>QUAIS COOKIES USAMOS?</h2>
+        <p> Na página do Bicho Mania, armazenamos Tecnologias de
+          Rastreamento. Quando você visita e acessa nossos diferentes serviços, armazenamos as
+          Tecnologias de Rastreamento que são estritamente necessárias ou de origem. </p>
+        <h2>TECNOLOGIAS DE RASTREAMENTO
+          ESTRITAMENTE NECESSÁRIAS</h2>
+        <p> São cookies de análise essenciais para efetuar
+          login, navegar e usar os serviços. Eles são usados para coletar informações sobre sua
+          interação com o conteúdo do site. Essas informações são úteis para compilar relatórios,
+          calcular as entradas no site, melhorar os serviços e personalizar a oferta de produtos e
+          conteúdos. Esses cookies não precisam do seu consentimento para serem usados, já podem ser
+          usados por razões de segurança. </p>
+        <p> Também usamos cookies de funcionalidade, que são
+          Tecnologias de Rastreamento usadas para lembrar suas configurações, nome de usuário,
+          preferência de idioma, região, entre outras, para proporcionar uma experiência mais
+          personalizada ao usuário. </p>
+        <h2>UTILIZAMOS COOKIES DE TERCEIROS?</h2>
+        <p> Para algumas seções do site, usamos Tecnologias de
+          Rastreamento de terceiros que coletam informações sobre jogos jogados para fins estatísticos
+          e de uso da web. Jogos terceirizados podem conter cookies de terceiros. Para mais
+          informações, você pode verificar os sites dos provedores de jogos. </p>
+        <h2>COMO CONTROLAR O USO DE COOKIES?</h2>
+        <p> A maioria dos navegadores de Internet está
+          configurada para aceitar cookies automaticamente. Você pode alterar as configurações para
+          bloquear cookies ou receber uma notificação quando um cookie é enviado para o seu
+          dispositivo. Existem várias maneiras de gerenciar cookies. Para obter mais informações,
+          consulte as configurações do navegador. Lembre-se de que, quando você desativa ou bloqueia
+          nossos cookies, alguns recursos do site podem não funcionar corretamente. </p>
+      </div>
+    </div>
+    </div>
+  </main>
+  <footer class="container-footer" id="footerIndex">
+
+  </footer>
+
+
+  <script src="./assets/js/jquery-3.6.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
+    integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.all.min.js"></script>
+  <script src="./assets/js/home.js"></script>
+
+</body>
+
+</html>

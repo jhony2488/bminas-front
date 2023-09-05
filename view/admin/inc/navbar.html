@@ -1,0 +1,47 @@
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex align-items-center">
+
+          <a class="navbar-brand brand-logo" id="logo-link" href="#">
+            <img src="../../../public/admin/assets/images/logo.png" alt="logo" class="logo-dark" /><span class="mt-0" style="color: #fff;font-size: 20px;font-weight: 400;">BICHO MANIA</span>
+          </a>
+
+          <a class="navbar-brand navbar-brand-mini brand-logo-mini" id="logo-link-mini" href="#"><img src="../../../public/admin/assets/images/logo.png" alt="logo" />
+          </a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span></button>
+
+          <ul class="navbar-nav navbar-nav-right ml-auto">
+            <li class="nav-item" id="resultsNavMenu" style="display:none;"><a href="/admin/movement/showresults" class="nav-link"><i class="icon-flag"></i></a></li>
+            <li class="nav-item mr-3" id="transactionsNavMenu" style="display:none;"><a href="/admin/transaction/list" class="nav-link"><i class="icon-chart"></i></a></li>
+
+            <li class="nav-item float-start mr-3"><a > <i class="flag-icon flag-icon-br"></i> </a></li>
+            <li class="nav-item float-start "><i class="icon-clock text-right clock-navbar-ico"></i>
+              <tr>
+                <td><input type = "text" class="clock-navbar text-right" readonly="true" id="hora_inicio" name = "hora_inicio" value="--:--:--" size = 6></td>
+             </tr>
+            </li>
+            <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
+              <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <img class="img-xs rounded-circle ml-2" src="../../../public/admin/assets/images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal" style="text-transform: capitalize;"><div id="adm_name"></div></span></a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-header text-center">
+                  <img class="img-md rounded-circle" src="../../../public/admin/assets/images/faces/face8.jpg" alt="Profile image">
+                  <p class="mb-1 mt-3"><div style="text-transform: capitalize;" id="adm_name_desc"></div></p>
+                  <p class="font-weight-light text-muted mb-0"><span id="adm_level_nav"></span></p>
+                </div>
+                <!-- <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> Meu perfil <span class="badge badge-pill badge-danger">1</span></a> -->
+                <!-- <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Messages</a>
+                <a class="dropdown-item"><i class="dropdown-item-icon icon-energy text-primary"></i> Activity</a>
+                <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i> FAQ</a> -->
+                <a id="logout" class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sair</a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="icon-menu"></span>
+          </button>
+        </div>
+      </nav>
