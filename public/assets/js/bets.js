@@ -83,7 +83,7 @@ $(document).ready(function () {
 
       let infoPoule = `
       <blockquote class="poule">
-        <h1 class="title-poule">Bicho Mania</h1>
+        <h1 class="title-poule">Mega Bicho</h1>
         <hr>
         <div class="date-final">
           <h2>Corre em</h2>

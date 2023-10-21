@@ -238,7 +238,7 @@
   box-shadow: 0 0 10px #000;
 }
 
-.content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania Mobile"] {
+.content-logo-home img[alt="Jogo do Bicho Online - Logo Mega Bicho Mobile"] {
   display: none;
   width: 50px;
 }
@@ -323,7 +323,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url(/assets/images/home/bg-home.png), var(--bg-primary) no-repeat;
+  background-image: linear-gradient(to right, #235D4D, #162F28);
   background-size: cover;
 }
 
@@ -423,7 +423,7 @@
   white-space: nowrap;
 }
 
-.span-shield img[alt="Jogo do Bicho Online - Bicho Mania SEGURANÇA E PRIVACIDADE"] {
+.span-shield img[alt="Jogo do Bicho Online - Mega Bicho SEGURANÇA E PRIVACIDADE"] {
   height: 40px;
 }
 
@@ -435,7 +435,9 @@
   flex-wrap: wrap;
   padding: 65px 10px;
   position: relative;
-  background: linear-gradient(180deg, #17163B 16.39%, #17163B 20.51%, #17163B 24.79%, #17163B 30.46%, #17163B 34.11%, #17163B 36.21%, #17163B 100%);
+  /* APP
+    background: linear-gradient(180deg, #17163B 16.39%, #17163B 20.51%, #17163B 24.79%, #17163B 30.46%, #17163B 34.11%, #17163B 36.21%, #17163B 100%);
+  */
 }
 
 .container-app::after {
@@ -464,7 +466,7 @@
   width: max-content;
 }
 
-.content-app.img img[alt="Celular Jogo do Bicho Online - Bicho Mania"] {
+.content-app.img img[alt="Celular Jogo do Bicho Online - Mega Bicho"] {
   max-height: 540px;
   width: 100%;
   z-index: 3;
@@ -622,7 +624,7 @@
   margin: 5px;
 }
 
-.people-betting img[alt="Pessoa jogando em Jogo do Bicho Online - Bicho Mania"] {
+.people-betting img[alt="Pessoa jogando em Jogo do Bicho Online - Mega Bicho"] {
   width: 100%;
 }
 
@@ -634,7 +636,7 @@
   align-items: center;
 }
 
-.content-cassino.img img[alt="Cassino Online - Bicho Mania"] {
+.content-cassino.img img[alt="Cassino Online - Mega Bicho"] {
   width: 100%;
 }
 
@@ -1872,7 +1874,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .content-cassino.img img[alt="Cassino Online - Bicho Mania"] {
+  .content-cassino.img img[alt="Cassino Online - Mega Bicho"] {
     height: 100%;
   }
   .button-cassino {
@@ -1945,7 +1947,7 @@
     font-size: 3rem;
     line-height: 50px;
   }
-  .content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania"] {
+  .content-logo-home img[alt="Jogo do Bicho Online - Logo Mega Bicho"] {
     width: 100px;
   }
   /* APP */
@@ -1987,7 +1989,7 @@
 /* SMALL MOBILE - HOME */
 
 @media (max-width: 490px) {
-  .content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania Mobile"] {
+  .content-logo-home img[alt="Jogo do Bicho Online - Logo Mega Bicho Mobile"] {
     display: block;
   }
   .btn-login,.btn-register {
@@ -1995,7 +1997,7 @@
     width: 100px !important;
     margin: 10px 5px !important;
   }
-  .content-logo-home img[alt="Jogo do Bicho Online - Logo Bicho Mania"] {
+  .content-logo-home img[alt="Jogo do Bicho Online - Logo Mega Bicho"] {
     display: none;
   }
   .home-img-presentation-mobile {

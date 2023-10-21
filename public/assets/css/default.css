@@ -77,10 +77,10 @@ article {
 
 :root {
   --primary: #2ac1b9;
-  --text-secondary: #5b5a99;
+  --text-secondary: #33f6b8;
   --danger: #FF4141;
-  --bg-primary: #1a183e;
-  --bg-secondary: #18163b;
+  --bg-primary: #162F28;
+  --bg-secondary: #235D4D;
 }
 
 .d-none {
@@ -114,7 +114,7 @@ article {
   z-index: 100;
   width: 100%;
   height: 100%;
-  background: #1a183ef6;
+  background: #235D4D;
   /* backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px); */
 }
@@ -140,7 +140,7 @@ article {
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+  background: linear-gradient(#235D4D, #facf84, #5ad1cd);
   animation: animate 1.2s linear infinite;
 }
 
@@ -186,7 +186,7 @@ article {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+  background: linear-gradient(#235D4D, #facb84, #5ad1cd);
 }
 
 .loader span:nth-child(1) {
@@ -212,8 +212,8 @@ article {
   left: 10px;
   right: 10px;
   bottom: 10px;
-  background: #1a183e;
-  border: solid #17153a 10px;
+  background: #1d1301;
+  border: solid #241800 10px;
   border-radius: 50%;
 }
 

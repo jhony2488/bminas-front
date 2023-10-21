@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url(/assets/images/home/bg-home-404.png), var(--bg-primary) no-repeat;
+  background-image: linear-gradient(to right, #235D4D, #162F28);
   background-size: cover;
   background-position: center;
 }

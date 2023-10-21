@@ -3,9 +3,9 @@ function getDadaUsers() {
     .get('/api/users/')
     .then(response => {
       // HEADER
-      const campo_primeiro_nome = response.data.campo_primeiro_nome;
-      const campo_nome_usuario = response.data.campo_nome_usuario;
-      const campo_genero = response.data.campo_genero;
+      const { campo_primeiro_nome } = response.data;
+      const { campo_nome_usuario } = response.data;
+      const { campo_genero } = response.data;
       const welcomeMessage =
         campo_genero === 'M'
           ? `Olá, ${campo_nome_usuario.toUpperCase()}. Bem vindo!`
@@ -16,9 +16,9 @@ function getDadaUsers() {
       $('.message-user').html(welcomeMessage);
 
       // LATERAL-MENU
-      const campo_saldo_total = response.data.campo_saldo_total;
+      const { campo_saldo_total } = response.data;
       $('#userBalance').html(
-        parseFloat(campo_saldo_total).toLocaleString('pt-BR', {
+        parseFloat(campo_saldo_total || '0,00').toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
@@ -30,7 +30,7 @@ function getDadaUsers() {
           currency: 'BRL',
         }),
       );
-      const campo_saldo_saque =  response.data.campo_saldo_saque;
+      const { campo_saldo_saque } = response.data;
       $('.valorSaque').html(
         parseFloat(campo_saldo_saque).toLocaleString('pt-BR', {
           style: 'currency',
@@ -39,7 +39,10 @@ function getDadaUsers() {
       );
 
       // INDICATION
-      $('.open-share').attr(`data-link-share`, `https://bichomania.bet/cadastrar?indication=${response.data.campo_nome_usuario}`);
+      $('.open-share').attr(
+        `data-link-share`,
+        `https://megabicho.bet/cadastrar?indication=${response.data.campo_nome_usuario}`,
+      );
     })
     .catch(error => {
       if (Number(error.response.data.status) === 401) {
@@ -48,7 +51,7 @@ function getDadaUsers() {
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   $('.loading-screen').fadeOut(850, function () {
     $('.loader, .content-logo').fadeOut(500);
     $('body').css('overflow', 'visible');
@@ -57,16 +60,16 @@ $(document).ready(function() {
   getDadaUsers();
 
   let pageUrl = window.location.href.split('/');
-  pageUrl = pageUrl[pageUrl.length - 1].split('.')[0].replace(/#/g, "");
-  pageUrl = pageUrl.split('?')[0]
-  $('.options-menu a[data-url="' + pageUrl + '"]').parent().addClass('active')
+  pageUrl = pageUrl[pageUrl.length - 1].split('.')[0].replace(/#/g, '');
+  pageUrl = pageUrl.split('?')[0];
+  $(`.options-menu a[data-url="${pageUrl}"]`).parent().addClass('active');
 
-  $(".options-menu li").on("click", function () {
+  $('.options-menu li').on('click', function () {
     if ($(this).hasClass('prevent-active')) {
       return;
     }
-    $('.options-menu li.active').removeClass('active')
-    $(this).addClass('active')
+    $('.options-menu li.active').removeClass('active');
+    $(this).addClass('active');
   });
 
   // OPEN MODAL BANK
@@ -100,14 +103,16 @@ $(document).ready(function() {
       imageHeight: 50,
       imageAlt: 'Logo',
       title: '<strong style="color: var(--primary);">COMISSÃO 20%</strong>',
-      html: 'Ganhe <strong>20%</strong> de todos depósitos realizados por apostadores indicados, a partir do <strong>segundo depósito</strong>. <br><br>' + '<strong style="color: var(--primary);">LINK COPIADO!</strong>' + '<br><br>Agora é só enviar para seu apostador.',
+      html:
+        'Ganhe <strong>20%</strong> de todos depósitos realizados por apostadores indicados, a partir do <strong>segundo depósito</strong>. <br><br>' +
+        '<strong style="color: var(--primary);">LINK COPIADO!</strong>' +
+        '<br><br>Agora é só enviar para seu apostador.',
       confirmButtonText: '<i class="fa fa-thumbs-up"></i>',
       confirmButtonColor: '#2AC1B9',
       background: '#201d47',
       color: 'rgb(255 255 255 / 80%)',
-      });
+    });
   });
-
 
   // Shake animation using jQuery
   function shakeElement(element) {
@@ -120,7 +125,7 @@ $(document).ready(function() {
       });
   }
   // Verifique se existe um valor de "userBalanceBlurred" no localStorage
-  var isBlurred = localStorage.getItem('userBalanceBlurred') === 'true';
+  let isBlurred = localStorage.getItem('userBalanceBlurred') === 'true';
 
   // Se estiver desfocado, defina o desfoque no elemento "userBalance"
   if (isBlurred) {
@@ -154,7 +159,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#logoutUser").click(function(){
+  $('#logoutUser').click(function () {
     axios
       .get('/api/users/logout')
       .then(response => {
@@ -164,17 +169,16 @@ $(document).ready(function() {
         if (Number(error.response.data.status) === 401) {
           window.location.href = '/';
         }
-      })
-  })
+      });
+  });
 });
-
 
 // MENU BURGUER
 $('.menu-burger').click(function (event) {
   event.stopPropagation();
 
-  var sideMenu = $('#sideMenu');
-  var LinesMenuBurger = $('#verifyLinesBurguers');
+  const sideMenu = $('#sideMenu');
+  const LinesMenuBurger = $('#verifyLinesBurguers');
 
   if (sideMenu.hasClass('active')) {
     sideMenu.removeClass('active');
@@ -196,9 +200,9 @@ $('.menu-burger').click(function (event) {
 });
 
 $(document).click(function (event) {
-  var target = $(event.target);
-  var sideMenu = $('#sideMenu');
-  var LinesMenuBurger = $('#verifyLinesBurguers');
+  const target = $(event.target);
+  const sideMenu = $('#sideMenu');
+  const LinesMenuBurger = $('#verifyLinesBurguers');
 
   if (
     !target.closest(sideMenu).length &&
@@ -217,20 +221,24 @@ $(document).click(function (event) {
 });
 
 // MENU APOSTAS
-var isDraggingMenuBets = false;
-var startXMenuBets, scrollLeftMenuBets;
+let isDraggingMenuBets = false;
+let startXMenuBets;
+let scrollLeftMenuBets;
 
-$('.content-bets').on('mousedown touchstart', function (e) {
+$('.content-bets')
+  .on('mousedown touchstart', function (e) {
     isDraggingMenuBets = true;
     startXMenuBets = e.pageX || e.originalEvent.touches[0].pageX;
     scrollLeftMenuBets = $('.content-bets').scrollLeft();
-  }).on('mouseup touchend', function () {
+  })
+  .on('mouseup touchend', function () {
     isDraggingMenuBets = false;
-  }).on('mousemove touchmove', function (e) {
+  })
+  .on('mousemove touchmove', function (e) {
     if (!isDraggingMenuBets) return;
 
-    var xMenuBets = e.pageX || e.originalEvent.touches[0].pageX;
-    var deltaXMenuBets = startXMenuBets - xMenuBets;
+    const xMenuBets = e.pageX || e.originalEvent.touches[0].pageX;
+    const deltaXMenuBets = startXMenuBets - xMenuBets;
 
     $('.content-bets').scrollLeft(scrollLeftMenuBets + deltaXMenuBets);
   });
@@ -239,13 +247,13 @@ $(window).on('mouseup touchend', function () {
   isDraggingMenuBets = false;
 });
 
-var scrollDuration = 200;
+const scrollDuration = 200;
 
 $('.btn-scroll-bets').click(function () {
-  var scrollStep = $('.content-bets').width();
+  const scrollStep = $('.content-bets').width();
   $('.content-bets').animate(
     {
-      scrollLeft: '+=' + scrollStep,
+      scrollLeft: `+=${scrollStep}`,
     },
     scrollDuration,
   );
